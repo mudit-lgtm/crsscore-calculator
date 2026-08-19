@@ -1,0 +1,108 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+(function () {
+  function g(id) { return document.getElementById(id); }
+  function val(id) { return parseInt(g(id).value) || 0; }
+
+  function calculate() {
+    var age      = val('age');
+    var edu      = val('education');
+    var lang     = val('clbLevel');
+    var spEdu    = g('marital').value === 'spouse' ? val('spouseEducation') : 0;
+    var spLang   = g('marital').value === 'spouse' ? val('clbSpouse') : 0;
+    var canExp   = val('canadaExp');
+    var forExp   = val('foreignExp');
+    var spExp    = g('marital').value === 'spouse' ? val('spouseExp') : 0;
+    var study    = val('canadaStudy');
+    var sibling  = val('sibling');
+    var nomBonus = val('nomineeBonus');
+    var jobOffer = val('pnpJobOffer');
+    var french   = val('frenchLevel');
+    var francoComm = val('frenchCommunity');
+
+    var spouse   = spEdu + spLang + spExp;
+    var work     = canExp + forExp;
+    var total    = age + edu + lang + spouse + work + study + sibling + nomBonus + jobOffer + french + francoComm;
+
+    // Update summary mini cards
+    g('totalScore').textContent = total;
+    g('langPts').textContent    = lang;
+    g('eduPts').textContent     = edu;
+    g('workPts').textContent    = work;
+
+    // Update breakdown table
+    g('tAge').textContent    = age;
+    g('tEdu').textContent    = edu;
+    g('tLang').textContent   = lang;
+    g('tCanExp').textContent = canExp;
+    g('tSpouse').textContent = spouse;
+    g('tForeign').textContent= forExp;
+    g('tFrench').textContent = french;
+    g('tStudy').textContent  = study;
+    g('tSibling').textContent= sibling;
+    g('tBonus').textContent  = nomBonus + jobOffer;
+    g('tTotal').innerHTML    = '<strong>' + total + '</strong>';
+
+    // Sidebar score
+    g('sideScore').textContent = total;
+
+    // Eligibility banner
+    var banner = g('eligBanner');
+    if (total >= 400) {
+      banner.style.display = 'block';
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  g('calcBtn').addEventListener('click', calculate);
+
+  g('resetBtn').addEventListener('click', function () {
+    setTimeout(function () {
+      g('totalScore').textContent = 0;
+      g('langPts').textContent    = 0;
+      g('eduPts').textContent     = 0;
+      g('workPts').textContent    = 0;
+      g('tAge').textContent    = 0;
+      g('tEdu').textContent    = 0;
+      g('tLang').textContent   = 0;
+      g('tCanExp').textContent = 0;
+      g('tSpouse').textContent = 0;
+      g('tForeign').textContent= 0;
+      g('tFrench').textContent = 0;
+      g('tStudy').textContent  = 0;
+      g('tSibling').textContent= 0;
+      g('tBonus').textContent  = 0;
+      g('tTotal').innerHTML    = '<strong>0</strong>';
+      g('sideScore').textContent = 0;
+      g('eligBanner').style.display = 'none';
+    }, 0);
+  });
+
+  // Marital status toggle — hide/show spouse fields visually
+  g('marital').addEventListener('change', function () {
+    var isSpouse = this.value === 'spouse';
+    ['spouseEducation','clbSpouse','spouseExp'].forEach(function (id) {
+      g(id).closest('.field').style.opacity = isSpouse ? '1' : '0.4';
+    });
+  });
+
+  // Auto-calculate on any change
+  document.querySelectorAll('#mbForm select').forEach(function (el) {
+    el.addEventListener('change', calculate);
+  });
+
+})();

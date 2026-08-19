@@ -1,0 +1,54 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* Mobile menu */
+var menuBtn=document.getElementById('menuBtn');
+var mobileMenu=document.getElementById('mobileMenu');
+if(menuBtn&&mobileMenu){
+  menuBtn.addEventListener('click',function(){
+    var open=mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+}
+
+/* CRS Booster Tool */
+function calcBooster(){
+  var base=parseInt(document.getElementById('currentScore').value)||0;
+  var checkboxes=document.querySelectorAll('.booster-chk');
+  var added=0;
+  checkboxes.forEach(function(cb){
+    if(cb.checked) added+=parseInt(cb.getAttribute('data-pts'))||0;
+  });
+  var total=base+added;
+  document.getElementById('boosterTotal').textContent=total;
+  document.getElementById('boosterCurrent').textContent=base;
+  document.getElementById('boosterAdded').textContent=(added>0?'+':'')+added;
+  document.getElementById('boosterNew').textContent=total;
+  var sub='';
+  if(added===0){
+    sub='Select improvements above to see your boosted score';
+    document.getElementById('boosterBreakdown').style.display='none';
+  } else {
+    document.getElementById('boosterBreakdown').style.display='flex';
+    if(total>=600) sub='✅ PNP nomination — ITA virtually guaranteed!';
+    else if(total>=491) sub='✅ Above the 2026 general draw average (~491)';
+    else if(total>=436) sub='⚡ Competitive for healthcare/STEM category draws';
+    else if(total>=404) sub='⚡ Above French language draw range (393–404)';
+    else sub='📋 Still below category draw thresholds — consider PNP';
+  }
+  document.getElementById('boosterSub').textContent=sub;
+}
+/* Init */
+calcBooster();

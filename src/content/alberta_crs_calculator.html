@@ -1,0 +1,819 @@
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #c0392b;
+      --red-dark: #96281b;
+      --red-light: #e74c3c;
+      --white: #ffffff;
+      --bg: #f5f5f5;
+      --surface: #ffffff;
+      --border: #e0e0e0;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --text-faint: #999;
+      --success: #27ae60;
+      --warning: #e67e22;
+      --font: 'Inter', -apple-system, sans-serif;
+      --radius: 8px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--red); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* ── Skip link ── */
+    .skip-link { position: absolute; top: -40px; left: 0; background: var(--red); color: #fff; padding: 8px 16px; z-index: 9999; border-radius: 0 0 4px 0; }
+    .skip-link:focus { top: 0; }
+
+    /* ── Navbar ── */
+    nav { background: var(--red); position: sticky; top: 0; z-index: 100; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+    .nav-logo svg { width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 4px; list-style: none; flex-wrap: wrap; }
+    .nav-links a { color: rgba(255,255,255,0.9); font-size: 0.8rem; padding: 6px 10px; border-radius: 4px; white-space: nowrap; transition: background 0.2s; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); text-decoration: none; }
+    .nav-cta { background: #fff; color: var(--red) !important; font-weight: 600 !important; border-radius: 4px; }
+    .nav-cta:hover { background: #f0f0f0 !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; transition: 0.3s; }
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: var(--red-dark); flex-direction: column; padding: 8px 16px 16px; gap: 2px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 0.9rem; padding: 10px 12px; }
+    }
+
+    /* ── Hero ── */
+    .hero { background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 60%, var(--red-light) 100%); color: #fff; padding: 32px 16px 24px; text-align: center; }
+    .hero h1 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 700; line-height: 1.25; margin-bottom: 8px; }
+    .hero p { font-size: 0.95rem; opacity: 0.92; max-width: 600px; margin: 0 auto 16px; }
+    .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; }
+    .badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #fff; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+
+    /* ── Layout ── */
+    .page-wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px; display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+    @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } }
+
+    /* ── Calculator Card ── */
+    .calc-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .calc-header { background: var(--red); color: #fff; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+    .calc-header h2 { font-size: 1rem; font-weight: 600; }
+    .calc-header svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .calc-body { padding: 20px; }
+    .section-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--white); background: var(--red); padding: 4px 12px; border-radius: 3px; margin: 20px 0 14px; display: inline-block; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .form-group select, .form-group input { padding: 9px 10px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 0.9rem; font-family: var(--font); background: #fafafa; color: var(--text); appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; transition: border-color 0.2s; }
+    .form-group select:focus, .form-group input:focus { border-color: var(--red); outline: none; background: #fff; }
+    .language-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .language-table th { background: #f5f5f5; padding: 8px 10px; text-align: left; font-weight: 600; font-size: 0.75rem; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .language-table td { padding: 7px 10px; border-bottom: 1px solid #f0f0f0; }
+    .language-table select { width: 100%; padding: 6px 28px 6px 8px; border: 1px solid var(--border); border-radius: 5px; font-size: 0.82rem; background: #fafafa; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; appearance: none; -webkit-appearance: none; }
+    .language-table select:focus { border-color: var(--red); outline: none; }
+    .calc-btn { width: 100%; padding: 14px; background: var(--red); color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 20px; transition: background 0.2s; letter-spacing: 0.02em; }
+    .calc-btn:hover { background: var(--red-dark); }
+    .calc-btn:active { transform: scale(0.99); }
+
+    /* ── Result Box ── */
+    .result-box { display: none; margin-top: 20px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .result-box.show { display: block; }
+    .result-top { background: var(--red); color: #fff; text-align: center; padding: 20px; }
+    .result-score { font-size: 3.5rem; font-weight: 800; line-height: 1; }
+    .result-label { font-size: 0.85rem; opacity: 0.9; margin-top: 4px; }
+    .result-body { padding: 16px 20px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.88rem; }
+    .result-row:last-child { border-bottom: none; }
+    .result-row span:first-child { color: var(--text-muted); }
+    .result-row span:last-child { font-weight: 600; }
+    .alberta-tag { display: inline-block; margin-top: 12px; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; width: 100%; text-align: center; }
+    .tag-green { background: #eafaf1; color: var(--success); border: 1px solid #a9dfbf; }
+    .tag-amber { background: #fef9e7; color: var(--warning); border: 1px solid #f9e79f; }
+
+    /* ── Sidebar ── */
+    .sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .widget { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .widget-header { background: var(--red); color: #fff; padding: 10px 16px; font-size: 0.88rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .widget-body { padding: 14px 16px; }
+    .score-display { text-align: center; padding: 12px 0 8px; }
+    .score-num { font-size: 2.8rem; font-weight: 800; color: var(--red); line-height: 1; }
+    .score-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .score-note { font-size: 0.78rem; color: var(--text-muted); text-align: center; padding: 4px 0 8px; }
+    .draw-list { list-style: none; }
+    .draw-list li { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; padding: 7px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.8rem; }
+    .draw-list li:last-child { border-bottom: none; }
+    .draw-list .d-date { color: var(--text-muted); font-size: 0.75rem; }
+    .draw-list .d-type { font-weight: 500; }
+    .draw-list .d-score { background: var(--red); color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .tool-link { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 10px 8px; text-align: center; font-size: 0.78rem; font-weight: 500; color: var(--text); transition: all 0.2s; display: block; }
+    .tool-link:hover { background: #fff0f0; border-color: var(--red); color: var(--red); text-decoration: none; }
+    .tool-link .t-icon { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+
+    /* ── Content Sections ── */
+    .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px 40px; }
+    .content-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; margin-bottom: 24px; }
+    .content-section h2 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--red); }
+    .content-section h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 16px 0 8px; }
+    .content-section p { font-size: 0.9rem; color: #333; margin-bottom: 10px; max-width: 72ch; }
+    .content-section ul, .content-section ol { padding-left: 20px; margin-bottom: 10px; }
+    .content-section li { font-size: 0.9rem; color: #333; margin-bottom: 5px; }
+
+    /* AEO/GEO answer boxes */
+    .answer-box { background: #fff8f8; border-left: 4px solid var(--red); border-radius: 0 6px 6px 0; padding: 12px 16px; margin: 12px 0; font-size: 0.9rem; }
+    .answer-box strong { color: var(--red); }
+
+    /* Draw table */
+    .draw-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 12px 0; }
+    .draw-table th { background: var(--red); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+    .draw-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; }
+    .draw-table tr:hover td { background: #fef9f9; }
+    .draw-table .score-chip { background: var(--red); color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; }
+    @media (max-width: 600px) { .draw-table { font-size: 0.78rem; } .draw-table th, .draw-table td { padding: 7px 8px; } }
+
+    /* How-to steps */
+    .steps { counter-reset: steps; display: flex; flex-direction: column; gap: 12px; margin: 12px 0; }
+    .step { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; }
+    .step::before { content: counter(steps); background: var(--red); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+    .step-text { font-size: 0.9rem; color: #333; }
+    .step-text strong { color: var(--text); }
+
+    /* FAQ accordion */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; text-align: left; padding: 14px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.92rem; font-weight: 600; color: var(--text); gap: 12px; }
+    .faq-q:hover { color: var(--red); }
+    .faq-icon { font-size: 1.2rem; color: var(--red); flex-shrink: 0; transition: transform 0.25s; }
+    .faq-a { display: none; padding-bottom: 14px; font-size: 0.88rem; color: #444; line-height: 1.65; }
+    .faq-a.open { display: block; }
+    .faq-icon.open { transform: rotate(45deg); }
+
+    /* Score range table */
+    .range-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .range-table th { background: var(--red); color: #fff; padding: 9px 12px; text-align: left; }
+    .range-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+    .range-table tr:nth-child(even) td { background: #fafafa; }
+
+    /* Outbound link chips */
+    .outbound-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .outbound-link { display: inline-flex; align-items: center; gap: 5px; background: #f5f5f5; border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-size: 0.8rem; color: var(--text-muted); transition: all 0.2s; }
+    .outbound-link:hover { background: #fff0f0; border-color: var(--red); color: var(--red); text-decoration: none; }
+
+    /* Breadcrumb */
+    .breadcrumb { font-size: 0.8rem; color: rgba(255,255,255,0.8); padding: 8px 16px; max-width: 1200px; margin: 0 auto; }
+    .breadcrumb a { color: rgba(255,255,255,0.85); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* Footer */
+    footer { background: #1a1a1a; color: #ccc; padding: 32px 16px 20px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+    .footer-col h4 { color: #fff; font-size: 0.88rem; font-weight: 600; margin-bottom: 10px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 6px; }
+    .footer-col a { color: #aaa; font-size: 0.82rem; }
+    .footer-col a:hover { color: var(--red-light); text-decoration: none; }
+    .footer-bottom { text-align: center; font-size: 0.78rem; color: #777; margin-top: 24px; padding-top: 20px; border-top: 1px solid #2d2d2d; }
+  </style>
+
+
+<a class="skip-link" href="#calculator">Skip to Calculator</a>
+
+<!-- ── NAVBAR ── -->
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="CRS Calculator Home">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="6" fill="rgba(255,255,255,0.2)"/><text x="14" y="19" text-anchor="middle" font-size="14" font-weight="800" fill="white" font-family="Arial">C</text></svg>
+      CRS Calculator
+    </a>
+    <button class="hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="/">CRS Calculator</a></li>
+      <li><a href="/cec-calculator">CEC Calculator</a></li>
+      <li><a href="/express-entry">Express Entry</a></li>
+      <li><a href="/fsw-calculator">FSW Calculator</a></li>
+      <li><a href="/ontario-calculator">Ontario</a></li>
+      <li><a href="/alberta-crs-calculator" class="active">Alberta</a></li>
+      <li><a href="/clb-scores">CLB Scores</a></li>
+      <li><a href="/improve-score">Improve Score</a></li>
+      <li><a href="/" class="nav-cta">Calculate Now →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero" role="banner">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span aria-hidden="true">›</span>
+    <span aria-current="page">Alberta CRS Calculator</span>
+  </nav>
+  <h1>Alberta CRS Calculator 2026<br><span style="font-weight:400;font-size:0.85em;">Free AAIP Express Entry Points Tool</span></h1>
+  <p>Calculate your Alberta CRS score instantly. Check if you meet the <strong>Alberta Advantage Immigration Program (AAIP)</strong> minimum requirements — no login required.</p>
+  <div class="hero-badges">
+    <span class="badge">✓ Updated 2026</span>
+    <span class="badge">✓ Official AAIP Criteria</span>
+    <span class="badge">✓ 100% Free</span>
+    <span class="badge">✓ No Login</span>
+    <span class="badge">✓ Instant Results</span>
+  </div>
+</div>
+
+<!-- ── MAIN LAYOUT ── -->
+<div class="page-wrap">
+
+  <!-- CALCULATOR -->
+  <main id="calculator">
+    <div class="calc-card">
+      <div class="calc-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+        <h2>Alberta CRS Score Calculator — AAIP Express Entry 2026</h2>
+      </div>
+      <div class="calc-body">
+
+        <span class="section-label">Section A — Core Human Capital</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <select id="age">
+              <option value="">— Select age —</option>
+              <option value="0">Under 18</option>
+              <option value="99">18</option>
+              <option value="105">19</option>
+              <option value="110">20–29</option>
+              <option value="110">21</option>
+              <option value="110">22</option>
+              <option value="110">23</option>
+              <option value="110">24</option>
+              <option value="110">25</option>
+              <option value="110">26</option>
+              <option value="110">27</option>
+              <option value="110">28</option>
+              <option value="110">29</option>
+              <option value="105">30</option>
+              <option value="99">31</option>
+              <option value="94">32</option>
+              <option value="88">33</option>
+              <option value="83">34</option>
+              <option value="77">35</option>
+              <option value="72">36</option>
+              <option value="66">37</option>
+              <option value="61">38</option>
+              <option value="55">39</option>
+              <option value="50">40</option>
+              <option value="39">41</option>
+              <option value="28">42</option>
+              <option value="17">43</option>
+              <option value="6">44</option>
+              <option value="0">45+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="education">Education Level</label>
+            <select id="education">
+              <option value="">— Select education —</option>
+              <option value="0">Less than secondary</option>
+              <option value="30">Secondary diploma</option>
+              <option value="90">One-year post-secondary</option>
+              <option value="98">Two-year post-secondary</option>
+              <option value="120">Bachelor's degree</option>
+              <option value="128">Two+ post-secondary (one 3yr+)</option>
+              <option value="135">Master's / professional degree</option>
+              <option value="150">PhD (Doctoral degree)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="marital">Marital / Partnership Status</label>
+            <select id="marital">
+              <option value="single">Single / Divorced / Widowed</option>
+              <option value="married">Married / Common-law</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseEdu">Spouse Education (if married)</label>
+            <select id="spouseEdu">
+              <option value="0">N/A</option>
+              <option value="2">Less than secondary</option>
+              <option value="6">Secondary diploma</option>
+              <option value="8">One-year post-secondary</option>
+              <option value="9">Two-year post-secondary</option>
+              <option value="10">Bachelor's / 3yr program</option>
+              <option value="10">Two+ post-secondary</option>
+              <option value="10">Master's / professional</option>
+              <option value="10">PhD</option>
+            </select>
+          </div>
+        </div>
+
+        <span class="section-label">Section B — First Official Language (IELTS / CELPIP)</span>
+        <table class="language-table" aria-label="First language scores">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>IELTS / CELPIP Score (CLB)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Speaking</td>
+              <td><select id="l1s" aria-label="Speaking CLB">
+                <option value="0">CLB 3 or less</option>
+                <option value="6">CLB 4 (IELTS 4.0)</option>
+                <option value="8">CLB 5 (IELTS 5.0)</option>
+                <option value="15">CLB 6 (IELTS 5.5)</option>
+                <option value="22">CLB 7 (IELTS 6.0)</option>
+                <option value="29" selected>CLB 8 (IELTS 7.0)</option>
+                <option value="32">CLB 9 (IELTS 7.5)</option>
+                <option value="32">CLB 10+ (IELTS 8.0+)</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Listening</td>
+              <td><select id="l1l" aria-label="Listening CLB">
+                <option value="0">CLB 3 or less</option>
+                <option value="6">CLB 4</option>
+                <option value="8">CLB 5</option>
+                <option value="15">CLB 6</option>
+                <option value="22">CLB 7</option>
+                <option value="29" selected>CLB 8</option>
+                <option value="32">CLB 9</option>
+                <option value="32">CLB 10+</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Reading</td>
+              <td><select id="l1r" aria-label="Reading CLB">
+                <option value="0">CLB 3 or less</option>
+                <option value="6">CLB 4</option>
+                <option value="8">CLB 5</option>
+                <option value="15">CLB 6</option>
+                <option value="22">CLB 7</option>
+                <option value="29" selected>CLB 8</option>
+                <option value="32">CLB 9</option>
+                <option value="32">CLB 10+</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td>Writing</td>
+              <td><select id="l1w" aria-label="Writing CLB">
+                <option value="0">CLB 3 or less</option>
+                <option value="6">CLB 4</option>
+                <option value="8">CLB 5</option>
+                <option value="15">CLB 6</option>
+                <option value="22">CLB 7</option>
+                <option value="29" selected>CLB 8</option>
+                <option value="32">CLB 9</option>
+                <option value="32">CLB 10+</option>
+              </select></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <span class="section-label">Section C — Work Experience</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="canExp">Canadian Work Experience</label>
+            <select id="canExp">
+              <option value="0">None</option>
+              <option value="40">1 year</option>
+              <option value="53">2 years</option>
+              <option value="64">3 years</option>
+              <option value="72">4 years</option>
+              <option value="80">5+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="forExp">Foreign Work Experience</label>
+            <select id="forExp">
+              <option value="0">None</option>
+              <option value="13">1–2 years</option>
+              <option value="25">3+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseExp">Spouse Canadian Work Exp.</label>
+            <select id="spouseExp">
+              <option value="0">None / N/A</option>
+              <option value="5">1–2 years</option>
+              <option value="7">3–4 years</option>
+              <option value="8">5+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseLang">Spouse Language (CLB)</label>
+            <select id="spouseLang">
+              <option value="0">N/A</option>
+              <option value="0">CLB 4 or less</option>
+              <option value="1">CLB 5–6</option>
+              <option value="3">CLB 7–8</option>
+              <option value="5">CLB 9+</option>
+            </select>
+          </div>
+        </div>
+
+        <span class="section-label">Section D — Additional Points</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pnp">Provincial Nomination (PNP)</label>
+            <select id="pnp">
+              <option value="0">No</option>
+              <option value="600">Yes (+600 pts)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jobOffer">Job Offer – NOC TEER 0/1/2/3</label>
+            <select id="jobOffer">
+              <option value="0">No</option>
+              <option value="50">NOC TEER 1/2/3 (+50)</option>
+              <option value="200">NOC TEER 0 Major 00 (+200)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sibling">Sibling in Canada (PR/Citizen)</label>
+            <select id="sibling">
+              <option value="0">No</option>
+              <option value="15">Yes (+15)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="canadianEdu">Canadian Post-Secondary Edu.</label>
+            <select id="canadianEdu">
+              <option value="0">None</option>
+              <option value="15">1–2 year program (+15)</option>
+              <option value="30">3+ year program (+30)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="frenchLang">French Language (NCLC 7+)</label>
+            <select id="frenchLang">
+              <option value="0">No French / below NCLC 7</option>
+              <option value="25">NCLC 7+ only (+25)</option>
+              <option value="50">NCLC 7+ with English CLB 5+ (+50)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="albOccupation">Alberta Priority Occupation?</label>
+            <select id="albOccupation">
+              <option value="no">No</option>
+              <option value="yes">Yes (Healthcare/Tech/Trades)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calc-btn" id="calcBtn" type="button" aria-label="Calculate Alberta CRS Score">
+          Calculate My Alberta CRS Score →
+        </button>
+
+        <!-- RESULT BOX -->
+        <div class="result-box" id="resultBox" role="region" aria-live="polite" aria-label="Your CRS Score Result">
+          <div class="result-top">
+            <div class="result-score" id="totalScore">0</div>
+            <div class="result-label">Your Estimated Federal CRS Score</div>
+          </div>
+          <div class="result-body">
+            <div class="result-row"><span>Core Human Capital (A)</span><span id="rCore">0</span></div>
+            <div class="result-row"><span>Language Score (B)</span><span id="rLang">0</span></div>
+            <div class="result-row"><span>Work Experience (C)</span><span id="rWork">0</span></div>
+            <div class="result-row"><span>Additional Points (D)</span><span id="rExtra">0</span></div>
+            <div id="albertaTag"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside aria-label="Alberta Immigration Tools">
+
+    <!-- Latest Score Widget -->
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Latest Alberta AAIP Draw Scores
+      </div>
+      <div class="widget-body">
+        <div class="score-display">
+          <div class="score-num">59</div>
+          <div class="score-sub">Last AAIP Min. Score — Apr 13, 2026</div>
+        </div>
+        <p class="score-note">Healthcare Pathway – Express Entry. <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer">View all AAIP draws →</a></p>
+        <ul class="draw-list" aria-label="Recent Alberta draws">
+          <li><span class="d-date">Apr 14</span><span class="d-type">Priority Sectors (Construction)</span><span class="d-score">60</span></li>
+          <li><span class="d-date">Apr 13</span><span class="d-type">Healthcare – Express Entry</span><span class="d-score">59</span></li>
+          <li><span class="d-date">Apr 8</span><span class="d-type">Accelerated Tech Pathway</span><span class="d-score">59</span></li>
+          <li><span class="d-date">Apr 9</span><span class="d-type">Rural Renewal Stream</span><span class="d-score">50</span></li>
+          <li><span class="d-date">Jan 30</span><span class="d-type">Accelerated Tech Pathway</span><span class="d-score">58</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Related Tools -->
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+        Related CRS Tools
+      </div>
+      <div class="widget-body">
+        <div class="tool-grid">
+          <a href="/" class="tool-link"><span class="t-icon">🇨🇦</span>Main CRS Calculator</a>
+          <a href="/cec-calculator" class="tool-link"><span class="t-icon">📋</span>CEC Calculator</a>
+          <a href="/fsw-calculator" class="tool-link"><span class="t-icon">💼</span>FSW Calculator</a>
+          <a href="/ontario-calculator" class="tool-link"><span class="t-icon">🏙️</span>Ontario OINP</a>
+          <a href="/clb-scores" class="tool-link"><span class="t-icon">📝</span>IELTS to CLB</a>
+          <a href="/improve-score" class="tool-link"><span class="t-icon">📈</span>Improve Score</a>
+          <a href="/bc-calculator" class="tool-link"><span class="t-icon">🏔️</span>BC PNP Calc</a>
+          <a href="/cutoff-scores" class="tool-link"><span class="t-icon">🎯</span>Cutoff History</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Resources -->
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Official AAIP Resources
+      </div>
+      <div class="widget-body" style="display:flex;flex-direction:column;gap:8px;">
+        <a href="https://www.alberta.ca/aaip-alberta-express-entry-stream" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ AAIP Express Entry Stream</a>
+        <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ AAIP Draw Results 2026</a>
+        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/rounds-invitations.html" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ Federal Express Entry Draws</a>
+        <a href="https://www.ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ Official IRCC CRS Tool</a>
+      </div>
+    </div>
+
+  </aside>
+</div><!-- end page-wrap -->
+
+<!-- ── CONTENT SECTIONS ── -->
+<div class="content-wrap">
+
+  <!-- What is Alberta CRS -->
+  <section class="content-section" aria-labelledby="what-is-h2">
+    <h2 id="what-is-h2">What is the Alberta CRS Calculator? (AAIP Express Entry 2026)</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> The Alberta CRS Calculator estimates your federal Comprehensive Ranking System (CRS) score and checks it against Alberta Advantage Immigration Program (AAIP) Express Entry stream thresholds for 2026.
+    </div>
+    <p>The <strong>Alberta CRS score calculator</strong> uses the official <a href="https://www.ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer">IRCC Comprehensive Ranking System</a> criteria to estimate your points across four sections: Core Human Capital (age, education, language), Skill Transferability, Canadian work experience, and Additional Points.</p>
+    <p>Alberta's AAIP then uses its own internal score (out of 100) to rank and invite Express Entry candidates. The minimum AAIP score required varies by stream — typically <strong>58–63 for Tech</strong>, <strong>54–61 for Priority Sectors</strong>, and a <strong>base federal CRS of 300</strong> for the general Alberta Express Entry stream.</p>
+    <p>If you receive an <strong>AAIP provincial nomination</strong>, IRCC automatically adds <strong>+600 federal CRS points</strong> to your profile — virtually guaranteeing an Invitation to Apply (ITA) for Canada PR.</p>
+
+    <h3>AAIP Score Ranges & Eligibility</h3>
+    <table class="range-table" aria-label="AAIP score ranges and eligibility">
+      <thead>
+        <tr><th>AAIP Score</th><th>Stream</th><th>Typical Eligibility</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>58–63+</td><td>Accelerated Tech Pathway</td><td>Strong — recent draws at 58–63</td></tr>
+        <tr><td>54–61+</td><td>Priority Sectors (Construction, Healthcare, Agriculture)</td><td>Strong in priority occupations</td></tr>
+        <tr><td>52–59+</td><td>Dedicated Healthcare Pathway</td><td>Healthcare professionals only</td></tr>
+        <tr><td>50–55+</td><td>Rural Renewal Stream</td><td>Settling in rural Alberta communities</td></tr>
+        <tr><td>300+ (federal CRS)</td><td>General Alberta Express Entry</td><td>Base minimum for AAIP consideration</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px;font-size:0.82rem;color:var(--text-muted);">Source: <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer">Alberta AAIP Processing Information</a>, April 2026. Data is for reference only.</p>
+  </section>
+
+  <!-- How to Use -->
+  <section class="content-section" aria-labelledby="how-to-h2">
+    <h2 id="how-to-h2">How to Use This Alberta CRS Calculator</h2>
+    <div class="steps">
+      <div class="step"><div class="step-text"><strong>Enter Personal Details</strong> — Select your age, education level, and marital status. If married, enter your spouse's education and language scores.</div></div>
+      <div class="step"><div class="step-text"><strong>Add Language Scores</strong> — Input your IELTS or CELPIP scores for all four skills (Speaking, Listening, Reading, Writing) as CLB levels. Use our <a href="/clb-scores">CLB Score Converter</a> if needed.</div></div>
+      <div class="step"><div class="step-text"><strong>Enter Work Experience</strong> — Select your years of Canadian work experience and foreign work experience.</div></div>
+      <div class="step"><div class="step-text"><strong>Add Alberta-Specific Points</strong> — Indicate if you work in an Alberta priority occupation (Tech, Healthcare, Construction, Manufacturing, Agriculture, Aviation).</div></div>
+      <div class="step"><div class="step-text"><strong>Get Instant Results</strong> — The calculator shows your estimated federal CRS score and whether you likely meet AAIP's minimum requirements.</div></div>
+    </div>
+  </section>
+
+  <!-- How CRS is Calculated for Alberta -->
+  <section class="content-section" aria-labelledby="breakdown-h2">
+    <h2 id="breakdown-h2">How is CRS Score Calculated for Alberta PNP? Full Breakdown</h2>
+    <p>The federal CRS score used for Alberta Express Entry is calculated from the same <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system/grid.html" target="_blank" rel="noopener noreferrer">IRCC CRS grid</a> as all other Express Entry streams. Maximum is <strong>1,200 points</strong> (without PNP) across four core sections:</p>
+    <ul>
+      <li><strong>Section A – Core Human Capital (500 pts):</strong> Age (110 max), Education (150 max), Language (160 max), Canadian work experience (80 max)</li>
+      <li><strong>Section B – Spouse/Partner Factors (40 pts):</strong> Spouse education, language, and Canadian work experience</li>
+      <li><strong>Section C – Skill Transferability (100 pts):</strong> Education + language combinations, work experience combinations</li>
+      <li><strong>Section D – Additional Points (600 pts):</strong> PNP nomination (+600), job offer (+50 or +200), Canadian education (+15/+30), French language (+25/+50), sibling in Canada (+15)</li>
+    </ul>
+    <div class="answer-box">
+      <strong>Alberta Tip:</strong> Working in Alberta's priority sectors (healthcare, tech, construction, trades) significantly increases your chances of receiving a Notification of Interest (NOI) from AAIP, even at lower CRS scores.
+    </div>
+    <p>Use our <a href="/">main CRS Calculator</a> for a detailed section-by-section breakdown, or our <a href="/improve-score">Improve CRS Score guide</a> to find the fastest ways to boost your points.</p>
+  </section>
+
+  <!-- Latest Alberta Draws Table -->
+  <section class="content-section" aria-labelledby="draws-h2">
+    <h2 id="draws-h2">Latest Alberta AAIP Express Entry Draw Results 2026</h2>
+    <p>Alberta's AAIP conducts regular draws across multiple streams. Below are the most recent 2026 results. <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer">View full AAIP draw history on Alberta.ca →</a></p>
+
+    <table class="draw-table" aria-label="Alberta AAIP draw results 2026">
+      <thead>
+        <tr><th>Draw Date</th><th>Stream / Pathway</th><th>Min. Score</th><th>Invitations</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Apr 14, 2026</td><td>Alberta Express Entry – Priority Sectors (Construction)</td><td><span class="score-chip">60</span></td><td>50</td></tr>
+        <tr><td>Apr 13, 2026</td><td>Dedicated Health Care Pathway – Express Entry</td><td><span class="score-chip">59</span></td><td>62</td></tr>
+        <tr><td>Apr 9, 2026</td><td>Rural Renewal Stream</td><td><span class="score-chip">50</span></td><td>74</td></tr>
+        <tr><td>Apr 8, 2026</td><td>Alberta Express Entry – Accelerated Tech Pathway</td><td><span class="score-chip">59</span></td><td>146</td></tr>
+        <tr><td>Mar 27, 2026</td><td>Alberta Express Entry – Law Enforcement Pathway</td><td><span class="score-chip">46</span></td><td>&lt;10</td></tr>
+        <tr><td>Feb 19, 2026</td><td>Alberta Express Entry – Priority Sectors (Construction)</td><td><span class="score-chip">61</span></td><td>50</td></tr>
+        <tr><td>Feb 14, 2026</td><td>Dedicated Health Care Pathway – Express Entry</td><td><span class="score-chip">52</span></td><td>62</td></tr>
+        <tr><td>Feb 6, 2026</td><td>Alberta Express Entry – Priority Sectors (Healthcare)</td><td><span class="score-chip">54</span></td><td>118</td></tr>
+        <tr><td>Jan 30, 2026</td><td>Accelerated Tech Pathway</td><td><span class="score-chip">58</span></td><td>95</td></tr>
+        <tr><td>Feb 2, 2026</td><td>Alberta Opportunity Stream</td><td><span class="score-chip">57</span></td><td>915</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">Source: <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer">Alberta.ca AAIP Processing Information</a>. Data is for reference purposes only.</p>
+    <div class="outbound-links">
+      <a href="https://www.alberta.ca/aaip-application-streams" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ All AAIP Streams</a>
+      <a href="https://www.alberta.ca/aaip-alberta-express-entry-stream" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ Alberta Express Entry Stream</a>
+      <a href="/cutoff-scores" class="outbound-link">↗ Federal CRS Cutoff History</a>
+    </div>
+  </section>
+
+  <!-- Alberta Priority Occupations -->
+  <section class="content-section" aria-labelledby="occ-h2">
+    <h2 id="occ-h2">Alberta Priority Occupations for AAIP 2026</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> Alberta prioritizes Healthcare, Technology, Construction &amp; Skilled Trades, Manufacturing, Aviation, and Agriculture workers under the 2026 AAIP allocation.
+    </div>
+    <p>Working in one of Alberta's priority sectors gives you a substantially higher chance of receiving a Notification of Interest (NOI) from AAIP. Each pathway has dedicated draw allocations for 2026:</p>
+    <table class="draw-table" aria-label="Alberta 2026 priority occupation allocations">
+      <thead>
+        <tr><th>Sector / Pathway</th><th>2026 Allocation</th><th>Nominations Issued</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Accelerated Tech Pathway</td><td>600</td><td>152 (as of Apr 2026)</td></tr>
+        <tr><td>Priority Sectors (Construction, Manufacturing, Agriculture, Aviation)</td><td>600</td><td>120 (as of Apr 2026)</td></tr>
+        <tr><td>Dedicated Healthcare Pathway</td><td>~350</td><td>Active draws ongoing</td></tr>
+        <tr><td>Rural Renewal Stream</td><td>~200</td><td>Active draws ongoing</td></tr>
+        <tr><td>Law Enforcement Pathway</td><td>38</td><td>&lt;10 (as of Apr 2026)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;font-size:0.82rem;color:var(--text-muted);">Source: <a href="https://www.alberta.ca/aaip-processing-information" target="_blank" rel="noopener noreferrer">Alberta.ca</a>, April 2026.</p>
+    <p>If your occupation falls outside priority sectors, check our <a href="/fsw-calculator">Federal Skilled Worker Calculator</a> or <a href="/cec-calculator">Canadian Experience Class Calculator</a> for federal Express Entry pathways.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="content-section" aria-labelledby="faq-h2">
+    <h2 id="faq-h2">Frequently Asked Questions — Alberta CRS Calculator</h2>
+    <div id="faqAccordion">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq1">
+          What is the minimum CRS score for Alberta Express Entry 2026?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq1">The minimum AAIP score varies by stream. April 2026 draws show minimums of 59–63 for Accelerated Tech, 59–61 for Priority Sectors (Construction/Healthcare), and 50 for Rural Renewal. The base federal CRS minimum for general Alberta Express Entry consideration is 300.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq2">
+          How does an Alberta nomination affect my federal CRS score?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq2">An Alberta provincial nomination (through AAIP) adds +600 federal CRS points to your Express Entry profile. This near-guarantees an ITA in the next federal draw, as even PNP-only draws have cutoffs around 786–789 in 2026 — well covered by a typical base score + 600 bonus.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq3">
+          How is the Alberta CRS score different from the federal CRS?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq3">Alberta's AAIP uses its own internal scoring out of 100 (not the federal 1,200-point CRS) to rank and invite candidates. It considers additional factors like ties to Alberta and provincial occupation priorities. However, you must still have a valid federal Express Entry profile with a CRS of 300+ to be eligible for the Alberta Express Entry stream.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq4">
+          Can I apply to AAIP without a job offer?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq4">Yes. The Alberta Express Entry Stream does not require a job offer for most pathways. However, having demonstrated ties to Alberta (past work or study in the province), or working in a priority occupation, significantly increases your chances of receiving a Notification of Interest (NOI).</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq5">
+          Is this Alberta CRS calculator accurate?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq5">This tool is built using the official IRCC CRS criteria and provides a close estimate of your federal score. For your exact AAIP eligibility, always use the <a href="https://www.ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer">official IRCC CRS tool</a> and review the <a href="https://www.alberta.ca/aaip-alberta-express-entry-stream" target="_blank" rel="noopener noreferrer">official AAIP requirements</a>.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" aria-controls="faq6">
+          How can I improve my CRS score for Alberta?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a" id="faq6">The fastest ways to improve your score are: (1) improve IELTS/CELPIP scores — each CLB level jump can add 10–32 points; (2) gain Canadian work experience; (3) obtain a Canadian post-secondary credential (+15 to +30 pts); (4) add French language skills (+25 to +50 pts). See our full <a href="/improve-score">Improve CRS Score guide</a> for all 10 strategies.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Internal Linking Section -->
+  <section class="content-section" aria-labelledby="tools-h2">
+    <h2 id="tools-h2">Related CRS Calculators &amp; Alberta Immigration Tools</h2>
+    <p>Explore these tools for other Express Entry programs and provincial streams:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:12px;">
+      <a href="/" class="tool-link"><span class="t-icon">🇨🇦</span>Main CRS Calculator</a>
+      <a href="/cec-calculator" class="tool-link"><span class="t-icon">📋</span>CEC Calculator</a>
+      <a href="/fsw-calculator" class="tool-link"><span class="t-icon">💼</span>FSW Points Calc</a>
+      <a href="/pnp-calculator" class="tool-link"><span class="t-icon">🗺️</span>PNP Calculator</a>
+      <a href="/ontario-calculator" class="tool-link"><span class="t-icon">🏙️</span>Ontario OINP Calc</a>
+      <a href="/clb-scores" class="tool-link"><span class="t-icon">📝</span>IELTS to CLB</a>
+      <a href="/improve-score" class="tool-link"><span class="t-icon">📈</span>Improve CRS Score</a>
+      <a href="/cutoff-scores" class="tool-link"><span class="t-icon">🎯</span>Cutoff Scores</a>
+      <a href="/healthcare-crs" class="tool-link"><span class="t-icon">🏥</span>Healthcare CRS</a>
+      <a href="/stem-crs" class="tool-link"><span class="t-icon">💻</span>STEM Workers CRS</a>
+    </div>
+  </section>
+
+</div><!-- end content-wrap -->
+
+<!-- ── FOOTER ── -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Copy this exact block into every page, replacing the old footer
+  ============================================================ -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Design: Dark navy bg | 5 columns | Red CRS badge logo
+  MARKER: UNIVERSAL FOOTER (do not remove this line)
+  ============================================================ -->
+<footer style="background:#1a1a2e;color:#ccc;padding:48px 16px 24px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;margin-bottom:40px">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="background:#d32f2f;color:#fff;font-weight:800;font-size:11px;padding:4px 6px;border-radius:5px;letter-spacing:0.03em">CRS</span>
+          <span style="color:#fff;font-weight:700;font-size:14px">CRS Calculator</span>
+        </div>
+        <p style="font-size:13px;line-height:1.7;color:#9ca3af">Free Canada Express Entry CRS score calculator. Trusted by thousands of applicants.</p>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">CRS Calculators</h4>
+        <a href="/" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CRS Calculator</a>
+        <a href="/express-entry-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Express Entry</a>
+        <a href="/cec-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CEC Calculator</a>
+        <a href="/fsw-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">FSW Calculator</a>
+        <a href="/pnp-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">PNP Calculator</a>
+        <a href="/ielts-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">IELTS to CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Provincial Tools</h4>
+        <a href="/ontario-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Ontario OINP</a>
+        <a href="/alberta-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Alberta AINP</a>
+        <a href="/bc-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">British Columbia</a>
+        <a href="/manitoba-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Manitoba MPNP</a>
+        <a href="/nova-scotia-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Nova Scotia</a>
+        <a href="/healthcare-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Healthcare CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Guides &amp; Blog</h4>
+        <a href="/blog" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Blog</a>
+        <a href="/what-is-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">What is CRS Score?</a>
+        <a href="/blog/improve-crs-score-tips" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Improve CRS Score</a>
+        <a href="/blog/minimum-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Minimum CRS Score</a>
+        <a href="/express-entry-draws" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Draw Results</a>
+        <a href="/crs-cutoff-scores" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Cutoff Scores</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Company</h4>
+        <a href="/about" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">About Us</a>
+        <a href="/contact" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Contact Us</a>
+        <a href="/privacy-policy" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Privacy Policy</a>
+        <a href="/terms-and-conditions" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Terms &amp; Conditions</a>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #374151;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+      <p style="font-size:12px;color:#6b7280;margin:0">© 2026 CRS Score Calculator. Free tool — not affiliated with IRCC.</p>
+      <div style="display:flex;gap:20px">
+        <a href="/privacy-policy" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Privacy</a>
+        <a href="/terms-and-conditions" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Terms</a>
+        <a href="/contact" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+
+
+

@@ -1,0 +1,94 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* Mobile menu */
+var menuBtn=document.getElementById('menuBtn');
+var mobileMenu=document.getElementById('mobileMenu');
+if(menuBtn&&mobileMenu){
+  menuBtn.addEventListener('click',function(){
+    var open=mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+}
+
+/* Eligibility Checker */
+function checkEligibility(){
+  var score=parseInt(document.getElementById('myScore').value)||0;
+  var noc=document.getElementById('myNOC').value;
+  var french=document.getElementById('myFrench').value;
+  var pnp=document.getElementById('myPNP').value;
+
+  document.getElementById('scoreLabel').textContent=score;
+  document.getElementById('scoreDisplay').textContent=score;
+
+  var pathways=[];
+  var title='';
+  var body='';
+
+  /* PNP overrides everything */
+  if(pnp==='yes'){
+    title='✅ Congratulations! PNP nomination means ITA is virtually guaranteed.';
+    body='Your provincial nomination adds +600 CRS points to your profile. You will receive an Invitation to Apply (ITA) in the next PNP-stream draw regardless of your base score. Ensure your profile is complete and accurate.';
+    pathways=['PNP Draw — ITA Certain'];
+    document.getElementById('resultTitle').textContent=title;
+    document.getElementById('resultBody').textContent=body;
+    var tgs=document.getElementById('resultTags');
+    tgs.innerHTML='';
+    pathways.forEach(function(p){tgs.innerHTML+='<span class="ptag">'+p+'</span>';});
+    return;
+  }
+
+  /* Check each pathway */
+  if(french==='nclc7'||french==='nclc9') pathways.push('French Language Draw ('+(french==='nclc9'?'NCLC 9+':'NCLC 7–8')+')');
+  if(noc==='agriculture'&&score>=388) pathways.push('Agriculture Draw');
+  if(noc==='trades'&&score>=388) pathways.push('Trades Draw');
+  if(noc==='transport'&&score>=388) pathways.push('Transport Draw');
+  if(noc==='healthcare'&&score>=426) pathways.push('Healthcare Draw');
+  if(noc==='stem'&&score>=481) pathways.push('STEM Draw');
+  if(score>=491) pathways.push('General All-Programs Draw');
+  if(score>=504) pathways.push('CEC Draw');
+
+  /* French score check */
+  if((french==='nclc7'||french==='nclc9')&&score<393){
+    var fidx=pathways.indexOf('French Language Draw ('+(french==='nclc9'?'NCLC 9+':'NCLC 7–8')+')');
+    if(fidx>-1) pathways.splice(fidx,1);
+  }
+
+  if(pathways.length===0){
+    title='⚠️ Below Current Draw Thresholds';
+    body='Your score of '+score+' is currently below the cutoff for all available draws for your NOC category. Recommended actions: (1) Apply for a PNP nomination (+600 pts), (2) Retake your language test (+up to 50 pts), (3) Learn French to NCLC 7+ for French draw access (cutoff ~393–404).';
+  } else if(pathways.length===1&&pathways[0].includes('French')){
+    title='🟡 Eligible for French Language Draw Only';
+    body='With NCLC 7+ French and a score of '+score+', you qualify for French language draws (cutoff ~393–404). This is a strong position — French draws are held monthly. Ensure your TEF Canada or TCF Canada results are in your profile.';
+  } else if(score>=491){
+    title='✅ Competitive for General Draws!';
+    body='Your score of '+score+' is at or above the 2026 general draw average (~491). You are competitive for an ITA in the near term. Consider also pursuing PNP as a guaranteed backup.';
+  } else {
+    title='🟡 Eligible for Category Draws';
+    body='Your score of '+score+' qualifies you for the pathway(s) below. These category draws have lower cutoffs than the general draw. Ensure your NOC code is correctly listed in your Express Entry profile.';
+  }
+
+  document.getElementById('resultTitle').textContent=title;
+  document.getElementById('resultBody').textContent=body;
+  var tg=document.getElementById('resultTags');
+  tg.innerHTML='';
+  if(pathways.length>0){
+    pathways.forEach(function(p){tg.innerHTML+='<span class="ptag">'+p+'</span>';});
+  } else {
+    tg.innerHTML='<span class="ptag">No current draw eligible — see action plan above</span>';
+  }
+}
+/* Init */
+checkEligibility();

@@ -1,0 +1,838 @@
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #c0392b; --red-dark: #96281b; --red-light: #e74c3c;
+      --bg: #f5f5f5; --surface: #ffffff; --border: #e0e0e0;
+      --text: #1a1a1a; --text-muted: #666; --text-faint: #999;
+      --success: #27ae60; --warning: #e67e22; --blue: #2980b9;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 8px; --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; } a { color: var(--red); text-decoration: none; } a:hover { text-decoration: underline; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+    /* Skip link */
+    .skip-link { position: absolute; top: -44px; left: 0; background: var(--red); color: #fff; padding: 8px 16px; z-index: 9999; border-radius: 0 0 4px 0; transition: top 0.2s; }
+    .skip-link:focus { top: 0; }
+
+    /* Navbar */
+    nav.main-nav { background: var(--red); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-logo { color: #fff; font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+    .nav-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+    .nav-links { display: flex; gap: 1px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.9); font-size: 0.76rem; padding: 6px 8px; border-radius: 4px; white-space: nowrap; transition: background 0.2s; display: block; }
+    .nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.2); text-decoration: none; color: #fff; }
+    .nav-cta { background: #fff !important; color: var(--red) !important; font-weight: 700 !important; border-radius: 4px !important; }
+    .nav-cta:hover { background: #f0f0f0 !important; text-decoration: none !important; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; transition: 0.3s; }
+    @media (max-width: 860px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: var(--red-dark); flex-direction: column; padding: 8px 16px 16px; gap: 2px; z-index: 200; }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 0.9rem; padding: 10px 12px; }
+    }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 55%, var(--red-light) 100%); color: #fff; padding: 28px 16px 22px; text-align: center; }
+    .breadcrumb { font-size: 0.78rem; color: rgba(255,255,255,0.78); max-width: 1200px; margin: 0 auto 14px; text-align: left; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .breadcrumb a { color: rgba(255,255,255,0.88); }
+    .breadcrumb span.sep { opacity: 0.6; }
+    .hero h1 { font-size: clamp(1.3rem, 4vw, 1.95rem); font-weight: 800; line-height: 1.22; margin-bottom: 8px; }
+    .hero p { font-size: 0.92rem; opacity: 0.93; max-width: 580px; margin: 0 auto 14px; }
+    .hero-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-bottom: 18px; }
+    .badge { background: rgba(255,255,255,0.17); border: 1px solid rgba(255,255,255,0.3); color: #fff; font-size: 0.72rem; font-weight: 500; padding: 3px 11px; border-radius: 20px; }
+
+    /* Layout */
+    .page-wrap { max-width: 1200px; margin: 0 auto; padding: 22px 16px; display: grid; grid-template-columns: 1fr 306px; gap: 22px; align-items: start; }
+    @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } }
+
+    /* Calculator card */
+    .calc-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .calc-header { background: var(--red); color: #fff; padding: 13px 18px; display: flex; align-items: center; gap: 10px; }
+    .calc-header h2 { font-size: 0.93rem; font-weight: 600; line-height: 1.3; }
+    .calc-header svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .calc-body { padding: 18px; }
+    .section-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #fff; background: var(--red); padding: 4px 11px; border-radius: 3px; margin: 18px 0 12px; display: inline-block; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    @media (max-width: 500px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 3px; }
+    .form-group label { font-size: 0.79rem; font-weight: 500; color: var(--text); }
+    .form-group select { padding: 8px 30px 8px 9px; border: 1.5px solid var(--border); border-radius: 6px; font-size: 0.87rem; font-family: var(--font); background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 9px center; color: var(--text); appearance: none; -webkit-appearance: none; transition: border-color 0.2s; }
+    .form-group select:focus { border-color: var(--red); outline: none; background-color: #fff; }
+
+    /* NOC highlight box */
+    .noc-box { background: #fff8f8; border: 1px solid #f5c6cb; border-radius: 6px; padding: 12px 14px; margin: 10px 0 14px; font-size: 0.82rem; line-height: 1.65; }
+    .noc-box strong { color: var(--red); display: block; margin-bottom: 6px; font-size: 0.84rem; }
+
+    /* Language table */
+    .lang-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    .lang-table th { background: #f5f5f5; padding: 7px 9px; text-align: left; font-weight: 600; font-size: 0.71rem; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    .lang-table td { padding: 5px 9px; border-bottom: 1px solid #f0f0f0; }
+    .lang-table select { width: 100%; padding: 5px 26px 5px 7px; border: 1px solid var(--border); border-radius: 5px; font-size: 0.79rem; background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='6' viewBox='0 0 9 6'%3E%3Cpath d='M1 1l3.5 3.5L8 1' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 7px center; appearance: none; -webkit-appearance: none; }
+    .lang-table select:focus { border-color: var(--red); outline: none; }
+
+    /* Calculate button */
+    .calc-btn { width: 100%; padding: 13px; background: var(--red); color: #fff; border: none; border-radius: 6px; font-size: 0.97rem; font-weight: 700; cursor: pointer; margin-top: 18px; transition: background 0.2s; letter-spacing: 0.02em; }
+    .calc-btn:hover { background: var(--red-dark); }
+    .calc-btn:active { transform: scale(0.99); }
+
+    /* Result */
+    .result-box { display: none; margin-top: 18px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .result-box.show { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .result-top { background: var(--red); color: #fff; text-align: center; padding: 18px; }
+    .result-score { font-size: 3.5rem; font-weight: 800; line-height: 1; }
+    .result-label { font-size: 0.82rem; opacity: 0.88; margin-top: 3px; }
+    .result-body { padding: 14px 18px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.84rem; }
+    .result-row:last-child { border-bottom: none; }
+    .result-row span:first-child { color: var(--text-muted); }
+    .result-row span:last-child { font-weight: 600; }
+    .status-tag { display: block; margin-top: 11px; padding: 9px 13px; border-radius: 6px; font-size: 0.83rem; font-weight: 600; text-align: center; }
+    .tag-green { background: #eafaf1; color: var(--success); border: 1px solid #a9dfbf; }
+    .tag-amber { background: #fef9e7; color: var(--warning); border: 1px solid #f9e79f; }
+    .tag-red { background: #fff5f5; color: var(--red); border: 1px solid #f5c6cb; }
+    .tag-blue { background: #eaf4fb; color: var(--blue); border: 1px solid #aed6f1; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 18px; }
+    .widget { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .widget-header { background: var(--red); color: #fff; padding: 9px 14px; font-size: 0.84rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .widget-body { padding: 13px 14px; }
+    .score-display { text-align: center; padding: 10px 0 6px; }
+    .score-num { font-size: 2.5rem; font-weight: 800; color: var(--red); line-height: 1; }
+    .score-sub { font-size: 0.71rem; color: var(--text-muted); margin-top: 2px; }
+    .score-note { font-size: 0.74rem; color: var(--text-muted); text-align: center; padding: 3px 0 7px; }
+    .draw-list { list-style: none; }
+    .draw-list li { display: grid; grid-template-columns: auto 1fr auto; gap: 7px; align-items: center; padding: 6px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.76rem; }
+    .draw-list li:last-child { border-bottom: none; }
+    .draw-list .d-date { color: var(--text-muted); font-size: 0.71rem; white-space: nowrap; }
+    .draw-list .d-type { font-weight: 500; }
+    .draw-list .d-score { background: var(--red); color: #fff; padding: 2px 7px; border-radius: 10px; font-weight: 600; font-size: 0.74rem; white-space: nowrap; }
+    .draw-list .d-score.health { background: var(--blue); }
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .tool-link { background: #fafafa; border: 1px solid var(--border); border-radius: 6px; padding: 9px 7px; text-align: center; font-size: 0.74rem; font-weight: 500; color: var(--text); transition: all 0.2s; display: block; }
+    .tool-link:hover { background: #fff0f0; border-color: var(--red); color: var(--red); text-decoration: none; }
+    .tool-link .t-icon { font-size: 1.15rem; display: block; margin-bottom: 3px; }
+    .outbound-links { display: flex; flex-direction: column; gap: 7px; }
+    .outbound-link { display: inline-flex; align-items: center; gap: 5px; background: #f5f5f5; border: 1px solid var(--border); border-radius: 20px; padding: 5px 13px; font-size: 0.77rem; color: var(--text-muted); transition: all 0.2s; }
+    .outbound-link:hover { background: #fff0f0; border-color: var(--red); color: var(--red); text-decoration: none; }
+
+    /* Content */
+    .content-wrap { max-width: 1200px; margin: 0 auto; padding: 0 16px 44px; }
+    .content-section { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; margin-bottom: 22px; }
+    .content-section h2 { font-size: 1.12rem; font-weight: 700; color: var(--text); margin-bottom: 10px; padding-bottom: 9px; border-bottom: 2px solid var(--red); }
+    .content-section h3 { font-size: 0.96rem; font-weight: 600; color: var(--text); margin: 14px 0 7px; }
+    .content-section p { font-size: 0.87rem; color: #333; margin-bottom: 9px; max-width: 72ch; }
+    .content-section ul, .content-section ol { padding-left: 18px; margin-bottom: 9px; }
+    .content-section li { font-size: 0.87rem; color: #333; margin-bottom: 4px; }
+
+    /* AEO Answer box */
+    .answer-box { background: #fff8f8; border-left: 4px solid var(--red); border-radius: 0 6px 6px 0; padding: 11px 14px; margin: 10px 0 12px; font-size: 0.87rem; }
+    .answer-box strong { color: var(--red); }
+
+    /* Data tables */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 10px 0; }
+    .data-table th { background: var(--red); color: #fff; padding: 9px 11px; text-align: left; font-weight: 600; }
+    .data-table td { padding: 8px 11px; border-bottom: 1px solid #f0f0f0; }
+    .data-table tr:hover td { background: #fef9f9; }
+    .score-chip { background: var(--red); color: #fff; padding: 2px 9px; border-radius: 10px; font-size: 0.74rem; font-weight: 700; }
+    .score-chip.blue { background: var(--blue); }
+    @media (max-width: 600px) { .data-table { font-size: 0.75rem; } .data-table th, .data-table td { padding: 6px 8px; } }
+
+    /* Steps */
+    .steps { counter-reset: steps; display: flex; flex-direction: column; gap: 11px; margin: 11px 0; }
+    .step { counter-increment: steps; display: flex; gap: 13px; align-items: flex-start; }
+    .step::before { content: counter(steps); background: var(--red); color: #fff; width: 27px; height: 27px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.82rem; flex-shrink: 0; margin-top: 1px; }
+    .step-text { font-size: 0.87rem; color: #333; padding-top: 3px; }
+    .step-text strong { color: var(--text); }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q { width: 100%; text-align: left; padding: 13px 0; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; font-weight: 600; color: var(--text); gap: 11px; }
+    .faq-q:hover { color: var(--red); }
+    .faq-icon { font-size: 1.2rem; color: var(--red); flex-shrink: 0; transition: transform 0.25s; line-height: 1; user-select: none; }
+    .faq-a { display: none; padding-bottom: 13px; font-size: 0.86rem; color: #444; line-height: 1.65; }
+    .faq-a.open { display: block; }
+    .faq-icon.open { transform: rotate(45deg); }
+
+    /* Tool grid large */
+    .tool-grid-lg { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 9px; margin-top: 11px; }
+
+    /* Footer */
+    footer { background: #1a1a1a; color: #ccc; padding: 30px 16px 18px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 22px; }
+    .footer-col h4 { color: #fff; font-size: 0.84rem; font-weight: 600; margin-bottom: 9px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 5px; }
+    .footer-col a { color: #aaa; font-size: 0.79rem; }
+    .footer-col a:hover { color: var(--red-light); text-decoration: none; }
+    .footer-bottom { text-align: center; font-size: 0.75rem; color: #777; margin-top: 22px; padding-top: 18px; border-top: 1px solid #2d2d2d; }
+  </style>
+
+
+<a class="skip-link" href="#calculator">Skip to Calculator</a>
+
+<!-- NAVBAR -->
+<nav class="main-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="CRS Score Calculator Home">
+      <svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect width="28" height="28" rx="5" fill="rgba(255,255,255,0.18)"/><text x="14" y="19.5" text-anchor="middle" font-size="13" font-weight="800" fill="white" font-family="Arial">CRS</text></svg>
+      CRS Calculator
+    </a>
+    <button class="hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks" role="list">
+      <li><a href="/">CRS Calculator</a></li>
+      <li><a href="/cec-calculator">CEC</a></li>
+      <li><a href="/express-entry">Express Entry</a></li>
+      <li><a href="/fsw-crs-calculator">FSW</a></li>
+      <li><a href="/fst-crs-calculator">FST</a></li>
+      <li><a href="/pnp-calculator">PNP</a></li>
+      <li><a href="/ontario-crs-calculator">Ontario</a></li>
+      <li><a href="/alberta-crs-calculator">Alberta</a></li>
+      <li><a href="/healthcare-crs-calculator" class="active">Healthcare</a></li>
+      <li><a href="/clb-scores">CLB Scores</a></li>
+      <li><a href="/cutoff-scores">Cutoffs</a></li>
+      <li><a href="/improve-score">Improve Score</a></li>
+      <li><a href="/" class="nav-cta">Calculate Now →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" role="banner">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep" aria-hidden="true">›</span>
+    <a href="/express-entry">Express Entry</a><span class="sep" aria-hidden="true">›</span>
+    <span aria-current="page">Healthcare Workers CRS Calculator</span>
+  </nav>
+  <h1>Healthcare Workers CRS Calculator 2026<br><span style="font-weight:400;font-size:0.82em;">Free Express Entry Points Tool for Nurses, Doctors & Healthcare Professionals</span></h1>
+  <p>Calculate your CRS score for Canada's Healthcare category-based Express Entry draws. Covers all healthcare NOC codes — doctors, nurses, pharmacists, dentists, and more.</p>
+  <div class="hero-badges">
+    <span class="badge">✓ Updated 2026</span>
+    <span class="badge">✓ All Healthcare NOC Codes</span>
+    <span class="badge">✓ Category Draw Eligibility</span>
+    <span class="badge">✓ 100% Free</span>
+    <span class="badge">✓ No Login Required</span>
+    <span class="badge">✓ Instant Results</span>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="page-wrap">
+
+  <!-- CALCULATOR -->
+  <main id="calculator">
+    <div class="calc-card">
+      <div class="calc-header">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <h2>Healthcare Workers CRS Calculator 2026 — Express Entry Score Tool</h2>
+      </div>
+      <div class="calc-body">
+
+        <!-- Healthcare NOC Selection -->
+        <span class="section-label">Step 1 — Your Healthcare NOC Code</span>
+        <div class="noc-box">
+          <strong>Select your healthcare occupation to check category-based draw eligibility:</strong>
+          <p style="margin:0;font-size:0.8rem;color:var(--text-muted);">Healthcare category draws use IRCC's <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer">target occupations list</a>. Confirm your NOC via the <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener noreferrer">ESDC NOC Search</a>.</p>
+        </div>
+        <div class="form-grid">
+          <div class="form-group" style="grid-column:1/-1;">
+            <label for="healthcareNOC">Healthcare Occupation (NOC Code)</label>
+            <select id="healthcareNOC">
+              <option value="eligible">— Select your occupation —</option>
+              <optgroup label="Physicians &amp; Dentists (TEER 1)">
+                <option value="eligible">31100 — Specialist physicians (e.g., cardiologist, surgeon)</option>
+                <option value="eligible">31102 — General practitioners &amp; family physicians</option>
+                <option value="eligible">31103 — Dentists</option>
+                <option value="eligible">31111 — Veterinarians</option>
+              </optgroup>
+              <optgroup label="Allied Health Professionals (TEER 1)">
+                <option value="eligible">31100 — Optometrists</option>
+                <option value="eligible">31110 — Pharmacists</option>
+                <option value="eligible">31120 — Dietitians &amp; nutritionists</option>
+                <option value="eligible">31200 — Audiologists &amp; speech-language pathologists</option>
+                <option value="eligible">31201 — Physiotherapists</option>
+                <option value="eligible">31202 — Occupational therapists</option>
+                <option value="eligible">31209 — Other professional health diagnoses &amp; treating</option>
+              </optgroup>
+              <optgroup label="Nursing (TEER 1)">
+                <option value="eligible">31301 — Registered nurses &amp; registered psychiatric nurses</option>
+                <option value="eligible">31302 — Nurse practitioners</option>
+                <option value="eligible">31303 — Physician assistants</option>
+              </optgroup>
+              <optgroup label="Technical Health Occupations (TEER 2)">
+                <option value="eligible">32101 — Dental hygienists &amp; dental therapists</option>
+                <option value="eligible">32102 — Medical radiation technologists</option>
+                <option value="eligible">32103 — Medical laboratory technologists</option>
+                <option value="eligible">32104 — Respiratory therapists</option>
+                <option value="eligible">32110 — Medical sonographers</option>
+                <option value="eligible">32111 — Cardiology technologists &amp; electrophysiology</option>
+                <option value="eligible">32112 — Pharmacy technicians</option>
+                <option value="eligible">32120 — Opticians</option>
+                <option value="eligible">32121 — Dental technologists &amp; therapists (other)</option>
+              </optgroup>
+              <optgroup label="Licensed Practical Nurses (TEER 2)">
+                <option value="eligible">32301 — Licensed practical nurses</option>
+              </optgroup>
+              <optgroup label="Healthcare Support (TEER 3)">
+                <option value="support">33100 — Dental assistants &amp; dental laboratory assistants</option>
+                <option value="support">33101 — Medical laboratory assistants</option>
+                <option value="support">33102 — Nurse aides, orderlies and patient service associates</option>
+                <option value="support">33103 — Pharmacy technical assistants</option>
+              </optgroup>
+              <optgroup label="Other / Check Manually">
+                <option value="check">My NOC is not listed above — verify at IRCC</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div id="nocTag" style="margin-bottom:12px;"></div>
+
+        <!-- SECTION A: Core Human Capital -->
+        <span class="section-label">Section A — Core Human Capital</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <select id="age">
+              <option value="">— Select age —</option>
+              <option value="0">Under 18</option>
+              <option value="99">18</option>
+              <option value="105">19</option>
+              <option value="110">20–29 (max points)</option>
+              <option value="105">30</option>
+              <option value="99">31</option>
+              <option value="94">32</option>
+              <option value="88">33</option>
+              <option value="83">34</option>
+              <option value="77">35</option>
+              <option value="72">36</option>
+              <option value="66">37</option>
+              <option value="61">38</option>
+              <option value="55">39</option>
+              <option value="50">40</option>
+              <option value="39">41</option>
+              <option value="28">42</option>
+              <option value="17">43</option>
+              <option value="6">44</option>
+              <option value="0">45+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="education">Education Level</label>
+            <select id="education">
+              <option value="">— Select —</option>
+              <option value="0">Less than secondary</option>
+              <option value="30">Secondary diploma</option>
+              <option value="90">One-year post-secondary</option>
+              <option value="98">Two-year post-secondary</option>
+              <option value="120">Bachelor's (3yr+)</option>
+              <option value="128">Two credentials (one 3yr+)</option>
+              <option value="135">Master's / Professional (MD, DDS, etc.)</option>
+              <option value="150">PhD (Doctoral degree)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="marital">Marital / Partnership Status</label>
+            <select id="marital">
+              <option value="single">Single / Divorced / Widowed</option>
+              <option value="married">Married / Common-law</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseEdu">Spouse Education (if married)</label>
+            <select id="spouseEdu">
+              <option value="0">N/A</option>
+              <option value="2">Less than secondary</option>
+              <option value="6">Secondary diploma</option>
+              <option value="8">One-year post-secondary</option>
+              <option value="9">Two-year post-secondary</option>
+              <option value="10">Bachelor's or higher</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SECTION B: Language -->
+        <span class="section-label">Section B — Language Skills (CLB)</span>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:9px;">Healthcare FSW requires CLB 7+ in all 4 skills. Higher CLB = more CRS points. Use our <a href="/clb-scores">IELTS to CLB converter</a> to check your level.</p>
+        <table class="lang-table" aria-label="Language CLB levels">
+          <thead><tr><th>Skill</th><th>CLB Level — Healthcare FSW minimum: CLB 7 all skills</th></tr></thead>
+          <tbody>
+            <tr><td>Speaking</td><td><select id="l1s" aria-label="Speaking CLB">
+              <option value="0">CLB 4 or less</option>
+              <option value="6">CLB 5 (IELTS 5.0)</option>
+              <option value="8">CLB 6 (IELTS 5.5)</option>
+              <option value="15">CLB 7 (IELTS 6.0) ← FSW min</option>
+              <option value="22">CLB 8 (IELTS 7.0)</option>
+              <option value="29" selected>CLB 9 (IELTS 7.5)</option>
+              <option value="32">CLB 10+ (IELTS 8.0+)</option>
+            </select></td></tr>
+            <tr><td>Listening</td><td><select id="l1l" aria-label="Listening CLB">
+              <option value="0">CLB 4 or less</option>
+              <option value="6">CLB 5</option>
+              <option value="8">CLB 6</option>
+              <option value="15">CLB 7 (IELTS 6.0) ← FSW min</option>
+              <option value="22">CLB 8</option>
+              <option value="29" selected>CLB 9</option>
+              <option value="32">CLB 10+</option>
+            </select></td></tr>
+            <tr><td>Reading</td><td><select id="l1r" aria-label="Reading CLB">
+              <option value="0">CLB 4 or less</option>
+              <option value="6">CLB 5</option>
+              <option value="8">CLB 6</option>
+              <option value="15">CLB 7 (IELTS 6.0) ← FSW min</option>
+              <option value="22">CLB 8</option>
+              <option value="29" selected>CLB 9</option>
+              <option value="32">CLB 10+</option>
+            </select></td></tr>
+            <tr><td>Writing</td><td><select id="l1w" aria-label="Writing CLB">
+              <option value="0">CLB 4 or less</option>
+              <option value="6">CLB 5</option>
+              <option value="8">CLB 6</option>
+              <option value="15">CLB 7 (IELTS 6.0) ← FSW min</option>
+              <option value="22">CLB 8</option>
+              <option value="29" selected>CLB 9</option>
+              <option value="32">CLB 10+</option>
+            </select></td></tr>
+          </tbody>
+        </table>
+
+        <!-- SECTION C: Work Experience -->
+        <span class="section-label">Section C — Work Experience</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="canExp">Canadian Work Experience</label>
+            <select id="canExp">
+              <option value="0">None</option>
+              <option value="40">1 year</option>
+              <option value="53">2 years</option>
+              <option value="64">3 years</option>
+              <option value="72">4 years</option>
+              <option value="80">5+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="forExp">Foreign Healthcare Work Experience</label>
+            <select id="forExp">
+              <option value="0">None</option>
+              <option value="13">1–2 years</option>
+              <option value="25">3+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseExp">Spouse Canadian Work Exp.</label>
+            <select id="spouseExp">
+              <option value="0">None / N/A</option>
+              <option value="5">1–2 years</option>
+              <option value="7">3–4 years</option>
+              <option value="8">5+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spouseLang">Spouse Language (CLB)</label>
+            <select id="spouseLang">
+              <option value="0">N/A</option>
+              <option value="0">CLB 4 or less</option>
+              <option value="1">CLB 5–6</option>
+              <option value="3">CLB 7–8</option>
+              <option value="5">CLB 9+</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SECTION D: Additional Points -->
+        <span class="section-label">Section D — Additional Points</span>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pnp">Provincial Nomination (PNP)</label>
+            <select id="pnp">
+              <option value="0">No</option>
+              <option value="600">Yes (+600 pts)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="jobOffer">Valid Job Offer?</label>
+            <select id="jobOffer">
+              <option value="0">No job offer</option>
+              <option value="50">TEER 1/2/3 healthcare offer (+50)</option>
+              <option value="200">Senior manager TEER 0 (+200)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="sibling">Sibling in Canada (PR/Citizen)</label>
+            <select id="sibling">
+              <option value="0">No</option>
+              <option value="15">Yes (+15)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="canadianEdu">Canadian Post-Secondary Edu.</label>
+            <select id="canadianEdu">
+              <option value="0">None</option>
+              <option value="15">1–2 year program (+15)</option>
+              <option value="30">3+ year program (+30)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="frenchLang">French Language Bonus</label>
+            <select id="frenchLang">
+              <option value="0">No</option>
+              <option value="25">NCLC 7+ only (+25)</option>
+              <option value="50">NCLC 7+ + English CLB 5+ (+50)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="drawTarget">Target Draw Type</label>
+            <select id="drawTarget">
+              <option value="healthcare">Healthcare Category (~430–471)</option>
+              <option value="allprogram">All-Program Draw (~493–520)</option>
+              <option value="french">French Language (~393–430)</option>
+              <option value="pnp">PNP Only (~786–802)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="calc-btn" id="calcBtn" type="button">Calculate My Healthcare CRS Score →</button>
+
+        <!-- RESULT -->
+        <div class="result-box" id="resultBox" role="region" aria-live="polite" aria-label="CRS Score Result">
+          <div class="result-top">
+            <div class="result-score" id="totalScore">0</div>
+            <div class="result-label">Your Estimated CRS Score (out of 1,200)</div>
+          </div>
+          <div class="result-body">
+            <div class="result-row"><span>Core Human Capital (Age + Education)</span><span id="rCore">0</span></div>
+            <div class="result-row"><span>Language Points (CRS)</span><span id="rLang">0</span></div>
+            <div class="result-row"><span>Work Experience Points</span><span id="rWork">0</span></div>
+            <div class="result-row"><span>Skill Transferability + Extras</span><span id="rSkill">0</span></div>
+            <div class="result-row"><span>Additional Points (PNP/Job/etc.)</span><span id="rAdd">0</span></div>
+            <div id="drawTag"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside aria-label="Healthcare Immigration Sidebar">
+
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Healthcare & Recent Draw Results
+      </div>
+      <div class="widget-body">
+        <div class="score-display">
+          <div class="score-num">471</div>
+          <div class="score-sub">Last Healthcare Draw Cutoff</div>
+        </div>
+        <p class="score-note">vs. 493 for all-program — 22 pts lower! <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/rounds-invitations.html" target="_blank" rel="noopener noreferrer">All draws →</a></p>
+        <ul class="draw-list" aria-label="Recent Express Entry draws">
+          <li><span class="d-date">Mar 2026</span><span class="d-type">Healthcare</span><span class="d-score health">471</span></li>
+          <li><span class="d-date">Apr 9</span><span class="d-type">All Program</span><span class="d-score">493</span></li>
+          <li><span class="d-date">Mar 26</span><span class="d-type">All Program</span><span class="d-score">501</span></li>
+          <li><span class="d-date">Mar 18</span><span class="d-type">French Language</span><span class="d-score">393</span></li>
+          <li><span class="d-date">Mar 12</span><span class="d-type">STEM Occupations</span><span class="d-score">486</span></li>
+          <li><span class="d-date">Jan 2024</span><span class="d-type">Healthcare</span><span class="d-score health">430</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/></svg>
+        Related CRS Tools
+      </div>
+      <div class="widget-body">
+        <div class="tool-grid">
+          <a href="/" class="tool-link"><span class="t-icon">🇨🇦</span>CRS Calculator</a>
+          <a href="/cec-calculator" class="tool-link"><span class="t-icon">📋</span>CEC Calc</a>
+          <a href="/fsw-crs-calculator" class="tool-link"><span class="t-icon">👩‍⚕️</span>FSW Calc</a>
+          <a href="/fst-crs-calculator" class="tool-link"><span class="t-icon">🔧</span>FST Calc</a>
+          <a href="/pnp-calculator" class="tool-link"><span class="t-icon">🗺️</span>PNP Calc</a>
+          <a href="/ontario-crs-calculator" class="tool-link"><span class="t-icon">🏙️</span>Ontario</a>
+          <a href="/clb-scores" class="tool-link"><span class="t-icon">📝</span>IELTS→CLB</a>
+          <a href="/improve-score" class="tool-link"><span class="t-icon">📈</span>Improve CRS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Official Healthcare Resources
+      </div>
+      <div class="widget-body">
+        <div class="outbound-links">
+          <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ IRCC Category-Based Draws</a>
+          <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/rounds-invitations.html" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ Express Entry Draw Results</a>
+          <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ NOC Search Tool (ESDC)</a>
+          <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/federal-skilled-workers.html" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ IRCC FSW Eligibility Guide</a>
+          <a href="https://www.canada.ca/en/immigration-refugees-citizenship/news/2023/06/canada-to-hold-category-based-selection-draws-for-express-entry.html" target="_blank" rel="noopener noreferrer" class="outbound-link">↗ IRCC Healthcare Draw Announcement</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="widget">
+      <div class="widget-header">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Healthcare Category Quick Facts
+      </div>
+      <div class="widget-body" style="font-size:0.79rem;color:#444;">
+        <ul style="padding-left:15px;line-height:1.8;">
+          <li>Category draws started <strong>June 2023</strong></li>
+          <li>Lowest healthcare cutoff: <strong>430 CRS</strong> (Jan 2024)</li>
+          <li>Covers <strong>TEER 1, 2 & 3</strong> health NOCs</li>
+          <li>No Canadian experience required for FSW</li>
+          <li>Language min: <strong>CLB 7</strong> (FSW), CLB 5/7 (CEC)</li>
+        </ul>
+        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer" style="font-size:0.77rem;display:block;margin-top:9px;">Full IRCC category guide →</a>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- CONTENT SECTIONS -->
+<div class="content-wrap">
+
+  <section class="content-section" aria-labelledby="what-h2">
+    <h2 id="what-h2">What Is the Healthcare Workers CRS Calculator? (2026 Guide)</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> The Healthcare Workers CRS Calculator estimates your Express Entry CRS score for Canada's healthcare category-based draws. Healthcare workers in NOC TEER 1–3 occupations (nurses, doctors, pharmacists, etc.) can receive ITAs at CRS cutoffs as low as 430 — far below the all-program cutoff of 493+.
+    </div>
+    <p>Canada actively targets healthcare workers through <strong>category-based Express Entry draws</strong> introduced in June 2023. These draws pull exclusively from candidates whose primary NOC occupation is on the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer">IRCC healthcare target list</a>, meaning qualified healthcare workers can receive an Invitation to Apply (ITA) at a much lower CRS score than general pool applicants.</p>
+    <p>This free calculator applies the official <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system/grid.html" target="_blank" rel="noopener noreferrer">IRCC CRS points grid</a> to your profile and compares your score against recent healthcare draw cutoffs. All healthcare NOC codes are covered — from specialist physicians (31100) to licensed practical nurses (32301) to dental hygienists (32101). No login or personal information is required.</p>
+
+    <h3>Why Healthcare Workers Have a Major Advantage in 2026</h3>
+    <table class="data-table" aria-label="Healthcare vs all-program draw comparison">
+      <thead><tr><th>Draw Type</th><th>Typical 2024–2026 Cutoff</th><th>Healthcare Eligible?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Healthcare Category</strong></td><td><span class="score-chip blue">430–471</span></td><td>✅ Yes — exclusive</td></tr>
+        <tr><td>All-Program Draw</td><td><span class="score-chip">493–520</span></td><td>✅ Yes — open to all</td></tr>
+        <tr><td>STEM Category</td><td><span class="score-chip">486–510</span></td><td>⚠️ Only if NOC qualifies</td></tr>
+        <tr><td>French Language Draw</td><td><span class="score-chip">393–430</span></td><td>✅ With NCLC 7+</td></tr>
+        <tr><td>PNP Draw</td><td><span class="score-chip">786–802</span></td><td>✅ With nomination</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.78rem;color:var(--text-muted);">Source: <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/rounds-invitations.html" target="_blank" rel="noopener noreferrer">IRCC Express Entry Rounds of Invitations</a>. See full history at our <a href="/cutoff-scores">CRS Cutoff Scores</a> page.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="noc-h2">
+    <h2 id="noc-h2">Healthcare NOC Codes Eligible for Express Entry Category Draws</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> IRCC targets specific NOC TEER 1–3 healthcare occupations for category-based draws. This covers doctors, nurses, pharmacists, dentists, physiotherapists, medical lab technologists, and many more. Confirm your exact NOC via the <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener noreferrer">ESDC NOC tool</a>.
+    </div>
+    <table class="data-table" aria-label="Healthcare NOC codes for Express Entry">
+      <thead><tr><th>NOC Code</th><th>Occupation</th><th>TEER</th><th>Min. Language</th></tr></thead>
+      <tbody>
+        <tr><td>31100</td><td>Specialist physicians</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31102</td><td>General practitioners &amp; family physicians</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31103</td><td>Dentists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31110</td><td>Pharmacists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31120</td><td>Dietitians &amp; nutritionists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31200</td><td>Audiologists &amp; speech-language pathologists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31201</td><td>Physiotherapists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31202</td><td>Occupational therapists</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31301</td><td>Registered nurses &amp; registered psychiatric nurses</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>31302</td><td>Nurse practitioners</td><td>1</td><td>CLB 7</td></tr>
+        <tr><td>32101</td><td>Dental hygienists</td><td>2</td><td>CLB 5</td></tr>
+        <tr><td>32103</td><td>Medical laboratory technologists</td><td>2</td><td>CLB 5</td></tr>
+        <tr><td>32104</td><td>Respiratory therapists</td><td>2</td><td>CLB 5</td></tr>
+        <tr><td>32110</td><td>Medical sonographers</td><td>2</td><td>CLB 5</td></tr>
+        <tr><td>32301</td><td>Licensed practical nurses</td><td>2</td><td>CLB 5</td></tr>
+        <tr><td>33102</td><td>Nurse aides, orderlies, patient service associates</td><td>3</td><td>CLB 4</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:0.78rem;color:var(--text-muted);">This is a non-exhaustive list. Always confirm with the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer">official IRCC category-based selection page</a>. NOC TEER 1 roles qualify via FSW or CEC; TEER 2–3 via CEC or FST.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="how-use-h2">
+    <h2 id="how-use-h2">How to Use This Healthcare CRS Calculator</h2>
+    <div class="steps">
+      <div class="step"><div class="step-text"><strong>Select Your Healthcare NOC Code</strong> — Pick your occupation from the dropdown. The calculator will show whether you're eligible for the healthcare category draw and flag which Express Entry stream (FSW, CEC, FST) applies.</div></div>
+      <div class="step"><div class="step-text"><strong>Enter Core Human Capital Factors</strong> — Age and education have the largest impact. A physician with a professional degree (MD, DDS) earns 135 CRS points for education vs. 30 for a secondary diploma.</div></div>
+      <div class="step"><div class="step-text"><strong>Add Language CLB Scores</strong> — CLB 9 earns ~116 CRS points in language vs. CLB 7's ~60 points. Even CLB 8 makes a huge difference. Use our <a href="/clb-scores">IELTS to CLB Converter</a> to confirm your level.</div></div>
+      <div class="step"><div class="step-text"><strong>Add Work Experience</strong> — Canadian healthcare experience is worth significantly more than foreign experience. Even 1 year working in a Canadian hospital or clinic on a work permit adds 40 CRS points.</div></div>
+      <div class="step"><div class="step-text"><strong>Add Bonus Points &amp; Choose Draw Target</strong> — A PNP nomination adds +600 pts. Select "Healthcare Category" as your draw target to see if your score exceeds the ~430–471 cutoff range for dedicated healthcare draws.</div></div>
+    </div>
+  </section>
+
+  <section class="content-section" aria-labelledby="boost-h2">
+    <h2 id="boost-h2">How to Improve Your Healthcare Workers CRS Score</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> For healthcare workers, improving language scores above CLB 7 is the fastest way to boost CRS. Moving from CLB 7 to CLB 9 can add 50+ CRS points and push you well above the healthcare draw cutoff.
+    </div>
+    <ul>
+      <li><strong>Score CLB 9+ on language (IELTS 7.5+)</strong> — Language is your biggest lever. CLB 9 earns 29 pts per skill vs 15 for CLB 7 — that's 56 extra CRS points across all 4 skills. Use our <a href="/clb-scores">CLB converter</a> to plan your target band scores.</li>
+      <li><strong>Get Canadian work experience in healthcare</strong> — Working 1 year on a healthcare work permit (e.g., under an LMIA or bridging permit) adds 40 CRS pts and also helps provincial licensing progress.</li>
+      <li><strong>Apply for provincial healthcare pathways</strong> — Many provinces have dedicated healthcare streams. Ontario's OINP has a healthcare workers stream. Alberta's AAIP has pathways for nurses and physicians. Use our <a href="/ontario-crs-calculator">Ontario</a> and <a href="/alberta-crs-calculator">Alberta</a> calculators.</li>
+      <li><strong>Get a valid Canadian job offer</strong> — A healthcare job offer from a Canadian employer (LMIA-based or LMIA-exempt) adds +50 CRS pts and significantly helps with provincial licensing applications.</li>
+      <li><strong>Learn French</strong> — NCLC 7+ in French with English CLB 5+ adds +50 CRS pts and opens French Language category draws (cutoff ~393), far lower than all-program.</li>
+      <li><strong>Target multiple draw types</strong> — As a healthcare worker, you're eligible for Healthcare Category, All-Program, French Language (with French skills), and PNP draws. Submit your profile and wait for whichever draw comes first.</li>
+    </ul>
+    <p>For all 10 strategies with detailed explanations, see our <a href="/improve-score">Improve Your CRS Score guide</a>.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="pathway-h2">
+    <h2 id="pathway-h2">Which Express Entry Stream Should Healthcare Workers Use?</h2>
+    <div class="answer-box">
+      <strong>Quick Answer:</strong> Use FSW if you have foreign healthcare experience (no Canadian experience required). Use CEC if you already have 1+ year of Canadian healthcare work. Both make you eligible for healthcare category draws.
+    </div>
+    <table class="data-table" aria-label="Express Entry streams for healthcare workers">
+      <thead><tr><th>Stream</th><th>Best For Healthcare Workers When...</th><th>Min. Language</th><th>Key Requirement</th></tr></thead>
+      <tbody>
+        <tr><td><strong><a href="/fsw-crs-calculator">FSW</a></strong></td><td>You have foreign healthcare experience (NOC TEER 0/1)</td><td>CLB 7</td><td>1yr foreign work exp + 67-point grid</td></tr>
+        <tr><td><strong><a href="/cec-calculator">CEC</a></strong></td><td>You have 1yr+ Canadian healthcare work exp (TEER 1/2/3)</td><td>CLB 7 (T0/1), CLB 5 (T2/3)</td><td>1yr Canadian work in last 3 years</td></tr>
+        <tr><td><strong><a href="/fst-crs-calculator">FST</a></strong></td><td>Dental hygienist, medical lab tech, other TEER 2/3 trades</td><td>CLB 5 (R/W), CLB 4 (S/L)</td><td>2yr trade work + job offer or certification</td></tr>
+        <tr><td><strong><a href="/pnp-calculator">PNP</a></strong></td><td>You qualify for a province's healthcare stream</td><td>Varies by province</td><td>Provincial nomination (+600 CRS)</td></tr>
+      </tbody>
+    </table>
+    <p>If you qualify for both FSW and CEC, calculate scores for both using our <a href="/fsw-crs-calculator">FSW Calculator</a> and <a href="/cec-calculator">CEC Calculator</a> — your CEC score is usually higher if you have Canadian experience.</p>
+  </section>
+
+  <section class="content-section" aria-labelledby="faq-h2">
+    <h2 id="faq-h2">Frequently Asked Questions — Healthcare Workers CRS Calculator</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq1">What CRS score do healthcare workers need for Canada in 2026?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq1">Healthcare workers need approximately 430–471 CRS for dedicated healthcare category draws in 2026. This is significantly lower than the all-program cutoff of 493–520. The lowest healthcare category draw cutoff was 430 in January 2024. Aim for 470+ to be competitive across multiple healthcare draws. Even if you miss a healthcare draw, you remain eligible for all-program draws.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq2">Does Canada have a dedicated immigration program for nurses?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq2">Yes. Registered nurses (NOC 31301) and nurse practitioners (NOC 31302) qualify for Canada's healthcare category-based Express Entry draws. Many provinces also have dedicated nursing pathways: Ontario's OINP Healthcare Workers stream, Nova Scotia's Skilled Worker stream, and British Columbia's PNP Health Authority stream. Use our <a href="/pnp-calculator">PNP Calculator</a> to check provincial options. You must still meet the base Express Entry eligibility (language, work experience) to enter the pool.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq3">Can internationally educated doctors (IMGs) apply through Express Entry?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq3">Yes. Specialist physicians (NOC 31100) and general practitioners (NOC 31102) both qualify for Express Entry through FSW (if they have 1yr+ of foreign clinical work in their NOC). A Canadian medical license is not required to receive an ITA or become a PR — but you will need provincial licensing (CPSO, CPSBC, etc.) to practice medicine in Canada. Many provinces have assessment and bridging programs for IMGs. Check the <a href="https://physiciansapply.ca/" target="_blank" rel="noopener noreferrer">Physicians Apply</a> portal for details.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq4">How often does IRCC hold healthcare category draws?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq4">IRCC held its first healthcare category draw in June 2023. Since then, healthcare draws have occurred approximately 3–5 times per year, typically every 6–8 weeks. There is no fixed schedule — IRCC announces draws with 24–48 hours' notice. The best strategy is to submit your Express Entry profile as soon as you're eligible and maintain or improve your CRS score while waiting. See our <a href="/cutoff-scores">CRS Cutoff Scores history</a> for all past draws.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq5">Is IELTS mandatory for healthcare workers applying to Canada?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq5">A language test is mandatory for Express Entry. You can use IELTS General Training or CELPIP-General for English, or TEF Canada/TCF Canada for French. IELTS Academic (taken for medical licensing) is not accepted for immigration. FSW healthcare roles require CLB 7 minimum in all 4 skills (IELTS 6.0/6.0/6.0/6.0). Higher scores earn more CRS points. Use our <a href="/clb-scores">IELTS to CLB Converter</a> to check your exact CLB level.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false" aria-controls="faq6">Can pharmacists and dental hygienists get a healthcare category draw ITA?<span class="faq-icon" aria-hidden="true">+</span></button>
+      <div class="faq-a" id="faq6">Yes. Both pharmacists (NOC 31110, TEER 1) and dental hygienists (NOC 32101, TEER 2) are on IRCC's healthcare category target list. Pharmacists must qualify through FSW (1yr foreign experience, CLB 7) or CEC (1yr Canadian experience). Dental hygienists can qualify through FST or CEC with CLB 5 minimum. In healthcare draws, both occupations are included, meaning they can receive ITAs at the lower healthcare cutoff (430–471) rather than the all-program cutoff (493–520).</div>
+    </div>
+
+  </section>
+
+  <section class="content-section" aria-labelledby="tools-h2">
+    <h2 id="tools-h2">Related CRS Calculators &amp; Canada Immigration Tools</h2>
+    <p>Explore all free tools for Express Entry streams, provincial immigration, and score improvement:</p>
+    <div class="tool-grid-lg">
+      <a href="/" class="tool-link"><span class="t-icon">🇨🇦</span>CRS Calculator</a>
+      <a href="/cec-calculator" class="tool-link"><span class="t-icon">📋</span>CEC Calculator</a>
+      <a href="/fsw-crs-calculator" class="tool-link"><span class="t-icon">👩‍⚕️</span>FSW Calculator</a>
+      <a href="/fst-crs-calculator" class="tool-link"><span class="t-icon">🔧</span>FST Calculator</a>
+      <a href="/pnp-calculator" class="tool-link"><span class="t-icon">🗺️</span>PNP Calculator</a>
+      <a href="/ontario-crs-calculator" class="tool-link"><span class="t-icon">🏙️</span>Ontario OINP</a>
+      <a href="/alberta-crs-calculator" class="tool-link"><span class="t-icon">🏔️</span>Alberta AAIP</a>
+      <a href="/bc-calculator" class="tool-link"><span class="t-icon">🌲</span>BC PNP</a>
+      <a href="/clb-scores" class="tool-link"><span class="t-icon">📝</span>IELTS to CLB</a>
+      <a href="/improve-score" class="tool-link"><span class="t-icon">📈</span>Improve CRS</a>
+      <a href="/cutoff-scores" class="tool-link"><span class="t-icon">🎯</span>CRS Cutoff History</a>
+      <a href="/stem-crs-calculator" class="tool-link"><span class="t-icon">🔬</span>STEM CRS Calc</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Copy this exact block into every page, replacing the old footer
+  ============================================================ -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Design: Dark navy bg | 5 columns | Red CRS badge logo
+  MARKER: UNIVERSAL FOOTER (do not remove this line)
+  ============================================================ -->
+<footer style="background:#1a1a2e;color:#ccc;padding:48px 16px 24px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;margin-bottom:40px">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="background:#d32f2f;color:#fff;font-weight:800;font-size:11px;padding:4px 6px;border-radius:5px;letter-spacing:0.03em">CRS</span>
+          <span style="color:#fff;font-weight:700;font-size:14px">CRS Calculator</span>
+        </div>
+        <p style="font-size:13px;line-height:1.7;color:#9ca3af">Free Canada Express Entry CRS score calculator. Trusted by thousands of applicants.</p>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">CRS Calculators</h4>
+        <a href="/" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CRS Calculator</a>
+        <a href="/express-entry-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Express Entry</a>
+        <a href="/cec-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CEC Calculator</a>
+        <a href="/fsw-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">FSW Calculator</a>
+        <a href="/pnp-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">PNP Calculator</a>
+        <a href="/ielts-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">IELTS to CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Provincial Tools</h4>
+        <a href="/ontario-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Ontario OINP</a>
+        <a href="/alberta-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Alberta AINP</a>
+        <a href="/bc-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">British Columbia</a>
+        <a href="/manitoba-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Manitoba MPNP</a>
+        <a href="/nova-scotia-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Nova Scotia</a>
+        <a href="/healthcare-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Healthcare CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Guides &amp; Blog</h4>
+        <a href="/blog" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Blog</a>
+        <a href="/what-is-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">What is CRS Score?</a>
+        <a href="/blog/improve-crs-score-tips" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Improve CRS Score</a>
+        <a href="/blog/minimum-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Minimum CRS Score</a>
+        <a href="/express-entry-draws" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Draw Results</a>
+        <a href="/crs-cutoff-scores" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Cutoff Scores</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Company</h4>
+        <a href="/about" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">About Us</a>
+        <a href="/contact" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Contact Us</a>
+        <a href="/privacy-policy" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Privacy Policy</a>
+        <a href="/terms-and-conditions" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Terms &amp; Conditions</a>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #374151;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+      <p style="font-size:12px;color:#6b7280;margin:0">© 2026 CRS Score Calculator. Free tool — not affiliated with IRCC.</p>
+      <div style="display:flex;gap:20px">
+        <a href="/privacy-policy" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Privacy</a>
+        <a href="/terms-and-conditions" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Terms</a>
+        <a href="/contact" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+
+
+

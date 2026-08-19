@@ -1,0 +1,162 @@
+
+  // ── Hamburger ──
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ans = document.getElementById(btn.getAttribute('aria-controls'));
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = ans.classList.toggle('open');
+      icon.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  // ── Language points (CRS: singles max 136, with spouse max 128) ──
+  function getLangPoints(s, l, r, w) { return s + l + r + w; }
+
+  // ── FSW Language 67-grid mapping from CLB values in CRS dropdowns ──
+  // CRS values: 0=CLB≤4, 6=CLB5, 8=CLB6, 15=CLB7, 22=CLB8, 29=CLB9, 32=CLB10+
+  function crsValToFswLangGrid(val) {
+    const m = {0:0, 6:4, 8:5, 15:17, 22:20, 29:24, 32:28};
+    return m[val] !== undefined ? m[val] : 0;
+  }
+
+  // ── FSW 67-point grid calculation ──
+  function calcFsw67() {
+    const gridAge   = parseFloat(document.getElementById('fswAge').value)   || 0;
+    const gridEdu   = parseFloat(document.getElementById('fswEdu').value)   || 0;
+    const gridExp   = parseFloat(document.getElementById('fswExp').value)   || 0;
+    const gridJob   = parseFloat(document.getElementById('fswArranged').value) || 0;
+
+    // Adaptability (max 10 combined)
+    const ad1 = parseFloat(document.getElementById('fswSpouseLang').value) || 0;
+    const ad2 = parseFloat(document.getElementById('fswCanStudy').value)   || 0;
+    const ad3 = parseFloat(document.getElementById('fswCanWork').value)    || 0;
+    const ad4 = parseFloat(document.getElementById('fswRelative').value)   || 0;
+    const ad5 = parseFloat(document.getElementById('fswSpouseEdu').value)  || 0;
+    const gridAdapt = Math.min(10, ad1 + ad2 + ad3 + ad4 + ad5);
+
+    // Language in FSW grid (derived from CRS lang fields)
+    const ls = parseFloat(document.getElementById('l1s').value) || 0;
+    const ll = parseFloat(document.getElementById('l1l').value) || 0;
+    const lr = parseFloat(document.getElementById('l1r').value) || 0;
+    const lw = parseFloat(document.getElementById('l1w').value) || 0;
+    // Average CLB level → FSW grid lang score (simplified: min of 4 skills mapped)
+    const minVal = Math.min(ls, ll, lr, lw);
+    const maxFswLang = crsValToFswLangGrid(minVal);
+    const gridLang = Math.min(28, maxFswLang);
+
+    const total67 = gridLang + gridEdu + gridExp + gridAge + gridJob + gridAdapt;
+
+    return { gridLang, gridEdu, gridExp, gridAge, gridJob, gridAdapt, total67 };
+  }
+
+  // ── CRS calculation ──
+  document.getElementById('calcBtn').addEventListener('click', function () {
+    const ageVal     = parseFloat(document.getElementById('age').value)       || 0;
+    const eduVal     = parseFloat(document.getElementById('education').value) || 0;
+    const married    = document.getElementById('marital').value === 'married';
+    const spEdu      = parseFloat(document.getElementById('spouseEdu').value) || 0;
+    const spExp      = parseFloat(document.getElementById('spouseExp').value) || 0;
+    const spLang     = parseFloat(document.getElementById('spouseLang').value) || 0;
+
+    const ls = parseFloat(document.getElementById('l1s').value) || 0;
+    const ll = parseFloat(document.getElementById('l1l').value) || 0;
+    const lr = parseFloat(document.getElementById('l1r').value) || 0;
+    const lw = parseFloat(document.getElementById('l1w').value) || 0;
+    const langTotal  = ls + ll + lr + lw;
+
+    const canExp     = parseFloat(document.getElementById('canExp').value)     || 0;
+    const forExp     = parseFloat(document.getElementById('forExp').value)     || 0;
+    const pnp        = parseFloat(document.getElementById('pnp').value)        || 0;
+    const jobOffer   = parseFloat(document.getElementById('jobOffer').value)   || 0;
+    const sibling    = parseFloat(document.getElementById('sibling').value)    || 0;
+    const canEdu     = parseFloat(document.getElementById('canadianEdu').value)|| 0;
+    const frenchBonus= parseFloat(document.getElementById('frenchLang').value) || 0;
+
+    // Core A (singles vs married — married gets ~90% of singles points in core)
+    let coreA;
+    if (married) {
+      coreA = Math.round(ageVal * 0.9 + eduVal * 0.82 + langTotal * 0.9 + canExp * 0.85);
+    } else {
+      coreA = ageVal + eduVal + langTotal + canExp;
+    }
+
+    // Spouse section B
+    const coreB = married ? Math.min(40, spEdu + spExp + spLang) : 0;
+
+    // Skill transferability (Section C, max 100)
+    let skillTrans = 0;
+    if (eduVal >= 120 && langTotal >= 80) skillTrans += 50;
+    else if (eduVal >= 90 && langTotal >= 60) skillTrans += 25;
+    if (canExp >= 40 && langTotal >= 80) skillTrans += 25;
+    if (canExp >= 40 && eduVal >= 120) skillTrans += 25;
+    if (forExp > 0 && canExp >= 40) skillTrans += 25;
+    if (forExp > 0 && langTotal >= 80) skillTrans += 25;
+    skillTrans = Math.min(100, skillTrans);
+
+    const addPoints = pnp + jobOffer + sibling + canEdu + frenchBonus;
+    const total = Math.min(1200, coreA + coreB + skillTrans + addPoints);
+
+    // FSW 67 grid
+    const fsw = calcFsw67();
+
+    // Update FSW grid display
+    document.getElementById('g-lang').textContent   = fsw.gridLang  + '/28';
+    document.getElementById('g-edu').textContent    = fsw.gridEdu   + '/25';
+    document.getElementById('g-exp').textContent    = fsw.gridExp   + '/15';
+    document.getElementById('g-age').textContent    = fsw.gridAge   + '/12';
+    document.getElementById('g-job').textContent    = fsw.gridJob   + '/10';
+    document.getElementById('g-adapt').textContent  = fsw.gridAdapt + '/10';
+    document.getElementById('g-total').textContent  = fsw.total67   + '/100';
+
+    // FSW eligibility tag
+    const eligEl = document.getElementById('fswEligTag');
+    const clbMinOk = Math.min(ls, ll, lr, lw) >= 15; // CLB 7 = value 15
+    let eligHTML = '';
+    if (!clbMinOk) {
+      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ Language below FSW minimum (CLB 7 required in all 4 skills). Use <a href="/clb-scores" style="color:var(--red)">CLB Converter</a> to check.</div>';
+    } else if (fsw.gridEdu === 0 || fsw.gridExp === 0 || fsw.gridAge === '') {
+      eligHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ Complete all FSW grid sections to check eligibility.</div>';
+    } else if (fsw.total67 >= 67) {
+      eligHTML = '<div class="status-tag tag-green" style="margin-top:8px;">✅ Meets FSW 67-point grid requirement (' + fsw.total67 + '/100). You are eligible to enter Express Entry.</div>';
+    } else {
+      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ FSW grid score is ' + fsw.total67 + '/100. You need 67+ to qualify. See <a href="/improve-score" style="color:var(--red)">improve score tips</a>.</div>';
+    }
+    eligEl.innerHTML = eligHTML;
+
+    // CRS result
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('rCore').textContent      = coreA + coreB;
+    document.getElementById('rLang').textContent      = langTotal;
+    document.getElementById('rWork').textContent      = canExp + forExp;
+    document.getElementById('rExtra').textContent     = skillTrans + addPoints;
+
+    // Draw competitiveness tag
+    const drawType = document.getElementById('drawType').value;
+    const cutoffs = { allprogram: 493, stem: 486, french: 393, pnp: 793 };
+    const drawNames = { allprogram: 'All-Program (cutoff ~493)', stem: 'STEM Category (cutoff ~486)', french: 'French Language (cutoff ~393)', pnp: 'PNP Draw (cutoff ~793)' };
+    const cutoff = cutoffs[drawType] || 493;
+    const drawEl = document.getElementById('drawTag');
+    let drawHTML = '';
+    if (total >= cutoff + 15) {
+      drawHTML = '<div class="status-tag tag-green" style="margin-top:8px;">🎯 CRS ' + total + ' is competitive for ' + drawNames[drawType] + ' draws. You likely qualify in the next round!</div>';
+    } else if (total >= cutoff - 25) {
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + drawNames[drawType] + ' cutoff. See <a href="/improve-score">Improve Score tips</a> to push over the line.</div>';
+    } else {
+      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + drawNames[drawType] + ' cutoff. Use our <a href="/improve-score" style="color:var(--red)">Improve CRS Score guide</a> to boost your points.</div>';
+    }
+    drawEl.innerHTML = drawHTML;
+
+    // Show result
+    const box = document.getElementById('resultBox');
+    box.classList.add('show');
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });

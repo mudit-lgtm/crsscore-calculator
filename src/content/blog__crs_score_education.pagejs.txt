@@ -1,0 +1,148 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* Education points data */
+var EDU_SINGLE = {phd:150,masters:135,two_creds:128,bach3:120,bach2:98,bach1:90,highschool:28,none:0};
+var EDU_SPOUSE = {phd:140,masters:126,two_creds:119,bach3:112,bach2:91,bach1:84,highschool:28,none:0};
+var EDU_LABELS = {
+  phd:'PhD / Doctoral degree',
+  masters:"Master's or professional degree",
+  two_creds:'Two post-secondary credentials',
+  bach3:'3-year bachelor\'s degree',
+  bach2:'2-year post-secondary diploma',
+  bach1:'1-year post-secondary certificate',
+  highschool:'Secondary (high school) diploma',
+  none:'No credential'
+};
+
+/* Bar chart */
+(function(){
+  var container = document.getElementById('eduBarRows');
+  if(!container) return;
+  var rows = [
+    {lbl:'PhD / Doctoral',val:150},
+    {lbl:"Master's Degree",val:135},
+    {lbl:'Two Credentials',val:128},
+    {lbl:'3-yr Bachelor\'s',val:120},
+    {lbl:'2-yr Diploma',val:98},
+    {lbl:'1-yr Certificate',val:90},
+    {lbl:'High School',val:28},
+    {lbl:'No Credential',val:0}
+  ];
+  var max=150;
+  rows.forEach(function(r){
+    var pct = Math.round(r.val/max*100);
+    var colour = pct>=90?'linear-gradient(90deg,#c40000,#9e0000)':pct>=80?'linear-gradient(90deg,#b22000,#8b1800)':pct>=65?'linear-gradient(90deg,#a01800,#780000)':pct>=40?'linear-gradient(90deg,#880000,#600000)':pct>0?'linear-gradient(90deg,#600000,#3a0000)':'#e5e7eb';
+    var row = document.createElement('div');
+    row.className='ebc-row';
+    row.innerHTML='<div class="ebc-lbl">'+r.lbl+'</div>'
+      +'<div class="ebc-bar-wrap"><div class="ebc-bar" style="width:'+Math.max(pct,2)+'%;background:'+colour+'">'+( r.val>0?r.val+' pts':'')+'</div></div>'
+      +'<div class="ebc-pts">'+r.val+'</div>';
+    container.appendChild(row);
+  });
+})();
+
+/* Education checker */
+function checkEducation(){
+  var level = document.getElementById('eduLevel').value;
+  var marital = document.getElementById('eduMarital').value;
+  var canEdu = document.getElementById('canadianEdu').value;
+  var workExp = document.getElementById('workExp').value;
+
+  if(!level){alert('Please select your education level.');return;}
+
+  var basePts = marital==='spouse' ? EDU_SPOUSE[level] : EDU_SINGLE[level];
+  var maxPts = marital==='spouse' ? 140 : 150;
+  var pct = Math.round(basePts/maxPts*100);
+
+  /* Canadian edu bonus (Section C) */
+  var canBonus = 0;
+  if(canEdu==='yes3') canBonus=30;
+  else if(canEdu==='yes1') canBonus=15;
+
+  /* Skill transferability estimate */
+  var skillBonus = 0;
+  var skillNote = '';
+  if(level!=='none' && level!=='highschool'){
+    if(workExp==='2yr'){ skillBonus+=25; skillNote+='Education + 2yr Canadian work exp: +25 pts. '; }
+    else if(workExp==='1yr'){ skillBonus+=13; skillNote+='Education + 1yr Canadian work exp: +13 pts. '; }
+    if(canEdu==='yes3' && workExp==='2yr'){ skillBonus=Math.min(skillBonus+25,50); skillNote+='Canadian edu + work exp bonus included. '; }
+    else if(canEdu==='yes1' && workExp==='1yr'){ skillBonus=Math.min(skillBonus+13,50); skillNote+='Canadian edu + work exp bonus included. '; }
+  }
+  skillBonus = Math.min(skillBonus,50);
+
+  var total = basePts + canBonus + skillBonus;
+
+  var verdict, bgCol;
+  if(basePts>=135){verdict='🏆 Excellent — Maximum education score';bgCol='#f0fdf4';}
+  else if(basePts>=120){verdict='✅ Strong — Competitive education score';bgCol='#eff6ff';}
+  else if(basePts>=90){verdict='⚠️ Moderate — Consider upgrading or adding Canadian credential';bgCol='#fffbeb';}
+  else if(basePts>0){verdict='⚠️ Low — Upgrading education will significantly boost CRS';bgCol='#fff0f0';}
+  else{verdict='❌ Zero education points — Check FSW eligibility with an RCIC';bgCol='#fff0f0';}
+
+  var html='<div style="background:'+bgCol+';border-radius:12px;padding:16px;margin-bottom:12px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">'
+    +'<div>'
+    +'<div style="font-size:40px;font-weight:800;color:#c40000;line-height:1;">'+basePts+'</div>'
+    +'<div style="font-size:14px;font-weight:700;color:#374151;">Core Education Points (Section A)</div>'
+    +'<div style="font-size:13px;color:#6b7280;margin-top:3px;">'+EDU_LABELS[level]+' | '+(marital==='spouse'?'With spouse':'Without spouse')+'</div>'
+    +'</div>'
+    +'<div style="text-align:right;">'
+    +'<div style="font-size:13px;font-weight:700;color:#c40000;">'+verdict+'</div>'
+    +'<div style="font-size:13px;color:#6b7280;">'+basePts+' / '+maxPts+' pts ('+pct+'%)</div>'
+    +'</div></div>'
+    +'<div style="background:#f3f4f6;border-radius:999px;height:8px;margin-top:12px;overflow:hidden;">'
+    +'<div style="width:'+pct+'%;height:100%;border-radius:999px;background:linear-gradient(90deg,#c40000,#ff4444);"></div></div>'
+    +'</div>';
+
+  /* Breakdown table */
+  html+='<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:10px;">'
+    +'<div style="font-size:13px;font-weight:700;margin-bottom:10px;color:#111827;">📊 Your Education Points Breakdown</div>'
+    +'<table style="width:100%;border-collapse:collapse;">'
+    +'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:7px 6px;font-size:13px;color:#374151;">Section A — Core education</td><td style="padding:7px 6px;font-size:13px;font-weight:800;color:#c40000;text-align:right;">'+basePts+' pts</td></tr>'
+    +(canBonus>0?'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:7px 6px;font-size:13px;color:#374151;">Section C — Canadian edu bonus</td><td style="padding:7px 6px;font-size:13px;font-weight:800;color:#c40000;text-align:right;">+'+canBonus+' pts</td></tr>':'')
+    +(skillBonus>0?'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:7px 6px;font-size:13px;color:#374151;">Section B — Skill transferability (est.)</td><td style="padding:7px 6px;font-size:13px;font-weight:800;color:#c40000;text-align:right;">+'+skillBonus+' pts</td></tr>':'')
+    +'<tr style="background:#fef2f2;"><td style="padding:9px 6px;font-size:14px;font-weight:800;color:#111827;border-radius:0 0 0 8px;">Total from education-related factors</td><td style="padding:9px 6px;font-size:16px;font-weight:800;color:#c40000;text-align:right;border-radius:0 0 8px 0;">'+total+' pts</td></tr>'
+    +'</table></div>';
+
+  html+='<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:12px;font-size:13px;color:#374151;">'
+    +'<strong>💡 Next step:</strong> ';
+  if(basePts<120) html+='Consider completing a 3-year or longer post-secondary credential to reach 120 pts. ';
+  if(canBonus===0) html+='A Canadian post-secondary credential adds 15–30 bonus pts. ';
+  if(skillBonus<25) html+='Achieving IELTS CLB 9 adds up to 25 skill transferability pts. ';
+  html+='Use the <a href="/" style="color:#c40000;font-weight:700;">full CRS Calculator</a> to see your total score.</div>';
+
+  document.getElementById('eduResultContent').innerHTML=html;
+  document.getElementById('eduResult').style.display='block';
+}
+
+/* Enter key support */
+document.addEventListener('DOMContentLoaded',function(){
+  ['eduLevel','eduMarital','canadianEdu','workExp'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('keypress',function(e){if(e.key==='Enter')checkEducation();});
+  });
+});
+
+/* Mobile menu */
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var menu=document.getElementById('mobileMenu');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+  });
+})();

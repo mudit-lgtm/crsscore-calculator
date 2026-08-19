@@ -1,0 +1,150 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* ── Official IRCC CRS Age Points Data ────────────────── */
+var AGE_DATA = [
+  {age:"17 or younger", single:0,  spouse:0,  status:"Ineligible"},
+  {age:"18–35",         single:110, spouse:100, status:"Peak"},
+  {age:"36",            single:105, spouse:95,  status:"Good"},
+  {age:"37",            single:99,  spouse:90,  status:"Good"},
+  {age:"38",            single:94,  spouse:85,  status:"Good"},
+  {age:"39",            single:88,  spouse:80,  status:"Moderate"},
+  {age:"40",            single:83,  spouse:75,  status:"Moderate"},
+  {age:"41",            single:77,  spouse:70,  status:"Moderate"},
+  {age:"42",            single:72,  spouse:65,  status:"Low"},
+  {age:"43",            single:66,  spouse:60,  status:"Low"},
+  {age:"44",            single:61,  spouse:55,  status:"Low"},
+  {age:"45",            single:55,  spouse:50,  status:"Very Low"},
+  {age:"46",            single:50,  spouse:45,  status:"Very Low"},
+  {age:"47+",           single:0,   spouse:0,   status:"None"}
+];
+
+/* ── Exact lookup for checker ─────────────────────────── */
+var AGE_LOOKUP_SINGLE = {
+  17:0,18:110,19:110,20:110,21:110,22:110,23:110,24:110,25:110,
+  26:110,27:110,28:110,29:110,30:110,31:110,32:110,33:110,34:110,
+  35:110,36:105,37:99,38:94,39:88,40:83,41:77,42:72,43:66,
+  44:61,45:55,46:50
+};
+var AGE_LOOKUP_SPOUSE = {
+  17:0,18:100,19:100,20:100,21:100,22:100,23:100,24:100,25:100,
+  26:100,27:100,28:100,29:100,30:100,31:100,32:100,33:100,34:100,
+  35:100,36:95,37:90,38:85,39:80,40:75,41:70,42:65,43:60,
+  44:55,45:50,46:45
+};
+
+/* ── Populate table ───────────────────────────────────── */
+(function(){
+  var tbody = document.getElementById('ageTableBody');
+  if(!tbody) return;
+  var statColour = {Peak:'#166534',Good:'#1d4ed8',Moderate:'#92400e',Low:'#b45309','Very Low':'#b91c1c',None:'#6b7280',Ineligible:'#6b7280'};
+  AGE_DATA.forEach(function(d){
+    var loss = d.single > 0 ? 110 - d.single : (d.age === '17 or younger' ? '—' : 110);
+    var lossDisplay = (d.single === 110) ? '0' : (d.age === '17 or younger' ? '—' : (110 - d.single));
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td><strong>'+d.age+'</strong></td>'
+      + '<td class="pts-cell">'+d.single+'</td>'
+      + '<td>'+d.spouse+'</td>'
+      + '<td>'+(d.single===110?'<span style="color:#15803d;font-weight:700;">—</span>':'<span style="color:#b91c1c;font-weight:700;">−'+(110-d.single)+'</span>')+'</td>'
+      + '<td><span style="background:#f3f4f6;color:'+statColour[d.status]+';border-radius:999px;padding:2px 8px;font-size:12px;font-weight:700;">'+d.status+'</span></td>';
+    tbody.appendChild(tr);
+  });
+})();
+
+/* ── Populate bar chart ───────────────────────────────── */
+(function(){
+  var container = document.getElementById('ageBarRows');
+  if(!container) return;
+  var rows = [
+    {lbl:'18–35', val:110},{lbl:'36', val:105},{lbl:'37', val:99},
+    {lbl:'38', val:94},{lbl:'39', val:88},{lbl:'40', val:83},
+    {lbl:'41', val:77},{lbl:'42', val:72},{lbl:'43', val:66},
+    {lbl:'44', val:61},{lbl:'45', val:55},{lbl:'46', val:50},
+    {lbl:'47+', val:0}
+  ];
+  var max = 110;
+  rows.forEach(function(r){
+    var pct = Math.round(r.val/max*100);
+    var colour = pct>=90?'linear-gradient(90deg,#c40000,#9e0000)':pct>=70?'linear-gradient(90deg,#b22000,#8b1800)':pct>=50?'linear-gradient(90deg,#a01800,#780000)':pct>0?'linear-gradient(90deg,#880000,#600000)':'#e5e7eb';
+    var row = document.createElement('div');
+    row.className='abc-row';
+    row.innerHTML='<div class="abc-age">Age '+r.lbl+'</div>'
+      +'<div class="abc-bar-wrap"><div class="abc-bar" style="width:'+pct+'%;background:'+colour+'">'+( r.val>0?r.val+' pts':'')+'</div></div>'
+      +'<div class="abc-pts">'+r.val+'</div>';
+    container.appendChild(row);
+  });
+})();
+
+/* ── Age checker ──────────────────────────────────────── */
+function checkAge(){
+  var age = parseInt(document.getElementById('userAge').value)||0;
+  var marital = document.getElementById('maritalStatus').value;
+  if(age < 17 || age > 80){alert('Please enter a valid age between 17 and 80.');return;}
+
+  var pts, spouseNote;
+  if(marital === 'spouse'){
+    pts = age <= 17 ? 0 : (AGE_LOOKUP_SPOUSE[age] !== undefined ? AGE_LOOKUP_SPOUSE[age] : 0);
+    spouseNote = 'With accompanying spouse';
+  } else {
+    pts = age <= 17 ? 0 : (AGE_LOOKUP_SINGLE[age] !== undefined ? AGE_LOOKUP_SINGLE[age] : 0);
+    spouseNote = 'Without spouse';
+  }
+
+  var maxPts = marital==='spouse' ? 100 : 110;
+  var loss = maxPts - pts;
+  var pct = Math.round(pts/maxPts*100);
+
+  var verdict, advice, bgColour;
+  if(pts >= 100){verdict='🏆 Peak Score';bgColour='#f0fdf4';advice='You are in the peak age bracket. Apply to Express Entry now to lock in maximum age points — you will not gain more by waiting.';}
+  else if(pts >= 80){verdict='✅ Very Competitive';bgColour='#eff6ff';advice='Your age points are strong. Focus on maximising IELTS to CLB 9 and exploring PNP streams for the highest possible total CRS.';}
+  else if(pts >= 60){verdict='⚠️ Moderate — Act Now';bgColour='#fffbeb';advice='Your age points are declining. Apply as soon as possible and focus on IELTS improvement, French language, and PNP applications to compensate.';}
+  else if(pts > 0){verdict='⚠️ Low — Prioritise PNP';bgColour='#fff0f0';advice='Low age points. A PNP nomination (+600 pts) or French CLB 7+ (French draws cut off at 310–370) are your strongest pathways.';}
+  else{verdict='❌ Zero Age Points — PNP Essential';bgColour='#fff0f0';advice='Zero age points at 47+. Express Entry is still possible via PNP nomination (+600 pts), French-language draws, or a qualifying Canadian job offer.';}
+
+  var html='<div style="background:'+bgColour+';border-radius:12px;padding:16px;margin-bottom:12px;">'
+    +'<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;">'
+    +'<div><div style="font-size:42px;font-weight:800;color:#c40000;line-height:1;">'+pts+'</div>'
+    +'<div style="font-size:14px;font-weight:700;color:#374151;">CRS Age Points</div>'
+    +'<div style="font-size:13px;color:#6b7280;margin-top:3px;">'+spouseNote+' | Age '+age+'</div></div>'
+    +'<div style="text-align:right;">'
+    +'<div style="font-size:13px;font-weight:700;color:#c40000;">'+verdict+'</div>'
+    +'<div style="font-size:13px;color:#6b7280;">'+pts+' / '+maxPts+' points ('+pct+'%)</div>'
+    +(loss>0?'<div style="font-size:13px;color:#b91c1c;">Lost from max: −'+loss+' pts</div>':'')
+    +'</div></div>'
+    +'<div style="background:#f3f4f6;border-radius:999px;height:8px;margin-top:12px;overflow:hidden;">'
+    +'<div style="width:'+pct+'%;height:100%;border-radius:999px;background:linear-gradient(90deg,#c40000,#ff4444);"></div></div>'
+    +'</div>'
+    +'<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px;font-size:14px;color:#374151;">'
+    +'<strong>💡 Advice for age '+age+':</strong> '+advice+'</div>';
+
+  document.getElementById('ageResultContent').innerHTML = html;
+  document.getElementById('ageResult').style.display = 'block';
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  var inp = document.getElementById('userAge');
+  if(inp) inp.addEventListener('keypress',function(e){if(e.key==='Enter')checkAge();});
+});
+
+/* ── Mobile menu ──────────────────────────────────────── */
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var menu=document.getElementById('mobileMenu');
+  if(!btn||!menu) return;
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+  });
+})();

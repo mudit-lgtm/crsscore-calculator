@@ -1,0 +1,103 @@
+
+// Hamburger
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const ans = document.getElementById(btn.getAttribute('aria-controls'));
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = ans.classList.toggle('open');
+    icon.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
+// CRS Calculator
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function getSel(id) { return document.getElementById(id).value; }
+
+document.getElementById('calcBtn').addEventListener('click', function () {
+  const age = getVal('age');
+  const edu = getVal('education');
+  const married = getSel('marital') === 'married';
+  const langScore = getVal('l1s') + getVal('l1l') + getVal('l1r') + getVal('l1w');
+  const canExp = getVal('canExp');
+  const forExp = getVal('forExp');
+
+  // Core (Section A)
+  let coreA;
+  if (married) {
+    coreA = Math.round(age * 0.9 + edu * 0.82 + langScore * 0.9 + canExp * 0.85);
+  } else {
+    coreA = age + edu + langScore + canExp;
+  }
+
+  // Spouse (Section B)
+  const spouseEdu = getVal('spouseEdu');
+  const spouseExp = getVal('spouseExp');
+  const spouseLang = getVal('spouseLang');
+  const coreB = married ? Math.min(40, spouseEdu + spouseExp + spouseLang) : 0;
+
+  // Skill Transferability (Section C)
+  let skillTrans = 0;
+  if (edu >= 120 && langScore >= 80) skillTrans += 50;
+  else if (edu >= 90 && langScore >= 60) skillTrans += 25;
+  if (canExp >= 40 && langScore >= 80) skillTrans += 25;
+  if (canExp >= 40 && edu >= 120) skillTrans += 25;
+  if (forExp > 0 && canExp >= 40) skillTrans += 25;
+  skillTrans = Math.min(100, skillTrans);
+
+  // Additional Points (Section D)
+  const pnp = getVal('pnp');
+  const jobOffer = getVal('jobOffer');
+  const sibling = getVal('sibling');
+  const canadianEdu = getVal('canadianEdu');
+  const frenchLang = getVal('frenchLang');
+  const addPoints = pnp + jobOffer + sibling + canadianEdu + frenchLang;
+
+  const total = Math.min(1200, coreA + coreB + skillTrans + addPoints);
+
+  // Display scores
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('rCore').textContent = coreA + coreB;
+  document.getElementById('rLang').textContent = langScore;
+  document.getElementById('rWork').textContent = canExp + forExp;
+  document.getElementById('rExtra').textContent = skillTrans + addPoints;
+
+  // Ontario eligibility tag
+  const ontOcc = getSel('ontarioOcc') === 'yes';
+  const clbMin = Math.min(getVal('l1s'), getVal('l1l'), getVal('l1r'), getVal('l1w'));
+  const meetsLang = clbMin >= 22; // CLB 7 = value 22 in our scale
+  const meetsEdu = edu >= 120; // Bachelor's+
+  const meetsExp = canExp >= 40 || forExp > 0;
+  const tagEl = document.getElementById('ontarioTag');
+  let tagHTML = '';
+
+  if (total >= 400 && meetsLang && meetsEdu && meetsExp) {
+    tagHTML = '<div class="ontario-tag tag-green">✅ Likely eligible for OINP Human Capital Priorities Stream — CRS ≥ 400, education, language &amp; experience requirements met.</div>';
+  } else if (total >= 400 && !meetsLang) {
+    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS ≥ 400 but improve language to CLB 7+ in ALL skills for OINP HCP stream eligibility.</div>';
+  } else if (total >= 400 && !meetsEdu) {
+    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS ≥ 400 but OINP HCP requires a Bachelor\'s degree or higher. Check <a href="/fsw-calculator">FSW Calculator</a>.</div>';
+  } else if (total >= 300) {
+    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS below 400 minimum for OINP HCP. Use our <a href="/improve-score">Improve Score guide</a> to boost your points.</div>';
+  } else {
+    tagHTML = '<div class="ontario-tag tag-red">❌ CRS below 300. Significant improvements needed. See <a href="/improve-score" style="color:var(--red)">Improve CRS Score</a> strategies.</div>';
+  }
+
+  if (ontOcc && total >= 300) {
+    tagHTML += '<div class="ontario-tag tag-green" style="margin-top:6px;">✅ Priority occupation detected — also check OINP In-Demand Skills Stream for a job-offer-based pathway.</div>';
+  }
+
+  tagEl.innerHTML = tagHTML;
+
+  const box = document.getElementById('resultBox');
+  box.classList.add('show');
+  box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});

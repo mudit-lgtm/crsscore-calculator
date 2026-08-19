@@ -1,0 +1,123 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* ─── CRS DATA TABLES ─── */
+var AGE_SINGLE={0:0,99:99,105:105,110:110,94:94,88:88,83:83,77:77,72:72,66:66,61:61,55:55,50:50,39:39,28:28,17:17,6:6};
+var AGE_SPOUSE_MAP={110:100,105:95,99:90,94:85,88:80,83:75,77:70,72:65,66:60,61:55,55:50,50:45,39:35,28:25,17:15,6:5,0:0};
+
+var EDU_SINGLE={0:0,30:30,90:90,98:98,120:120,128:128,135:135,150:150};
+var EDU_SPOUSE={0:0,30:28,90:84,98:91,120:112,128:119,135:126,150:140};
+
+var LANG_CLB_SINGLE={4:6,5:6,6:9,7:17,8:23,9:31,10:34};
+var LANG_CLB_SPOUSE={4:6,5:6,6:8,7:16,8:22,9:29,10:32};
+
+var CAN_EXP_SINGLE={0:0,40:40,53:53,64:64,72:72,80:80};
+var CAN_EXP_SPOUSE={0:0,40:35,53:46,64:56,72:63,80:70};
+
+function calcSpouse(){
+  var ageVal=parseInt(document.getElementById('yourAge').value)||0;
+  var eduVal=parseInt(document.getElementById('yourEdu').value)||0;
+  var clbVal=parseInt(document.getElementById('yourLang').value)||4;
+  var canExpVal=parseInt(document.getElementById('yourCanExp').value)||0;
+  var spouseLang=parseInt(document.getElementById('spouseLang').value);
+  var spouseEdu=parseInt(document.getElementById('spouseEdu').value)||0;
+  var spouseWork=parseInt(document.getElementById('spouseWork').value)||0;
+  var adaptability=parseInt(document.getElementById('hasAdaptability').value)||0;
+
+  if(isNaN(spouseLang)||spouseLang===-1) spouseLang=0;
+
+  /* WITHOUT SPOUSE calculation */
+  var ageNoSpouse=ageVal;
+  var eduNoSpouse=EDU_SINGLE[eduVal]||0;
+  var langNoSpouse=(LANG_CLB_SINGLE[Math.min(clbVal,10)]||6)*4;
+  var canExpNoSpouse=canExpVal;
+  var totalNoSpouse=ageNoSpouse+eduNoSpouse+langNoSpouse+canExpNoSpouse+adaptability;
+
+  /* WITH SPOUSE calculation */
+  var ageWithSpouse=AGE_SPOUSE_MAP[ageVal]!==undefined?AGE_SPOUSE_MAP[ageVal]:Math.round(ageVal*0.91);
+  var eduWithSpouse=EDU_SPOUSE[eduVal]||0;
+  var langClbCapped=Math.min(clbVal,10);
+  var langWithSpouse=(LANG_CLB_SPOUSE[langClbCapped]||6)*4;
+  var canExpWithSpouse=CAN_EXP_SPOUSE[canExpVal]!==undefined?CAN_EXP_SPOUSE[canExpVal]:Math.round(canExpVal*0.875);
+  var spouseBonus=Math.min(40,spouseLang+spouseEdu+spouseWork);
+  var totalWithSpouse=ageWithSpouse+eduWithSpouse+langWithSpouse+canExpWithSpouse+spouseBonus+adaptability;
+
+  var diff=totalWithSpouse-totalNoSpouse;
+  var diffLabel=diff>0?'+'+diff+' pts advantage with spouse':diff===0?'Equal score either way':Math.abs(diff)+' pts lower with spouse';
+  var diffColor=diff>0?'#166534':diff===0?'#374151':'#b91c1c';
+  var advice='';
+
+  if(diff<-10){
+    advice='<div class="info-box amber" style="margin-top:12px;"><p><strong>💡 Advice:</strong> Your spouse\'s current credentials significantly reduce your CRS. Consider: (1) having your spouse take IELTS/CELPIP to achieve CLB 7+ (adds 16+ pts), (2) having your spouse get an ECA for their education (adds 6–10 pts), or (3) targeting a <a href="/pnp-crs-calculator">PNP nomination</a> (+600 pts) to offset the difference.</p></div>';
+  } else if(diff>5){
+    advice='<div class="info-box green" style="margin-top:12px;"><p><strong>✅ Your spouse\'s credentials add value!</strong> Including your spouse in the Express Entry application improves your CRS by '+diff+' points. Ensure all credentials are properly documented — language test results (valid 2 years), ECA for foreign education, and proof of Canadian work experience. Use the <a href="/">full CRS Calculator</a> to verify your complete score.</p></div>';
+  } else {
+    advice='<div class="info-box blue" style="margin-top:12px;"><p><strong>📊 Scores are close.</strong> Including or excluding your spouse makes a small difference. Check if your spouse can improve their language score — going from CLB 7–8 to CLB 9+ adds 4 more bonus points (16 → 20 pts). See the <a href="/blog/crs-score-language-test">language test guide</a>.</p></div>';
+  }
+
+  var html=''
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">'
+
+    /* Without spouse card */
+    +'<div style="background:#fff8f8;border:1px solid #fecaca;border-radius:12px;padding:14px;text-align:center;">'
+    +'<div style="font-size:12px;font-weight:700;color:#6b7280;margin-bottom:6px;">WITHOUT SPOUSE</div>'
+    +'<div style="font-size:40px;font-weight:800;color:#c40000;line-height:1;">'+totalNoSpouse+'</div>'
+    +'<div style="font-size:12px;color:#374151;margin-top:6px;">CRS Score (estimate)</div>'
+    +'<div style="background:#f3f4f6;border-radius:999px;height:6px;margin:10px 0;overflow:hidden;">'
+    +'<div style="width:'+Math.min(100,Math.round(totalNoSpouse/600*100))+'%;height:6px;border-radius:999px;background:linear-gradient(90deg,#c40000,#ff4444);"></div></div>'
+    +'<div style="font-size:11px;color:#6b7280;">Age: '+ageNoSpouse+' | Edu: '+eduNoSpouse+' | Lang: '+langNoSpouse+' | Work: '+canExpNoSpouse+'</div>'
+    +'</div>'
+
+    /* With spouse card */
+    +'<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px;text-align:center;">'
+    +'<div style="font-size:12px;font-weight:700;color:#6b7280;margin-bottom:6px;">WITH SPOUSE</div>'
+    +'<div style="font-size:40px;font-weight:800;color:#1d4ed8;line-height:1;">'+totalWithSpouse+'</div>'
+    +'<div style="font-size:12px;color:#374151;margin-top:6px;">CRS Score (estimate)</div>'
+    +'<div style="background:#f3f4f6;border-radius:999px;height:6px;margin:10px 0;overflow:hidden;">'
+    +'<div style="width:'+Math.min(100,Math.round(totalWithSpouse/600*100))+'%;height:6px;border-radius:999px;background:linear-gradient(90deg,#1d4ed8,#60a5fa);"></div></div>'
+    +'<div style="font-size:11px;color:#6b7280;">Age: '+ageWithSpouse+' | Edu: '+eduWithSpouse+' | Lang: '+langWithSpouse+' | Spouse: +'+spouseBonus+'</div>'
+    +'</div></div>'
+
+    /* Difference banner */
+    +'<div style="background:#f9f9f9;border:1px solid #e5e7eb;border-radius:10px;padding:12px;text-align:center;margin-bottom:10px;">'
+    +'<span style="font-size:14px;font-weight:700;color:'+diffColor+';">'+diffLabel+'</span>'
+    +'</div>'
+
+    /* Spouse breakdown */
+    +'<div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin-bottom:6px;">'
+    +'<div style="font-size:13px;font-weight:700;color:#111827;margin-bottom:10px;">👫 Spouse Bonus Breakdown</div>'
+    +'<table style="width:100%;border-collapse:collapse;">'
+    +'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px;font-size:13px;color:#374151;">Spouse Language</td><td style="padding:6px;font-size:13px;font-weight:800;color:#1d4ed8;text-align:right;">+'+spouseLang+' pts</td></tr>'
+    +'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px;font-size:13px;color:#374151;">Spouse Education</td><td style="padding:6px;font-size:13px;font-weight:800;color:#1d4ed8;text-align:right;">+'+spouseEdu+' pts</td></tr>'
+    +'<tr style="border-bottom:1px solid #f0f0f0;"><td style="padding:6px;font-size:13px;color:#374151;">Spouse Canadian Work Exp</td><td style="padding:6px;font-size:13px;font-weight:800;color:#1d4ed8;text-align:right;">+'+spouseWork+' pts</td></tr>'
+    +'<tr style="background:#eff6ff;"><td style="padding:8px 6px;font-size:14px;font-weight:800;color:#111827;">Total Spouse Bonus</td><td style="padding:8px 6px;font-size:16px;font-weight:800;color:#1d4ed8;text-align:right;">+'+spouseBonus+' / 40 pts</td></tr>'
+    +'</table></div>'
+    +advice;
+
+  document.getElementById('spouseResultContent').innerHTML=html;
+  var res=document.getElementById('spouseResult');
+  res.style.display='block';
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ─── MOBILE MENU ─── */
+var menuBtn=document.getElementById('menuBtn');
+var mobileMenu=document.getElementById('mobileMenu');
+if(menuBtn&&mobileMenu){
+  menuBtn.addEventListener('click',function(){
+    var open=mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+}

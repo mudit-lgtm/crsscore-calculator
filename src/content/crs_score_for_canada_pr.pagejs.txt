@@ -1,0 +1,67 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+// Mini CRS Estimator
+(function(){
+  document.getElementById('estBtn').addEventListener('click', function(){
+    var age  = parseInt(document.getElementById('estAge').value)  || 0;
+    var edu  = parseInt(document.getElementById('estEdu').value)  || 0;
+    var lang = parseInt(document.getElementById('estLang').value) || 0;
+    var exp  = parseInt(document.getElementById('estExp').value)  || 0;
+
+    if (!document.getElementById('estAge').value ||
+        !document.getElementById('estEdu').value ||
+        !document.getElementById('estLang').value ||
+        !document.getElementById('estExp').value) {
+      alert('Please answer all four questions to get your estimate.');
+      return;
+    }
+
+    var total = age + edu + lang + exp;
+    var result = document.getElementById('estResult');
+    var scoreEl = document.getElementById('estScore');
+    var verdictEl = document.getElementById('estVerdict');
+
+    scoreEl.textContent = total;
+
+    var verdict = '';
+    if (lang === 0) {
+      verdict = '⚠️ Your language score is below Express Entry eligibility. Improve your IELTS/CELPIP to CLB 7+ first.';
+    } else if (total >= 520) {
+      verdict = '✅ Excellent! This core score is very competitive for all-program Express Entry draws.';
+    } else if (total >= 490) {
+      verdict = '✅ Competitive for most draw types. Add spouse or PNP factors in the full calculator to see your complete score.';
+    } else if (total >= 450) {
+      verdict = '⚠️ Below recent all-program cutoffs. Consider a PNP stream or category draw — or improve language/work experience.';
+    } else if (total >= 400) {
+      verdict = '⚠️ Likely below all-program cutoffs. Target a provincial nomination (+600 pts) or a French-language draw.';
+    } else {
+      verdict = '❗ Score needs improvement. Focus on IELTS CLB 9+ and Canadian work experience for the biggest CRS gains.';
+    }
+
+    verdictEl.textContent = verdict;
+    result.style.display = 'block';
+  });
+})();

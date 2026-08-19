@@ -1,0 +1,117 @@
+
+  // ── Hamburger ──
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ans = document.getElementById(btn.getAttribute('aria-controls'));
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = ans.classList.toggle('open');
+      icon.classList.toggle('open', isOpen);
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+
+  // ── NOC eligibility tag ──
+  document.getElementById('healthcareNOC').addEventListener('change', function () {
+    const tag = document.getElementById('nocTag');
+    const v = this.value;
+    if (v === 'eligible') {
+      tag.innerHTML = '<div class="status-tag tag-green">✅ This occupation is on IRCC\'s healthcare category list. You may qualify for healthcare category draws with a lower CRS cutoff (~430–471).</div>';
+    } else if (v === 'support') {
+      tag.innerHTML = '<div class="status-tag tag-blue">ℹ️ TEER 3 support role. Eligible via CEC (1yr Canadian exp). Language min: CLB 4/5. May qualify for healthcare category draws — confirm at <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer">IRCC</a>.</div>';
+    } else if (v === 'check') {
+      tag.innerHTML = '<div class="status-tag tag-amber">⚠️ Please verify your NOC at the <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener noreferrer">ESDC NOC Search</a> and check the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/submit-profile/rounds-invitations/category-based-selection.html" target="_blank" rel="noopener noreferrer">IRCC healthcare target list</a>.</div>';
+    } else {
+      tag.innerHTML = '';
+    }
+  });
+
+  // ── CRS Calculation ──
+  document.getElementById('calcBtn').addEventListener('click', function () {
+    const ageVal    = parseFloat(document.getElementById('age').value)       || 0;
+    const eduVal    = parseFloat(document.getElementById('education').value) || 0;
+    const married   = document.getElementById('marital').value === 'married';
+    const spEdu     = parseFloat(document.getElementById('spouseEdu').value) || 0;
+    const spExp     = parseFloat(document.getElementById('spouseExp').value) || 0;
+    const spLang    = parseFloat(document.getElementById('spouseLang').value)|| 0;
+
+    const ls = parseFloat(document.getElementById('l1s').value) || 0;
+    const ll = parseFloat(document.getElementById('l1l').value) || 0;
+    const lr = parseFloat(document.getElementById('l1r').value) || 0;
+    const lw = parseFloat(document.getElementById('l1w').value) || 0;
+    const langTotal = ls + ll + lr + lw;
+
+    const canExp    = parseFloat(document.getElementById('canExp').value)    || 0;
+    const forExp    = parseFloat(document.getElementById('forExp').value)    || 0;
+    const pnp       = parseFloat(document.getElementById('pnp').value)       || 0;
+    const jobOffer  = parseFloat(document.getElementById('jobOffer').value)  || 0;
+    const sibling   = parseFloat(document.getElementById('sibling').value)   || 0;
+    const canEdu    = parseFloat(document.getElementById('canadianEdu').value)|| 0;
+    const french    = parseFloat(document.getElementById('frenchLang').value)|| 0;
+
+    // Core A — married vs single
+    let coreHuman;
+    if (married) {
+      coreHuman = Math.round(ageVal * 0.9 + eduVal * 0.82 + langTotal * 0.9 + canExp * 0.85);
+    } else {
+      coreHuman = ageVal + eduVal + langTotal + canExp;
+    }
+
+    // Core B — spouse section
+    const coreB = married ? Math.min(40, spEdu + spExp + spLang) : 0;
+
+    // Skill Transferability (max 100)
+    let skillT = 0;
+    if (eduVal >= 120 && langTotal >= 80) skillT += 50;
+    else if (eduVal >= 90 && langTotal >= 60) skillT += 25;
+    if (canExp >= 40 && langTotal >= 80) skillT += 25;
+    if (canExp >= 40 && eduVal >= 120) skillT += 25;
+    if (forExp > 0 && canExp >= 40) skillT += 25;
+    if (forExp > 0 && langTotal >= 80) skillT += 25;
+    skillT = Math.min(100, skillT);
+
+    const addPts = pnp + jobOffer + sibling + canEdu + french;
+    const total  = Math.min(1200, coreHuman + coreB + skillT + addPts);
+
+    // Update breakdown display
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('rCore').textContent      = ageVal + eduVal + (married ? Math.round(spEdu) : 0);
+    document.getElementById('rLang').textContent      = langTotal;
+    document.getElementById('rWork').textContent      = canExp + forExp;
+    document.getElementById('rSkill').textContent     = skillT;
+    document.getElementById('rAdd').textContent       = addPts;
+
+    // Draw comparison tag
+    const drawTarget = document.getElementById('drawTarget').value;
+    const cutoffs = { healthcare: 471, allprogram: 493, french: 393, pnp: 793 };
+    const names   = { healthcare: 'Healthcare Category (cutoff ~471)', allprogram: 'All-Program (cutoff ~493)', french: 'French Language (cutoff ~393)', pnp: 'PNP Draw (cutoff ~793)' };
+    const cutoff  = cutoffs[drawTarget];
+    const drawEl  = document.getElementById('drawTag');
+
+    // Language warning
+    const clbOk = Math.min(ls, ll, lr, lw) >= 15;
+
+    let drawHTML = '';
+    if (!clbOk && drawTarget !== 'french') {
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚠️ Language below CLB 7. Ensure you meet minimum language requirements for your chosen stream. Use our <a href="/clb-scores">CLB converter</a>.</div>';
+    } else if (total >= cutoff + 15) {
+      drawHTML = '<div class="status-tag tag-green" style="margin-top:8px;">🎯 CRS ' + total + ' is competitive for ' + names[drawTarget] + '. You likely qualify in the next draw round!</div>';
+    } else if (total >= cutoff - 20) {
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + names[drawTarget] + ' cutoff. See <a href="/improve-score">Improve Score tips</a> to push over the threshold.</div>';
+    } else {
+      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + names[drawTarget] + ' cutoff. Visit our <a href="/improve-score" style="color:var(--red)">Improve CRS Score guide</a> for actionable steps.</div>';
+    }
+    drawEl.innerHTML = drawHTML;
+
+    // Show result
+    const box = document.getElementById('resultBox');
+    box.classList.add('show');
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });

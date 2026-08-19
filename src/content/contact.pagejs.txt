@@ -1,0 +1,13 @@
+
+function crsToggleMenu(){var m=document.getElementById('crsMobileMenu'),mi=document.getElementById('crsMenuIcon'),ci=document.getElementById('crsCloseIcon'),btn=document.getElementById('crsHamburger'),open=m.style.display==='block';m.style.display=open?'none':'block';mi.style.display=open?'block':'none';ci.style.display=open?'none':'block';btn.setAttribute('aria-expanded',String(!open));}
+
+;
+
+function handleSubmit(e){
+  e.preventDefault();
+  var msg = document.getElementById('formMsg');
+  msg.style.display='block';
+  msg.style.color='#16a34a';
+  msg.innerHTML='✅ Thank you! Your message has been sent. We'll get back to you within 24–48 hours.';
+  e.target.reset();
+}

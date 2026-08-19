@@ -1,0 +1,87 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu toggle
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+})();
+
+// Eligibility Checker
+(function(){
+  document.getElementById('eligBtn').addEventListener('click', function(){
+    var program = document.getElementById('program').value;
+    var clb     = document.getElementById('clbCheck').value;
+    var exp     = document.getElementById('expCheck').value;
+    var result  = document.getElementById('eligResult');
+
+    if (!program || !clb || !exp) {
+      result.style.display = 'block';
+      result.innerHTML = '<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;font-size:14px;color:#92400e;">⚠️ Please answer all three questions to check your eligibility.</div>';
+      return;
+    }
+
+    var eligible = false;
+    var msg = '';
+
+    if (program === 'fsw') {
+      var clbOk  = ['7','8','9plus'].indexOf(clb) > -1;
+      var expOk  = ['1yr_foreign','1yr','2plus'].indexOf(exp) > -1;
+      eligible = clbOk && expOk;
+      if (eligible) {
+        msg = '✅ <strong>You likely qualify for FSW.</strong> Your language score and work experience meet the minimum FSW entry requirements. Check your 67-point grid score and calculate your full CRS points using the <a href="/">CRS Calculator</a>.';
+      } else if (!clbOk) {
+        msg = '⚠️ <strong>Language score may be below FSW minimum (CLB 7).</strong> Book or retake IELTS/CELPIP and use the <a href="/ielts-crs-calculator">IELTS to CRS tool</a> to plan your score improvement.';
+      } else {
+        msg = '⚠️ <strong>Work experience below FSW minimum (1 year skilled).</strong> You need at least 1 year of TEER 0/1/2/3 work experience to qualify under FSW.';
+      }
+    }
+
+    else if (program === 'cec') {
+      var clbOkCec = ['5','6','7','8','9plus'].indexOf(clb) > -1;
+      var expOkCec = ['1yr','2plus'].indexOf(exp) > -1;
+      eligible = clbOkCec && expOkCec;
+      if (eligible) {
+        msg = '✅ <strong>You likely qualify for CEC.</strong> Your Canadian work experience and language score meet CEC minimums. Calculate your CEC CRS score with the <a href="/cec-crs-calculator">CEC CRS Calculator</a>.';
+      } else if (!expOkCec) {
+        msg = '⚠️ <strong>CEC requires 1 year of Canadian work experience (NOC TEER 0/1/2/3).</strong> If you have foreign experience, consider the FSW program instead.';
+      } else {
+        msg = '⚠️ <strong>Language score may be below CEC minimum (CLB 5 or CLB 7 depending on your NOC).</strong> Improve your IELTS/CELPIP result first.';
+      }
+    }
+
+    else if (program === 'fst') {
+      var clbOkFst = ['5','6','7','8','9plus'].indexOf(clb) > -1;
+      var expOkFst = ['1yr','1yr_foreign','2plus'].indexOf(exp) > -1;
+      eligible = clbOkFst && expOkFst;
+      if (eligible) {
+        msg = '✅ <strong>You may qualify for FST</strong> — provided you also have a Canadian job offer or trade certificate. Check <a href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer">IRCC FST requirements</a> for eligible NOC codes.';
+      } else if (!expOkFst) {
+        msg = '⚠️ <strong>FST requires 2 years of skilled trades experience.</strong> Continue building experience and reassess in future.';
+      } else {
+        msg = '⚠️ <strong>FST requires CLB 5 for Speaking/Listening and CLB 4 for Reading/Writing.</strong> Retake your language test and use the <a href="/ielts-crs-calculator">IELTS to CRS tool</a>.';
+      }
+    }
+
+    var bgColor = eligible ? '#f0fdf4' : '#fffbeb';
+    var bdColor = eligible ? '#bbf7d0' : '#fde68a';
+    result.style.display = 'block';
+    result.innerHTML = '<div style="background:'+bgColor+';border:1px solid '+bdColor+';border-radius:10px;padding:14px;font-size:14px;">' + msg + '</div>';
+  });
+})();

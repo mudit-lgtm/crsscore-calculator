@@ -1,0 +1,97 @@
+
+// ── Hamburger Menu ──
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+
+// ── FAQ Accordion ──
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const answer = document.getElementById(btn.getAttribute('aria-controls'));
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = answer.classList.toggle('open');
+    icon.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+});
+
+// ── CRS Score Logic ──
+function getVal(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function getSel(id) { return document.getElementById(id).value; }
+
+document.getElementById('calcBtn').addEventListener('click', function() {
+  // Section A: Core Human Capital
+  const age = getVal('age');
+  const edu = getVal('education');
+  const married = getSel('marital') === 'married';
+  const langScore = getVal('l1s') + getVal('l1l') + getVal('l1r') + getVal('l1w');
+  const canExp = getVal('canExp');
+
+  let coreA;
+  if (married) {
+    // Married: max 460
+    const ageM = age * 0.9;
+    const eduM = edu * 0.82;
+    const langM = langScore * 0.9;
+    const canExpM = canExp * 0.85;
+    coreA = Math.round(ageM + eduM + langM + canExpM);
+  } else {
+    coreA = age + edu + langScore + canExp;
+  }
+
+  // Section B: Spouse factors (already counted in coreA simplified)
+  const spouseEdu = getVal('spouseEdu');
+  const spouseExp = getVal('spouseExp');
+  const spouseLang = getVal('spouseLang');
+  const coreB = married ? Math.min(40, spouseEdu + spouseExp + spouseLang) : 0;
+
+  // Section C: Skill transferability (simplified)
+  let skillTrans = 0;
+  if (edu >= 120 && langScore >= 80) skillTrans += 50;
+  else if (edu >= 90 && langScore >= 60) skillTrans += 25;
+  if (canExp >= 40 && langScore >= 80) skillTrans += 25;
+  if (canExp >= 40 && edu >= 120) skillTrans += 25;
+  if (getVal('forExp') > 0 && canExp >= 40) skillTrans += 25;
+  skillTrans = Math.min(100, skillTrans);
+
+  // Section D: Additional points
+  const pnp = getVal('pnp');
+  const jobOffer = getVal('jobOffer');
+  const sibling = getVal('sibling');
+  const canadianEdu = getVal('canadianEdu');
+  const frenchLang = getVal('frenchLang');
+  const addPoints = pnp + jobOffer + sibling + canadianEdu + frenchLang;
+
+  const total = Math.min(1200, coreA + coreB + skillTrans + addPoints);
+
+  // Display
+  document.getElementById('totalScore').textContent = total;
+  document.getElementById('rCore').textContent = coreA + coreB;
+  document.getElementById('rLang').textContent = langScore;
+  document.getElementById('rWork').textContent = canExp + getVal('forExp');
+  document.getElementById('rExtra').textContent = skillTrans + addPoints;
+
+  // Alberta eligibility tag
+  const albOcc = getSel('albOccupation') === 'yes';
+  const tagEl = document.getElementById('albertaTag');
+  let tagHTML = '';
+  if (total >= 300) {
+    if (albOcc && total >= 300) {
+      tagHTML = '<div class="alberta-tag tag-green">✅ Likely eligible for AAIP Express Entry — your occupation is in Alberta\'s priority list. Expect NOI if federal CRS ≥ 300.</div>';
+    } else if (total >= 400) {
+      tagHTML = '<div class="alberta-tag tag-green">✅ Strong federal CRS — competitive for Alberta Express Entry Stream (base min: 300).</div>';
+    } else {
+      tagHTML = '<div class="alberta-tag tag-amber">⚡ Federal CRS ≥ 300 met. Improve language/education scores to strengthen AAIP chances.</div>';
+    }
+  } else {
+    tagHTML = '<div class="alberta-tag" style="background:#fff5f5;color:#c0392b;border:1px solid #f5c6cb;">❌ Federal CRS below 300 — below AAIP base requirement. Use our <a href=\'/improve-score\' style=\'color:var(--red)\'>Improve Score guide</a> to boost your points.</div>';
+  }
+  tagEl.innerHTML = tagHTML;
+
+  const resultBox = document.getElementById('resultBox');
+  resultBox.classList.add('show');
+  resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+});

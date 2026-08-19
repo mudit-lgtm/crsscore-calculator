@@ -1,0 +1,110 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+(function () {
+  function g(id) { return document.getElementById(id); }
+  function v(id) { return parseInt(g(id).value) || 0; }
+
+  function calculate() {
+    var age        = v('age');
+    var edu        = v('education');
+    var lang       = v('clbLevel');
+    var french     = v('frenchLevel');
+    var canExp     = v('canadaExp');
+    var forExp     = v('foreignExp');
+    var study      = v('canadaStudy');
+    var sibling    = v('sibling');
+    var nomBonus   = v('nomineeBonus');
+    var jobOffer   = v('jobOffer');
+    var saskConn   = v('saskConnection');
+    var isSpouse   = g('marital').value === 'spouse';
+    var spEdu      = isSpouse ? v('spouseEducation') : 0;
+    var spLang     = isSpouse ? v('clbSpouse') : 0;
+    var spExp      = isSpouse ? v('spouseExp') : 0;
+    var spouse     = spEdu + spLang + spExp;
+    var work       = canExp + forExp;
+    var bonus      = nomBonus + jobOffer;
+    var total      = age + edu + lang + french + work + study + sibling + bonus + saskConn + spouse;
+
+    // Mini summary cards
+    g('totalScore').textContent = total;
+    g('langPts').textContent    = lang + french;
+    g('eduPts').textContent     = edu;
+    g('workPts').textContent    = work;
+
+    // Breakdown table
+    g('tAge').textContent     = age;
+    g('tEdu').textContent     = edu;
+    g('tLang').textContent    = lang;
+    g('tCanExp').textContent  = canExp;
+    g('tSpouse').textContent  = spouse;
+    g('tForeign').textContent = forExp;
+    g('tFrench').textContent  = french;
+    g('tStudy').textContent   = study;
+    g('tSibling').textContent = sibling;
+    g('tBonus').textContent   = bonus;
+    g('tSaskConn').textContent= saskConn;
+    g('tTotal').innerHTML     = '<strong>' + total + '</strong>';
+
+    // Sidebar score
+    g('sideScore').textContent = total;
+
+    // Eligibility banner
+    var banner = g('eligBanner');
+    if (total >= 520) {
+      banner.className    = 'elig-good';
+      banner.style.display= 'block';
+      banner.textContent  = '✅ Excellent! Your estimated CRS score is highly competitive for Saskatchewan SINP Express Entry and all-program federal draws.';
+    } else if (total >= 450) {
+      banner.className    = 'elig-good';
+      banner.style.display= 'block';
+      banner.textContent  = '✅ Your estimated CRS score may qualify you for the Saskatchewan SINP Express Entry pool. A SINP nomination will add 600 bonus CRS points.';
+    } else if (total >= 400) {
+      banner.className    = 'elig-warn';
+      banner.style.display= 'block';
+      banner.textContent  = '⚠️ Your score is below typical SINP thresholds. Improving your IELTS/CLB score or gaining Canadian work experience will boost your CRS points significantly.';
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  // Button click
+  g('calcBtn').addEventListener('click', calculate);
+
+  // Auto-calculate on every dropdown change
+  document.querySelectorAll('#skForm select').forEach(function (el) {
+    el.addEventListener('change', calculate);
+  });
+
+  // Reset
+  g('resetBtn').addEventListener('click', function () {
+    setTimeout(function () {
+      ['totalScore','langPts','eduPts','workPts'].forEach(function (id) { g(id).textContent = 0; });
+      ['tAge','tEdu','tLang','tCanExp','tSpouse','tForeign','tFrench','tStudy','tSibling','tBonus','tSaskConn'].forEach(function (id) { g(id).textContent = 0; });
+      g('tTotal').innerHTML      = '<strong>0</strong>';
+      g('sideScore').textContent = 0;
+      g('eligBanner').style.display = 'none';
+    }, 0);
+  });
+
+  // Spouse field opacity toggle
+  g('marital').addEventListener('change', function () {
+    var isSpouse = this.value === 'spouse';
+    ['spouseEducation','clbSpouse','spouseExp'].forEach(function (id) {
+      var field = g(id).closest('.field');
+      if (field) field.style.opacity = isSpouse ? '1' : '0.4';
+    });
+  });
+})();

@@ -1,0 +1,73 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu toggle
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+// Score builder — live pill update + total calculation
+(function(){
+  var fields = [
+    { sel: 'bAge',   pill: 'bAgePts'   },
+    { sel: 'bEdu',   pill: 'bEduPts'   },
+    { sel: 'bLang',  pill: 'bLangPts'  },
+    { sel: 'bExp',   pill: 'bExpPts'   },
+    { sel: 'bST',    pill: 'bSTPts'    },
+    { sel: 'bExtra', pill: 'bExtraPts' }
+  ];
+
+  fields.forEach(function(f){
+    document.getElementById(f.sel).addEventListener('change', function(){
+      var v = this.value;
+      document.getElementById(f.pill).textContent = v !== '' ? v + ' pts' : '— pts';
+    });
+  });
+
+  document.getElementById('buildBtn').addEventListener('click', function(){
+    var allFilled = fields.every(function(f){ return document.getElementById(f.sel).value !== ''; });
+    if (!allFilled) {
+      alert('Please complete all six sections to build your CRS score.');
+      return;
+    }
+    var total = fields.reduce(function(sum, f){
+      return sum + (parseInt(document.getElementById(f.sel).value) || 0);
+    }, 0);
+
+    document.getElementById('buildScore').textContent = total;
+
+    var v = '';
+    if (total >= 600) {
+      v = '✅ Outstanding! You likely have a PNP nomination. An ITA is virtually guaranteed at the next PNP draw.';
+    } else if (total >= 525) {
+      v = '✅ Excellent! This score is highly competitive for all-program Express Entry draws.';
+    } else if (total >= 490) {
+      v = '✅ Competitive. Within range of recent all-program draw cutoffs (~470–525).';
+    } else if (total >= 450) {
+      v = '⚠️ Close. Consider improving IELTS to CLB 9+ or targeting a category-based or PNP draw.';
+    } else if (total >= 400) {
+      v = '⚠️ Below all-program cutoffs. A PNP nomination (+600) or French-language draw is your best path.';
+    } else {
+      v = '❗ Needs improvement. Focus on language (CLB 9+) and Canadian work experience for the biggest gains.';
+    }
+    document.getElementById('buildVerdict').textContent = v;
+    document.getElementById('buildResult').style.display = 'block';
+  });
+})();
