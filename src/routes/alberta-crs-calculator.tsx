@@ -27,7 +27,7 @@ export const Route = createFileRoute("/alberta-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/alberta-crs-calculator"
       },
       {
             "property": "og:type",
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/alberta-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/alberta-crs-calculator"
       },
       {
             "rel": "preconnect",

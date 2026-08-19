@@ -39,7 +39,7 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/crs-cutoff-scores"
       },
       {
             "property": "og:type",
@@ -65,7 +65,7 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/crs-cutoff-scores"
       },
       {
             "rel": "preconnect",

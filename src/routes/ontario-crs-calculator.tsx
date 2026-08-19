@@ -27,7 +27,7 @@ export const Route = createFileRoute("/ontario-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/ontario-crs-calculator"
       },
       {
             "property": "og:type",
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/ontario-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/ontario-crs-calculator"
       },
       {
             "rel": "preconnect",

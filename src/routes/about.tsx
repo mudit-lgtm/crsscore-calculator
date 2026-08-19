@@ -17,7 +17,7 @@ export const Route = createFileRoute("/about")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/about"
       },
       {
             "rel": "preconnect",

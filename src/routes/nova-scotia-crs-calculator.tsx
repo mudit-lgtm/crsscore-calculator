@@ -43,7 +43,7 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/nova-scotia-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/nova-scotia-crs-calculator"
       },
       {
             "rel": "icon",

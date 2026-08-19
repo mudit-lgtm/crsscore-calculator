@@ -43,7 +43,7 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/ielts-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/ielts-crs-calculator"
       },
       {
             "rel": "icon",

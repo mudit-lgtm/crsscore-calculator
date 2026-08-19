@@ -39,7 +39,7 @@ export const Route = createFileRoute("/bc-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/bc-crs-calculator"
       },
       {
             "property": "og:type",
@@ -65,7 +65,7 @@ export const Route = createFileRoute("/bc-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/bc-crs-calculator"
       },
       {
             "rel": "preconnect",

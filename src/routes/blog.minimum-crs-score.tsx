@@ -43,7 +43,7 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/blog/minimum-crs-score"
       },
       {
             "property": "og:site_name",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/blog/minimum-crs-score"
       },
       {
             "rel": "icon",

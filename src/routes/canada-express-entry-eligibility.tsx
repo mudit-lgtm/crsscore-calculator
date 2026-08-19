@@ -43,7 +43,7 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/canada-express-entry-eligibility"
       },
       {
             "property": "og:site_name",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/canada-express-entry-eligibility"
       },
       {
             "rel": "icon",

@@ -39,7 +39,7 @@ export const Route = createFileRoute("/stem-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/stem-crs-calculator"
       },
       {
             "property": "og:type",
@@ -65,7 +65,7 @@ export const Route = createFileRoute("/stem-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/stem-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -43,7 +43,7 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/manitoba-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/manitoba-crs-calculator"
       },
       {
             "rel": "icon",

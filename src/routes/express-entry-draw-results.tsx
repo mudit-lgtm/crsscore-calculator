@@ -43,7 +43,7 @@ export const Route = createFileRoute("/express-entry-draw-results")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/express-entry-draw-results"
       },
       {
             "property": "og:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/express-entry-draw-results")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/express-entry-draw-results"
       },
       {
             "rel": "icon",

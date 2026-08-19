@@ -27,7 +27,7 @@ export const Route = createFileRoute("/fst-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/fst-crs-calculator"
       },
       {
             "property": "og:type",
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/fst-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/fst-crs-calculator"
       },
       {
             "rel": "preconnect",

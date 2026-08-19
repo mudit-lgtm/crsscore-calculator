@@ -43,7 +43,7 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/saskatchewan-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/saskatchewan-crs-calculator"
       },
       {
             "rel": "icon",

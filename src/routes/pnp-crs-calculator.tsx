@@ -31,7 +31,7 @@ export const Route = createFileRoute("/pnp-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/pnp-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/pnp-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/pnp-crs-calculator"
       },
       {
             "rel": "preconnect",

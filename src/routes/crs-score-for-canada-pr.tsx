@@ -43,7 +43,7 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/crs-score-for-canada-pr"
       },
       {
             "property": "og:site_name",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/crs-score-for-canada-pr"
       },
       {
             "rel": "icon",

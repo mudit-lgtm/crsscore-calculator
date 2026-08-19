@@ -27,7 +27,7 @@ export const Route = createFileRoute("/fsw-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/fsw-crs-calculator"
       },
       {
             "property": "og:type",
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/fsw-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/fsw-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/privacy-policy")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/privacy-policy"
       },
       {
             "rel": "preconnect",

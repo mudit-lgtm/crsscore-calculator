@@ -27,7 +27,7 @@ export const Route = createFileRoute("/healthcare-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/healthcare-crs-calculator"
       },
       {
             "property": "og:type",
@@ -45,7 +45,7 @@ export const Route = createFileRoute("/healthcare-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/healthcare-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -43,7 +43,7 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/how-crs-is-calculated"
       },
       {
             "property": "og:site_name",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/how-crs-is-calculated"
       },
       {
             "rel": "icon",

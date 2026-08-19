@@ -27,7 +27,7 @@ export const Route = createFileRoute("/express-entry-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/express-entry-crs-calculator"
       },
       {
             "property": "og:type",
@@ -53,7 +53,7 @@ export const Route = createFileRoute("/express-entry-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/express-entry-crs-calculator"
       },
       {
             "rel": "icon",

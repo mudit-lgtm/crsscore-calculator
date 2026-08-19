@@ -31,7 +31,7 @@ export const Route = createFileRoute("/cec-crs-calculator")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/cec-crs-calculator"
       },
       {
             "property": "og:type",
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/cec-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/cec-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -17,7 +17,7 @@ export const Route = createFileRoute("/terms-and-conditions")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/terms-and-conditions"
       },
       {
             "rel": "preconnect",

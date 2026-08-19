@@ -43,7 +43,7 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "/blog/express-entry-cutoff-history"
       },
       {
             "property": "og:site_name",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "/blog/express-entry-cutoff-history"
       },
       {
             "rel": "icon",
