@@ -9,38 +9,496 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AlbertaCrsCalculatorRouteImport } from './routes/alberta-crs-calculator'
+import { Route as BcCrsCalculatorRouteImport } from './routes/bc-crs-calculator'
+import { Route as CanadaExpressEntryEligibilityRouteImport } from './routes/canada-express-entry-eligibility'
+import { Route as CecCrsCalculatorRouteImport } from './routes/cec-crs-calculator'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CrsCutoffScoresRouteImport } from './routes/crs-cutoff-scores'
+import { Route as CrsScoreForCanadaPrRouteImport } from './routes/crs-score-for-canada-pr'
+import { Route as ExpressEntryCrsCalculatorRouteImport } from './routes/express-entry-crs-calculator'
+import { Route as ExpressEntryDrawResultsRouteImport } from './routes/express-entry-draw-results'
+import { Route as FstCrsCalculatorRouteImport } from './routes/fst-crs-calculator'
+import { Route as FswCrsCalculatorRouteImport } from './routes/fsw-crs-calculator'
+import { Route as HealthcareCrsCalculatorRouteImport } from './routes/healthcare-crs-calculator'
+import { Route as HowCrsIsCalculatedRouteImport } from './routes/how-crs-is-calculated'
+import { Route as HowToImproveCrsScoreRouteImport } from './routes/how-to-improve-crs-score'
+import { Route as IeltsCrsCalculatorRouteImport } from './routes/ielts-crs-calculator'
+import { Route as ManitobaCrsCalculatorRouteImport } from './routes/manitoba-crs-calculator'
+import { Route as NovaScotiaCrsCalculatorRouteImport } from './routes/nova-scotia-crs-calculator'
+import { Route as OntarioCrsCalculatorRouteImport } from './routes/ontario-crs-calculator'
+import { Route as PnpCrsCalculatorRouteImport } from './routes/pnp-crs-calculator'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as SaskatchewanCrsCalculatorRouteImport } from './routes/saskatchewan-crs-calculator'
+import { Route as StemCrsCalculatorRouteImport } from './routes/stem-crs-calculator'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as WhatIsCrsScoreRouteImport } from './routes/what-is-crs-score'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogCrsDrawPredictionsRouteImport } from './routes/blog.crs-draw-predictions'
+import { Route as BlogCrsScoreByAgeRouteImport } from './routes/blog.crs-score-by-age'
+import { Route as BlogCrsScoreEducationRouteImport } from './routes/blog.crs-score-education'
+import { Route as BlogCrsScoreLanguageTestRouteImport } from './routes/blog.crs-score-language-test'
+import { Route as BlogCrsScoreWithSpouseRouteImport } from './routes/blog.crs-score-with-spouse'
+import { Route as BlogExpressEntryCutoffHistoryRouteImport } from './routes/blog.express-entry-cutoff-history'
+import { Route as BlogImproveCrsScoreTipsRouteImport } from './routes/blog.improve-crs-score-tips'
+import { Route as BlogMinimumCrsScoreRouteImport } from './routes/blog.minimum-crs-score'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlbertaCrsCalculatorRoute = AlbertaCrsCalculatorRouteImport.update({
+  id: '/alberta-crs-calculator',
+  path: '/alberta-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BcCrsCalculatorRoute = BcCrsCalculatorRouteImport.update({
+  id: '/bc-crs-calculator',
+  path: '/bc-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CanadaExpressEntryEligibilityRoute =
+  CanadaExpressEntryEligibilityRouteImport.update({
+    id: '/canada-express-entry-eligibility',
+    path: '/canada-express-entry-eligibility',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CecCrsCalculatorRoute = CecCrsCalculatorRouteImport.update({
+  id: '/cec-crs-calculator',
+  path: '/cec-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrsCutoffScoresRoute = CrsCutoffScoresRouteImport.update({
+  id: '/crs-cutoff-scores',
+  path: '/crs-cutoff-scores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrsScoreForCanadaPrRoute = CrsScoreForCanadaPrRouteImport.update({
+  id: '/crs-score-for-canada-pr',
+  path: '/crs-score-for-canada-pr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpressEntryCrsCalculatorRoute =
+  ExpressEntryCrsCalculatorRouteImport.update({
+    id: '/express-entry-crs-calculator',
+    path: '/express-entry-crs-calculator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ExpressEntryDrawResultsRoute = ExpressEntryDrawResultsRouteImport.update({
+  id: '/express-entry-draw-results',
+  path: '/express-entry-draw-results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FstCrsCalculatorRoute = FstCrsCalculatorRouteImport.update({
+  id: '/fst-crs-calculator',
+  path: '/fst-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FswCrsCalculatorRoute = FswCrsCalculatorRouteImport.update({
+  id: '/fsw-crs-calculator',
+  path: '/fsw-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HealthcareCrsCalculatorRoute = HealthcareCrsCalculatorRouteImport.update({
+  id: '/healthcare-crs-calculator',
+  path: '/healthcare-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowCrsIsCalculatedRoute = HowCrsIsCalculatedRouteImport.update({
+  id: '/how-crs-is-calculated',
+  path: '/how-crs-is-calculated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowToImproveCrsScoreRoute = HowToImproveCrsScoreRouteImport.update({
+  id: '/how-to-improve-crs-score',
+  path: '/how-to-improve-crs-score',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IeltsCrsCalculatorRoute = IeltsCrsCalculatorRouteImport.update({
+  id: '/ielts-crs-calculator',
+  path: '/ielts-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManitobaCrsCalculatorRoute = ManitobaCrsCalculatorRouteImport.update({
+  id: '/manitoba-crs-calculator',
+  path: '/manitoba-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NovaScotiaCrsCalculatorRoute = NovaScotiaCrsCalculatorRouteImport.update({
+  id: '/nova-scotia-crs-calculator',
+  path: '/nova-scotia-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OntarioCrsCalculatorRoute = OntarioCrsCalculatorRouteImport.update({
+  id: '/ontario-crs-calculator',
+  path: '/ontario-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PnpCrsCalculatorRoute = PnpCrsCalculatorRouteImport.update({
+  id: '/pnp-crs-calculator',
+  path: '/pnp-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SaskatchewanCrsCalculatorRoute =
+  SaskatchewanCrsCalculatorRouteImport.update({
+    id: '/saskatchewan-crs-calculator',
+    path: '/saskatchewan-crs-calculator',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const StemCrsCalculatorRoute = StemCrsCalculatorRouteImport.update({
+  id: '/stem-crs-calculator',
+  path: '/stem-crs-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhatIsCrsScoreRoute = WhatIsCrsScoreRouteImport.update({
+  id: '/what-is-crs-score',
+  path: '/what-is-crs-score',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogCrsDrawPredictionsRoute = BlogCrsDrawPredictionsRouteImport.update({
+  id: '/blog/crs-draw-predictions',
+  path: '/blog/crs-draw-predictions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogCrsScoreByAgeRoute = BlogCrsScoreByAgeRouteImport.update({
+  id: '/blog/crs-score-by-age',
+  path: '/blog/crs-score-by-age',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogCrsScoreEducationRoute = BlogCrsScoreEducationRouteImport.update({
+  id: '/blog/crs-score-education',
+  path: '/blog/crs-score-education',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogCrsScoreLanguageTestRoute =
+  BlogCrsScoreLanguageTestRouteImport.update({
+    id: '/blog/crs-score-language-test',
+    path: '/blog/crs-score-language-test',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogCrsScoreWithSpouseRoute = BlogCrsScoreWithSpouseRouteImport.update({
+  id: '/blog/crs-score-with-spouse',
+  path: '/blog/crs-score-with-spouse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogExpressEntryCutoffHistoryRoute =
+  BlogExpressEntryCutoffHistoryRouteImport.update({
+    id: '/blog/express-entry-cutoff-history',
+    path: '/blog/express-entry-cutoff-history',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const BlogImproveCrsScoreTipsRoute = BlogImproveCrsScoreTipsRouteImport.update({
+  id: '/blog/improve-crs-score-tips',
+  path: '/blog/improve-crs-score-tips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogMinimumCrsScoreRoute = BlogMinimumCrsScoreRouteImport.update({
+  id: '/blog/minimum-crs-score',
+  path: '/blog/minimum-crs-score',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/alberta-crs-calculator': typeof AlbertaCrsCalculatorRoute
+  '/bc-crs-calculator': typeof BcCrsCalculatorRoute
+  '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
+  '/cec-crs-calculator': typeof CecCrsCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
+  '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
+  '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/fst-crs-calculator': typeof FstCrsCalculatorRoute
+  '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
+  '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
+  '/how-crs-is-calculated': typeof HowCrsIsCalculatedRoute
+  '/how-to-improve-crs-score': typeof HowToImproveCrsScoreRoute
+  '/ielts-crs-calculator': typeof IeltsCrsCalculatorRoute
+  '/manitoba-crs-calculator': typeof ManitobaCrsCalculatorRoute
+  '/nova-scotia-crs-calculator': typeof NovaScotiaCrsCalculatorRoute
+  '/ontario-crs-calculator': typeof OntarioCrsCalculatorRoute
+  '/pnp-crs-calculator': typeof PnpCrsCalculatorRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/saskatchewan-crs-calculator': typeof SaskatchewanCrsCalculatorRoute
+  '/stem-crs-calculator': typeof StemCrsCalculatorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/what-is-crs-score': typeof WhatIsCrsScoreRoute
+  '/blog/crs-draw-predictions': typeof BlogCrsDrawPredictionsRoute
+  '/blog/crs-score-by-age': typeof BlogCrsScoreByAgeRoute
+  '/blog/crs-score-education': typeof BlogCrsScoreEducationRoute
+  '/blog/crs-score-language-test': typeof BlogCrsScoreLanguageTestRoute
+  '/blog/crs-score-with-spouse': typeof BlogCrsScoreWithSpouseRoute
+  '/blog/express-entry-cutoff-history': typeof BlogExpressEntryCutoffHistoryRoute
+  '/blog/improve-crs-score-tips': typeof BlogImproveCrsScoreTipsRoute
+  '/blog/minimum-crs-score': typeof BlogMinimumCrsScoreRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/alberta-crs-calculator': typeof AlbertaCrsCalculatorRoute
+  '/bc-crs-calculator': typeof BcCrsCalculatorRoute
+  '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
+  '/cec-crs-calculator': typeof CecCrsCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
+  '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
+  '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/fst-crs-calculator': typeof FstCrsCalculatorRoute
+  '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
+  '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
+  '/how-crs-is-calculated': typeof HowCrsIsCalculatedRoute
+  '/how-to-improve-crs-score': typeof HowToImproveCrsScoreRoute
+  '/ielts-crs-calculator': typeof IeltsCrsCalculatorRoute
+  '/manitoba-crs-calculator': typeof ManitobaCrsCalculatorRoute
+  '/nova-scotia-crs-calculator': typeof NovaScotiaCrsCalculatorRoute
+  '/ontario-crs-calculator': typeof OntarioCrsCalculatorRoute
+  '/pnp-crs-calculator': typeof PnpCrsCalculatorRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/saskatchewan-crs-calculator': typeof SaskatchewanCrsCalculatorRoute
+  '/stem-crs-calculator': typeof StemCrsCalculatorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/what-is-crs-score': typeof WhatIsCrsScoreRoute
+  '/blog/crs-draw-predictions': typeof BlogCrsDrawPredictionsRoute
+  '/blog/crs-score-by-age': typeof BlogCrsScoreByAgeRoute
+  '/blog/crs-score-education': typeof BlogCrsScoreEducationRoute
+  '/blog/crs-score-language-test': typeof BlogCrsScoreLanguageTestRoute
+  '/blog/crs-score-with-spouse': typeof BlogCrsScoreWithSpouseRoute
+  '/blog/express-entry-cutoff-history': typeof BlogExpressEntryCutoffHistoryRoute
+  '/blog/improve-crs-score-tips': typeof BlogImproveCrsScoreTipsRoute
+  '/blog/minimum-crs-score': typeof BlogMinimumCrsScoreRoute
+  '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/alberta-crs-calculator': typeof AlbertaCrsCalculatorRoute
+  '/bc-crs-calculator': typeof BcCrsCalculatorRoute
+  '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
+  '/cec-crs-calculator': typeof CecCrsCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
+  '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
+  '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/fst-crs-calculator': typeof FstCrsCalculatorRoute
+  '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
+  '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
+  '/how-crs-is-calculated': typeof HowCrsIsCalculatedRoute
+  '/how-to-improve-crs-score': typeof HowToImproveCrsScoreRoute
+  '/ielts-crs-calculator': typeof IeltsCrsCalculatorRoute
+  '/manitoba-crs-calculator': typeof ManitobaCrsCalculatorRoute
+  '/nova-scotia-crs-calculator': typeof NovaScotiaCrsCalculatorRoute
+  '/ontario-crs-calculator': typeof OntarioCrsCalculatorRoute
+  '/pnp-crs-calculator': typeof PnpCrsCalculatorRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/saskatchewan-crs-calculator': typeof SaskatchewanCrsCalculatorRoute
+  '/stem-crs-calculator': typeof StemCrsCalculatorRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/what-is-crs-score': typeof WhatIsCrsScoreRoute
+  '/blog/crs-draw-predictions': typeof BlogCrsDrawPredictionsRoute
+  '/blog/crs-score-by-age': typeof BlogCrsScoreByAgeRoute
+  '/blog/crs-score-education': typeof BlogCrsScoreEducationRoute
+  '/blog/crs-score-language-test': typeof BlogCrsScoreLanguageTestRoute
+  '/blog/crs-score-with-spouse': typeof BlogCrsScoreWithSpouseRoute
+  '/blog/express-entry-cutoff-history': typeof BlogExpressEntryCutoffHistoryRoute
+  '/blog/improve-crs-score-tips': typeof BlogImproveCrsScoreTipsRoute
+  '/blog/minimum-crs-score': typeof BlogMinimumCrsScoreRoute
+  '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/alberta-crs-calculator'
+    | '/bc-crs-calculator'
+    | '/canada-express-entry-eligibility'
+    | '/cec-crs-calculator'
+    | '/contact'
+    | '/crs-cutoff-scores'
+    | '/crs-score-for-canada-pr'
+    | '/express-entry-crs-calculator'
+    | '/express-entry-draw-results'
+    | '/fst-crs-calculator'
+    | '/fsw-crs-calculator'
+    | '/healthcare-crs-calculator'
+    | '/how-crs-is-calculated'
+    | '/how-to-improve-crs-score'
+    | '/ielts-crs-calculator'
+    | '/manitoba-crs-calculator'
+    | '/nova-scotia-crs-calculator'
+    | '/ontario-crs-calculator'
+    | '/pnp-crs-calculator'
+    | '/privacy-policy'
+    | '/saskatchewan-crs-calculator'
+    | '/stem-crs-calculator'
+    | '/terms-and-conditions'
+    | '/what-is-crs-score'
+    | '/blog/crs-draw-predictions'
+    | '/blog/crs-score-by-age'
+    | '/blog/crs-score-education'
+    | '/blog/crs-score-language-test'
+    | '/blog/crs-score-with-spouse'
+    | '/blog/express-entry-cutoff-history'
+    | '/blog/improve-crs-score-tips'
+    | '/blog/minimum-crs-score'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about'
-  id: '__root__' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/alberta-crs-calculator'
+    | '/bc-crs-calculator'
+    | '/canada-express-entry-eligibility'
+    | '/cec-crs-calculator'
+    | '/contact'
+    | '/crs-cutoff-scores'
+    | '/crs-score-for-canada-pr'
+    | '/express-entry-crs-calculator'
+    | '/express-entry-draw-results'
+    | '/fst-crs-calculator'
+    | '/fsw-crs-calculator'
+    | '/healthcare-crs-calculator'
+    | '/how-crs-is-calculated'
+    | '/how-to-improve-crs-score'
+    | '/ielts-crs-calculator'
+    | '/manitoba-crs-calculator'
+    | '/nova-scotia-crs-calculator'
+    | '/ontario-crs-calculator'
+    | '/pnp-crs-calculator'
+    | '/privacy-policy'
+    | '/saskatchewan-crs-calculator'
+    | '/stem-crs-calculator'
+    | '/terms-and-conditions'
+    | '/what-is-crs-score'
+    | '/blog/crs-draw-predictions'
+    | '/blog/crs-score-by-age'
+    | '/blog/crs-score-education'
+    | '/blog/crs-score-language-test'
+    | '/blog/crs-score-with-spouse'
+    | '/blog/express-entry-cutoff-history'
+    | '/blog/improve-crs-score-tips'
+    | '/blog/minimum-crs-score'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/alberta-crs-calculator'
+    | '/bc-crs-calculator'
+    | '/canada-express-entry-eligibility'
+    | '/cec-crs-calculator'
+    | '/contact'
+    | '/crs-cutoff-scores'
+    | '/crs-score-for-canada-pr'
+    | '/express-entry-crs-calculator'
+    | '/express-entry-draw-results'
+    | '/fst-crs-calculator'
+    | '/fsw-crs-calculator'
+    | '/healthcare-crs-calculator'
+    | '/how-crs-is-calculated'
+    | '/how-to-improve-crs-score'
+    | '/ielts-crs-calculator'
+    | '/manitoba-crs-calculator'
+    | '/nova-scotia-crs-calculator'
+    | '/ontario-crs-calculator'
+    | '/pnp-crs-calculator'
+    | '/privacy-policy'
+    | '/saskatchewan-crs-calculator'
+    | '/stem-crs-calculator'
+    | '/terms-and-conditions'
+    | '/what-is-crs-score'
+    | '/blog/crs-draw-predictions'
+    | '/blog/crs-score-by-age'
+    | '/blog/crs-score-education'
+    | '/blog/crs-score-language-test'
+    | '/blog/crs-score-with-spouse'
+    | '/blog/express-entry-cutoff-history'
+    | '/blog/improve-crs-score-tips'
+    | '/blog/minimum-crs-score'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AlbertaCrsCalculatorRoute: typeof AlbertaCrsCalculatorRoute
+  BcCrsCalculatorRoute: typeof BcCrsCalculatorRoute
+  CanadaExpressEntryEligibilityRoute: typeof CanadaExpressEntryEligibilityRoute
+  CecCrsCalculatorRoute: typeof CecCrsCalculatorRoute
+  ContactRoute: typeof ContactRoute
+  CrsCutoffScoresRoute: typeof CrsCutoffScoresRoute
+  CrsScoreForCanadaPrRoute: typeof CrsScoreForCanadaPrRoute
+  ExpressEntryCrsCalculatorRoute: typeof ExpressEntryCrsCalculatorRoute
+  ExpressEntryDrawResultsRoute: typeof ExpressEntryDrawResultsRoute
+  FstCrsCalculatorRoute: typeof FstCrsCalculatorRoute
+  FswCrsCalculatorRoute: typeof FswCrsCalculatorRoute
+  HealthcareCrsCalculatorRoute: typeof HealthcareCrsCalculatorRoute
+  HowCrsIsCalculatedRoute: typeof HowCrsIsCalculatedRoute
+  HowToImproveCrsScoreRoute: typeof HowToImproveCrsScoreRoute
+  IeltsCrsCalculatorRoute: typeof IeltsCrsCalculatorRoute
+  ManitobaCrsCalculatorRoute: typeof ManitobaCrsCalculatorRoute
+  NovaScotiaCrsCalculatorRoute: typeof NovaScotiaCrsCalculatorRoute
+  OntarioCrsCalculatorRoute: typeof OntarioCrsCalculatorRoute
+  PnpCrsCalculatorRoute: typeof PnpCrsCalculatorRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  SaskatchewanCrsCalculatorRoute: typeof SaskatchewanCrsCalculatorRoute
+  StemCrsCalculatorRoute: typeof StemCrsCalculatorRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  WhatIsCrsScoreRoute: typeof WhatIsCrsScoreRoute
+  BlogCrsDrawPredictionsRoute: typeof BlogCrsDrawPredictionsRoute
+  BlogCrsScoreByAgeRoute: typeof BlogCrsScoreByAgeRoute
+  BlogCrsScoreEducationRoute: typeof BlogCrsScoreEducationRoute
+  BlogCrsScoreLanguageTestRoute: typeof BlogCrsScoreLanguageTestRoute
+  BlogCrsScoreWithSpouseRoute: typeof BlogCrsScoreWithSpouseRoute
+  BlogExpressEntryCutoffHistoryRoute: typeof BlogExpressEntryCutoffHistoryRoute
+  BlogImproveCrsScoreTipsRoute: typeof BlogImproveCrsScoreTipsRoute
+  BlogMinimumCrsScoreRoute: typeof BlogMinimumCrsScoreRoute
+  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -48,11 +506,276 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/alberta-crs-calculator': {
+      id: '/alberta-crs-calculator'
+      path: '/alberta-crs-calculator'
+      fullPath: '/alberta-crs-calculator'
+      preLoaderRoute: typeof AlbertaCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bc-crs-calculator': {
+      id: '/bc-crs-calculator'
+      path: '/bc-crs-calculator'
+      fullPath: '/bc-crs-calculator'
+      preLoaderRoute: typeof BcCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canada-express-entry-eligibility': {
+      id: '/canada-express-entry-eligibility'
+      path: '/canada-express-entry-eligibility'
+      fullPath: '/canada-express-entry-eligibility'
+      preLoaderRoute: typeof CanadaExpressEntryEligibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cec-crs-calculator': {
+      id: '/cec-crs-calculator'
+      path: '/cec-crs-calculator'
+      fullPath: '/cec-crs-calculator'
+      preLoaderRoute: typeof CecCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crs-cutoff-scores': {
+      id: '/crs-cutoff-scores'
+      path: '/crs-cutoff-scores'
+      fullPath: '/crs-cutoff-scores'
+      preLoaderRoute: typeof CrsCutoffScoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crs-score-for-canada-pr': {
+      id: '/crs-score-for-canada-pr'
+      path: '/crs-score-for-canada-pr'
+      fullPath: '/crs-score-for-canada-pr'
+      preLoaderRoute: typeof CrsScoreForCanadaPrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/express-entry-crs-calculator': {
+      id: '/express-entry-crs-calculator'
+      path: '/express-entry-crs-calculator'
+      fullPath: '/express-entry-crs-calculator'
+      preLoaderRoute: typeof ExpressEntryCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/express-entry-draw-results': {
+      id: '/express-entry-draw-results'
+      path: '/express-entry-draw-results'
+      fullPath: '/express-entry-draw-results'
+      preLoaderRoute: typeof ExpressEntryDrawResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fst-crs-calculator': {
+      id: '/fst-crs-calculator'
+      path: '/fst-crs-calculator'
+      fullPath: '/fst-crs-calculator'
+      preLoaderRoute: typeof FstCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fsw-crs-calculator': {
+      id: '/fsw-crs-calculator'
+      path: '/fsw-crs-calculator'
+      fullPath: '/fsw-crs-calculator'
+      preLoaderRoute: typeof FswCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/healthcare-crs-calculator': {
+      id: '/healthcare-crs-calculator'
+      path: '/healthcare-crs-calculator'
+      fullPath: '/healthcare-crs-calculator'
+      preLoaderRoute: typeof HealthcareCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-crs-is-calculated': {
+      id: '/how-crs-is-calculated'
+      path: '/how-crs-is-calculated'
+      fullPath: '/how-crs-is-calculated'
+      preLoaderRoute: typeof HowCrsIsCalculatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-to-improve-crs-score': {
+      id: '/how-to-improve-crs-score'
+      path: '/how-to-improve-crs-score'
+      fullPath: '/how-to-improve-crs-score'
+      preLoaderRoute: typeof HowToImproveCrsScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ielts-crs-calculator': {
+      id: '/ielts-crs-calculator'
+      path: '/ielts-crs-calculator'
+      fullPath: '/ielts-crs-calculator'
+      preLoaderRoute: typeof IeltsCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manitoba-crs-calculator': {
+      id: '/manitoba-crs-calculator'
+      path: '/manitoba-crs-calculator'
+      fullPath: '/manitoba-crs-calculator'
+      preLoaderRoute: typeof ManitobaCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nova-scotia-crs-calculator': {
+      id: '/nova-scotia-crs-calculator'
+      path: '/nova-scotia-crs-calculator'
+      fullPath: '/nova-scotia-crs-calculator'
+      preLoaderRoute: typeof NovaScotiaCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ontario-crs-calculator': {
+      id: '/ontario-crs-calculator'
+      path: '/ontario-crs-calculator'
+      fullPath: '/ontario-crs-calculator'
+      preLoaderRoute: typeof OntarioCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pnp-crs-calculator': {
+      id: '/pnp-crs-calculator'
+      path: '/pnp-crs-calculator'
+      fullPath: '/pnp-crs-calculator'
+      preLoaderRoute: typeof PnpCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/saskatchewan-crs-calculator': {
+      id: '/saskatchewan-crs-calculator'
+      path: '/saskatchewan-crs-calculator'
+      fullPath: '/saskatchewan-crs-calculator'
+      preLoaderRoute: typeof SaskatchewanCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stem-crs-calculator': {
+      id: '/stem-crs-calculator'
+      path: '/stem-crs-calculator'
+      fullPath: '/stem-crs-calculator'
+      preLoaderRoute: typeof StemCrsCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/what-is-crs-score': {
+      id: '/what-is-crs-score'
+      path: '/what-is-crs-score'
+      fullPath: '/what-is-crs-score'
+      preLoaderRoute: typeof WhatIsCrsScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/crs-draw-predictions': {
+      id: '/blog/crs-draw-predictions'
+      path: '/blog/crs-draw-predictions'
+      fullPath: '/blog/crs-draw-predictions'
+      preLoaderRoute: typeof BlogCrsDrawPredictionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/crs-score-by-age': {
+      id: '/blog/crs-score-by-age'
+      path: '/blog/crs-score-by-age'
+      fullPath: '/blog/crs-score-by-age'
+      preLoaderRoute: typeof BlogCrsScoreByAgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/crs-score-education': {
+      id: '/blog/crs-score-education'
+      path: '/blog/crs-score-education'
+      fullPath: '/blog/crs-score-education'
+      preLoaderRoute: typeof BlogCrsScoreEducationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/crs-score-language-test': {
+      id: '/blog/crs-score-language-test'
+      path: '/blog/crs-score-language-test'
+      fullPath: '/blog/crs-score-language-test'
+      preLoaderRoute: typeof BlogCrsScoreLanguageTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/crs-score-with-spouse': {
+      id: '/blog/crs-score-with-spouse'
+      path: '/blog/crs-score-with-spouse'
+      fullPath: '/blog/crs-score-with-spouse'
+      preLoaderRoute: typeof BlogCrsScoreWithSpouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/express-entry-cutoff-history': {
+      id: '/blog/express-entry-cutoff-history'
+      path: '/blog/express-entry-cutoff-history'
+      fullPath: '/blog/express-entry-cutoff-history'
+      preLoaderRoute: typeof BlogExpressEntryCutoffHistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/improve-crs-score-tips': {
+      id: '/blog/improve-crs-score-tips'
+      path: '/blog/improve-crs-score-tips'
+      fullPath: '/blog/improve-crs-score-tips'
+      preLoaderRoute: typeof BlogImproveCrsScoreTipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/minimum-crs-score': {
+      id: '/blog/minimum-crs-score'
+      path: '/blog/minimum-crs-score'
+      fullPath: '/blog/minimum-crs-score'
+      preLoaderRoute: typeof BlogMinimumCrsScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AlbertaCrsCalculatorRoute: AlbertaCrsCalculatorRoute,
+  BcCrsCalculatorRoute: BcCrsCalculatorRoute,
+  CanadaExpressEntryEligibilityRoute: CanadaExpressEntryEligibilityRoute,
+  CecCrsCalculatorRoute: CecCrsCalculatorRoute,
+  ContactRoute: ContactRoute,
+  CrsCutoffScoresRoute: CrsCutoffScoresRoute,
+  CrsScoreForCanadaPrRoute: CrsScoreForCanadaPrRoute,
+  ExpressEntryCrsCalculatorRoute: ExpressEntryCrsCalculatorRoute,
+  ExpressEntryDrawResultsRoute: ExpressEntryDrawResultsRoute,
+  FstCrsCalculatorRoute: FstCrsCalculatorRoute,
+  FswCrsCalculatorRoute: FswCrsCalculatorRoute,
+  HealthcareCrsCalculatorRoute: HealthcareCrsCalculatorRoute,
+  HowCrsIsCalculatedRoute: HowCrsIsCalculatedRoute,
+  HowToImproveCrsScoreRoute: HowToImproveCrsScoreRoute,
+  IeltsCrsCalculatorRoute: IeltsCrsCalculatorRoute,
+  ManitobaCrsCalculatorRoute: ManitobaCrsCalculatorRoute,
+  NovaScotiaCrsCalculatorRoute: NovaScotiaCrsCalculatorRoute,
+  OntarioCrsCalculatorRoute: OntarioCrsCalculatorRoute,
+  PnpCrsCalculatorRoute: PnpCrsCalculatorRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  SaskatchewanCrsCalculatorRoute: SaskatchewanCrsCalculatorRoute,
+  StemCrsCalculatorRoute: StemCrsCalculatorRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
+  WhatIsCrsScoreRoute: WhatIsCrsScoreRoute,
+  BlogCrsDrawPredictionsRoute: BlogCrsDrawPredictionsRoute,
+  BlogCrsScoreByAgeRoute: BlogCrsScoreByAgeRoute,
+  BlogCrsScoreEducationRoute: BlogCrsScoreEducationRoute,
+  BlogCrsScoreLanguageTestRoute: BlogCrsScoreLanguageTestRoute,
+  BlogCrsScoreWithSpouseRoute: BlogCrsScoreWithSpouseRoute,
+  BlogExpressEntryCutoffHistoryRoute: BlogExpressEntryCutoffHistoryRoute,
+  BlogImproveCrsScoreTipsRoute: BlogImproveCrsScoreTipsRoute,
+  BlogMinimumCrsScoreRoute: BlogMinimumCrsScoreRoute,
+  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

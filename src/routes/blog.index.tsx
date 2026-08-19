@@ -3,7 +3,7 @@ import StaticPage from "@/components/StaticPage";
 import pageHtml from "@/content/blog__index.html?raw";
 import pageJs from "@/content/blog__index.pagejs.txt?raw";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       {
