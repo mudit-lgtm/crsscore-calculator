@@ -1,0 +1,99 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+  });
+})();
+
+// Bar chart (CSS bars driven by JS data)
+(function(){
+  var data=[
+    {lbl:'Q1 2023',val:492},
+    {lbl:'Q2 2023',val:489},
+    {lbl:'Q3 2023',val:496},
+    {lbl:'Q4 2023',val:499},
+    {lbl:'Q1 2024',val:510},
+    {lbl:'Q2 2024',val:504},
+    {lbl:'Q3 2024',val:493},
+    {lbl:'Q4 2024',val:497},
+    {lbl:'Q1 2025',val:501},
+    {lbl:'Q2 2025',val:488},
+    {lbl:'Q3 2025',val:491},
+    {lbl:'Q4 2025',val:503},
+    {lbl:'Q1 2026*',val:488},
+    {lbl:'Q2 2026*',val:485},
+  ];
+  var min=460, max=520, range=max-min;
+  var chart=document.getElementById('barChart');
+  if(!chart) return;
+  data.forEach(function(d){
+    var pct=Math.round((d.val-min)/range*80)+10;
+    var col=document.createElement('div');
+    col.className='bar-col';
+    col.innerHTML='<span class="bar-val">'+d.val+'</span><div class="bar" style="height:'+pct+'px"></div><span class="bar-lbl">'+d.lbl+'</span>';
+    chart.appendChild(col);
+  });
+})();
+
+// Score checker
+function checkScore(){
+  var s=parseInt(document.getElementById('myScore').value)||0;
+  if(s<1){alert('Please enter your CRS score.');return;}
+
+  var draws=[
+    {name:'French-Language Draws',low:310,high:370,note:'French CLB 7+ required'},
+    {name:'Skilled Trades Draws',low:420,high:455,note:'NOC TEER 2/3 trades occupations'},
+    {name:'Agriculture Draws',low:420,high:450,note:'Agri-food NOC codes required'},
+    {name:'Transport Draws',low:420,high:455,note:'Transport NOC codes required'},
+    {name:'Healthcare Draws',low:430,high:470,note:'Health sector NOC codes required'},
+    {name:'STEM Draws',low:460,high:500,note:'Science, tech, engineering NOC codes'},
+    {name:'All-Program Draws',low:475,high:510,note:'All EE programs eligible'},
+    {name:'CEC Draws',low:490,high:525,note:'1+ year Canadian work experience required'},
+  ];
+
+  var html='';
+  draws.forEach(function(d){
+    var color,status,icon;
+    if(s>=d.high){color='#f0fdf4';border='#bbf7d0';status='✅ Likely to qualify';icon='✅';}
+    else if(s>=d.low){color='#fffbeb';border='#fde68a';status='⚠️ Borderline — may qualify';icon='⚠️';}
+    else{color='#fff0f0';border='#fecaca';status='❌ Below predicted cutoff';icon='❌';}
+    html+='<div style="padding:10px 12px;background:'+color+';border:1px solid '+border+';border-radius:8px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">'
+      +'<div><strong style="font-size:13px;">'+icon+' '+d.name+'</strong><span style="display:block;font-size:12px;color:#6b7280;">Predicted: '+d.low+'–'+d.high+' | '+d.note+'</span></div>'
+      +'<span style="font-size:12px;font-weight:700;color:#374151;">'+status+'</span></div>';
+  });
+  document.getElementById('scoreCards').innerHTML=html;
+
+  var advice='';
+  if(s>=510) advice='🎉 Your score of '+s+' is above almost all 2026 predicted cutoffs. You should receive an ITA at the next all-program or CEC draw.';
+  else if(s>=490) advice='✅ Your score of '+s+' is competitive for all-program and CEC draws. Maintain your profile and watch draw results closely.';
+  else if(s>=475) advice='⚠️ Your score of '+s+' is in range for all-program draws but cuts it close. Improving IELTS to CLB 9 would add significant buffer.';
+  else if(s>=430) advice='⚠️ Your score of '+s+' qualifies for category-based draws if your NOC code is in healthcare, trades, transport, or agriculture. Apply for PNP for a guaranteed +600 pts.';
+  else if(s>=310) advice='⚠️ Your score of '+s+' may qualify for French-language draws if you achieve French CLB 7+. French bilingualism adds +50 CRS points and lowers your effective competition.';
+  else advice='❌ Your score of '+s+' needs significant improvement. Focus on IELTS CLB 9+, PNP applications, and if feasible, French language proficiency.';
+
+  document.getElementById('scoreAdvice').textContent=advice;
+  document.getElementById('scoreResult').style.display='block';
+}
+
+// Allow Enter key on score input
+document.getElementById('myScore').addEventListener('keypress',function(e){
+  if(e.key==='Enter') checkScore();
+});

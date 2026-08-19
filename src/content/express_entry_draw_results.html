@@ -1,0 +1,248 @@
+
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<!-- ============================================================
+  UNIVERSAL HEADER — crsscorecalculator.vercel.app
+  Design: White bg | Red logo box | Dark nav links | Red CTA btn
+  MARKER: UNIVERSAL HEADER (do not remove this line)
+  ============================================================ -->
+<header role="banner" style="background:#ffffff;border-bottom:2px solid #d32f2f;position:sticky;top:0;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,0.08)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;justify-content:space-between;min-height:54px;gap:12px">
+
+    <a href="/" style="display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0" aria-label="CRS Calculator Home">
+      <span style="background:#d32f2f;color:#fff;font-weight:800;font-size:12px;padding:5px 7px;border-radius:6px;letter-spacing:0.02em;line-height:1">CRS</span>
+      <span style="color:#111;font-weight:700;font-size:15px;white-space:nowrap">CRS Calculator</span>
+    </a>
+
+    <nav id="crsDesktopNav" style="display:flex;align-items:center;gap:2px;flex-wrap:wrap" aria-label="Main navigation">
+      <a href="/" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">CRS Calculator</a>
+      <a href="/cec-crs-calculator" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">CEC Calculator</a>
+      <a href="/express-entry-crs-calculator" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">Express Entry</a>
+      <a href="/pnp-crs-calculator" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">PNP Calculator</a>
+      <a href="/ontario-crs-calculator" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">Ontario</a>
+      <a href="/alberta-crs-calculator" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">Alberta</a>
+      <a href="/crs-cutoff-scores" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">Cutoff Scores</a>
+      <a href="/blog/improve-crs-score-tips" style="color:#1f2937;font-size:13px;padding:6px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;font-weight:500" onmouseover="this.style.background='#fef2f2';this.style.color='#d32f2f'" onmouseout="this.style.background='transparent';this.style.color='#1f2937'">Improve Score</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <a href="/" style="background:#d32f2f;color:#fff;font-size:13px;font-weight:700;padding:8px 16px;border-radius:7px;text-decoration:none;white-space:nowrap;display:inline-block" onmouseover="this.style.background='#b71c1c'" onmouseout="this.style.background='#d32f2f'">Calculate Now</a>
+      <button id="crsHamburger" onclick="crsToggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false" style="display:none;background:none;border:none;cursor:pointer;padding:6px;color:#1f2937">
+        <svg id="crsMenuIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg id="crsCloseIcon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+  </div>
+
+  <div id="crsMobileMenu" style="display:none;background:#fff;border-top:1px solid #fecaca;padding:8px 16px 16px">
+    <a href="/" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">CRS Calculator</a>
+    <a href="/cec-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">CEC Calculator</a>
+    <a href="/express-entry-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Express Entry Calculator</a>
+    <a href="/fsw-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">FSW Calculator</a>
+    <a href="/pnp-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">PNP Calculator</a>
+    <a href="/ielts-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">IELTS to CRS</a>
+    <a href="/ontario-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Ontario CRS (OINP)</a>
+    <a href="/alberta-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Alberta CRS (AINP)</a>
+    <a href="/bc-crs-calculator" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">BC PNP Calculator</a>
+    <a href="/crs-cutoff-scores" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Cutoff Scores</a>
+    <a href="/express-entry-draws" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Express Entry Draws</a>
+    <a href="/blog" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Blog</a>
+    <a href="/blog/improve-crs-score-tips" style="display:block;color:#1f2937;font-size:14px;padding:11px 0;border-bottom:1px solid #f3f4f6;text-decoration:none;font-weight:500">Improve CRS Score</a>
+    <a href="/" style="display:block;text-align:center;margin-top:12px;background:#d32f2f;color:#fff;font-size:14px;font-weight:700;padding:12px;border-radius:7px;text-decoration:none">Calculate My CRS Score →</a>
+  </div>
+</header>
+
+<style>
+@media(max-width:900px){
+  #crsDesktopNav{display:none !important}
+  #crsHamburger{display:block !important}
+}
+</style>
+
+<!-- ============================================================
+  END UNIVERSAL HEADER
+  ============================================================ -->
+
+<nav class="breadcrumb-nav" aria-label="Breadcrumb">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="sep">›</li>
+      <li class="current">Express Entry Draw Results – Latest Invitations to Apply (ITA)</li>
+    </ol>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Express Entry Draw Results – Latest Invitations to Apply (ITA)</h1>
+    <p>Latest Express Entry draw results with minimum CRS cutoff scores and number of invitations issued. Track all ITA draws and cutoff trends.</p>
+    <div class="meta-info"><span>Updated: April 2026</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="ad-slot ad-leaderboard"><!-- AdSense 728x90 Leaderboard --></div>
+</div>
+
+<main id="main-content" class="container">
+  <div class="page-layout">
+    <article class="main-content content-body">
+      <div class="card">
+        
+    <h2>Latest Express Entry Draws</h2>
+    <p>IRCC conducts Express Entry draws approximately every two weeks. Each draw sets a minimum CRS score (cutoff) — all candidates at or above this score in the pool receive an Invitation to Apply (ITA) for permanent residence. Below is a table of recent draws, and our <a href="/crs-cutoff-scores">CRS Cutoff Scores History</a> page has even more historical data.</p>
+
+    <div class="table-wrapper">
+      <table class="draws-table">
+        <thead><tr><th>Draw #</th><th>Date</th><th>Type</th><th>Min CRS</th><th>ITAs</th></tr></thead>
+        <tbody>
+          <tr><td>#318</td><td>Apr 9, 2025</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>489</strong></td><td>1,000</td></tr>
+          <tr><td>#317</td><td>Mar 26, 2025</td><td><span class="badge badge-good">French Language</span></td><td><strong>379</strong></td><td>800</td></tr>
+          <tr><td>#316</td><td>Mar 12, 2025</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>491</strong></td><td>1,000</td></tr>
+          <tr><td>#315</td><td>Feb 26, 2025</td><td><span class="badge badge-pnp">Provincial Nominee</span></td><td><strong>791</strong></td><td>598</td></tr>
+          <tr><td>#314</td><td>Feb 12, 2025</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>493</strong></td><td>1,000</td></tr>
+          <tr><td>#313</td><td>Jan 29, 2025</td><td><span class="badge badge-good">French Language</span></td><td><strong>377</strong></td><td>700</td></tr>
+          <tr><td>#312</td><td>Jan 15, 2025</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>496</strong></td><td>1,100</td></tr>
+          <tr><td>#311</td><td>Jan 8, 2025</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>498</strong></td><td>1,500</td></tr>
+          <tr><td>#310</td><td>Dec 18, 2024</td><td><span class="badge badge-new">No Program Specified</span></td><td><strong>494</strong></td><td>1,200</td></tr>
+          <tr><td>#309</td><td>Dec 4, 2024</td><td><span class="badge badge-good">French Language</span></td><td><strong>375</strong></td><td>600</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Draw Types Explained</h2>
+    <p><strong>No Program Specified (All-Program):</strong> The most common draw type. Open to all eligible Express Entry candidates regardless of their specific program. Has the highest competition and typically the highest cutoffs. <strong>French Language Proficiency:</strong> Targets candidates with strong French skills. Significantly lower cutoffs make these draws very accessible for francophones. <strong>Provincial Nominee Program (PNP):</strong> Exclusively for candidates who have received a provincial nomination. High cutoffs since all candidates already have +600 points. <strong>Category-Based Draws:</strong> Target specific occupation categories like STEM, healthcare, agriculture, or trades. Cutoffs may be lower within the target category.</p>
+
+    <h2>What Happens After Receiving an ITA?</h2>
+    <ol>
+      <li><strong>Accept the ITA</strong> within your IRCC account within the deadline</li>
+      <li><strong>Gather documents:</strong> Police certificates, medical exams, language test results, ECA, work experience letters, bank statements (if needed), photos</li>
+      <li><strong>Submit complete PR application</strong> within 60 days of receiving ITA</li>
+      <li><strong>Wait for IRCC processing:</strong> Typically 6–12 months</li>
+      <li><strong>Receive COPR:</strong> Confirmation of Permanent Residence and land in Canada as PR</li>
+    </ol>
+
+    <div class="highlight-box warning">
+      <h4>Important: 60-Day Deadline</h4>
+      <p>After receiving an ITA, you have exactly 60 days to submit a complete application. If you miss this deadline, you lose the ITA and must re-enter the pool and wait for another draw. Start gathering documents as soon as your profile enters the pool.</p>
+    </div>
+
+    <h2>Tie-Breaking Rules</h2>
+    <p>When the number of candidates at the cutoff score exceeds the number of ITAs available, IRCC uses a tie-breaking rule: the candidate who submitted their profile earliest receives the ITA. This means that for candidates hovering at the cutoff, submitting your profile as early as possible can make a critical difference. Calculate your score now with our <a href="/">CRS Score Calculator</a> and enter the pool as soon as you're eligible.</p>
+    
+        <div class="highlight-box info"><h4>Official Resources</h4><ul><li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry.html" target="_blank" rel="noopener noreferrer">Official IRCC Express Entry Draw Results ↗</a></li><li><a href="https://ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer">IRCC CRS Tool ↗</a></li></ul></div>
+      </div>
+      <section class="card" aria-labelledby="guide-faq">
+        <div class="card-header"><span class="card-icon">❓</span><h2 id="guide-faq">Frequently Asked Questions</h2></div>
+        <ul class="faq-list">
+          <li class="faq-item"><div class="faq-question" role="button" tabindex="0">How often does IRCC hold Express Entry draws?<i class="faq-toggle">+</i></div><div class="faq-answer">IRCC typically holds Express Entry draws approximately every two weeks, though the frequency can vary. Some draws are for all programs, others are category-specific (French language, STEM, healthcare, etc.). IRCC does not announce draws in advance.</div></li><li class="faq-item"><div class="faq-question" role="button" tabindex="0">Where can I find official Express Entry draw results?<i class="faq-toggle">+</i></div><div class="faq-answer">Official draw results are published on the IRCC website at canada.ca. Our draw results page provides a curated summary of recent draws for quick reference. The IRCC website has the authoritative and complete draw history.</div></li><li class="faq-item"><div class="faq-question" role="button" tabindex="0">What is the difference between a CEC draw and an all-program draw?<i class="faq-toggle">+</i></div><div class="faq-answer">A Canadian Experience Class (CEC) specific draw only invites candidates who are eligible for the CEC program. An all-program (No Program Specified) draw invites candidates eligible for any Express Entry program. CEC draws typically have slightly different cutoffs than all-program draws.</div></li><li class="faq-item"><div class="faq-question" role="button" tabindex="0">What documents do I need ready for when I receive an ITA?<i class="faq-toggle">+</i></div><div class="faq-answer">Prepare in advance: valid passport, language test results (less than 2 years old), Educational Credential Assessment, police certificates from each country lived in for 6+ months, medical exam (done by IRCC-approved physician), employment reference letters, and proof of funds if required.</div></li><li class="faq-item"><div class="faq-question" role="button" tabindex="0">Can I receive multiple ITAs?<i class="faq-toggle">+</i></div><div class="faq-answer">No. Once you accept an ITA, your Express Entry profile is no longer in the pool. If you decline or let an ITA expire, you may re-enter the pool with a new profile. However, declining an ITA without a genuine reason is generally not advisable as it delays your immigration timeline.</div></li>
+        </ul>
+      </section>
+      <div class="internal-cta">
+        <a href="/">← Use the Free CRS Score Calculator</a>
+      </div>
+      <div class="ad-slot ad-rectangle"><!-- AdSense Bottom --></div>
+    </article>
+    <aside class="sidebar">
+      <div class="sidebar-widget cutoff-widget">
+        <h3>🎯 Latest Cutoffs</h3>
+        <div class="cutoff-item"><span class="label">All-Program</span><span class="value">489</span></div>
+        <div class="cutoff-item"><span class="label">French</span><span class="value">379</span></div>
+        <div class="cutoff-item"><span class="label">PNP Draw</span><span class="value">791</span></div>
+        <a href="/express-entry-draw-results" style="color:rgba(255,255,255,0.8);font-size:0.82rem;display:block;margin-top:10px;">All draws →</a>
+      </div>
+      <div class="ad-slot ad-sidebar"><!-- AdSense 300x250 --></div>
+      <div class="sidebar-widget">
+        <h3>🔗 Related Tools</h3>
+        <div class="related-tools">
+          <a href="/" class="related-tool-link"><span>🧮</span> CRS Calculator</a>
+          <a href="/pnp-crs-calculator" class="related-tool-link"><span>🏛️</span> PNP Calculator</a>
+          <a href="/how-to-improve-crs-score" class="related-tool-link"><span>📈</span> Improve CRS Score</a>
+          <a href="/crs-cutoff-scores" class="related-tool-link"><span>📉</span> CRS Cutoffs</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Copy this exact block into every page, replacing the old footer
+  ============================================================ -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crsscorecalculator.vercel.app
+  Design: Dark navy bg | 5 columns | Red CRS badge logo
+  MARKER: UNIVERSAL FOOTER (do not remove this line)
+  ============================================================ -->
+<footer style="background:#1a1a2e;color:#ccc;padding:48px 16px 24px">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;margin-bottom:40px">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="background:#d32f2f;color:#fff;font-weight:800;font-size:11px;padding:4px 6px;border-radius:5px;letter-spacing:0.03em">CRS</span>
+          <span style="color:#fff;font-weight:700;font-size:14px">CRS Calculator</span>
+        </div>
+        <p style="font-size:13px;line-height:1.7;color:#9ca3af">Free Canada Express Entry CRS score calculator. Trusted by thousands of applicants.</p>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">CRS Calculators</h4>
+        <a href="/" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CRS Calculator</a>
+        <a href="/express-entry-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Express Entry</a>
+        <a href="/cec-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">CEC Calculator</a>
+        <a href="/fsw-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">FSW Calculator</a>
+        <a href="/pnp-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">PNP Calculator</a>
+        <a href="/ielts-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">IELTS to CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Provincial Tools</h4>
+        <a href="/ontario-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Ontario OINP</a>
+        <a href="/alberta-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Alberta AINP</a>
+        <a href="/bc-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">British Columbia</a>
+        <a href="/manitoba-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Manitoba MPNP</a>
+        <a href="/nova-scotia-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Nova Scotia</a>
+        <a href="/healthcare-crs-calculator" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Healthcare CRS</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Guides &amp; Blog</h4>
+        <a href="/blog" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Blog</a>
+        <a href="/what-is-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">What is CRS Score?</a>
+        <a href="/blog/improve-crs-score-tips" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Improve CRS Score</a>
+        <a href="/blog/minimum-crs-score" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Minimum CRS Score</a>
+        <a href="/express-entry-draws" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Draw Results</a>
+        <a href="/crs-cutoff-scores" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Cutoff Scores</a>
+      </div>
+
+      <div>
+        <h4 style="color:#fff;font-size:12px;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.08em">Company</h4>
+        <a href="/about" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">About Us</a>
+        <a href="/contact" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Contact Us</a>
+        <a href="/privacy-policy" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Privacy Policy</a>
+        <a href="/terms-and-conditions" style="display:block;color:#9ca3af;font-size:13px;padding:3px 0;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#9ca3af'">Terms &amp; Conditions</a>
+      </div>
+
+    </div>
+
+    <div style="border-top:1px solid #374151;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+      <p style="font-size:12px;color:#6b7280;margin:0">© 2026 CRS Score Calculator. Free tool — not affiliated with IRCC.</p>
+      <div style="display:flex;gap:20px">
+        <a href="/privacy-policy" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Privacy</a>
+        <a href="/terms-and-conditions" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Terms</a>
+        <a href="/contact" style="font-size:12px;color:#6b7280;text-decoration:none" onmouseover="this.style.color='#f87171'" onmouseout="this.style.color='#6b7280'">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
+
+

@@ -1,0 +1,200 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+    // ── Mobile nav toggle ──
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('main-nav');
+    hamburger.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    // ── FAQ Accordion ──
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => toggleFAQ(q));
+      q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFAQ(q); }});
+    });
+    function toggleFAQ(q) {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        q.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // ── Province notice ──
+    document.getElementById('province').addEventListener('change', function() {
+      const names = {
+        none: 'Select a province to see the +600 PNP bonus applied to your score.',
+        on:   'Ontario (OINP) nominates you → +600 CRS points added. OINP Human Capital Priorities stream typically targets CRS 400+.',
+        bc:   'BC PNP nominates you → +600 CRS points added. BC Skills Immigration & Express Entry BC streams available.',
+        ab:   'Alberta AINP nominates you → +600 CRS points added. Alberta Advantage Program has multiple Express Entry streams.',
+        sk:   'Saskatchewan SINP nominates you → +600 CRS points added. SINP Occupations In-Demand has no minimum CRS requirement.',
+        mb:   'Manitoba MPNP nominates you → +600 CRS points added. Manitoba Skilled Workers Overseas stream available.',
+        ns:   'Nova Scotia NSNP nominates you → +600 CRS points added. Employer-driven Labour Market Priorities stream.',
+        nb:   'New Brunswick NBPNP nominates you → +600 CRS points added. Express Entry Labour Market Stream.',
+        pe:   'PEI PNP nominates you → +600 CRS points added. EOI-based Labour Impact streams.',
+        nl:   'Newfoundland NLPNP nominates you → +600 CRS points added. Priority Skills NL stream.',
+        nt:   'Northwest Territories NTNP nominates you → +600 CRS points added. Employer-driven streams.',
+        yt:   'Yukon YNP nominates you → +600 CRS points added. Yukon Express Entry and Skilled Worker streams.'
+      };
+      document.getElementById('pnp-notice-text').textContent = names[this.value] || names.none;
+    });
+
+    // ── Language scoring function (IELTS → CLB → CRS points) ──
+    function ieltsToClb(score) {
+      if (score >= 8.0) return 10;
+      if (score >= 7.5) return 9;
+      if (score >= 7.0) return 8;
+      if (score >= 6.5) return 7;
+      if (score >= 6.0) return 6;
+      if (score >= 5.5) return 5;
+      if (score >= 5.0) return 4;
+      return 3;
+    }
+    function clbToPoints_single(clb, married) {
+      // Without spouse (single applicant)
+      const table = {10:34,9:31,8:23,7:17,6:9,5:6,4:6,3:0};
+      const tableM = {10:29,9:27,8:19,7:13,6:7,5:5,4:5,3:0};
+      return married ? (tableM[clb]||0) : (table[clb]||0);
+    }
+    function getLangPoints(s, l, r, w, married) {
+      const scores = [s,l,r,w];
+      let total = 0;
+      scores.forEach(sc => {
+        const clb = ieltsToClb(Number(sc)||0);
+        total += clbToPoints_single(clb, married);
+      });
+      return Math.min(total, married ? 128 : 136);
+    }
+
+    // ── Calculator ──
+    document.getElementById('pnp-calc-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      calculatePNP();
+    });
+
+    function calculatePNP() {
+      const married = document.getElementById('marital').value === 'married';
+      const age = parseInt(document.getElementById('age').value) || 0;
+      const edu = parseInt(document.getElementById('education').value) || 0;
+      const canExp = parseInt(document.getElementById('canadian-exp').value) || 0;
+      const foreignExp = parseInt(document.getElementById('foreign-exp').value) || 0;
+      const jobOffer = parseInt(document.getElementById('job-offer').value) || 0;
+      const canEdu = parseInt(document.getElementById('canadian-edu').value) || 0;
+      const sibling = parseInt(document.getElementById('sibling').value) || 0;
+      const french = parseInt(document.getElementById('french-bonus').value) || 0;
+      const province = document.getElementById('province').value;
+
+      const s = parseFloat(document.getElementById('speaking').value) || 0;
+      const l = parseFloat(document.getElementById('listening').value) || 0;
+      const r = parseFloat(document.getElementById('reading').value) || 0;
+      const w = parseFloat(document.getElementById('writing').value) || 0;
+
+      const langPts = getLangPoints(s, l, r, w, married);
+
+      // Skill transferability (simplified)
+      let transfer = 0;
+      const avgLangClb = ieltsToClb((s+l+r+w)/4);
+      if (avgLangClb >= 9 && edu >= 112) transfer += 50;
+      else if (avgLangClb >= 7 && edu >= 112) transfer += 25;
+      if (avgLangClb >= 9 && canExp >= 40) transfer += 50;
+      else if (avgLangClb >= 7 && canExp >= 40) transfer += 25;
+      if (foreignExp >= 13 && edu >= 112) transfer += 25;
+      if (foreignExp >= 13 && canExp >= 40) transfer += 25;
+      transfer = Math.min(transfer, 100);
+
+      // Additional points
+      const additional = jobOffer + canEdu + sibling + french;
+
+      // PNP bonus
+      const pnpBonus = province !== 'none' ? 600 : 0;
+
+      const base = age + edu + langPts + canExp + transfer + additional;
+      const total = Math.min(base + pnpBonus, 1200);
+
+      // Update UI
+      document.getElementById('res-age').textContent = age;
+      document.getElementById('res-edu').textContent = edu;
+      document.getElementById('res-lang').textContent = langPts;
+      document.getElementById('res-canexp').textContent = canExp;
+      document.getElementById('res-transfer').textContent = transfer;
+      document.getElementById('res-additional').textContent = additional;
+      document.getElementById('res-pnp').textContent = pnpBonus > 0 ? `+${pnpBonus}` : '0';
+      document.getElementById('res-total').textContent = total;
+      document.getElementById('total-score').textContent = total;
+
+      // Show/hide PNP row
+      document.getElementById('pnp-row').style.display = pnpBonus > 0 ? 'flex' : 'none';
+
+      // Score label and PR chance
+      let label, chanceClass, chanceText;
+      if (total >= 900) {
+        label = '🟢 Virtually Guaranteed ITA';
+        chanceClass = 'chance-excellent';
+        chanceText = `✅ Excellent! With a PNP nomination, your CRS score of ${total} virtually guarantees an Invitation to Apply (ITA) in the next Express Entry draw.`;
+      } else if (total >= 600) {
+        label = '🟢 Very High Chances';
+        chanceClass = 'chance-excellent';
+        chanceText = `✅ Very strong. A score of ${total} is highly competitive — expect an ITA in an upcoming Express Entry draw.`;
+      } else if (total >= 470) {
+        label = '🔵 Competitive';
+        chanceClass = 'chance-good';
+        chanceText = `✅ Competitive score. ${total} points is at or above current all-program draw cutoffs (~470–525). Consider improving your base before entering the pool.`;
+      } else if (total >= 400) {
+        label = '🟡 Moderate';
+        chanceClass = 'chance-moderate';
+        chanceText = `⚠️ Score of ${total} may qualify for PNP-specific or French-language draws. Consider pursuing a provincial nomination to add +600 points.`;
+      } else {
+        label = '🔴 Below Average';
+        chanceClass = 'chance-low';
+        chanceText = `⚠️ Score of ${total} is below current cutoffs. A provincial nomination (+600 pts) or improvements to language, education, or work experience can significantly boost your score. See our Improve Your CRS Score guide.`;
+      }
+
+      document.getElementById('score-label').textContent = label;
+      const chanceBox = document.getElementById('pr-chance-box');
+      chanceBox.className = `pr-chance-box ${chanceClass}`;
+      chanceBox.textContent = chanceText;
+
+      // Show results
+      const panel = document.getElementById('results-panel');
+      panel.style.display = 'block';
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ── Reset ──
+    document.getElementById('reset-btn').addEventListener('click', function() {
+      document.getElementById('pnp-calc-form').reset();
+      document.getElementById('results-panel').style.display = 'none';
+      document.getElementById('pnp-notice-text').textContent = 'Select a province above to see the +600 PNP bonus applied to your score.';
+    });
+
+    // ── Copy results ──
+    function copyResults() {
+      const total = document.getElementById('total-score').textContent;
+      const label = document.getElementById('score-label').textContent;
+      const text = `My PNP CRS Score: ${total}/1200 — ${label}\nCalculated at crsscorecalculator.vercel.app/pnp-crs-calculator`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Results copied to clipboard!');
+      }).catch(() => {
+        prompt('Copy your results:', text);
+      });
+    }
+  

@@ -1,0 +1,63 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu
+(function(){
+  var btn=document.getElementById('menuBtn');
+  var menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',function(){
+    var open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+  });
+})();
+
+// Quick CRS Estimator
+function estimateCRS(){
+  var age=parseInt(document.getElementById('q-age').value)||0;
+  var edu=parseInt(document.getElementById('q-edu').value)||0;
+  var lang=parseInt(document.getElementById('q-lang').value)||0;
+  var canexp=parseInt(document.getElementById('q-canexp').value)||0;
+  var pnp=parseInt(document.getElementById('q-pnp').value)||0;
+  var job=parseInt(document.getElementById('q-job').value)||0;
+
+  // Simple skill transferability estimate
+  var transfer=0;
+  if(edu>=120&&lang>=68) transfer=Math.min(50,Math.round((edu/150*25)+(lang/136*25)));
+  if(canexp>0&&edu>=90) transfer=Math.min(100,transfer+30);
+
+  var total=Math.min(1200,age+edu+lang+canexp+pnp+job+transfer);
+
+  document.getElementById('checkerScore').textContent=total;
+  document.getElementById('checkerBreakdown').textContent=
+    'Age: '+age+' | Education: '+edu+' | Language: '+lang+' | Can. Exp: '+canexp+(pnp?' | PNP: +'+pnp:'')+(job?' | Job offer: +'+job:'')+(transfer?' | Skill Transfer ~'+transfer:'');
+
+  var v='';
+  if(pnp===600){
+    v='✅ With your PNP nomination, an ITA is virtually guaranteed at the next draw.';
+  } else if(total>=525){
+    v='✅ Excellent! Your score is highly competitive for all-program Express Entry draws.';
+  } else if(total>=490){
+    v='✅ Good score. Competitive for all-program draws (470–525 range).';
+  } else if(total>=450){
+    v='⚠️ Getting close. Try improving IELTS to CLB 9 or applying for PNP to cross the cutoff.';
+  } else if(total>=380){
+    v='⚠️ Below all-program cutoffs. Consider French-language draws (cutoff 300–379) or PNP.';
+  } else {
+    v='❗ Focus on language improvement (IELTS CLB 9) and PNP as your top priorities.';
+  }
+
+  document.getElementById('checkerVerdict').textContent=v;
+  document.getElementById('checkerResult').style.display='block';
+}

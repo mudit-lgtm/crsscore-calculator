@@ -1,0 +1,190 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// ===== OFFICIAL IRCC CRS GRID =====
+const AGE={
+  '17u':[0,0],'18':[99,90],'19':[105,95],'20':[110,100],'21':[110,100],'22':[110,100],
+  '23':[110,100],'24':[110,100],'25':[110,100],'26':[110,100],'27':[110,100],'28':[110,100],
+  '29':[110,100],'30':[105,95],'31':[99,90],'32':[94,85],'33':[88,80],'34':[83,75],
+  '35':[77,70],'36':[72,65],'37':[66,60],'38':[61,55],'39':[55,50],'40':[50,45],
+  '41':[39,35],'42':[28,25],'43':[17,15],'44':[6,5],'45p':[0,0]
+};
+const EDU={0:[0,0],1:[28,25],2:[84,75],3:[91,81],4:[112,100],5:[119,106],6:[126,112],7:[140,119]};
+const SP_EDU={0:0,1:2,2:6,3:7,4:8,5:9,6:10,7:10};
+// Language points per CLB (per skill, single applicant)
+const L1={4:6,5:6,6:8,7:16,8:22,9:29,10:32};
+// Second language per skill
+const L2={4:0,5:1,6:1};
+// Canadian work exp [single, married]
+const CWE_S={0:0,1:40,2:53,3:64,4:72,5:80};
+const CWE_M={0:0,1:35,2:46,3:56,4:63,5:70};
+// Spouse language per CLB per skill
+const SP_L={4:0,5:1,6:1,7:3,8:3,9:5};
+// Spouse CWE
+const SP_CWE={0:0,1:5,2:7,3:8,4:10,5:10};
+
+function getR(name){const e=document.querySelector(`input[name="${name}"]:checked`);return e?e.value:'0';}
+function gv(id){return document.getElementById(id).value;}
+
+function doCalc(e){
+  e.preventDefault();
+  const age=gv('age'),edu=parseInt(gv('edu')||'0');
+  if(!age){alert('Please select your age.');return;}
+  const marital=getR('marital');
+  const spComing=getR('spouseComing');
+  const hasSpouse=marital==='married'&&spComing==='yes';
+  const idx=hasSpouse?1:0;
+  const canExp=parseInt(gv('canExp'));
+
+  // Section A
+  const ageP=(AGE[age]||[0,0])[idx];
+  const eduP=(EDU[edu]||[0,0])[idx];
+  const ls=parseInt(gv('lsp')),ll=parseInt(gv('ll')),lr=parseInt(gv('lr')),lw=parseInt(gv('lw'));
+  const langP=(L1[ls]||0)+(L1[ll]||0)+(L1[lr]||0)+(L1[lw]||0);
+  const firstLangMin=Math.min(ls,ll,lr,lw);
+  // second language
+  let l2P=0;
+  if(gv('l2test')!=='none'){
+    const a=[parseInt(gv('l2sp')),parseInt(gv('l2ll')),parseInt(gv('l2lr')),parseInt(gv('l2lw'))];
+    l2P=Math.min(a.reduce((s,v)=>s+(L2[v]||0),0),24);
+  }
+  const cweP=hasSpouse?CWE_M[canExp]||0:CWE_S[canExp]||0;
+  const secA=ageP+eduP+langP+l2P+cweP;
+
+  // Section B — Spouse
+  let spEduP=0,spLangP=0,spCweP=0;
+  if(hasSpouse){
+    spEduP=SP_EDU[parseInt(gv('spEdu'))]||0;
+    if(gv('spLangTest')!=='none'){
+      const a=[parseInt(gv('spLsp')),parseInt(gv('spLll')),parseInt(gv('spLlr')),parseInt(gv('spLlw'))];
+      spLangP=Math.min(a.reduce((s,v)=>s+(SP_L[v]||0),0),20);
+    }
+    spCweP=SP_CWE[parseInt(gv('spCanExp'))]||0;
+  }
+  const secB=spEduP+spLangP+spCweP;
+
+  // Section C — Skill Transferability
+  const fgnExp=gv('fgnExp');
+  const eduLang=getR('eduLang');
+  const tradesCert=getR('tradesCert');
+  let secC=0;
+  // Foreign work exp + language
+  if(firstLangMin>=7&&fgnExp==='1') secC+=13;
+  if(firstLangMin>=7&&fgnExp==='2') secC+=25;
+  if(firstLangMin>=9&&fgnExp==='1') secC+=12;
+  if(firstLangMin>=9&&fgnExp==='2') secC+=12;
+  // Education + language
+  if(eduLang==='1'&&firstLangMin>=7){
+    if(edu>=4) secC+=25;
+    else if(edu>=2) secC+=13;
+  }
+  // Foreign edu + work exp
+  if(fgnExp!=='0'&&edu>=4) secC+=13;
+  if(fgnExp==='2'&&edu>=4) secC+=12;
+  // Trades cert
+  if(tradesCert==='1'&&firstLangMin>=5) secC+=25;
+  secC=Math.min(secC,100);
+
+  // Section D — Additional
+  const pnp=parseInt(getR('pnp'));
+  const jo=Math.max(parseInt(getR('jo1')),parseInt(getR('jo2')));
+  const sib=parseInt(getR('sib'));
+  const fr=Math.max(parseInt(getR('fr1')),parseInt(getR('fr2')));
+  const cedu=Math.max(parseInt(getR('cedu1')),parseInt(getR('cedu2')));
+  const secD=Math.min(pnp+jo+sib+fr+cedu,600);
+
+  const total=Math.min(secA+secB+secC+secD,1200);
+
+  showResults(total,{
+    'Section A — Core Human Capital':secA,
+    '  Age':ageP,'  Education':eduP,'  First Language':langP,
+    '  Second Language':l2P,'  Canadian Work Experience':cweP,
+    'Section B — Spouse/Partner':secB,
+    'Section C — Skill Transferability':secC,
+    'Section D — Additional Points':secD,
+    'TOTAL CRS SCORE':total
+  });
+}
+
+function showResults(score,bk){
+  const el=document.getElementById('results');
+  el.style.display='block';
+  document.getElementById('scoreNum').textContent=score;
+
+  let nc,bc,vc,vt;
+  if(score<400){nc='c-danger';bc='b-danger';vc='v-danger';vt=`⚠️ Score of ${score} is below competitive thresholds. Improving language scores, Canadian work experience, or getting a PNP can significantly boost your points.`}
+  else if(score<=450){nc='c-warn';bc='b-warn';vc='v-warn';vt=`📊 Score of ${score} may qualify for PNP-specific draws. Explore provincial nomination options to boost your profile.`}
+  else if(score<=470){nc='c-yellow';bc='b-yellow';vc='v-yellow';vt=`📈 Score of ${score} is close to recent all-program cutoffs (470–525). Small improvements in language or work experience could push you over.`}
+  else if(score<=500){nc='c-good';bc='b-good';vc='v-good';vt=`✅ Score of ${score} is competitive for Express Entry all-program draws. Keep your profile active and monitor draw cutoffs.`}
+  else{nc='c-great';bc='b-great';vc='v-great';vt=`🎉 Excellent! Score of ${score} is well above typical cutoffs. Strong chances of receiving an ITA in the next draw.`}
+
+  document.getElementById('scoreNum').className=`score-num ${nc}`;
+  const bar=document.getElementById('scoreBar');
+  bar.style.width=Math.min((score/1200)*100,100)+'%';
+  bar.className=`bar ${bc}`;
+  const vd=document.getElementById('scoreVerdict');
+  vd.textContent=vt;vd.className=`verdict ${vc}`;
+
+  const tbody=document.getElementById('bkTbody');
+  tbody.innerHTML='';
+  for(const[lbl,pts] of Object.entries(bk)){
+    const isTotal=lbl.startsWith('TOTAL');
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td style="${isTotal?'font-weight:700':''}">${lbl}</td><td class="pts">${pts}</td>`;
+    tbody.appendChild(tr);
+  }
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+
+// ===== UI TOGGLES =====
+function toggleSpouse(el){
+  const m=el.value==='married';
+  document.getElementById('spouseGroup').style.display=m?'block':'none';
+  if(!m) document.getElementById('spouseSection').style.display='none';
+  else toggleSpouseSection();
+}
+function toggleSpouseSection(){
+  const m=document.querySelector('input[name="marital"]:checked')?.value==='married';
+  const c=document.querySelector('input[name="spouseComing"]:checked')?.value==='yes';
+  document.getElementById('spouseSection').style.display=(m&&c)?'block':'none';
+}
+function toggleL2(sel){
+  document.getElementById('lang2Fields').style.display=sel.value!=='none'?'grid':'none';
+}
+function toggleSpLang(sel){
+  document.getElementById('spouseLangFields').style.display=sel.value!=='none'?'grid':'none';
+}
+
+// ===== FAQ =====
+function toggleFAQ(btn){
+  const ans=btn.nextElementSibling;
+  const open=btn.classList.contains('open');
+  document.querySelectorAll('.faq-q.open').forEach(q=>{
+    q.classList.remove('open');q.setAttribute('aria-expanded','false');
+    q.nextElementSibling.classList.remove('open');
+  });
+  if(!open){btn.classList.add('open');btn.setAttribute('aria-expanded','true');ans.classList.add('open');}
+}
+
+// ===== SHARE =====
+function copyScore(){
+  const s=document.getElementById('scoreNum').textContent;
+  if(navigator.clipboard){navigator.clipboard.writeText(`My CRS Score: ${s} — /`);alert('Copied!');}
+}
+function shareWA(){
+  const s=document.getElementById('scoreNum').textContent;
+  const msg=encodeURIComponent(`My Canada Express Entry CRS Score is ${s}! Calculate yours free: /`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}

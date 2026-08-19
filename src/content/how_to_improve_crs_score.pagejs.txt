@@ -1,0 +1,68 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+// Mobile menu
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+// CRS Boost Planner
+function calcBoost() {
+  var base = parseInt(document.getElementById('baseScore').value) || 0;
+  var checkboxIds = ['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+  var gain = 0;
+  checkboxIds.forEach(function(id){
+    var el = document.getElementById(id);
+    if (el && el.checked) gain += parseInt(el.value) || 0;
+  });
+
+  // Cap at 1200
+  var projected = Math.min(base + gain, 1200);
+
+  document.getElementById('boostTotal').textContent = projected;
+  document.getElementById('boostGain').textContent = '+' + gain + ' pts from selected strategies';
+
+  var v = '';
+  if (gain === 0) {
+    v = '☑️ Select strategies above to see your projected score improvement.';
+  } else if (projected >= 600) {
+    v = '✅ Outstanding! With a PNP nomination or senior job offer, your ITA is virtually guaranteed.';
+  } else if (projected >= 525) {
+    v = '✅ Excellent! This projected score is highly competitive for all-program Express Entry draws.';
+  } else if (projected >= 490) {
+    v = '✅ Competitive! Within the typical all-program draw range (~470–525).';
+  } else if (projected >= 450) {
+    v = '⚠️ Getting closer. Try adding IELTS improvement or a PNP strategy to reach 490+.';
+  } else if (projected >= 400) {
+    v = '⚠️ Still below all-program cutoffs. A PNP nomination (+600) or French draw strategy would be most effective.';
+  } else {
+    v = '❗ Focus on IELTS CLB 9+ and Canadian work experience as your first priorities.';
+  }
+
+  document.getElementById('boostVerdict').textContent = v;
+  document.getElementById('boostResult').style.display = 'block';
+}
+
+// Auto-calculate on base score change
+document.getElementById('baseScore').addEventListener('input', function(){
+  var anyChecked = ['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10']
+    .some(function(id){ return document.getElementById(id).checked; });
+  if (anyChecked) calcBoost();
+});

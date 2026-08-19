@@ -1,0 +1,94 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+  // Draw filter
+  function filterDraws(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const rows = document.querySelectorAll('#drawTableBody tr');
+    rows.forEach(row => {
+      const rt = row.dataset.type;
+      const isOld = row.classList.contains('hidden-row');
+      const visible = document.getElementById('showMoreBtn').dataset.open === '1';
+      let show = false;
+      if (type === 'all') show = true;
+      else if (type === 'allprog') show = rt === 'allprog';
+      else if (type === 'cec') show = rt === 'cec';
+      else if (type === 'french') show = rt === 'french';
+      else if (type === 'pnp') show = rt === 'pnp';
+      else if (type === 'stem') show = rt === 'stem';
+      else if (type === 'health') show = rt === 'health';
+      if (show && (!isOld || visible)) {
+        row.style.display = '';
+      } else if (show && isOld && !visible) {
+        // keep hidden if older rows not expanded
+        row.style.display = 'none';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  // Show/hide older draws
+  function toggleOlderDraws() {
+    const btn = document.getElementById('showMoreBtn');
+    const isOpen = btn.dataset.open === '1';
+    const oldRows = document.querySelectorAll('#drawTableBody tr.hidden-row');
+    const activeFilter = document.querySelector('.filter-btn.active').textContent.trim();
+    if (!isOpen) {
+      oldRows.forEach(r => { r.style.display = ''; });
+      btn.textContent = '▲ Hide older draw results';
+      btn.dataset.open = '1';
+    } else {
+      oldRows.forEach(r => { r.style.display = 'none'; });
+      btn.textContent = '▼ Show 2024 & Older Draw Results';
+      btn.dataset.open = '0';
+    }
+  }
+
+  // FAQ toggle
+  function toggleFAQ(btn) {
+    const ans = btn.nextElementSibling;
+    const isOpen = ans.classList.contains('open');
+    document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question.open').forEach(b => { b.classList.remove('open'); b.setAttribute('aria-expanded','false'); });
+    if (!isOpen) {
+      ans.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  }
+
+  // CSS Bar Chart
+  (function buildChart() {
+    const data = [
+      {label:'Aug\'22',val:533},{label:'Sep\'22',val:510},{label:'Oct\'22',val:498},
+      {label:'Nov\'22',val:492},{label:'Jan\'23',val:499},{label:'Mar\'23',val:481},
+      {label:'Jun\'23',val:490},{label:'Sep\'23',val:504},{label:'Dec\'23',val:561},
+      {label:'Mar\'24',val:488},{label:'Jun\'24',val:515},{label:'Sep\'24',val:522},
+      {label:'Dec\'24',val:515},{label:'Jan\'25',val:527},{label:'Jun\'25',val:521},
+      {label:'Dec\'25',val:515}
+    ];
+    const maxVal = 600, minVal = 400;
+    const chartArea = document.querySelector('.chart-area');
+    const totalH = 172;
+    data.forEach(d => {
+      const pct = Math.max(4, Math.round(((d.val - minVal) / (maxVal - minVal)) * (totalH - 30)));
+      const wrap = document.createElement('div');
+      wrap.className = 'chart-bar-wrap';
+      wrap.innerHTML = `<div class="chart-bar-inner" style="height:${pct}px" title="${d.label}: CRS ${d.val}"></div><div class="chart-label">${d.label}</div>`;
+      chartArea.appendChild(wrap);
+    });
+  })();

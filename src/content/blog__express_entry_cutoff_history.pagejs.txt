@@ -1,0 +1,180 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+/* ─── YEARLY DATA ─── */
+var YEARLY=[
+  {yr:'2015',low:453,high:886,avg:476,draws:6},
+  {yr:'2016',low:457,high:534,avg:482,draws:23},
+  {yr:'2017',low:415,high:449,avg:432,draws:23},
+  {yr:'2018',low:440,high:456,avg:447,draws:24},
+  {yr:'2019',low:413,high:470,avg:454,draws:24},
+  {yr:'2020',low:431,high:475,avg:452,draws:18},
+  {yr:'2021',low:461,high:568,avg:487,draws:23},
+  {yr:'2022',low:491,high:557,avg:508,draws:27},
+  {yr:'2023',low:379,high:511,avg:496,draws:30},
+  {yr:'2024',low:437,high:534,avg:504,draws:28},
+  {yr:'2025',low:469,high:532,avg:494,draws:26},
+  {yr:'2026',low:485,high:499,avg:491,draws:8}
+];
+
+/* Build year cards */
+var yg=document.getElementById('yearGrid');
+var ycHtml='';
+YEARLY.forEach(function(d){
+  var colour=d.avg<450?'#c40000':d.avg<490?'#b45309':'#15803d';
+  ycHtml+='<div class="year-card">'
+    +'<div class="yr">'+d.yr+'</div>'
+    +'<div class="range" style="color:'+colour+';">'+d.low+'–'+d.high+'</div>'
+    +'<div class="avg">Avg: <strong>'+d.avg+'</strong></div>'
+    +'<div class="draws">'+d.draws+' draws</div>'
+    +'</div>';
+});
+yg.innerHTML=ycHtml;
+
+/* Build yearly bar chart */
+var colours2=['#6b7280','#6b7280','#15803d','#15803d','#c40000','#b45309','#b91c1c','#b91c1c','#1d4ed8','#1d4ed8','#1d4ed8','#c40000'];
+var minAvg=415,maxAvg=568,range2=maxAvg-minAvg;
+var br='';
+YEARLY.forEach(function(d,i){
+  var pct=Math.round((d.avg-minAvg)/range2*100);
+  br+='<div class="mc-row">'
+    +'<div class="mc-lbl">'+d.yr+'</div>'
+    +'<div class="mc-bar-wrap"><div class="mc-bar" style="width:'+pct+'%;background:'+colours2[i]+';min-width:40px;">'+d.avg+'</div></div>'
+    +'<div class="mc-val">'+d.avg+'</div>'
+    +'</div>';
+});
+document.getElementById('yearBarRows').innerHTML=br;
+
+/* ─── DRAW HISTORY DATA (2024–2026) ─── */
+var DRAWS=[
+  /* 2026 */
+  {num:322,date:'2026-04-10',type:'all-programs',label:'All Programs',score:491,inv:4500,prev:493},
+  {num:321,date:'2026-03-27',type:'healthcare',label:'Healthcare',score:444,inv:3500,prev:448},
+  {num:320,date:'2026-03-13',type:'all-programs',label:'All Programs',score:493,inv:4300,prev:489},
+  {num:319,date:'2026-02-27',type:'french',label:'French Language',score:399,inv:7000,prev:404},
+  {num:318,date:'2026-02-13',type:'all-programs',label:'All Programs',score:489,inv:4200,prev:493},
+  {num:317,date:'2026-01-30',type:'stem',label:'STEM',score:496,inv:4500,prev:500},
+  {num:316,date:'2026-01-16',type:'all-programs',label:'All Programs',score:493,inv:4100,prev:489},
+  {num:315,date:'2026-01-09',type:'trades',label:'Trades',score:420,inv:1500,prev:415},
+
+  /* 2025 */
+  {num:314,date:'2025-12-18',type:'all-programs',label:'All Programs',score:495,inv:4500,prev:490},
+  {num:313,date:'2025-12-04',type:'healthcare',label:'Healthcare',score:448,inv:3200,prev:444},
+  {num:312,date:'2025-11-20',type:'all-programs',label:'All Programs',score:490,inv:4300,prev:495},
+  {num:311,date:'2025-11-06',type:'french',label:'French Language',score:404,inv:6500,prev:398},
+  {num:310,date:'2025-10-23',type:'all-programs',label:'All Programs',score:497,inv:4000,prev:490},
+  {num:309,date:'2025-10-09',type:'stem',label:'STEM',score:500,inv:4200,prev:496},
+  {num:308,date:'2025-09-25',type:'all-programs',label:'All Programs',score:494,inv:4400,prev:497},
+  {num:307,date:'2025-09-11',type:'agriculture',label:'Agriculture',score:407,inv:1200,prev:412},
+  {num:306,date:'2025-08-28',type:'all-programs',label:'All Programs',score:492,inv:4200,prev:494},
+  {num:305,date:'2025-08-14',type:'healthcare',label:'Healthcare',score:451,inv:3000,prev:448},
+  {num:304,date:'2025-07-31',type:'all-programs',label:'All Programs',score:499,inv:4100,prev:492},
+  {num:303,date:'2025-07-17',type:'transport',label:'Transport',score:415,inv:1000,prev:420},
+  {num:302,date:'2025-07-03',type:'all-programs',label:'All Programs',score:488,inv:4500,prev:499},
+  {num:301,date:'2025-06-19',type:'french',label:'French Language',score:398,inv:7500,prev:404},
+  {num:300,date:'2025-06-05',type:'all-programs',label:'All Programs',score:496,inv:4000,prev:488},
+  {num:299,date:'2025-05-22',type:'cec',label:'Canadian Experience Class',score:521,inv:3200,prev:515},
+  {num:298,date:'2025-05-08',type:'all-programs',label:'All Programs',score:493,inv:4300,prev:496},
+  {num:297,date:'2025-04-24',type:'stem',label:'STEM',score:498,inv:4000,prev:500},
+  {num:296,date:'2025-04-10',type:'all-programs',label:'All Programs',score:487,inv:4600,prev:493},
+  {num:295,date:'2025-03-27',type:'healthcare',label:'Healthcare',score:443,inv:3500,prev:451},
+  {num:294,date:'2025-03-13',type:'all-programs',label:'All Programs',score:489,inv:4400,prev:487},
+  {num:293,date:'2025-02-27',type:'french',label:'French Language',score:393,inv:8000,prev:398},
+  {num:292,date:'2025-02-13',type:'all-programs',label:'All Programs',score:469,inv:5000,prev:489},
+  {num:291,date:'2025-01-30',type:'trades',label:'Trades',score:415,inv:1500,prev:420},
+  {num:290,date:'2025-01-16',type:'all-programs',label:'All Programs',score:490,inv:4200,prev:469},
+  {num:289,date:'2025-01-02',type:'all-programs',label:'All Programs',score:532,inv:1000,prev:490},
+
+  /* 2024 */
+  {num:288,date:'2024-12-18',type:'all-programs',label:'All Programs',score:513,inv:3900,prev:532},
+  {num:287,date:'2024-12-05',type:'french',label:'French Language',score:388,inv:7000,prev:393},
+  {num:286,date:'2024-11-21',type:'all-programs',label:'All Programs',score:524,inv:3700,prev:513},
+  {num:285,date:'2024-11-07',type:'healthcare',label:'Healthcare',score:467,inv:3100,prev:471},
+  {num:284,date:'2024-10-24',type:'all-programs',label:'All Programs',score:504,inv:4000,prev:524},
+  {num:283,date:'2024-10-10',type:'stem',label:'STEM',score:498,inv:4300,prev:500},
+  {num:282,date:'2024-09-26',type:'all-programs',label:'All Programs',score:510,inv:3800,prev:504},
+  {num:281,date:'2024-09-12',type:'agriculture',label:'Agriculture',score:399,inv:1000,prev:407},
+  {num:280,date:'2024-08-29',type:'all-programs',label:'All Programs',score:496,inv:4500,prev:510},
+  {num:279,date:'2024-08-15',type:'healthcare',label:'Healthcare',score:471,inv:2800,prev:467},
+  {num:278,date:'2024-08-01',type:'all-programs',label:'All Programs',score:516,inv:3600,prev:496},
+  {num:277,date:'2024-07-18',type:'french',label:'French Language',score:379,inv:7000,prev:388},
+  {num:276,date:'2024-07-04',type:'all-programs',label:'All Programs',score:507,inv:3800,prev:516},
+  {num:275,date:'2024-06-20',type:'cec',label:'Canadian Experience Class',score:512,inv:3400,prev:521},
+  {num:274,date:'2024-06-06',type:'all-programs',label:'All Programs',score:498,inv:4200,prev:507},
+  {num:273,date:'2024-05-23',type:'transport',label:'Transport',score:420,inv:1100,prev:415},
+  {num:272,date:'2024-05-09',type:'all-programs',label:'All Programs',score:512,inv:3900,prev:498},
+  {num:271,date:'2024-04-25',type:'healthcare',label:'Healthcare',score:476,inv:2600,prev:471},
+  {num:270,date:'2024-04-11',type:'all-programs',label:'All Programs',score:534,inv:2900,prev:512},
+  {num:269,date:'2024-03-28',type:'french',label:'French Language',score:410,inv:6000,prev:379},
+  {num:268,date:'2024-03-14',type:'all-programs',label:'All Programs',score:502,inv:4100,prev:534},
+  {num:267,date:'2024-02-29',type:'stem',label:'STEM',score:481,inv:4500,prev:498},
+  {num:266,date:'2024-02-15',type:'all-programs',label:'All Programs',score:491,inv:4300,prev:502},
+  {num:265,date:'2024-02-01',type:'trades',label:'Trades',score:436,inv:1200,prev:415},
+  {num:264,date:'2024-01-18',type:'all-programs',label:'All Programs',score:485,inv:4800,prev:491},
+  {num:263,date:'2024-01-04',type:'all-programs',label:'All Programs',score:437,inv:5500,prev:485}
+];
+
+var TYPE_CLASS={
+  'all-programs':'dt-all','cec':'dt-cec','fsw':'dt-fsw','pnp':'dt-pnp',
+  'french':'dt-fr','stem':'dt-stem','healthcare':'dt-hc','trades':'dt-tr',
+  'transport':'dt-pnp','agriculture':'dt-cec'
+};
+
+function renderRows(data){
+  var tbody=document.getElementById('drawTableBody');
+  var html='';
+  data.forEach(function(d){
+    var trend=d.score>d.prev?'<span style="color:#15803d;">▲ +'+( d.score-d.prev)+'</span>':d.score<d.prev?'<span style="color:#b91c1c;">▼ '+(d.score-d.prev)+'</span>':'<span style="color:#6b7280;">— same</span>';
+    var scoreClass=d.score>=500?'score-high':d.score>=450?'score-mid':'score-low';
+    var typeClass=TYPE_CLASS[d.type]||'dt-all';
+    var dateStr=new Date(d.date).toLocaleDateString('en-CA',{year:'numeric',month:'short',day:'numeric'});
+    html+='<tr data-type="'+d.type+'" data-year="'+d.date.substring(0,4)+'">'
+      +'<td><strong>#'+d.num+'</strong></td>'
+      +'<td>'+dateStr+'</td>'
+      +'<td><span class="draw-type '+typeClass+'">'+d.label+'</span></td>'
+      +'<td class="'+scoreClass+'">'+d.score+'</td>'
+      +'<td>'+d.inv.toLocaleString()+'</td>'
+      +'<td>'+trend+'</td>'
+      +'</tr>';
+  });
+  tbody.innerHTML=html||'<tr><td colspan="6" style="text-align:center;color:#6b7280;padding:20px;">No draws match your filter.</td></tr>';
+  document.getElementById('drawCount').textContent=data.length+' draw'+(data.length!==1?'s':'');
+}
+
+function filterDraws(){
+  var search=document.getElementById('searchDraw').value.toLowerCase();
+  var type=document.getElementById('filterType').value;
+  var year=document.getElementById('filterYear').value;
+  var filtered=DRAWS.filter(function(d){
+    var matchSearch=!search||(d.label.toLowerCase().includes(search)||d.date.includes(search)||String(d.score).includes(search));
+    var matchType=!type||d.type===type;
+    var matchYear=!year||d.date.startsWith(year);
+    return matchSearch&&matchType&&matchYear;
+  });
+  renderRows(filtered);
+}
+
+/* Initial render */
+renderRows(DRAWS);
+
+/* ─── MOBILE MENU ─── */
+var menuBtn=document.getElementById('menuBtn');
+var mobileMenu=document.getElementById('mobileMenu');
+if(menuBtn&&mobileMenu){
+  menuBtn.addEventListener('click',function(){
+    var open=mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+  });
+}

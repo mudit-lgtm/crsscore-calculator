@@ -1,0 +1,203 @@
+
+function crsToggleMenu(){
+  var m=document.getElementById('crsMobileMenu');
+  var mi=document.getElementById('crsMenuIcon');
+  var ci=document.getElementById('crsCloseIcon');
+  var btn=document.getElementById('crsHamburger');
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  mi.style.display=open?'block':'none';
+  ci.style.display=open?'none':'block';
+  btn.setAttribute('aria-expanded',String(!open));
+}
+
+;
+
+    const bandOptions = ["9.0","8.5","8.0","7.5","7.0","6.5","6.0","5.5","5.0","4.5","4.0","3.5","3.0","2.5","2.0","1.5","1.0","0.5","0.0"];
+    const selects = ["listening","reading","writing","speaking"];
+
+    function fillBandSelects() {
+      selects.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.options.length) {
+          bandOptions.forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v;
+            opt.textContent = v;
+            el.appendChild(opt);
+          });
+        }
+      });
+
+      document.getElementById("listening").value = "8.0";
+      document.getElementById("reading").value = "7.0";
+      document.getElementById("writing").value = "7.0";
+      document.getElementById("speaking").value = "7.0";
+    }
+
+    function clbListening(score) {
+      score = parseFloat(score);
+      if (score >= 8.5) return 10;
+      if (score >= 8.0) return 9;
+      if (score >= 7.5) return 8;
+      if (score >= 6.0) return 7;
+      if (score >= 5.5) return 6;
+      if (score >= 5.0) return 5;
+      if (score >= 4.5) return 4;
+      return 0;
+    }
+
+    function clbReadingGeneral(score) {
+      score = parseFloat(score);
+      if (score >= 8.0) return 10;
+      if (score >= 7.0) return 9;
+      if (score >= 6.5) return 8;
+      if (score >= 6.0) return 7;
+      if (score >= 5.0) return 6;
+      if (score >= 4.0) return 5;
+      if (score >= 3.5) return 4;
+      return 0;
+    }
+
+    function clbReadingAcademic(score) {
+      score = parseFloat(score);
+      if (score >= 8.0) return 10;
+      if (score >= 7.5) return 9;
+      if (score >= 6.5) return 8;
+      if (score >= 6.0) return 7;
+      if (score >= 5.0) return 6;
+      if (score >= 4.0) return 5;
+      if (score >= 3.5) return 4;
+      return 0;
+    }
+
+    function clbWriting(score) {
+      score = parseFloat(score);
+      if (score >= 7.5) return 10;
+      if (score >= 7.0) return 9;
+      if (score >= 6.5) return 8;
+      if (score >= 6.0) return 7;
+      if (score >= 5.5) return 6;
+      if (score >= 5.0) return 5;
+      if (score >= 4.0) return 4;
+      return 0;
+    }
+
+    function clbSpeaking(score) {
+      score = parseFloat(score);
+      if (score >= 7.5) return 10;
+      if (score >= 7.0) return 9;
+      if (score >= 6.5) return 8;
+      if (score >= 6.0) return 7;
+      if (score >= 5.5) return 6;
+      if (score >= 5.0) return 5;
+      if (score >= 4.0) return 4;
+      return 0;
+    }
+
+    function crsPerAbility(clb, marital) {
+      if (marital === "single") {
+        if (clb >= 10) return 34;
+        if (clb === 9) return 31;
+        if (clb === 8) return 23;
+        if (clb === 7) return 17;
+        if (clb <= 6 && clb >= 5) return 6;
+        if (clb === 4) return 0;
+        return 0;
+      } else {
+        if (clb >= 10) return 32;
+        if (clb === 9) return 29;
+        if (clb === 8) return 22;
+        if (clb === 7) return 16;
+        if (clb <= 6 && clb >= 5) return 6;
+        if (clb === 4) return 0;
+        return 0;
+      }
+    }
+
+    function estimateTransferability(minClb, education, foreignExp) {
+      let points = 0;
+
+      const eduStrong = ["two-year","bachelor","two-or-more","masters","phd"].includes(education);
+      const eduVeryStrong = ["bachelor","two-or-more","masters","phd"].includes(education);
+
+      if (minClb >= 9) {
+        if (eduVeryStrong) points += 50;
+        else if (eduStrong) points += 25;
+
+        if (foreignExp === "3") points += 50;
+        else if (foreignExp === "2" || foreignExp === "1") points += 25;
+      } else if (minClb >= 7) {
+        if (eduVeryStrong) points += 25;
+        if (foreignExp === "3") points += 25;
+      }
+
+      return Math.min(points, 100);
+    }
+
+    function calculate() {
+      const testType = document.getElementById("testType").value;
+      const marital = document.getElementById("maritalStatus").value;
+      const listening = document.getElementById("listening").value;
+      const reading = document.getElementById("reading").value;
+      const writing = document.getElementById("writing").value;
+      const speaking = document.getElementById("speaking").value;
+      const education = document.getElementById("education").value;
+      const foreignExp = document.getElementById("foreignExp").value;
+
+      const clbL = clbListening(listening);
+      const clbR = testType === "general" ? clbReadingGeneral(reading) : clbReadingAcademic(reading);
+      const clbW = clbWriting(writing);
+      const clbS = clbSpeaking(speaking);
+
+      const ptsL = crsPerAbility(clbL, marital);
+      const ptsR = crsPerAbility(clbR, marital);
+      const ptsW = crsPerAbility(clbW, marital);
+      const ptsS = crsPerAbility(clbS, marital);
+
+      const total = ptsL + ptsR + ptsW + ptsS;
+      const minClb = Math.min(clbL, clbR, clbW, clbS);
+      const maxClb = Math.max(clbL, clbR, clbW, clbS);
+      const transfer = estimateTransferability(minClb, education, foreignExp);
+
+      document.getElementById("langPoints").textContent = total;
+      document.getElementById("lowestClb").textContent = minClb;
+      document.getElementById("highestClb").textContent = maxClb;
+      document.getElementById("transferHint").textContent = transfer;
+      document.getElementById("sidebarScore").textContent = total;
+      document.getElementById("sidebarClb").textContent = minClb;
+
+      document.getElementById("rListenBand").textContent = listening;
+      document.getElementById("rListenClb").textContent = "CLB " + clbL;
+      document.getElementById("rListenPts").textContent = ptsL;
+
+      document.getElementById("rReadBand").textContent = reading;
+      document.getElementById("rReadClb").textContent = "CLB " + clbR;
+      document.getElementById("rReadPts").textContent = ptsR;
+
+      document.getElementById("rWriteBand").textContent = writing;
+      document.getElementById("rWriteClb").textContent = "CLB " + clbW;
+      document.getElementById("rWritePts").textContent = ptsW;
+
+      document.getElementById("rSpeakBand").textContent = speaking;
+      document.getElementById("rSpeakClb").textContent = "CLB " + clbS;
+      document.getElementById("rSpeakPts").textContent = ptsS;
+
+      document.getElementById("rTotalPts").innerHTML = "<strong>" + total + "</strong>";
+    }
+
+    document.getElementById("calcBtn").addEventListener("click", calculate);
+    document.getElementById("resetBtn").addEventListener("click", function(){
+      setTimeout(() => {
+        fillBandSelects();
+        document.getElementById("testType").value = "general";
+        document.getElementById("maritalStatus").value = "single";
+        document.getElementById("education").value = "none";
+        document.getElementById("foreignExp").value = "0";
+        calculate();
+      }, 0);
+    });
+
+    fillBandSelects();
+    calculate();
+  
