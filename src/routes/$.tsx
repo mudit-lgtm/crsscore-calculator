@@ -47,7 +47,8 @@ export function resolveLegacyPath(rawPath: string): string | null {
   }
 
   // Apply legacy slug mapping (single hop, resolved here to the final target).
-  if (LEGACY_MAP[path]) path = LEGACY_MAP[path];
+  const mapped = LEGACY_MAP[path];
+  if (mapped) path = mapped;
 
   return path === rawPath ? null : path;
 }
