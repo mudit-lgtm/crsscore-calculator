@@ -7,17 +7,24 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       {
-            "title": "Contact Us \u2013 CRS Score Calculator"
+            "title": "Contact CRS Calculator - Questions and Feedback"
       },
       {
             "name": "description",
-            "content": "Contact the CRS Score Calculator team. Send us your questions, feedback, or bug reports about our Canada Express Entry CRS calculator tools."
-      }
+            "content": "Contact the CRS Calculator team with corrections, feature requests or partnership enquiries. We reply to every message about the tool."
+      },
+      { "property": "og:title", "content": "Contact CRS Calculator - Questions and Feedback" },
+      { "property": "og:description", "content": "Contact the CRS Calculator team with corrections, feature requests or partnership enquiries. We reply to every message about the tool." },
+      { "name": "twitter:title", "content": "Contact CRS Calculator - Questions and Feedback" },
+      { "name": "twitter:description", "content": "Contact the CRS Calculator team with corrections, feature requests or partnership enquiries. We reply to every message about the tool." },
+      { "property": "og:url", "content": "https://crscalculator.site/contact" },
+      { "property": "og:type", "content": "website" },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/contact"
+            "href": "https://crscalculator.site/contact"
       },
       {
             "rel": "preconnect",

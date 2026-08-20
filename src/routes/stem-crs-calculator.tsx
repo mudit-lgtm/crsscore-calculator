@@ -7,11 +7,11 @@ export const Route = createFileRoute("/stem-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "STEM CRS Calculator 2026 \u2013 Express Entry Science Technology Engineering Math"
+            "title": "STEM CRS Calculator 2026 - Tech Category Draws"
       },
       {
             "name": "description",
-            "content": "Free STEM CRS Calculator for Canada Express Entry 2026. Check if your NOC code qualifies for STEM category draws. See all 11 eligible STEM occupations, CRS cutoff history, and calculate your score."
+            "content": "STEM category CRS calculator for engineers, developers and data pros. Score your Express Entry profile and compare it to the latest STEM draw cutoffs."
       },
       {
             "name": "keywords",
@@ -31,15 +31,15 @@ export const Route = createFileRoute("/stem-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "STEM CRS Calculator 2026 \u2013 Express Entry Category Draw Tool"
+            "content": "STEM CRS Calculator 2026 - Tech Category Draws"
       },
       {
             "property": "og:description",
-            "content": "Check your STEM Express Entry eligibility and CRS score. See all 11 eligible STEM NOC codes and past STEM draw cutoffs. Free tool, no login."
+            "content": "STEM category CRS calculator for engineers, developers and data pros. Score your Express Entry profile and compare it to the latest STEM draw cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/stem-crs-calculator"
+            "content": "https://crscalculator.site/stem-crs-calculator"
       },
       {
             "property": "og:type",
@@ -55,17 +55,17 @@ export const Route = createFileRoute("/stem-crs-calculator")({
       },
       {
             "name": "twitter:title",
-            "content": "STEM CRS Calculator 2026 \u2013 Express Entry Category Draw Tool"
+            "content": "STEM CRS Calculator 2026 - Tech Category Draws"
       },
       {
             "name": "twitter:description",
-            "content": "Free STEM Express Entry CRS calculator. Check your NOC code eligibility and calculate your score instantly."
+            "content": "STEM category CRS calculator for engineers, developers and data pros. Score your Express Entry profile and compare it to the latest STEM draw cutoffs."
       }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/stem-crs-calculator"
+            "href": "https://crscalculator.site/stem-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/crs-score-by-age")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Score by Age 2026 \u2013 How Age Affects Canada Express Entry Points"
+            "title": "CRS Score by Age - Points for Every Age 18 to 47"
       },
       {
             "name": "description",
-            "content": "How does age affect CRS score? Complete 2026 breakdown of CRS points by age group for Express Entry. See how many points you get at age 20, 25, 30, 35, 40, 45 and how to compensate for age-related CRS reductions."
+            "content": "Age points for every age, with and without a spouse. See what each birthday costs you and the fastest ways to offset age-related CRS point losses."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/crs-score-by-age")({
       },
       {
             "property": "og:title",
-            "content": "CRS Score by Age 2026 \u2013 How Age Affects Express Entry Points"
+            "content": "CRS Score by Age - Points for Every Age 18 to 47"
       },
       {
             "property": "og:description",
-            "content": "How does age affect your CRS score? Full 2026 age points table for Express Entry. Scores range from 110 (age 18\u201335) down to 0 (age 47+). See your age bracket and strategies to compensate."
+            "content": "Age points for every age, with and without a spouse. See what each birthday costs you and the fastest ways to offset age-related CRS point losses."
       },
       {
             "property": "og:url",
-            "content": "/blog/crs-score-by-age"
+            "content": "https://crscalculator.site/blog/crs-score-by-age"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/crs-score-by-age")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Score by Age 2026 \u2013 Express Entry Age Points Table"
+            "content": "CRS Score by Age - Points for Every Age 18 to 47"
       },
       {
             "name": "twitter:description",
-            "content": "CRS points by age for Canada Express Entry 2026. Maximum 110 pts at age 18\u201335, dropping to 0 at age 47+. Full breakdown + age calculator."
+            "content": "Age points for every age, with and without a spouse. See what each birthday costs you and the fastest ways to offset age-related CRS point losses."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/crs-score-by-age")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/crs-score-by-age"
+            "href": "https://crscalculator.site/blog/crs-score-by-age"
       },
       {
             "rel": "icon",

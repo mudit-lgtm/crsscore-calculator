@@ -7,17 +7,24 @@ export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
       {
-            "title": "Privacy Policy \u2013 CRS Score Calculator"
+            "title": "Privacy Policy - CRS Calculator"
       },
       {
             "name": "description",
-            "content": "Privacy Policy for CRS Score Calculator. Learn how we collect, use, and protect your information when you use our Canada Express Entry CRS tools."
-      }
+            "content": "How CRS Calculator handles your data: nothing you enter is stored on our servers. Read our cookie, analytics and advertising disclosures in full."
+      },
+      { "property": "og:title", "content": "Privacy Policy - CRS Calculator" },
+      { "property": "og:description", "content": "How CRS Calculator handles your data: nothing you enter is stored on our servers. Read our cookie, analytics and advertising disclosures in full." },
+      { "name": "twitter:title", "content": "Privacy Policy - CRS Calculator" },
+      { "name": "twitter:description", "content": "How CRS Calculator handles your data: nothing you enter is stored on our servers. Read our cookie, analytics and advertising disclosures in full." },
+      { "property": "og:url", "content": "https://crscalculator.site/privacy-policy" },
+      { "property": "og:type", "content": "website" },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/privacy-policy"
+            "href": "https://crscalculator.site/privacy-policy"
       },
       {
             "rel": "preconnect",

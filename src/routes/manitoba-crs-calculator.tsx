@@ -7,11 +7,11 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Manitoba CRS Calculator 2026 \u2013 MPNP Express Entry Stream Points Tool"
+            "title": "Manitoba CRS Calculator 2026 - MPNP Points Tool"
       },
       {
             "name": "description",
-            "content": "Free Manitoba CRS calculator 2026. Estimate your MPNP Express Entry Stream CRS score with education, language, work experience and age points. Mobile-friendly, instant results."
+            "content": "Manitoba CRS calculator for MPNP applicants. Score your Express Entry profile with the +600 Manitoba nomination and see the latest MPNP draw cutoffs."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Manitoba CRS Calculator 2026 \u2013 MPNP Express Entry Stream Points Tool"
+            "content": "Manitoba CRS Calculator 2026 - MPNP Points Tool"
       },
       {
             "property": "og:description",
-            "content": "Estimate your Manitoba PNP Express Entry Stream CRS score. Free, instant and mobile-friendly."
+            "content": "Manitoba CRS calculator for MPNP applicants. Score your Express Entry profile with the +600 Manitoba nomination and see the latest MPNP draw cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/manitoba-crs-calculator"
+            "content": "https://crscalculator.site/manitoba-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
       },
       {
             "name": "twitter:title",
-            "content": "Manitoba CRS Calculator 2026 \u2013 MPNP Express Entry Stream Points Tool"
+            "content": "Manitoba CRS Calculator 2026 - MPNP Points Tool"
       },
       {
             "name": "twitter:description",
-            "content": "Free MPNP CRS calculator updated for Canada Express Entry 2026."
+            "content": "Manitoba CRS calculator for MPNP applicants. Score your Express Entry profile with the +600 Manitoba nomination and see the latest MPNP draw cutoffs."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/manitoba-crs-calculator"
+            "href": "https://crscalculator.site/manitoba-crs-calculator"
       },
       {
             "rel": "icon",
@@ -90,7 +90,8 @@ export const Route = createFileRoute("/manitoba-crs-calculator")({
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"/\" },\n    { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"PNP Calculators\", \"item\": \"/pnp-crs-calculator\" },\n    { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Manitoba CRS Calculator\", \"item\": \"/manitoba-crs-calculator\" }\n  ]\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Manitoba CRS Calculator 2026 \u2013 MPNP Express Entry Stream Points Tool\",\n  \"url\": \"/manitoba-crs-calculator\",\n  \"description\": \"Free Manitoba CRS calculator for MPNP Express Entry Stream. Estimate your CRS score with education, language, work experience and age points for Canada PR.\",\n  \"isPartOf\": { \"@type\": \"WebSite\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"about\": [\n    { \"@type\": \"Thing\", \"name\": \"Manitoba CRS calculator\" },\n    { \"@type\": \"Thing\", \"name\": \"MPNP Express Entry Stream\" },\n    { \"@type\": \"Thing\", \"name\": \"Manitoba PNP CRS score\" },\n    { \"@type\": \"Thing\", \"name\": \"Canada Express Entry CRS points\" }\n  ],\n  \"speakable\": {\n    \"@type\": \"SpeakableSpecification\",\n    \"cssSelector\": [\"h1\", \".hero p\", \".faq summary\"]\n  }\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"SoftwareApplication\",\n  \"name\": \"Manitoba CRS Calculator 2026\",\n  \"applicationCategory\": \"CalculatorApplication\",\n  \"operatingSystem\": \"Web\",\n  \"url\": \"/manitoba-crs-calculator\",\n  \"description\": \"Free Manitoba PNP Express Entry Stream CRS calculator. Estimate your Canada PR CRS score instantly with age, education, language and work experience.\",\n  \"offers\": { \"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"USD\" },\n  \"publisher\": { \"@type\": \"Organization\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"featureList\": [\n    \"Manitoba MPNP CRS score estimation\",\n    \"MPNP Express Entry Stream points\",\n    \"Language CLB to CRS conversion\",\n    \"600-point PNP nomination bonus\",\n    \"Mobile-friendly instant calculation\"\n  ]\n}" },
-      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Manitoba CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your Comprehensive Ranking System score for the MPNP Express Entry Stream to assess your chances of receiving a Manitoba provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Manitoba?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 gives you a reasonable MPNP EOI pool chance. A Manitoba nomination adds 600 CRS points, making almost any profile competitive for a federal ITA.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Manitoba use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The MPNP Express Entry Stream uses the standard federal CRS framework. Manitoba adds 600 points when it nominates a candidate.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How can I improve my CRS score for Manitoba?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Improve IELTS score to CLB 9+, gain Canadian work experience, complete a Canadian study program, or obtain an LMIA-supported Manitoba job offer.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Manitoba CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool is based on the official IRCC CRS points grid and MPNP guidelines. Always verify with the IRCC official tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" }
+      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Manitoba CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your Comprehensive Ranking System score for the MPNP Express Entry Stream to assess your chances of receiving a Manitoba provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Manitoba?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 gives you a reasonable MPNP EOI pool chance. A Manitoba nomination adds 600 CRS points, making almost any profile competitive for a federal ITA.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Manitoba use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The MPNP Express Entry Stream uses the standard federal CRS framework. Manitoba adds 600 points when it nominates a candidate.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How can I improve my CRS score for Manitoba?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Improve IELTS score to CLB 9+, gain Canadian work experience, complete a Canadian study program, or obtain an LMIA-supported Manitoba job offer.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Manitoba CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool is based on the official IRCC CRS points grid and MPNP guidelines. Always verify with the IRCC official tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" },
+      { type: "application/ld+json", children: "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Manitoba CRS Calculator 2026 - MPNP Points Tool\", \"url\": \"https://crscalculator.site/manitoba-crs-calculator\", \"description\": \"Manitoba CRS calculator for MPNP applicants. Score your Express Entry profile with the +600 Manitoba nomination and see the latest MPNP draw cutoffs.\", \"applicationCategory\": \"UtilityApplication\", \"operatingSystem\": \"All\", \"browserRequirements\": \"Requires JavaScript\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"CAD\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"CRS Score Calculator\", \"url\": \"https://crscalculator.site/\"}}" }
     ],
   }),
   component: Page,

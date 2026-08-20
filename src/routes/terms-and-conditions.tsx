@@ -7,17 +7,24 @@ export const Route = createFileRoute("/terms-and-conditions")({
   head: () => ({
     meta: [
       {
-            "title": "Terms and Conditions \u2013 CRS Score Calculator"
+            "title": "Terms & Conditions - CRS Calculator"
       },
       {
             "name": "description",
-            "content": "Terms and Conditions for using CRS Score Calculator. Read our terms of use, disclaimers, and limitations of liability for our Canada Express Entry CRS tools."
-      }
+            "content": "Terms of use for CRS Calculator, including accuracy disclaimers and limits of liability. Results are estimates, not official immigration advice."
+      },
+      { "property": "og:title", "content": "Terms & Conditions - CRS Calculator" },
+      { "property": "og:description", "content": "Terms of use for CRS Calculator, including accuracy disclaimers and limits of liability. Results are estimates, not official immigration advice." },
+      { "name": "twitter:title", "content": "Terms & Conditions - CRS Calculator" },
+      { "name": "twitter:description", "content": "Terms of use for CRS Calculator, including accuracy disclaimers and limits of liability. Results are estimates, not official immigration advice." },
+      { "property": "og:url", "content": "https://crscalculator.site/terms-and-conditions" },
+      { "property": "og:type", "content": "website" },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/terms-and-conditions"
+            "href": "https://crscalculator.site/terms-and-conditions"
       },
       {
             "rel": "preconnect",

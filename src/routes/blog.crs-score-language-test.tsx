@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/crs-score-language-test")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Score for Language Test 2026 \u2013 IELTS, CELPIP, TEF, TCF Points for Express Entry"
+            "title": "CRS Points for IELTS & CELPIP - CLB Score Table"
       },
       {
             "name": "description",
-            "content": "How does language test score affect CRS points? Full 2026 IELTS, CELPIP, TEF Canada, TCF Canada CRS points table for Express Entry. See exact CRS points for every band score, CLB level, first and second language, with interactive checker."
+            "content": "How IELTS and CELPIP scores convert to CLB and CRS points. See what one extra band is worth and whether a retake beats every other point boost."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/crs-score-language-test")({
       },
       {
             "property": "og:title",
-            "content": "CRS Score for Language Test 2026 \u2013 IELTS, CELPIP, TEF Points Table"
+            "content": "CRS Points for IELTS & CELPIP - CLB Score Table"
       },
       {
             "property": "og:description",
-            "content": "CRS language points 2026 for Express Entry. IELTS 8.0 = CLB 10 = up to 136 pts. Full IELTS, CELPIP, TEF Canada and TCF Canada CRS conversion table with interactive checker."
+            "content": "How IELTS and CELPIP scores convert to CLB and CRS points. See what one extra band is worth and whether a retake beats every other point boost."
       },
       {
             "property": "og:url",
-            "content": "/blog/crs-score-language-test"
+            "content": "https://crscalculator.site/blog/crs-score-language-test"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/crs-score-language-test")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Score for Language Test 2026 \u2013 IELTS, CELPIP, TEF, TCF Points"
+            "content": "CRS Points for IELTS & CELPIP - CLB Score Table"
       },
       {
             "name": "twitter:description",
-            "content": "Full 2026 CRS language points table for IELTS, CELPIP, TEF Canada, TCF Canada. CLB 10 = 136 pts first language (no spouse). Interactive checker + skill transferability bonus."
+            "content": "How IELTS and CELPIP scores convert to CLB and CRS points. See what one extra band is worth and whether a retake beats every other point boost."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/crs-score-language-test")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/crs-score-language-test"
+            "href": "https://crscalculator.site/blog/crs-score-language-test"
       },
       {
             "rel": "icon",

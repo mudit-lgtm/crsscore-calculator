@@ -7,11 +7,11 @@ export const Route = createFileRoute("/alberta-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Alberta CRS Calculator 2026 \u2013 AAIP Express Entry Points Tool | Free Score Check"
+            "title": "Alberta CRS Score Calculator 2026 - AAIP Points"
       },
       {
             "name": "description",
-            "content": "Use our free Alberta CRS Calculator 2026 to check your AAIP Express Entry score instantly. Calculate Alberta PNP CRS points, see latest draw cutoffs, and find out if you qualify for the Alberta Advantage Immigration Program."
+            "content": "Alberta CRS score calculator for AAIP candidates. Score your Express Entry profile with the Alberta +600 nomination and see recent AAIP draw cutoffs."
       },
       {
             "name": "keywords",
@@ -19,15 +19,15 @@ export const Route = createFileRoute("/alberta-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Alberta CRS Calculator 2026 \u2013 Free AAIP Express Entry Points Tool"
+            "content": "Alberta CRS Score Calculator 2026 - AAIP Points"
       },
       {
             "property": "og:description",
-            "content": "Calculate your Alberta CRS score free. See if you qualify for the Alberta Advantage Immigration Program (AAIP) Express Entry stream in 2026."
+            "content": "Alberta CRS score calculator for AAIP candidates. Score your Express Entry profile with the Alberta +600 nomination and see recent AAIP draw cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/alberta-crs-calculator"
+            "content": "https://crscalculator.site/alberta-crs-calculator"
       },
       {
             "property": "og:type",
@@ -36,12 +36,15 @@ export const Route = createFileRoute("/alberta-crs-calculator")({
       {
             "property": "og:image",
             "content": "https://crscalculator.site/og-alberta.png"
-      }
+      },
+      { "name": "twitter:title", "content": "Alberta CRS Score Calculator 2026 - AAIP Points" },
+      { "name": "twitter:description", "content": "Alberta CRS score calculator for AAIP candidates. Score your Express Entry profile with the Alberta +600 nomination and see recent AAIP draw cutoffs." },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/alberta-crs-calculator"
+            "href": "https://crscalculator.site/alberta-crs-calculator"
       },
       {
             "rel": "preconnect",

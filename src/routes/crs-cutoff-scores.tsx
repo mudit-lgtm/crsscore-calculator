@@ -7,11 +7,11 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Cutoff Scores 2026 \u2013 Express Entry Draw Results History & Trends"
+            "title": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
       },
       {
             "name": "description",
-            "content": "Complete Express Entry CRS cutoff scores history 2015\u20132026. All draw results by type: All-program, CEC, FSW, PNP, French, STEM, Healthcare. Track CRS trends and predict your chances."
+            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
       },
       {
             "name": "keywords",
@@ -31,15 +31,15 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
       },
       {
             "property": "og:title",
-            "content": "CRS Cutoff Scores 2026 \u2013 Express Entry Draw Results History"
+            "content": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
       },
       {
             "property": "og:description",
-            "content": "All Express Entry CRS cutoff scores in one place. Latest draw results, trends, and category-based draw history for 2024\u20132026. Updated after every draw."
+            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
       },
       {
             "property": "og:url",
-            "content": "/crs-cutoff-scores"
+            "content": "https://crscalculator.site/crs-cutoff-scores"
       },
       {
             "property": "og:type",
@@ -55,17 +55,17 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Cutoff Scores 2026 \u2013 Express Entry Draw Results History"
+            "content": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
       },
       {
             "name": "twitter:description",
-            "content": "Complete Express Entry CRS cutoff history 2015\u20132026. Latest draw results, trends, and category analysis."
+            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
       }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/crs-cutoff-scores"
+            "href": "https://crscalculator.site/crs-cutoff-scores"
       },
       {
             "rel": "preconnect",

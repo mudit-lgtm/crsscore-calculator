@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
   head: () => ({
     meta: [
       {
-            "title": "Express Entry Cutoff History 2015\u20132026 \u2013 CRS Score Draw Results & Trends"
+            "title": "Express Entry Cutoff History - Every Draw Since 2015"
       },
       {
             "name": "description",
-            "content": "Complete Express Entry CRS cutoff score history 2015\u20132026. Every draw result, lowest and highest CRS scores, category-based draw trends, and what score you need for Canada PR in 2026. Updated monthly."
+            "content": "Full Express Entry cutoff history with trends by year and draw type. See where CRS cutoffs are heading in 2026 and what score keeps you competitive."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
       },
       {
             "property": "og:title",
-            "content": "Express Entry Cutoff History 2015\u20132026 \u2013 All CRS Draw Results"
+            "content": "Express Entry Cutoff History - Every Draw Since 2015"
       },
       {
             "property": "og:description",
-            "content": "Every Express Entry CRS cutoff score from 2015 to 2026. Lowest ever: 413 (Nov 2019). 2026 average: ~491. Full draw history table, yearly trends, and category-based draw analysis."
+            "content": "Full Express Entry cutoff history with trends by year and draw type. See where CRS cutoffs are heading in 2026 and what score keeps you competitive."
       },
       {
             "property": "og:url",
-            "content": "/blog/express-entry-cutoff-history"
+            "content": "https://crscalculator.site/blog/express-entry-cutoff-history"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
       },
       {
             "name": "twitter:title",
-            "content": "Express Entry Cutoff History 2015\u20132026 \u2013 CRS Score Trends"
+            "content": "Express Entry Cutoff History - Every Draw Since 2015"
       },
       {
             "name": "twitter:description",
-            "content": "Complete Express Entry CRS cutoff history. Lowest: 413 (2019). 2026 average: ~491. Full draw table, yearly breakdown, category draws, and what score you need today."
+            "content": "Full Express Entry cutoff history with trends by year and draw type. See where CRS cutoffs are heading in 2026 and what score keeps you competitive."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/express-entry-cutoff-history"
+            "href": "https://crscalculator.site/blog/express-entry-cutoff-history"
       },
       {
             "rel": "icon",

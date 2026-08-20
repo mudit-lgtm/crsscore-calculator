@@ -7,11 +7,11 @@ export const Route = createFileRoute("/healthcare-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Healthcare Workers CRS Calculator 2026 \u2013 Express Entry Points Tool | Canada Immigration"
+            "title": "Healthcare CRS Calculator 2026 - Category Draws"
       },
       {
             "name": "description",
-            "content": "Free Healthcare Workers CRS Calculator 2026 for Canada Express Entry. Calculate your CRS score for nurses, doctors, dentists, pharmacists & healthcare NOC codes. Check category-based draw eligibility instantly. No login required."
+            "content": "Healthcare category CRS calculator. Nurses, physicians and care workers: score your Express Entry profile and see healthcare draw cutoffs for 2026."
       },
       {
             "name": "keywords",
@@ -19,15 +19,15 @@ export const Route = createFileRoute("/healthcare-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Healthcare Workers CRS Calculator 2026 \u2013 Free Express Entry Points Tool"
+            "content": "Healthcare CRS Calculator 2026 - Category Draws"
       },
       {
             "property": "og:description",
-            "content": "Calculate your CRS score for Canada's Healthcare category-based Express Entry draws. Covers nurses, doctors, pharmacists, dentists and all healthcare NOC codes. Free, instant results."
+            "content": "Healthcare category CRS calculator. Nurses, physicians and care workers: score your Express Entry profile and see healthcare draw cutoffs for 2026."
       },
       {
             "property": "og:url",
-            "content": "/healthcare-crs-calculator"
+            "content": "https://crscalculator.site/healthcare-crs-calculator"
       },
       {
             "property": "og:type",
@@ -40,12 +40,14 @@ export const Route = createFileRoute("/healthcare-crs-calculator")({
       {
             "name": "twitter:card",
             "content": "summary_large_image"
-      }
+      },
+      { "name": "twitter:title", "content": "Healthcare CRS Calculator 2026 - Category Draws" },
+      { "name": "twitter:description", "content": "Healthcare category CRS calculator. Nurses, physicians and care workers: score your Express Entry profile and see healthcare draw cutoffs for 2026." }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/healthcare-crs-calculator"
+            "href": "https://crscalculator.site/healthcare-crs-calculator"
       },
       {
             "rel": "preconnect",

@@ -7,11 +7,11 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "IELTS to CRS Points Calculator 2026 \u2013 Express Entry Language Score Converter"
+            "title": "IELTS CRS Calculator - IELTS to CLB Points Tool"
       },
       {
             "name": "description",
-            "content": "Use this free IELTS to CRS points calculator to convert IELTS bands into CLB levels and estimate Express Entry CRS language points for Canada PR in 2026. Mobile-friendly, fast and updated."
+            "content": "Convert IELTS bands to CLB and see how many CRS points each score earns. Find out what a retake to CLB 9 is worth before you pay for another test."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "IELTS to CRS Points Calculator 2026 \u2013 Express Entry Language Score Converter"
+            "content": "IELTS CRS Calculator - IELTS to CLB Points Tool"
       },
       {
             "property": "og:description",
-            "content": "Convert IELTS scores to CLB and estimate CRS language points for Canada Express Entry."
+            "content": "Convert IELTS bands to CLB and see how many CRS points each score earns. Find out what a retake to CLB 9 is worth before you pay for another test."
       },
       {
             "property": "og:url",
-            "content": "/ielts-crs-calculator"
+            "content": "https://crscalculator.site/ielts-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
       },
       {
             "name": "twitter:title",
-            "content": "IELTS to CRS Points Calculator 2026 \u2013 Express Entry Language Score Converter"
+            "content": "IELTS CRS Calculator - IELTS to CLB Points Tool"
       },
       {
             "name": "twitter:description",
-            "content": "Free IELTS to CRS points calculator updated for Canada Express Entry 2026."
+            "content": "Convert IELTS bands to CLB and see how many CRS points each score earns. Find out what a retake to CLB 9 is worth before you pay for another test."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/ielts-crs-calculator"
+            "href": "https://crscalculator.site/ielts-crs-calculator"
       },
       {
             "rel": "icon",
@@ -90,7 +90,8 @@ export const Route = createFileRoute("/ielts-crs-calculator")({
       { type: "application/ld+json", children: "{\n    \"@context\":\"https://schema.org\",\n    \"@type\":\"BreadcrumbList\",\n    \"itemListElement\":[\n      {\n        \"@type\":\"ListItem\",\n        \"position\":1,\n        \"name\":\"Home\",\n        \"item\":\"/\"\n      },\n      {\n        \"@type\":\"ListItem\",\n        \"position\":2,\n        \"name\":\"Tools\",\n        \"item\":\"/tools\"\n      },\n      {\n        \"@type\":\"ListItem\",\n        \"position\":3,\n        \"name\":\"IELTS to CRS Points Calculator 2026\",\n        \"item\":\"/ielts-crs-calculator\"\n      }\n    ]\n  }" },
       { type: "application/ld+json", children: "{\n    \"@context\":\"https://schema.org\",\n    \"@type\":\"WebPage\",\n    \"name\":\"IELTS to CRS Points Calculator 2026 \u2013 Express Entry Language Score Converter\",\n    \"url\":\"/ielts-crs-calculator\",\n    \"description\":\"Convert IELTS scores to CLB levels and estimate Express Entry CRS language points for Canada PR in 2026.\",\n    \"isPartOf\":{\n      \"@type\":\"WebSite\",\n      \"name\":\"CRS Calculator\",\n      \"url\":\"/\"\n    },\n    \"about\":[\n      {\"@type\":\"Thing\",\"name\":\"IELTS to CRS calculator\"},\n      {\"@type\":\"Thing\",\"name\":\"IELTS CRS score calculator\"},\n      {\"@type\":\"Thing\",\"name\":\"IELTS score to CRS points calculator\"},\n      {\"@type\":\"Thing\",\"name\":\"Canada Express Entry language points\"}\n    ],\n    \"primaryImageOfPage\":\"/og-image.jpg\",\n    \"speakable\":{\n      \"@type\":\"SpeakableSpecification\",\n      \"cssSelector\":[\"h1\",\".hero p\",\".faq summary\"]\n    }\n  }" },
       { type: "application/ld+json", children: "{\n    \"@context\":\"https://schema.org\",\n    \"@type\":\"SoftwareApplication\",\n    \"name\":\"IELTS to CRS Points Calculator 2026\",\n    \"applicationCategory\":\"CalculatorApplication\",\n    \"operatingSystem\":\"Web\",\n    \"url\":\"/ielts-crs-calculator\",\n    \"description\":\"Free online calculator to convert IELTS bands to CLB levels and estimate CRS language points for Canada Express Entry.\",\n    \"offers\":{\n      \"@type\":\"Offer\",\n      \"price\":\"0\",\n      \"priceCurrency\":\"USD\"\n    },\n    \"publisher\":{\n      \"@type\":\"Organization\",\n      \"name\":\"CRS Calculator\",\n      \"url\":\"/\"\n    },\n    \"featureList\":[\n      \"IELTS to CLB conversion\",\n      \"CRS language points estimate\",\n      \"Single and spouse modes\",\n      \"Mobile-friendly calculator\",\n      \"Internal links to CRS tools\"\n    ]\n  }" },
-      { type: "application/ld+json", children: "{\n    \"@context\":\"https://schema.org\",\n    \"@type\":\"FAQPage\",\n    \"mainEntity\":[\n      {\n        \"@type\":\"Question\",\n        \"name\":\"How do I convert IELTS to CRS points?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"Convert each IELTS band to a CLB level first, then apply CRS language points according to whether you have an accompanying spouse.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"Is IELTS General or Academic used for Express Entry?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"Express Entry applicants generally use IELTS General Training for immigration language scoring.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"What IELTS score equals CLB 9?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"CLB 9 usually means Listening 8.0, Reading 7.0, Writing 7.0 and Speaking 7.0 in IELTS General Training.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"Does this page show my full CRS score?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"No. This page estimates first official language CRS points only. Use the full CRS calculator for total Express Entry score estimation.\"\n        }\n      }\n    ]\n  }" }
+      { type: "application/ld+json", children: "{\n    \"@context\":\"https://schema.org\",\n    \"@type\":\"FAQPage\",\n    \"mainEntity\":[\n      {\n        \"@type\":\"Question\",\n        \"name\":\"How do I convert IELTS to CRS points?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"Convert each IELTS band to a CLB level first, then apply CRS language points according to whether you have an accompanying spouse.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"Is IELTS General or Academic used for Express Entry?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"Express Entry applicants generally use IELTS General Training for immigration language scoring.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"What IELTS score equals CLB 9?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"CLB 9 usually means Listening 8.0, Reading 7.0, Writing 7.0 and Speaking 7.0 in IELTS General Training.\"\n        }\n      },\n      {\n        \"@type\":\"Question\",\n        \"name\":\"Does this page show my full CRS score?\",\n        \"acceptedAnswer\":{\n          \"@type\":\"Answer\",\n          \"text\":\"No. This page estimates first official language CRS points only. Use the full CRS calculator for total Express Entry score estimation.\"\n        }\n      }\n    ]\n  }" },
+      { type: "application/ld+json", children: "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"IELTS CRS Calculator - IELTS to CLB Points Tool\", \"url\": \"https://crscalculator.site/ielts-crs-calculator\", \"description\": \"Convert IELTS bands to CLB and see how many CRS points each score earns. Find out what a retake to CLB 9 is worth before you pay for another test.\", \"applicationCategory\": \"UtilityApplication\", \"operatingSystem\": \"All\", \"browserRequirements\": \"Requires JavaScript\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"CAD\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"CRS Score Calculator\", \"url\": \"https://crscalculator.site/\"}}" }
     ],
   }),
   component: Page,

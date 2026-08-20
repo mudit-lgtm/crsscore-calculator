@@ -7,11 +7,11 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
   head: () => ({
     meta: [
       {
-            "title": "How CRS Score is Calculated 2026 \u2013 Full Express Entry Breakdown"
+            "title": "How is CRS Calculated? 2026 Points Breakdown"
       },
       {
             "name": "description",
-            "content": "How is the CRS score calculated in 2026? Full breakdown of all CRS factors \u2014 age, education, language CLB, Canadian work experience, spouse points, skill transferability and bonus points. With free calculator."
+            "content": "How CRS is calculated section by section: age, language, education, work and the +600 extras. Learn to calculate your CRS score with worked examples."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
       },
       {
             "property": "og:title",
-            "content": "How CRS Score is Calculated 2026 \u2013 Full Express Entry Breakdown"
+            "content": "How is CRS Calculated? 2026 Points Breakdown"
       },
       {
             "property": "og:description",
-            "content": "How is CRS calculated? Full breakdown of all Express Entry CRS factors: age, education, language, Canadian experience, spouse, skill transferability, job offer, PNP nomination."
+            "content": "How CRS is calculated section by section: age, language, education, work and the +600 extras. Learn to calculate your CRS score with worked examples."
       },
       {
             "property": "og:url",
-            "content": "/how-crs-is-calculated"
+            "content": "https://crscalculator.site/how-crs-is-calculated"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
       },
       {
             "name": "twitter:title",
-            "content": "How CRS Score is Calculated 2026 \u2013 Full Express Entry Breakdown"
+            "content": "How is CRS Calculated? 2026 Points Breakdown"
       },
       {
             "name": "twitter:description",
-            "content": "How is CRS calculated? Full breakdown of all Express Entry factors \u2014 age, education, language, experience, spouse, PNP and bonus points."
+            "content": "How CRS is calculated section by section: age, language, education, work and the +600 extras. Learn to calculate your CRS score with worked examples."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
     links: [
       {
             "rel": "canonical",
-            "href": "/how-crs-is-calculated"
+            "href": "https://crscalculator.site/how-crs-is-calculated"
       },
       {
             "rel": "icon",

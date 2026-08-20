@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       {
-            "title": "Blog \u2013 Canada Express Entry CRS Score Tips & Updates"
+            "title": "CRS & Express Entry Blog - Draws, Points, Score Tips"
       },
       {
             "name": "description",
-            "content": "Read the latest Canada Express Entry CRS score tips, draw updates, cutoff trends, and PR strategy guides. Explore CRS improvement tips, minimum CRS score guides, spouse, age, language, education, and Express Entry cutoff history."
+            "content": "Express Entry guides written for real applicants: CRS cutoffs, age and education points, spouse factors, and proven ways to boost your score."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/")({
       },
       {
             "property": "og:title",
-            "content": "Blog \u2013 Canada Express Entry CRS Score Tips & Updates"
+            "content": "CRS & Express Entry Blog - Draws, Points, Score Tips"
       },
       {
             "property": "og:description",
-            "content": "Explore Canada PR, Express Entry, CRS score improvement, draw cutoffs, language points, spouse points, age points, education points, and PNP strategy guides."
+            "content": "Express Entry guides written for real applicants: CRS cutoffs, age and education points, spouse factors, and proven ways to boost your score."
       },
       {
             "property": "og:url",
-            "content": "/blog"
+            "content": "https://crscalculator.site/blog"
       },
       {
             "property": "og:site_name",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/blog/")({
       },
       {
             "name": "twitter:title",
-            "content": "Blog \u2013 Canada Express Entry CRS Score Tips & Updates"
+            "content": "CRS & Express Entry Blog - Draws, Points, Score Tips"
       },
       {
             "name": "twitter:description",
-            "content": "Latest CRS score tips, Express Entry draw updates, cutoff guides, and Canada PR strategy articles."
+            "content": "Express Entry guides written for real applicants: CRS cutoffs, age and education points, spouse factors, and proven ways to boost your score."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/blog/")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog"
+            "href": "https://crscalculator.site/blog"
       },
       {
             "rel": "icon",

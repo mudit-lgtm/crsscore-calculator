@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/crs-draw-predictions")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Draw Predictions 2026 \u2013 Canada Express Entry Cutoff Score Forecast"
+            "title": "Express Entry Draw Predictions 2026 - CRS Forecast"
       },
       {
             "name": "description",
-            "content": "CRS draw predictions for Canada Express Entry 2026. Forecast cutoff scores for all-program, CEC, French-language and category-based draws. Based on historical IRCC draw data, immigration targets and trend analysis."
+            "content": "Data-driven Express Entry draw predictions for 2026: expected CRS cutoffs, draw sizes and category timing based on IRCC levels plan targets."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/crs-draw-predictions")({
       },
       {
             "property": "og:title",
-            "content": "CRS Draw Predictions 2026 \u2013 Express Entry Cutoff Score Forecast"
+            "content": "Express Entry Draw Predictions 2026 - CRS Forecast"
       },
       {
             "property": "og:description",
-            "content": "CRS score predictions for Canada Express Entry draws in 2026. Forecasts for all-program, CEC, French and category-based draws based on IRCC historical data."
+            "content": "Data-driven Express Entry draw predictions for 2026: expected CRS cutoffs, draw sizes and category timing based on IRCC levels plan targets."
       },
       {
             "property": "og:url",
-            "content": "/blog/crs-draw-predictions"
+            "content": "https://crscalculator.site/blog/crs-draw-predictions"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/crs-draw-predictions")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Draw Predictions 2026 \u2013 Canada Express Entry Forecast"
+            "content": "Express Entry Draw Predictions 2026 - CRS Forecast"
       },
       {
             "name": "twitter:description",
-            "content": "CRS draw predictions 2026 for all-program, CEC, French and category draws. Based on IRCC historical trends."
+            "content": "Data-driven Express Entry draw predictions for 2026: expected CRS cutoffs, draw sizes and category timing based on IRCC levels plan targets."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/crs-draw-predictions")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/crs-draw-predictions"
+            "href": "https://crscalculator.site/blog/crs-draw-predictions"
       },
       {
             "rel": "icon",
