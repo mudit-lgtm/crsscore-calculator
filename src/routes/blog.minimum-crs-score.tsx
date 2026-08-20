@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
   head: () => ({
     meta: [
       {
-            "title": "Minimum CRS Score for Canada PR 2026 \u2013 What Score Do You Need for Express Entry?"
+            "title": "Minimum CRS Score 2026 - What Score Gets an ITA?"
       },
       {
             "name": "description",
-            "content": "What is the minimum CRS score for Canada PR in 2026? No fixed minimum exists \u2014 but general draws average 491, French draws cut at 393, trades at 388. Full 2026 score guide, pathway comparison, and interactive eligibility checker."
+            "content": "The minimum CRS score for an ITA in 2026, by draw type. Realistic targets for CEC, PNP, French and category draws - plus how to actually reach them."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
       },
       {
             "property": "og:title",
-            "content": "Minimum CRS Score for Canada PR 2026 \u2013 Express Entry Score Requirements"
+            "content": "Minimum CRS Score 2026 - What Score Gets an ITA?"
       },
       {
             "property": "og:description",
-            "content": "No fixed minimum CRS score for Canada PR exists. General draws cut at ~491 in 2026. French language draws at 393. Trades draws at 388. Full pathway guide + interactive eligibility checker."
+            "content": "The minimum CRS score for an ITA in 2026, by draw type. Realistic targets for CEC, PNP, French and category draws - plus how to actually reach them."
       },
       {
             "property": "og:url",
-            "content": "/blog/minimum-crs-score"
+            "content": "https://crscalculator.site/blog/minimum-crs-score"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
       },
       {
             "name": "twitter:title",
-            "content": "Minimum CRS Score for Canada PR 2026 \u2013 What Score Do You Need?"
+            "content": "Minimum CRS Score 2026 - What Score Gets an ITA?"
       },
       {
             "name": "twitter:description",
-            "content": "No fixed minimum CRS score. 2026 general draw avg ~491. French draws 393+. Trades 388+. PNP +600 pts overrides everything. Full guide + score checker."
+            "content": "The minimum CRS score for an ITA in 2026, by draw type. Realistic targets for CEC, PNP, French and category draws - plus how to actually reach them."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/minimum-crs-score")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/minimum-crs-score"
+            "href": "https://crscalculator.site/blog/minimum-crs-score"
       },
       {
             "rel": "icon",

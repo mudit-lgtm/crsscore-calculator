@@ -7,11 +7,11 @@ export const Route = createFileRoute("/how-to-improve-crs-score")({
   head: () => ({
     meta: [
       {
-            "title": "How to Improve CRS Score 2026 \u2013 10 Proven Ways to Increase Points"
+            "title": "How to Improve CRS Score - 10 Proven Point Boosts"
       },
       {
             "name": "description",
-            "content": "How to improve your CRS score for Canada Express Entry 2026. 10 proven strategies including IELTS improvement, Canadian work experience, PNP nomination, French bonus and more. Free boost planner included."
+            "content": "Improve your CRS score fast: a language retake worth up to 50 points, PNP +600, the French bonus and more - each ranked by points gained vs effort."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/how-to-improve-crs-score")({
       },
       {
             "property": "og:title",
-            "content": "How to Improve CRS Score 2026 \u2013 10 Proven Ways to Increase Points"
+            "content": "How to Improve CRS Score - 10 Proven Point Boosts"
       },
       {
             "property": "og:description",
-            "content": "10 proven strategies to improve your CRS score for Canada Express Entry 2026: IELTS, PNP, French, Canadian experience, job offer and more."
+            "content": "Improve your CRS score fast: a language retake worth up to 50 points, PNP +600, the French bonus and more - each ranked by points gained vs effort."
       },
       {
             "property": "og:url",
-            "content": "/how-to-improve-crs-score"
+            "content": "https://crscalculator.site/how-to-improve-crs-score"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/how-to-improve-crs-score")({
       },
       {
             "name": "twitter:title",
-            "content": "How to Improve CRS Score 2026 \u2013 10 Proven Ways"
+            "content": "How to Improve CRS Score - 10 Proven Point Boosts"
       },
       {
             "name": "twitter:description",
-            "content": "10 proven strategies to improve your CRS score for Canada Express Entry 2026."
+            "content": "Improve your CRS score fast: a language retake worth up to 50 points, PNP +600, the French bonus and more - each ranked by points gained vs effort."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/how-to-improve-crs-score")({
     links: [
       {
             "rel": "canonical",
-            "href": "/how-to-improve-crs-score"
+            "href": "https://crscalculator.site/how-to-improve-crs-score"
       },
       {
             "rel": "icon",

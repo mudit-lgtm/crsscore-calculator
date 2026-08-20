@@ -7,7 +7,7 @@ export const Route = createFileRoute("/express-entry-draw-results")({
   head: () => ({
     meta: [
       {
-            "title": "Express Entry Draw Results \u2013 Latest CRS Cutoff & Invitations"
+            "title": "Express Entry Draw Results 2026 - Full Draw History"
       },
       {
             "name": "robots",
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/express-entry-draw-results")({
       },
       {
             "name": "description",
-            "content": "Latest Express Entry draw results with minimum CRS cutoff scores and number of invitations issued. Track all ITA draws and cutoff trends."
+            "content": "Latest Express Entry draw results: date, category, ITAs issued and CRS cutoff. Updated after every IRCC draw so you can see where the score is heading."
       },
       {
             "property": "og:type",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/express-entry-draw-results")({
       },
       {
             "property": "og:title",
-            "content": "Express Entry Draw Results \u2013 Latest CRS Cutoff & Invitations"
+            "content": "Express Entry Draw Results 2026 - Full Draw History"
       },
       {
             "property": "og:description",
-            "content": "Latest Express Entry draw results with minimum CRS cutoff scores and number of invitations issued. Track all ITA draws and cutoff trends."
+            "content": "Latest Express Entry draw results: date, category, ITAs issued and CRS cutoff. Updated after every IRCC draw so you can see where the score is heading."
       },
       {
             "property": "og:url",
-            "content": "/express-entry-draw-results"
+            "content": "https://crscalculator.site/express-entry-draw-results"
       },
       {
             "property": "og:image",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/express-entry-draw-results")({
       },
       {
             "name": "twitter:title",
-            "content": "Express Entry Draw Results \u2013 Latest CRS Cutoff & Invitations"
+            "content": "Express Entry Draw Results 2026 - Full Draw History"
       },
       {
             "name": "twitter:description",
-            "content": "Latest Express Entry draw results with minimum CRS cutoff scores and number of invitations issued. Track all ITA draws and cutoff trends."
+            "content": "Latest Express Entry draw results: date, category, ITAs issued and CRS cutoff. Updated after every IRCC draw so you can see where the score is heading."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/express-entry-draw-results")({
     links: [
       {
             "rel": "canonical",
-            "href": "/express-entry-draw-results"
+            "href": "https://crscalculator.site/express-entry-draw-results"
       },
       {
             "rel": "icon",

@@ -7,11 +7,11 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Nova Scotia CRS Calculator 2026 \u2013 NSNP Express Entry Stream Points Tool"
+            "title": "Nova Scotia CRS Calculator 2026 - NSNP Points"
       },
       {
             "name": "description",
-            "content": "Free Nova Scotia CRS calculator 2026. Estimate your NSNP Express Entry Stream CRS score with age, education, language CLB, and work experience points. Mobile-friendly, instant results."
+            "content": "Nova Scotia CRS calculator for NSNP candidates. Calculate your Express Entry score with the +600 nomination and check current Nova Scotia cutoffs."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Nova Scotia CRS Calculator 2026 \u2013 NSNP Express Entry Stream Points Tool"
+            "content": "Nova Scotia CRS Calculator 2026 - NSNP Points"
       },
       {
             "property": "og:description",
-            "content": "Estimate your Nova Scotia PNP Express Entry Stream CRS score free. Updated 2026, instant and mobile-friendly."
+            "content": "Nova Scotia CRS calculator for NSNP candidates. Calculate your Express Entry score with the +600 nomination and check current Nova Scotia cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/nova-scotia-crs-calculator"
+            "content": "https://crscalculator.site/nova-scotia-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
       },
       {
             "name": "twitter:title",
-            "content": "Nova Scotia CRS Calculator 2026 \u2013 NSNP Express Entry Stream Points Tool"
+            "content": "Nova Scotia CRS Calculator 2026 - NSNP Points"
       },
       {
             "name": "twitter:description",
-            "content": "Free NSNP CRS calculator updated for Canada Express Entry 2026."
+            "content": "Nova Scotia CRS calculator for NSNP candidates. Calculate your Express Entry score with the +600 nomination and check current Nova Scotia cutoffs."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/nova-scotia-crs-calculator"
+            "href": "https://crscalculator.site/nova-scotia-crs-calculator"
       },
       {
             "rel": "icon",
@@ -90,7 +90,8 @@ export const Route = createFileRoute("/nova-scotia-crs-calculator")({
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"/\" },\n    { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"PNP Calculators\", \"item\": \"/pnp-crs-calculator\" },\n    { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Nova Scotia CRS Calculator\", \"item\": \"/nova-scotia-crs-calculator\" }\n  ]\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Nova Scotia CRS Calculator 2026 \u2013 NSNP Express Entry Stream Points Tool\",\n  \"url\": \"/nova-scotia-crs-calculator\",\n  \"description\": \"Free Nova Scotia CRS calculator for NSNP Express Entry Stream. Estimate your Canada PR CRS score with education, language CLB, work experience and age points.\",\n  \"isPartOf\": { \"@type\": \"WebSite\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"about\": [\n    { \"@type\": \"Thing\", \"name\": \"Nova Scotia CRS calculator\" },\n    { \"@type\": \"Thing\", \"name\": \"NSNP Express Entry Stream\" },\n    { \"@type\": \"Thing\", \"name\": \"Nova Scotia PNP CRS score\" },\n    { \"@type\": \"Thing\", \"name\": \"Canada Express Entry CRS points\" },\n    { \"@type\": \"Thing\", \"name\": \"Nova Scotia Nominee Program\" }\n  ],\n  \"speakable\": {\n    \"@type\": \"SpeakableSpecification\",\n    \"cssSelector\": [\"h1\", \".hero p\", \".faq summary\"]\n  }\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"SoftwareApplication\",\n  \"name\": \"Nova Scotia CRS Calculator 2026\",\n  \"applicationCategory\": \"CalculatorApplication\",\n  \"operatingSystem\": \"Web\",\n  \"url\": \"/nova-scotia-crs-calculator\",\n  \"description\": \"Free Nova Scotia NSNP Express Entry Stream CRS calculator. Estimate your Canada PR score instantly with age, education, language CLB and work experience.\",\n  \"offers\": { \"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"USD\" },\n  \"publisher\": { \"@type\": \"Organization\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"featureList\": [\n    \"Nova Scotia NSNP CRS score estimation\",\n    \"NSNP Express Entry Stream points\",\n    \"Language CLB to CRS conversion\",\n    \"600-point NSNP nomination bonus\",\n    \"Three-level eligibility banner\",\n    \"Mobile-friendly instant calculation\"\n  ]\n}" },
-      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Nova Scotia CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your CRS score for the NSNP Express Entry Stream to assess your chances of receiving a Nova Scotia provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Nova Scotia?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 is competitive for the NSNP pool. A provincial nomination adds 600 CRS points, making almost any candidate competitive for a federal Invitation to Apply.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Nova Scotia use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The NSNP Express Entry Stream uses the standard federal CRS framework. Nova Scotia adds 600 CRS points when it nominates a candidate via the NSNP.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How can I improve my Nova Scotia CRS score?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Improve your IELTS score to CLB 9+, gain Canadian work experience, complete a Canadian credential, or obtain an LMIA-backed job offer in Nova Scotia.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Nova Scotia CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool uses the official IRCC CRS points grid for a reliable estimate. Always verify with the IRCC official CRS tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" }
+      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Nova Scotia CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your CRS score for the NSNP Express Entry Stream to assess your chances of receiving a Nova Scotia provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Nova Scotia?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 is competitive for the NSNP pool. A provincial nomination adds 600 CRS points, making almost any candidate competitive for a federal Invitation to Apply.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Nova Scotia use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The NSNP Express Entry Stream uses the standard federal CRS framework. Nova Scotia adds 600 CRS points when it nominates a candidate via the NSNP.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"How can I improve my Nova Scotia CRS score?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Improve your IELTS score to CLB 9+, gain Canadian work experience, complete a Canadian credential, or obtain an LMIA-backed job offer in Nova Scotia.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Nova Scotia CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool uses the official IRCC CRS points grid for a reliable estimate. Always verify with the IRCC official CRS tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" },
+      { type: "application/ld+json", children: "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Nova Scotia CRS Calculator 2026 - NSNP Points\", \"url\": \"https://crscalculator.site/nova-scotia-crs-calculator\", \"description\": \"Nova Scotia CRS calculator for NSNP candidates. Calculate your Express Entry score with the +600 nomination and check current Nova Scotia cutoffs.\", \"applicationCategory\": \"UtilityApplication\", \"operatingSystem\": \"All\", \"browserRequirements\": \"Requires JavaScript\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"CAD\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"CRS Score Calculator\", \"url\": \"https://crscalculator.site/\"}}" }
     ],
   }),
   component: Page,

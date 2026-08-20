@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/crs-score-with-spouse")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Score with Spouse 2026 \u2013 Canada Express Entry Points for Married Couples"
+            "title": "CRS Score With Spouse - Married vs Single Points"
       },
       {
             "name": "description",
-            "content": "How does having a spouse affect your CRS score? Complete 2026 guide to Express Entry CRS points for married couples. See spouse language, education, and work experience points. Interactive CRS with spouse calculator included."
+            "content": "How a spouse changes your CRS score, which partner should be principal applicant, and when a single profile scores higher. With worked examples."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/crs-score-with-spouse")({
       },
       {
             "property": "og:title",
-            "content": "CRS Score with Spouse 2026 \u2013 Express Entry Points for Married Couples"
+            "content": "CRS Score With Spouse - Married vs Single Points"
       },
       {
             "property": "og:description",
-            "content": "CRS score with spouse 2026: married applicants score lower on core factors but gain up to 40 spouse bonus points. Full points table, spouse language/education/work exp breakdown, and interactive calculator."
+            "content": "How a spouse changes your CRS score, which partner should be principal applicant, and when a single profile scores higher. With worked examples."
       },
       {
             "property": "og:url",
-            "content": "/blog/crs-score-with-spouse"
+            "content": "https://crscalculator.site/blog/crs-score-with-spouse"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/crs-score-with-spouse")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Score with Spouse 2026 \u2013 Express Entry Points for Married Couples"
+            "content": "CRS Score With Spouse - Married vs Single Points"
       },
       {
             "name": "twitter:description",
-            "content": "Married couples applying for Express Entry get lower core language/education pts but up to 40 spouse bonus pts. Full 2026 table + interactive checker."
+            "content": "How a spouse changes your CRS score, which partner should be principal applicant, and when a single profile scores higher. With worked examples."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/crs-score-with-spouse")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/crs-score-with-spouse"
+            "href": "https://crscalculator.site/blog/crs-score-with-spouse"
       },
       {
             "rel": "icon",

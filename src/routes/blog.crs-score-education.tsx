@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/crs-score-education")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Score for Education 2026 \u2013 How Education Affects Canada Express Entry Points"
+            "title": "CRS Points for Education - Degrees, ECA and Bonuses"
       },
       {
             "name": "description",
-            "content": "How does education affect CRS score? Full 2026 breakdown of CRS education points for Express Entry. See how many points you get for a PhD, Master's, Bachelor's, diploma and high school. Official IRCC education points table with interactive checker."
+            "content": "How many CRS points each education level earns, plus ECA rules and Canadian study bonuses. Find out what a second degree is really worth in points."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/crs-score-education")({
       },
       {
             "property": "og:title",
-            "content": "CRS Score for Education 2026 \u2013 Express Entry Education Points Table"
+            "content": "CRS Points for Education - Degrees, ECA and Bonuses"
       },
       {
             "property": "og:description",
-            "content": "CRS education points 2026 for Canada Express Entry. PhD earns 150 pts, Master's 135 pts, 3-year Bachelor's 120 pts, 1-year diploma 90 pts, high school 28 pts. Full IRCC table + interactive checker."
+            "content": "How many CRS points each education level earns, plus ECA rules and Canadian study bonuses. Find out what a second degree is really worth in points."
       },
       {
             "property": "og:url",
-            "content": "/blog/crs-score-education"
+            "content": "https://crscalculator.site/blog/crs-score-education"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/crs-score-education")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Score for Education 2026 \u2013 Express Entry Education Points"
+            "content": "CRS Points for Education - Degrees, ECA and Bonuses"
       },
       {
             "name": "twitter:description",
-            "content": "CRS education points table 2026. PhD=150, Master's=135, Bachelor's=120, Diploma=90, High School=28. Full guide + interactive checker."
+            "content": "How many CRS points each education level earns, plus ECA rules and Canadian study bonuses. Find out what a second degree is really worth in points."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/crs-score-education")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/crs-score-education"
+            "href": "https://crscalculator.site/blog/crs-score-education"
       },
       {
             "rel": "icon",

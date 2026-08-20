@@ -7,11 +7,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Calculator 2026 \u2013 Free Canada Express Entry Score Tool"
+            "title": "CRS Calculator 2026 - Free Express Entry Score Tool"
       },
       {
             "name": "description",
-            "content": "Free CRS calculator 2026 for Canada Express Entry. Calculate your Comprehensive Ranking System score instantly \u2014 no login needed. Full section breakdown, updated IRCC grid."
+            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
       },
       {
             "name": "keywords",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/")({
       },
       {
             "property": "og:title",
-            "content": "CRS Calculator 2026 \u2013 Free Canada Express Entry Score Tool"
+            "content": "CRS Calculator 2026 - Free Express Entry Score Tool"
       },
       {
             "property": "og:description",
-            "content": "Calculate your CRS score instantly. Free Canada Express Entry CRS calculator \u2014 no signup required."
+            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
       },
       {
             "property": "og:url",
-            "content": "/"
+            "content": "https://crscalculator.site/"
       },
       {
             "property": "og:site_name",
@@ -55,17 +55,17 @@ export const Route = createFileRoute("/")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Calculator 2026 \u2013 Free Canada Express Entry Score Tool"
+            "content": "CRS Calculator 2026 - Free Express Entry Score Tool"
       },
       {
             "name": "twitter:description",
-            "content": "Free CRS score calculator for Canada Express Entry 2026. Instant results, full breakdown."
+            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
       }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/"
+            "href": "https://crscalculator.site/"
       },
       {
             "rel": "preconnect",

@@ -7,11 +7,11 @@ export const Route = createFileRoute("/ontario-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Ontario CRS Calculator 2026 \u2013 Free OINP Express Entry Points Tool | Score Check"
+            "title": "Ontario CRS Calculator 2026 - OINP Points Tool"
       },
       {
             "name": "description",
-            "content": "Use our free Ontario CRS Calculator 2026 to check your OINP Express Entry score instantly. Calculate CRS points for Ontario Human Capital Priorities Stream, see latest draw cutoffs, and find if you qualify for Ontario PNP."
+            "content": "Ontario CRS calculator for OINP applicants. Calculate your Express Entry score with the +600 Ontario nomination and check current OINP draw cutoffs."
       },
       {
             "name": "keywords",
@@ -19,25 +19,28 @@ export const Route = createFileRoute("/ontario-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Ontario CRS Calculator 2026 \u2013 Free OINP Express Entry Points Tool"
+            "content": "Ontario CRS Calculator 2026 - OINP Points Tool"
       },
       {
             "property": "og:description",
-            "content": "Calculate your Ontario CRS score free. Check if you qualify for OINP Human Capital Priorities Stream with updated 2026 draw results."
+            "content": "Ontario CRS calculator for OINP applicants. Calculate your Express Entry score with the +600 Ontario nomination and check current OINP draw cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/ontario-crs-calculator"
+            "content": "https://crscalculator.site/ontario-crs-calculator"
       },
       {
             "property": "og:type",
             "content": "website"
-      }
+      },
+      { "name": "twitter:title", "content": "Ontario CRS Calculator 2026 - OINP Points Tool" },
+      { "name": "twitter:description", "content": "Ontario CRS calculator for OINP applicants. Calculate your Express Entry score with the +600 Ontario nomination and check current OINP draw cutoffs." },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/ontario-crs-calculator"
+            "href": "https://crscalculator.site/ontario-crs-calculator"
       },
       {
             "rel": "preconnect",

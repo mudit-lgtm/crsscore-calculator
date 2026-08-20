@@ -7,11 +7,11 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
   head: () => ({
     meta: [
       {
-            "title": "Canada Express Entry Eligibility 2026 \u2013 Requirements & CRS Criteria"
+            "title": "Express Entry Eligibility 2026 - Check If You Qualify"
       },
       {
             "name": "description",
-            "content": "Complete guide to Canada Express Entry eligibility 2026. Learn FSW, CEC and FST requirements, CRS criteria, language scores, work experience rules and how to check your score."
+            "content": "Check Canada Express Entry eligibility in minutes: program rules, NOC, language and proof of funds. See which stream fits before you build a profile."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
       },
       {
             "property": "og:title",
-            "content": "Canada Express Entry Eligibility 2026 \u2013 Requirements & CRS Criteria"
+            "content": "Express Entry Eligibility 2026 - Check If You Qualify"
       },
       {
             "property": "og:description",
-            "content": "Learn who qualifies for Canada Express Entry 2026. FSW, CEC, FST requirements, CRS score criteria, language CLB, and work experience rules explained."
+            "content": "Check Canada Express Entry eligibility in minutes: program rules, NOC, language and proof of funds. See which stream fits before you build a profile."
       },
       {
             "property": "og:url",
-            "content": "/canada-express-entry-eligibility"
+            "content": "https://crscalculator.site/canada-express-entry-eligibility"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
       },
       {
             "name": "twitter:title",
-            "content": "Canada Express Entry Eligibility 2026 \u2013 Requirements & CRS Criteria"
+            "content": "Express Entry Eligibility 2026 - Check If You Qualify"
       },
       {
             "name": "twitter:description",
-            "content": "Who qualifies for Canada Express Entry 2026? FSW, CEC, FST requirements and CRS criteria explained."
+            "content": "Check Canada Express Entry eligibility in minutes: program rules, NOC, language and proof of funds. See which stream fits before you build a profile."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/canada-express-entry-eligibility")({
     links: [
       {
             "rel": "canonical",
-            "href": "/canada-express-entry-eligibility"
+            "href": "https://crscalculator.site/canada-express-entry-eligibility"
       },
       {
             "rel": "icon",

@@ -7,11 +7,11 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "Saskatchewan CRS Calculator 2026 \u2013 SINP Express Entry Points Tool"
+            "title": "Saskatchewan CRS Calculator 2026 - SINP Points"
       },
       {
             "name": "description",
-            "content": "Free Saskatchewan CRS calculator 2026. Estimate your SINP Express Entry Stream CRS score with age, education, language CLB, and work experience points. Instant results, mobile-friendly."
+            "content": "Saskatchewan CRS calculator for SINP candidates. Calculate your Express Entry score with the +600 SINP nomination and check the current SINP cutoffs."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "Saskatchewan CRS Calculator 2026 \u2013 SINP Express Entry Points Tool"
+            "content": "Saskatchewan CRS Calculator 2026 - SINP Points"
       },
       {
             "property": "og:description",
-            "content": "Estimate your Saskatchewan SINP Express Entry Stream CRS score. Free, instant, mobile-friendly."
+            "content": "Saskatchewan CRS calculator for SINP candidates. Calculate your Express Entry score with the +600 SINP nomination and check the current SINP cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/saskatchewan-crs-calculator"
+            "content": "https://crscalculator.site/saskatchewan-crs-calculator"
       },
       {
             "property": "og:site_name",
@@ -59,11 +59,11 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
       },
       {
             "name": "twitter:title",
-            "content": "Saskatchewan CRS Calculator 2026 \u2013 SINP Express Entry Points Tool"
+            "content": "Saskatchewan CRS Calculator 2026 - SINP Points"
       },
       {
             "name": "twitter:description",
-            "content": "Free SINP CRS calculator updated for Canada Express Entry 2026."
+            "content": "Saskatchewan CRS calculator for SINP candidates. Calculate your Express Entry score with the +600 SINP nomination and check the current SINP cutoffs."
       },
       {
             "name": "twitter:image",
@@ -73,7 +73,7 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
     links: [
       {
             "rel": "canonical",
-            "href": "/saskatchewan-crs-calculator"
+            "href": "https://crscalculator.site/saskatchewan-crs-calculator"
       },
       {
             "rel": "icon",
@@ -90,7 +90,8 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    { \"@type\": \"ListItem\", \"position\": 1, \"name\": \"Home\", \"item\": \"/\" },\n    { \"@type\": \"ListItem\", \"position\": 2, \"name\": \"PNP Calculators\", \"item\": \"/pnp-crs-calculator\" },\n    { \"@type\": \"ListItem\", \"position\": 3, \"name\": \"Saskatchewan CRS Calculator\", \"item\": \"/saskatchewan-crs-calculator\" }\n  ]\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Saskatchewan CRS Calculator 2026 \u2013 SINP Express Entry Points Tool\",\n  \"url\": \"/saskatchewan-crs-calculator\",\n  \"description\": \"Free Saskatchewan SINP CRS calculator. Estimate your Canada PR score with education, language CLB, work experience and age points for the SINP Express Entry stream.\",\n  \"isPartOf\": { \"@type\": \"WebSite\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"about\": [\n    { \"@type\": \"Thing\", \"name\": \"Saskatchewan CRS calculator\" },\n    { \"@type\": \"Thing\", \"name\": \"SINP Express Entry Sub-Category\" },\n    { \"@type\": \"Thing\", \"name\": \"Saskatchewan PNP CRS score\" },\n    { \"@type\": \"Thing\", \"name\": \"Canada Express Entry CRS points\" }\n  ],\n  \"speakable\": {\n    \"@type\": \"SpeakableSpecification\",\n    \"cssSelector\": [\"h1\", \".hero p\", \".faq summary\"]\n  }\n}" },
       { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"SoftwareApplication\",\n  \"name\": \"Saskatchewan CRS Calculator 2026\",\n  \"applicationCategory\": \"CalculatorApplication\",\n  \"operatingSystem\": \"Web\",\n  \"url\": \"/saskatchewan-crs-calculator\",\n  \"description\": \"Free Saskatchewan SINP Express Entry CRS calculator. Estimate Canada PR CRS score instantly with age, education, language CLB and work experience.\",\n  \"offers\": { \"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"USD\" },\n  \"publisher\": { \"@type\": \"Organization\", \"name\": \"CRS Calculator\", \"url\": \"/\" },\n  \"featureList\": [\n    \"Saskatchewan SINP CRS score estimation\",\n    \"SINP Express Entry Sub-Category points\",\n    \"Language CLB to CRS conversion\",\n    \"600-point SINP nomination bonus\",\n    \"Saskatchewan connection bonus field\",\n    \"Three-level eligibility banner\",\n    \"Auto-calculates on dropdown change\"\n  ]\n}" },
-      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Saskatchewan CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your CRS score for the SINP Express Entry Sub-Category to assess your chances of receiving a Saskatchewan provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Saskatchewan?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 is competitive for the SINP pool. A SINP nomination adds 600 CRS bonus points, making almost any profile competitive for a federal Invitation to Apply.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Saskatchewan use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The SINP Express Entry Sub-Category uses the standard federal CRS. Saskatchewan adds 600 CRS points when it nominates a candidate.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What occupations does Saskatchewan target through SINP?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Saskatchewan prioritises healthcare, agriculture, trucking and transportation, skilled trades, and technology workers whose skills match provincial labour market needs.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Saskatchewan CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool uses the official IRCC CRS points grid and SINP guidelines for a reliable estimate. Always verify with the IRCC official CRS tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" }
+      { type: "application/ld+json", children: "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is the Saskatchewan CRS calculator?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"It estimates your CRS score for the SINP Express Entry Sub-Category to assess your chances of receiving a Saskatchewan provincial nomination for Canada PR.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What is a good CRS score for Saskatchewan?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"A score above 450 is competitive for the SINP pool. A SINP nomination adds 600 CRS bonus points, making almost any profile competitive for a federal Invitation to Apply.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Does Saskatchewan use the federal CRS?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Yes. The SINP Express Entry Sub-Category uses the standard federal CRS. Saskatchewan adds 600 CRS points when it nominates a candidate.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"What occupations does Saskatchewan target through SINP?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"Saskatchewan prioritises healthcare, agriculture, trucking and transportation, skilled trades, and technology workers whose skills match provincial labour market needs.\" }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Is this Saskatchewan CRS calculator accurate?\",\n      \"acceptedAnswer\": { \"@type\": \"Answer\", \"text\": \"This tool uses the official IRCC CRS points grid and SINP guidelines for a reliable estimate. Always verify with the IRCC official CRS tool before filing your Express Entry profile.\" }\n    }\n  ]\n}" },
+      { type: "application/ld+json", children: "{\"@context\": \"https://schema.org\", \"@type\": \"WebApplication\", \"name\": \"Saskatchewan CRS Calculator 2026 - SINP Points\", \"url\": \"https://crscalculator.site/saskatchewan-crs-calculator\", \"description\": \"Saskatchewan CRS calculator for SINP candidates. Calculate your Express Entry score with the +600 SINP nomination and check the current SINP cutoffs.\", \"applicationCategory\": \"UtilityApplication\", \"operatingSystem\": \"All\", \"browserRequirements\": \"Requires JavaScript\", \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"CAD\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"CRS Score Calculator\", \"url\": \"https://crscalculator.site/\"}}" }
     ],
   }),
   component: Page,

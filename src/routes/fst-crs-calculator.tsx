@@ -7,11 +7,11 @@ export const Route = createFileRoute("/fst-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "FST CRS Calculator 2026 \u2013 Federal Skilled Trades Points Tool | Free Score Check"
+            "title": "FST CRS Calculator 2026 - Federal Skilled Trades"
       },
       {
             "name": "description",
-            "content": "Use our free FST CRS Calculator 2026 to check your Federal Skilled Trades (FST) Express Entry points instantly. Calculate CRS score for skilled trades occupations, see latest draw cutoffs, and find if you qualify for Canada PR."
+            "content": "Federal Skilled Trades CRS calculator for 2026. Score your trades Express Entry profile instantly and compare it to the latest category draw cutoffs."
       },
       {
             "name": "keywords",
@@ -19,25 +19,28 @@ export const Route = createFileRoute("/fst-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "FST CRS Calculator 2026 \u2013 Free Federal Skilled Trades Points Tool"
+            "content": "FST CRS Calculator 2026 - Federal Skilled Trades"
       },
       {
             "property": "og:description",
-            "content": "Calculate your Federal Skilled Trades CRS score free. Check if you qualify for Canada Express Entry FST Program with updated 2026 draw results."
+            "content": "Federal Skilled Trades CRS calculator for 2026. Score your trades Express Entry profile instantly and compare it to the latest category draw cutoffs."
       },
       {
             "property": "og:url",
-            "content": "/fst-crs-calculator"
+            "content": "https://crscalculator.site/fst-crs-calculator"
       },
       {
             "property": "og:type",
             "content": "website"
-      }
+      },
+      { "name": "twitter:title", "content": "FST CRS Calculator 2026 - Federal Skilled Trades" },
+      { "name": "twitter:description", "content": "Federal Skilled Trades CRS calculator for 2026. Score your trades Express Entry profile instantly and compare it to the latest category draw cutoffs." },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/fst-crs-calculator"
+            "href": "https://crscalculator.site/fst-crs-calculator"
       },
       {
             "rel": "preconnect",

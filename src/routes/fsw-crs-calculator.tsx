@@ -7,11 +7,11 @@ export const Route = createFileRoute("/fsw-crs-calculator")({
   head: () => ({
     meta: [
       {
-            "title": "FSW Points Calculator 2026 \u2013 Free Federal Skilled Worker CRS Tool | Canada Express Entry"
+            "title": "FSW CRS Calculator 2026 - Federal Skilled Worker"
       },
       {
             "name": "description",
-            "content": "Use our free FSW Points Calculator 2026 to calculate your Federal Skilled Worker CRS score for Canada Express Entry. Check the 67-point eligibility grid, get instant results, see latest draw cutoffs. No login required."
+            "content": "Federal Skilled Worker CRS calculator plus the FSW 67-point check. Calculate your Express Entry score instantly and see if you qualify for FSW draws."
       },
       {
             "name": "keywords",
@@ -19,15 +19,15 @@ export const Route = createFileRoute("/fsw-crs-calculator")({
       },
       {
             "property": "og:title",
-            "content": "FSW Points Calculator 2026 \u2013 Free Federal Skilled Worker CRS Tool"
+            "content": "FSW CRS Calculator 2026 - Federal Skilled Worker"
       },
       {
             "property": "og:description",
-            "content": "Calculate your Federal Skilled Worker CRS score free. Check 67-point grid eligibility and see if you qualify for Canada Express Entry FSW Program."
+            "content": "Federal Skilled Worker CRS calculator plus the FSW 67-point check. Calculate your Express Entry score instantly and see if you qualify for FSW draws."
       },
       {
             "property": "og:url",
-            "content": "/fsw-crs-calculator"
+            "content": "https://crscalculator.site/fsw-crs-calculator"
       },
       {
             "property": "og:type",
@@ -36,12 +36,15 @@ export const Route = createFileRoute("/fsw-crs-calculator")({
       {
             "property": "og:image",
             "content": "https://crscalculator.site/og-fsw.png"
-      }
+      },
+      { "name": "twitter:title", "content": "FSW CRS Calculator 2026 - Federal Skilled Worker" },
+      { "name": "twitter:description", "content": "Federal Skilled Worker CRS calculator plus the FSW 67-point check. Calculate your Express Entry score instantly and see if you qualify for FSW draws." },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/fsw-crs-calculator"
+            "href": "https://crscalculator.site/fsw-crs-calculator"
       },
       {
             "rel": "preconnect",

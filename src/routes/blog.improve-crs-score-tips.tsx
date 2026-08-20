@@ -7,11 +7,11 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
   head: () => ({
     meta: [
       {
-            "title": "How to Improve CRS Score 2026 \u2013 10 Proven Ways to Boost Canada Express Entry Points"
+            "title": "Improve CRS Score Tips - 10 Ways to Gain Points"
       },
       {
             "name": "description",
-            "content": "10 proven ways to improve your CRS score in 2026. Language retake adds up to 50 pts, PNP adds +600 pts, second language adds 50 pts. Interactive CRS booster calculator shows exactly how many points each action adds to your Express Entry score."
+            "content": "Ten tested ways to improve your CRS score, with the points attached: IELTS retake +50, PNP +600, French +50. Includes an interactive booster tool."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
       },
       {
             "property": "og:title",
-            "content": "How to Improve CRS Score 2026 \u2013 10 Ways to Boost Canada Express Entry Points"
+            "content": "Improve CRS Score Tips - 10 Ways to Gain Points"
       },
       {
             "property": "og:description",
-            "content": "10 proven CRS improvement strategies for 2026. Retaking IELTS to CLB 9 adds up to 50 pts. PNP nomination adds +600. French language adds 50 pts. Interactive booster calculator included."
+            "content": "Ten tested ways to improve your CRS score, with the points attached: IELTS retake +50, PNP +600, French +50. Includes an interactive booster tool."
       },
       {
             "property": "og:url",
-            "content": "/blog/improve-crs-score-tips"
+            "content": "https://crscalculator.site/blog/improve-crs-score-tips"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
       },
       {
             "name": "twitter:title",
-            "content": "How to Improve CRS Score 2026 \u2013 10 Proven Strategies"
+            "content": "Improve CRS Score Tips - 10 Ways to Gain Points"
       },
       {
             "name": "twitter:description",
-            "content": "Language retake: +50 pts. PNP nomination: +600 pts. French language: +50 pts. Canadian work experience: +40 pts. Full guide + interactive booster tool."
+            "content": "Ten tested ways to improve your CRS score, with the points attached: IELTS retake +50, PNP +600, French +50. Includes an interactive booster tool."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
     links: [
       {
             "rel": "canonical",
-            "href": "/blog/improve-crs-score-tips"
+            "href": "https://crscalculator.site/blog/improve-crs-score-tips"
       },
       {
             "rel": "icon",

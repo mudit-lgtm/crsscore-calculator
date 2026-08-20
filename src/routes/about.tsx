@@ -7,17 +7,24 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       {
-            "title": "About Us \u2013 CRS Score Calculator"
+            "title": "About CRS Calculator - Who Builds This Free Tool"
       },
       {
             "name": "description",
-            "content": "Learn about CRS Score Calculator \u2013 a free, accurate Canada Express Entry CRS score tool trusted by thousands of applicants worldwide."
-      }
+            "content": "Who we are, how our CRS calculator is built on the official IRCC grid, and how we keep the scoring rules and Express Entry draw data current."
+      },
+      { "property": "og:title", "content": "About CRS Calculator - Who Builds This Free Tool" },
+      { "property": "og:description", "content": "Who we are, how our CRS calculator is built on the official IRCC grid, and how we keep the scoring rules and Express Entry draw data current." },
+      { "name": "twitter:title", "content": "About CRS Calculator - Who Builds This Free Tool" },
+      { "name": "twitter:description", "content": "Who we are, how our CRS calculator is built on the official IRCC grid, and how we keep the scoring rules and Express Entry draw data current." },
+      { "property": "og:url", "content": "https://crscalculator.site/about" },
+      { "property": "og:type", "content": "website" },
+      { "name": "twitter:card", "content": "summary_large_image" }
 ],
     links: [
       {
             "rel": "canonical",
-            "href": "/about"
+            "href": "https://crscalculator.site/about"
       },
       {
             "rel": "preconnect",

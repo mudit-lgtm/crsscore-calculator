@@ -7,11 +7,11 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Score for Canada PR 2026 \u2013 Minimum CRS Score Required"
+            "title": "CRS Score for Canada PR - What You Actually Need"
       },
       {
             "name": "description",
-            "content": "What CRS score do you need for Canada PR in 2026? Learn the minimum CRS score required for Express Entry, CEC, FSW, PNP streams and category-based draws. Check your score instantly."
+            "content": "The CRS score you need for Canada PR in 2026, by program and category. Compare your score with real cutoffs and see the fastest way to close the gap."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
       },
       {
             "property": "og:title",
-            "content": "CRS Score for Canada PR 2026 \u2013 Minimum CRS Score Required"
+            "content": "CRS Score for Canada PR - What You Actually Need"
       },
       {
             "property": "og:description",
-            "content": "What CRS score is needed for Canada PR in 2026? Minimum CRS for Express Entry FSW, CEC, PNP and category-based draws explained with 2025\u20132026 cutoff data."
+            "content": "The CRS score you need for Canada PR in 2026, by program and category. Compare your score with real cutoffs and see the fastest way to close the gap."
       },
       {
             "property": "og:url",
-            "content": "/crs-score-for-canada-pr"
+            "content": "https://crscalculator.site/crs-score-for-canada-pr"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Score for Canada PR 2026 \u2013 Minimum CRS Score Required"
+            "content": "CRS Score for Canada PR - What You Actually Need"
       },
       {
             "name": "twitter:description",
-            "content": "Minimum CRS score for Canada PR 2026. Express Entry, PNP and category draw cutoffs explained."
+            "content": "The CRS score you need for Canada PR in 2026, by program and category. Compare your score with real cutoffs and see the fastest way to close the gap."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/crs-score-for-canada-pr")({
     links: [
       {
             "rel": "canonical",
-            "href": "/crs-score-for-canada-pr"
+            "href": "https://crscalculator.site/crs-score-for-canada-pr"
       },
       {
             "rel": "icon",

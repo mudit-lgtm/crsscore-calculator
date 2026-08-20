@@ -7,11 +7,11 @@ export const Route = createFileRoute("/what-is-crs-score")({
   head: () => ({
     meta: [
       {
-            "title": "What is CRS Score? Canada Express Entry Comprehensive Ranking System 2026"
+            "title": "What is CRS Score? Express Entry Ranking Explained"
       },
       {
             "name": "description",
-            "content": "What is CRS score? The Comprehensive Ranking System (CRS) is the points-based system used by IRCC to rank Express Entry candidates. Maximum 1,200 points. Learn what CRS is, how it works, and what score you need for Canada PR in 2026."
+            "content": "What a CRS score is, how the 1,200-point grid works, and the score you need in 2026. Plain-English guide with a free calculator to score yourself."
       },
       {
             "name": "robots",
@@ -35,15 +35,15 @@ export const Route = createFileRoute("/what-is-crs-score")({
       },
       {
             "property": "og:title",
-            "content": "What is CRS Score? Canada Express Entry 2026 Explained"
+            "content": "What is CRS Score? Express Entry Ranking Explained"
       },
       {
             "property": "og:description",
-            "content": "What is the CRS score for Canada Express Entry? The Comprehensive Ranking System scores candidates out of 1,200 points. Understand all factors, score ranges, and how to calculate your CRS in 2026."
+            "content": "What a CRS score is, how the 1,200-point grid works, and the score you need in 2026. Plain-English guide with a free calculator to score yourself."
       },
       {
             "property": "og:url",
-            "content": "/what-is-crs-score"
+            "content": "https://crscalculator.site/what-is-crs-score"
       },
       {
             "property": "og:site_name",
@@ -67,11 +67,11 @@ export const Route = createFileRoute("/what-is-crs-score")({
       },
       {
             "name": "twitter:title",
-            "content": "What is CRS Score? Canada Express Entry 2026"
+            "content": "What is CRS Score? Express Entry Ranking Explained"
       },
       {
             "name": "twitter:description",
-            "content": "What is CRS? The Comprehensive Ranking System scores Express Entry candidates out of 1,200 pts. Full 2026 guide."
+            "content": "What a CRS score is, how the 1,200-point grid works, and the score you need in 2026. Plain-English guide with a free calculator to score yourself."
       },
       {
             "name": "twitter:image",
@@ -81,7 +81,7 @@ export const Route = createFileRoute("/what-is-crs-score")({
     links: [
       {
             "rel": "canonical",
-            "href": "/what-is-crs-score"
+            "href": "https://crscalculator.site/what-is-crs-score"
       },
       {
             "rel": "icon",
