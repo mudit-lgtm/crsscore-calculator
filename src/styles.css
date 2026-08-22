@@ -7,3 +7,22 @@
 html {
   -webkit-text-size-adjust: 100%;
 }
+
+/* Mobile overflow guard for verbatim static-page tables and wide blocks */
+@media (max-width: 900px) {
+  table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ad-slot,
+  .sw,
+  .info,
+  .bar-fill,
+  .pts,
+  .sp-pts {
+    max-width: 100% !important;
+  }
+}
