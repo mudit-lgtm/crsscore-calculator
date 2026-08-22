@@ -7,11 +7,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Calculator 2026 - Free Express Entry Score Tool"
+            "title": "CRS Calculator 2026 — Free CRS Score Calculator for Canada"
       },
       {
             "name": "description",
-            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
+            "content": "Free CRS calculator for Canada Express Entry 2026. Get your CRS score with a full IRCC points breakdown in 60 seconds — no signup needed."
       },
       {
             "name": "keywords",
@@ -35,11 +35,11 @@ export const Route = createFileRoute("/")({
       },
       {
             "property": "og:title",
-            "content": "CRS Calculator 2026 - Free Express Entry Score Tool"
+            "content": "CRS Calculator 2026 — Free CRS Score Calculator for Canada"
       },
       {
             "property": "og:description",
-            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
+            "content": "Free CRS calculator for Canada Express Entry 2026. Get your CRS score with a full IRCC points breakdown in 60 seconds — no signup needed."
       },
       {
             "property": "og:url",
@@ -55,11 +55,11 @@ export const Route = createFileRoute("/")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Calculator 2026 - Free Express Entry Score Tool"
+            "content": "CRS Calculator 2026 — Free CRS Score Calculator for Canada"
       },
       {
             "name": "twitter:description",
-            "content": "Calculate your Canada Express Entry CRS score in 60 seconds. Free IRCC-based CRS score calculator with a full point breakdown - no signup, instant result."
+            "content": "Free CRS calculator for Canada Express Entry 2026. Get your CRS score with a full IRCC points breakdown in 60 seconds — no signup needed."
       }
 ],
     links: [
