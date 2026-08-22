@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/how_crs_is_calculated.html?raw";
 import pageJs from "@/content/how_crs_is_calculated.pagejs.txt?raw";
 
@@ -105,5 +106,10 @@ export const Route = createFileRoute("/how-crs-is-calculated")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/how-crs-is-calculated" />
+    </>
+  );
 }

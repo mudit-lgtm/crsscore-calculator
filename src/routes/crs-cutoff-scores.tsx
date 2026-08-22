@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/crs_cutoff_scores.html?raw";
 import pageJs from "@/content/crs_cutoff_scores.pagejs.txt?raw";
 
@@ -92,5 +93,10 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/crs-cutoff-scores" />
+    </>
+  );
 }

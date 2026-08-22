@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/cec_crs_calculator.html?raw";
 import pageJs from "@/content/cec_crs_calculator.pagejs.txt?raw";
 
@@ -83,5 +84,10 @@ export const Route = createFileRoute("/cec-crs-calculator")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/cec-crs-calculator" />
+    </>
+  );
 }

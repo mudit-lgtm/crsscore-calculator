@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/saskatchewan_crs_calculator.html?raw";
 import pageJs from "@/content/saskatchewan_crs_calculator.pagejs.txt?raw";
 
@@ -98,5 +99,10 @@ export const Route = createFileRoute("/saskatchewan-crs-calculator")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/saskatchewan-crs-calculator" />
+    </>
+  );
 }
