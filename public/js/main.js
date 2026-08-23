@@ -1,7 +1,7 @@
 /**
  * CRS Score Calculator - Main UI JavaScript
  * Navigation, interactions, FAQ accordion
- * Site: crsscorecalculator.vercel.app
+ * Site: crscalculator.site
  */
 
 'use strict';
@@ -165,7 +165,7 @@ function initSmoothScroll() {
 function initExternalLinks() {
   document.querySelectorAll('a[href^="http"]').forEach(link => {
     const href = link.getAttribute('href');
-    if (!href.includes('crsscorecalculator.vercel.app')) {
+    if (!href.includes('crscalculator.site')) {
       link.setAttribute('target', '_blank');
       link.setAttribute('rel', 'noopener noreferrer');
       if (!link.querySelector('.sr-only')) {

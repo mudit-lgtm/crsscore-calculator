@@ -179,7 +179,7 @@
     function copyResults() {
       const total = document.getElementById('total-score').textContent;
       const label = document.getElementById('score-label').textContent;
-      const text = `My PNP CRS Score: ${total}/1200 — ${label}\nCalculated at crsscorecalculator.vercel.app/pnp-crs-calculator`;
+      const text = `My PNP CRS Score: ${total}/1200 — ${label}\nCalculated at crscalculator.site/pnp-crs-calculator`;
       navigator.clipboard.writeText(text).then(() => {
         alert('Results copied to clipboard!');
       }).catch(() => {

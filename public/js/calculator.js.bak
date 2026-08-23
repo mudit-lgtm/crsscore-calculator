@@ -1,7 +1,7 @@
 /**
  * CRS Score Calculator - Full IRCC CRS Grid Logic
  * Based on official IRCC Comprehensive Ranking System
- * Site: crsscorecalculator.vercel.app
+ * Site: crscalculator.site
  */
 
 'use strict';
@@ -797,7 +797,7 @@ function initCalculator() {
       const btn = e.target.classList.contains('btn-copy') ? e.target : e.target.closest('.btn-copy');
       const score = btn.getAttribute('data-score');
       if (score) {
-        navigator.clipboard.writeText(`My CRS Score: ${score} — crsscorecalculator.vercel.app`).then(() => {
+        navigator.clipboard.writeText(`My CRS Score: ${score} — crscalculator.site`).then(() => {
           btn.textContent = '✓ Copied!';
           setTimeout(() => { btn.innerHTML = '📋 Copy Score'; }, 2000);
         });
