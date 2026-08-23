@@ -1,15 +1,4 @@
 
-function crsToggleMenu(){
-  var m=document.getElementById('crsMobileMenu');
-  var mi=document.getElementById('crsMenuIcon');
-  var ci=document.getElementById('crsCloseIcon');
-  var btn=document.getElementById('crsHamburger');
-  var open=m.style.display==='block';
-  m.style.display=open?'none':'block';
-  mi.style.display=open?'block':'none';
-  ci.style.display=open?'none':'block';
-  btn.setAttribute('aria-expanded',String(!open));
-}
 
 ;
 
