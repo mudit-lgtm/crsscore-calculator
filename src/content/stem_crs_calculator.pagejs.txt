@@ -98,4 +98,120 @@ function crsToggleMenu(){
     if (langMin >= 9) { p += fexp === '1' ? 12 : fexp === '2' ? 12 : 0; }
     if (eduLang === '1' && langMin >= 7) { p += parseInt(edu) >= 4 ? 25 : parseInt(edu) >= 2 ? 13 : 0; }
     if (fexp !== '0' && parseInt(edu) >= 4) { p += 13; if (fexp === '2') p += 12; }
-    if
+    if (trades === '1' && langMin >= 5) { p += langMin >= 7 ? 50 : 25; }
+    return Math.min(100, p);
+  }
+
+  function clbOf(id) { return parseInt(document.getElementById(id)?.value || '0') || 0; }
+
+  function calculateCRS(ev) {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    const married = getR('marital') === 'married';
+    const spouseComing = getR('spouseComing') === 'yes';
+    const withSpouse = married && spouseComing;
+    const i = withSpouse ? 1 : 0;
+
+    const ageSel = document.getElementById('age')?.value || '45plus';
+    const age = (AGE_PTS[ageSel] || [0, 0])[i];
+
+    const eduVal = document.getElementById('education')?.value || '0';
+    const edu = (EDU_PTS[eduVal] || [0, 0])[i];
+
+    const l1 = [clbOf('langSpeaking'), clbOf('langListening'), clbOf('langReading'), clbOf('langWriting')];
+    const langMin = Math.min.apply(null, l1);
+    const langMax = withSpouse ? 32 : 34;
+    let lang1 = 0;
+    l1.forEach(c => { lang1 += Math.min(LANG1_PTS[c] || 0, langMax); });
+
+    const l2Used = (document.getElementById('lang2Test')?.value || 'none') !== 'none';
+    let lang2 = 0;
+    if (l2Used) {
+      [clbOf('l2s'), clbOf('l2l'), clbOf('l2r'), clbOf('l2w')].forEach(c => {
+        lang2 += c >= 9 ? (withSpouse ? 6 : 6) : c >= 7 ? 3 : c >= 5 ? 1 : 0;
+      });
+      lang2 = Math.min(lang2, withSpouse ? 22 : 24);
+    }
+
+    const canYears = parseInt(document.getElementById('canadianExp')?.value || '0') || 0;
+    const canExp = (withSpouse ? CANWORK_M : CANWORK_S)[canYears] || 0;
+
+    const coreA = age + edu + lang1 + lang2 + canExp;
+
+    let coreB = 0;
+    if (withSpouse) {
+      coreB += SP_EDU[document.getElementById('spouseEdu')?.value || '0'] || 0;
+      coreB += SP_WORK[parseInt(document.getElementById('spouseCanExp')?.value || '0') || 0] || 0;
+      const spTest = (document.getElementById('spouseLangTest')?.value || 'none') !== 'none';
+      if (spTest) {
+        [clbOf('sls'), clbOf('sll'), clbOf('slr'), clbOf('slw')].forEach(c => {
+          coreB += c >= 9 ? 5 : c >= 7 ? 3 : c >= 5 ? 1 : 0;
+        });
+      }
+      coreB = Math.min(coreB, 40);
+    }
+
+    const fexp = document.getElementById('foreignExp')?.value || '0';
+    const st = skillTransfer(fexp, langMin, eduVal, getR('tradesCert'), getR('eduLang'));
+
+    let extra = 0;
+    extra += parseInt(getR('pnp')) || 0;
+    extra += parseInt(getR('jobOffer')) || 0;
+    extra += parseInt(getR('jobOffer2')) || 0;
+    extra += parseInt(getR('canEdu')) || 0;
+    extra += parseInt(getR('canEdu2')) || 0;
+    extra += parseInt(getR('sibling')) || 0;
+    extra += parseInt(getR('frBonus')) || 0;
+    extra = Math.min(extra, 600);
+
+    const total = Math.min(1200, coreA + coreB + st + extra);
+
+    const num = document.getElementById('scoreNumber');
+    if (num) num.textContent = total;
+    const bar = document.getElementById('scoreBar');
+    if (bar) bar.style.width = Math.min(100, Math.round((total / 1200) * 100)) + '%';
+
+    const verdict = document.getElementById('scoreVerdict');
+    if (verdict) {
+      verdict.textContent = total >= 520 ? 'Excellent — above recent all-program cutoffs.'
+        : total >= 470 ? 'Strong — competitive in STEM category draws.'
+        : total >= 400 ? 'Moderate — target a PNP nomination or improve language scores.'
+        : 'Below typical cutoffs — see our improve-CRS guide.';
+    }
+
+    const bd = document.getElementById('scoreBreakdown');
+    if (bd) {
+      bd.innerHTML = [
+        ['Core / human capital', coreA],
+        ['Spouse factors', coreB],
+        ['Skill transferability', st],
+        ['Additional points', extra],
+        ['Total CRS score', total]
+      ].map(r => `<div class="bd-row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+    }
+
+    const sv = document.getElementById('stemVerdictText');
+    if (sv) {
+      sv.textContent = total >= 470
+        ? 'Your score is in range for recent STEM category-based draws (typically CRS 470–500).'
+        : 'STEM draws have recently cut off near CRS 470–500. Boost language or gain Canadian experience.';
+    }
+
+    const results = document.getElementById('results');
+    if (results) { results.style.display = 'block'; results.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+  }
+
+  function copyScore() {
+    const n = document.getElementById('scoreNumber');
+    if (n && navigator.clipboard) navigator.clipboard.writeText('My STEM Express Entry CRS score: ' + n.textContent);
+  }
+  function shareWA() {
+    const n = document.getElementById('scoreNumber');
+    const t = encodeURIComponent('My STEM Express Entry CRS score is ' + (n ? n.textContent : '') + ' — check yours: https://crscalculator.site/stem-crs-calculator');
+    window.open('https://wa.me/?text=' + t, '_blank');
+  }
+  function toggleFAQ(btn) {
+    const ans = btn.nextElementSibling;
+    if (ans) ans.classList.toggle('open');
+    btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(btn.classList.contains('open')));
+  }
