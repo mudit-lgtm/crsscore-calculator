@@ -7,5 +7,95 @@ function crsToggleMenu(){
   m?.style.display=open?'none':'block';
   mi?.style.display=open?'block':'none';
   ci.style.display=open?'none':'block';
-  btn.setAttribute('aria-expanded',String(!open));
+  btn?.setAttribute('aria-expanded',String(!open));
 }
+// STEM NOC data
+  const STEM_NOCS = {
+    '20011':{ title:'Architecture and Science Managers', teer:0 },
+    '21220':{ title:'Cybersecurity Specialists', teer:1 },
+    '21300':{ title:'Civil Engineers', teer:1 },
+    '21301':{ title:'Mechanical Engineers', teer:1 },
+    '21310':{ title:'Electrical and Electronics Engineers', teer:1 },
+    '21321':{ title:'Industrial and Manufacturing Engineers', teer:1 },
+    '21331':{ title:'Geological Engineers', teer:1 },
+    '22300':{ title:'Civil Engineering Technologists and Technicians', teer:2 },
+    '22301':{ title:'Mechanical Engineering Technologists and Technicians', teer:2 },
+    '22310':{ title:'Electrical and Electronics Engineering Technologists and Technicians', teer:2 },
+    '63100':{ title:'Insurance Agents and Brokers', teer:3 }
+  };
+  const STEM_KEYWORDS = {
+    'civil engineer':'21300','mechanical engineer':'21301','electrical engineer':'21310',
+    'electronics engineer':'21310','industrial engineer':'21321','manufacturing engineer':'21321',
+    'geological engineer':'21331','cybersecurity':'21220','cyber security':'21220',
+    'architecture manager':'20011','science manager':'20011',
+    'civil engineering technologist':'22300','civil technician':'22300',
+    'mechanical technologist':'22301','mechanical technician':'22301',
+    'electrical technologist':'22310','electrical technician':'22310',
+    'insurance agent':'63100','insurance broker':'63100'
+  };
+
+  function checkEligibility() {
+    const val = document.getElementById('nocInput').value.trim().toLowerCase();
+    const res = document.getElementById('eligResult');
+    if (!val) { res.style.display='none'; return; }
+    let found = null;
+    // Try exact NOC code
+    if (STEM_NOCS[val]) { found = { noc: val, ...STEM_NOCS[val] }; }
+    // Try keyword match
+    if (!found) {
+      for (const [kw, noc] of Object.entries(STEM_KEYWORDS)) {
+        if (val.includes(kw)) { found = { noc, ...STEM_NOCS[noc] }; break; }
+      }
+    }
+    if (found) {
+      res.className = 'eligibility-result eligible-yes';
+      res.innerHTML = `<strong>✅ STEM Eligible!</strong> NOC ${found.noc} — <strong>${found.title}</strong> (TEER ${found.teer}) qualifies for Express Entry STEM category draws. Calculate your CRS score below.`;
+    } else {
+      res.className = 'eligibility-result eligible-no';
+      res.innerHTML = `<strong>❌ Not on STEM List.</strong> "${document.getElementById('nocInput').value}" is not among the 11 STEM-eligible NOC codes. You can still apply through <a href="/express-entry-crs-calculator">all-program Express Entry draws</a>. Check the NOC table above for eligible occupations.`;
+    }
+    res.style.display = 'block';
+  }
+  document.getElementById('nocInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkEligibility(); });
+
+  // Toggle helpers
+  function toggleSpouse(el) {
+    const m = el.value === 'married';
+    document.getElementById('spouseComingGroup').style.display = m ? 'block' : 'none';
+    updateSpouseSection();
+  }
+  function updateSpouseSection() {
+    const m = document.querySelector('input[name="marital"]:checked').value === 'married';
+    const c = document.querySelector('input[name="spouseComing"]:checked')?.value === 'yes';
+    document.getElementById('spouseSection').style.display = (m && c) ? 'block' : 'none';
+  }
+  document.querySelectorAll('input[name="spouseComing"]').forEach(r => r.addEventListener('change', updateSpouseSection));
+  function toggleLang2(sel) { document.getElementById('lang2Fields').style.display = sel.value !== 'none' ? 'grid' : 'none'; }
+  function toggleSpouseLang(sel) { document.getElementById('spouseLangFields').style.display = sel.value !== 'none' ? 'grid' : 'none'; }
+
+  // CRS CALCULATION
+  const AGE_PTS = {
+    '17under':[0,0],'18':[99,90],'19':[105,95],'20':[110,100],'21':[110,100],'22':[110,100],
+    '23':[110,100],'24':[110,100],'25':[110,100],'26':[110,100],'27':[110,100],'28':[110,100],
+    '29':[110,100],'30':[105,95],'31':[99,90],'32':[94,85],'33':[88,80],'34':[83,75],
+    '35':[77,70],'36':[72,65],'37':[66,60],'38':[61,55],'39':[55,50],'40':[50,45],
+    '41':[39,35],'42':[28,25],'43':[17,15],'44':[6,5],'45plus':[0,0]
+  };
+  const EDU_PTS = {0:[0,0],1:[28,25],2:[84,75],3:[91,81],4:[112,100],5:[119,106],6:[126,112],7:[140,119]};
+  const LANG1_PTS = {4:6,5:6,6:8,7:16,8:22,9:29,10:32};
+  const LANG2_PTS = {4:0,5:1,6:1};
+  const CANWORK_S = {0:0,1:40,2:53,3:64,4:72,5:80};
+  const CANWORK_M = {0:0,1:35,2:46,3:56,4:63,5:70};
+  const SP_EDU = {0:0,1:2,2:6,3:7,4:8,5:9,6:10,7:10};
+  const SP_LANG = {4:0,5:1,6:1,7:3,8:3,9:5};
+  const SP_WORK = {0:0,1:5,2:7,3:8,4:10,5:10};
+
+  function getR(name) { const e = document.querySelector(`input[name="${name}"]:checked`); return e ? e.value : '0'; }
+
+  function skillTransfer(fexp, langMin, edu, trades, eduLang) {
+    let p = 0;
+    if (langMin >= 7) { p += fexp === '1' ? 13 : fexp === '2' ? 25 : 0; }
+    if (langMin >= 9) { p += fexp === '1' ? 12 : fexp === '2' ? 12 : 0; }
+    if (eduLang === '1' && langMin >= 7) { p += parseInt(edu) >= 4 ? 25 : parseInt(edu) >= 2 ? 13 : 0; }
+    if (fexp !== '0' && parseInt(edu) >= 4) { p += 13; if (fexp === '2') p += 12; }
+    if
