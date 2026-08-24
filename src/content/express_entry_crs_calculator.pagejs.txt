@@ -5,7 +5,7 @@
     /* ── NAV TOGGLE ── */
     function toggleNav(btn) {
       const nav = document.getElementById('navLinks');
-      const open = nav.classList.toggle('open');
+      const open = nav?.classList.toggle('open');
       btn.setAttribute('aria-expanded', open);
     }
 
