@@ -5,7 +5,7 @@
     /* NAV TOGGLE */
     function toggleNav(btn) {
       const nav = document.getElementById('navLinks');
-      const open = nav.classList.toggle('open');
+      const open = nav?.classList.toggle('open');
       btn.setAttribute('aria-expanded', String(open));
     }
 
@@ -237,8 +237,8 @@
     document.addEventListener('click', function(e) {
       const nav = document.getElementById('navLinks');
       const toggle = document.querySelector('.nav-toggle');
-      if (nav && nav.classList.contains('open') && !nav.contains(e.target) && toggle && !toggle.contains(e.target)) {
-        nav.classList.remove('open');
+      if (nav && nav?.classList.contains('open') && !nav.contains(e.target) && toggle && !toggle.contains(e.target)) {
+        nav?.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }
     });
