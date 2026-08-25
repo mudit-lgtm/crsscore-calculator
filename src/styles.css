@@ -125,6 +125,26 @@ html {
   }
 }
 
+@media (max-width: 480px) {
+  .site-header {
+    overflow-x: hidden;
+  }
+  .site-header__bar {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  .site-header__cta {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+  .site-header__burger {
+    padding: 4px;
+  }
+}
+
+
 /* ---------- Shared footer ---------- */
 .site-footer {
   background: var(--brand-navy);
