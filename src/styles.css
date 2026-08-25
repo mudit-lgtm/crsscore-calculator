@@ -252,3 +252,39 @@ html {
     max-width: 100% !important;
   }
 }
+
+/* ---------- Mobile overflow safety (375px) ---------- */
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .content-wrap,
+  .stats-row,
+  .grid,
+  .grid-2,
+  .grid-3,
+  .cards,
+  .card-grid,
+  [class*="-grid"] {
+    grid-template-columns: 1fr !important;
+    display: block;
+  }
+  .content-wrap > *,
+  .card,
+  .info,
+  .info-card,
+  .sidebar,
+  .sw,
+  .stat-card,
+  article,
+  .card-body,
+  main {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .stats-row > .stat-card {
+    margin-bottom: 12px;
+  }
+}
