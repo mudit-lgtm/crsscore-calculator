@@ -125,6 +125,26 @@ html {
   }
 }
 
+@media (max-width: 480px) {
+  .site-header {
+    overflow-x: hidden;
+  }
+  .site-header__bar {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+  .site-header__cta {
+    font-size: 12px;
+    padding: 8px 11px;
+  }
+  .site-header__burger {
+    padding: 4px;
+  }
+}
+
+
 /* ---------- Shared footer ---------- */
 .site-footer {
   background: var(--brand-navy);
@@ -230,5 +250,41 @@ html {
   .pts,
   .sp-pts {
     max-width: 100% !important;
+  }
+}
+
+/* ---------- Mobile overflow safety (375px) ---------- */
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+  .content-wrap,
+  .stats-row,
+  .grid,
+  .grid-2,
+  .grid-3,
+  .cards,
+  .card-grid,
+  [class*="-grid"] {
+    grid-template-columns: 1fr !important;
+    display: block;
+  }
+  .content-wrap > *,
+  .card,
+  .info,
+  .info-card,
+  .sidebar,
+  .sw,
+  .stat-card,
+  article,
+  .card-body,
+  main {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .stats-row > .stat-card {
+    margin-bottom: 12px;
   }
 }

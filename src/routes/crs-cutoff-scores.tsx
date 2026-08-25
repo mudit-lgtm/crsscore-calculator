@@ -8,11 +8,11 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
   head: () => ({
     meta: [
       {
-            "title": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
+            "title": "CRS Cutoff Scores 2026 — Latest Draw: 419"
       },
       {
             "name": "description",
-            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
+            "content": "Latest Express Entry draw #411 cut off at 419 CRS. See every 2026 all-program, CEC, PNP and French cutoff and check if your score clears the bar."
       },
       {
             "name": "keywords",
@@ -32,11 +32,11 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
       },
       {
             "property": "og:title",
-            "content": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
+            "content": "CRS Cutoff Scores 2026 — Latest Draw: 419"
       },
       {
             "property": "og:description",
-            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
+            "content": "Latest Express Entry draw #411 cut off at 419 CRS. See every 2026 all-program, CEC, PNP and French cutoff and check if your score clears the bar."
       },
       {
             "property": "og:url",
@@ -56,11 +56,11 @@ export const Route = createFileRoute("/crs-cutoff-scores")({
       },
       {
             "name": "twitter:title",
-            "content": "CRS Cutoff Scores 2026 - Latest Draw Cutoffs"
+            "content": "CRS Cutoff Scores 2026 — Latest Draw: 419"
       },
       {
             "name": "twitter:description",
-            "content": "Every 2026 Express Entry cutoff in one table: all-program, CEC, PNP, French and category draws. See instantly whether your CRS score clears the bar."
+            "content": "Latest Express Entry draw #411 cut off at 419 CRS. See every 2026 all-program, CEC, PNP and French cutoff and check if your score clears the bar."
       }
 ],
     links: [
