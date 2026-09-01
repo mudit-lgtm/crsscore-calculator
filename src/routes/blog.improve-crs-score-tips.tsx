@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/blog__improve_crs_score_tips.html?raw";
 import pageJs from "@/content/blog__improve_crs_score_tips.pagejs.txt?raw";
 
@@ -101,5 +102,10 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/blog/improve-crs-score-tips" />
+    </>
+  );
 }

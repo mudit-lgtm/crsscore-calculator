@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import StaticPage from "@/components/StaticPage";
+import RelatedGuides from "@/components/RelatedGuides";
 import pageHtml from "@/content/blog__express_entry_cutoff_history.html?raw";
 import pageJs from "@/content/blog__express_entry_cutoff_history.pagejs.txt?raw";
 
@@ -101,5 +102,10 @@ export const Route = createFileRoute("/blog/express-entry-cutoff-history")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return (
+    <>
+      <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />
+      <RelatedGuides path="/blog/express-entry-cutoff-history" />
+    </>
+  );
 }
