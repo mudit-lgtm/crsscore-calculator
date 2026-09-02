@@ -95,8 +95,68 @@ export const Route = createFileRoute("/blog/improve-crs-score-tips")({
       }
 ],
     scripts: [
-      
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "@id": "https://crscalculator.site/blog/improve-crs-score-tips#article",
+          headline:
+            "How to Improve Your CRS Score in 2026 — 10 Proven Ways to Boost Express Entry Points",
+          description:
+            "10 proven strategies to improve your CRS score in 2026: language retake (+50), PNP nomination (+600), French bilingual (+50), Canadian work experience (+40).",
+          datePublished: "2026-01-01",
+          dateModified: "2026-04-19",
+          url: "https://crscalculator.site/blog/improve-crs-score-tips",
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": "https://crscalculator.site/blog/improve-crs-score-tips",
+          },
+          author: {
+            "@type": "Organization",
+            name: "CRS Score Calculator",
+            url: "https://crscalculator.site/",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "CRS Score Calculator",
+            url: "https://crscalculator.site/",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://crscalculator.site/images/logo.png",
+            },
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Home",
+              item: "https://crscalculator.site/",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Blog",
+              item: "https://crscalculator.site/blog",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "How to Improve Your CRS Score",
+              item: "https://crscalculator.site/blog/improve-crs-score-tips",
+            },
+          ],
+        }),
+      },
     ],
+
   }),
   component: Page,
 });
