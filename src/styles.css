@@ -318,6 +318,11 @@ html {
     gap: 6px;
     min-width: 0;
   }
+  .site-header__bar {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
 
   .container,
   .wrap,
