@@ -379,7 +379,7 @@ html {
     font-size: 1.3rem !important;
   }
   .table-scroll > table {
-    min-width: 560px;
+    min-width: 560px !important;
   }
   .table-scroll {
     max-width: 100% !important;
