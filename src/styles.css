@@ -310,9 +310,15 @@ html {
   *::after {
     box-sizing: border-box;
   }
-  body * {
+  body *:not(.table-scroll table):not(.table-scroll table *) {
     max-width: 100%;
+    min-width: 0 !important;
   }
+  .site-header__actions {
+    gap: 6px;
+    min-width: 0;
+  }
+
   .container,
   .wrap,
   .wrapper,
