@@ -16,21 +16,30 @@ export default function StaticPage({ html, js, externalScripts = [] }: StaticPag
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Wrap every wide table in a mobile-safe horizontal scroll container.
+  // Re-runs on DOM mutations because some page scripts inject tables later.
   useIsomorphicLayoutEffect(() => {
     const root = containerRef.current;
     if (!root) return;
-    root.querySelectorAll("table").forEach((table) => {
-      const parent = table.parentElement;
-      if (parent && parent.classList.contains("table-scroll")) return;
-      const wrap = document.createElement("div");
-      wrap.className = "table-scroll";
-      wrap.setAttribute("role", "region");
-      wrap.setAttribute("tabindex", "0");
-      wrap.setAttribute("aria-label", "Scrollable table");
-      table.replaceWith(wrap);
-      wrap.appendChild(table);
-    });
+    const wrapTables = () => {
+      root.querySelectorAll("table").forEach((table) => {
+        const parent = table.parentElement;
+        if (parent && parent.classList.contains("table-scroll")) return;
+        const wrap = document.createElement("div");
+        wrap.className = "table-scroll";
+        wrap.setAttribute("role", "region");
+        wrap.setAttribute("tabindex", "0");
+        wrap.setAttribute("aria-label", "Scrollable table");
+        table.replaceWith(wrap);
+        wrap.appendChild(table);
+      });
+    };
+    wrapTables();
+    if (typeof MutationObserver === "undefined") return;
+    const obs = new MutationObserver(() => wrapTables());
+    obs.observe(root, { childList: true, subtree: true });
+    return () => obs.disconnect();
   }, [html]);
+
 
   useEffect(() => {
     const added: HTMLScriptElement[] = [];
