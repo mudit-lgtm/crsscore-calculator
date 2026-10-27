@@ -155,8 +155,9 @@ export function calculateCrs(input: CrsInput, rulesetId: RulesetId): CrsResult {
   const ruleset = RULESETS[rulesetId];
 
   // Section A — Core Human Capital
-  const ageP = (AGE[input.age] || [0, 0])[idx];
-  const eduP = EDU[input.edu] ? EDU[input.edu][idx] : 0;
+  const ageP = (AGE[input.age] || [0, 0])[idx] ?? 0;
+  const eduRow = EDU[input.edu];
+  const eduP = eduRow ? eduRow[idx] ?? 0 : 0;
   const langP = (L1[input.lsp] || 0) + (L1[input.ll] || 0) + (L1[input.lr] || 0) + (L1[input.lw] || 0);
   const firstLangMin = Math.min(input.lsp, input.ll, input.lr, input.lw);
   let l2P = 0;
