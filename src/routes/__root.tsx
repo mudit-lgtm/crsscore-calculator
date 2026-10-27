@@ -36,7 +36,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent(props: { error: Error; reset: () => void } & { preload?: () => Promise<void> }) {
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void } & { preload?: () => Promise<void> }) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
