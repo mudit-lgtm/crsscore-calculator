@@ -24,8 +24,29 @@ const SP_L={4:0,5:1,6:1,7:3,8:3,9:5};
 // Spouse CWE
 const SP_CWE={0:0,1:5,2:7,3:8,4:10,5:10};
 
+// ===== IRCC RULES EFFECTIVE 3 NOVEMBER 2026 =====
+// Arranged-employment points (+200 TEER 0 Major Group 00 / +50 other TEER 0-3) were
+// removed by IRCC in March 2025 — they are NOT scored in any ruleset below.
+// From 3 Nov 2026 the Canadian work experience factor moves into the new
+// Labour Market Integration section, together with high-wage job offers.
+const HW_WORK={'2x':70,'1.5to2x':40,'1.3to1.5x':20};   // high-wage work points
+const HW_OFFER={'2x':100,'1.5to2x':70,'1.3to1.5x':50}; // high-wage job-offer points
+const RULESET_SWITCH_DATE='2026-11-03';
+const BANNER_SHOW_UNTIL='2026-11-20';
+
 function getR(name){const e=document.querySelector(`input[name="${name}"]:checked`);return e?e.value:'0';}
-function gv(id){return document.getElementById(id).value;}
+function gv(id){return document.getElementById(id)?document.getElementById(id).value:'';}
+
+// Today (YYYY-MM-DD) in America/Toronto.
+function torontoToday(){
+  return new Intl.DateTimeFormat('en-CA',{timeZone:'America/Toronto',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+}
+function defaultRuleset(){
+  return torontoToday()>=RULESET_SWITCH_DATE?'from_2026_11_03':'pre_2026_11_03';
+}
+function isNewRuleset(){
+  return getR('ruleset')==='from_2026_11_03';
+}
 
 function doCalc(e){
   e.preventDefault();
@@ -35,32 +56,37 @@ function doCalc(e){
   const spComing=getR('spouseComing');
   const hasSpouse=marital==='married'&&spComing==='yes';
   const idx=hasSpouse?1:0;
-  const canExp=parseInt(gv('canExp'));
+  const canExp=parseInt(gv('canExp')||'0');
+  const isNew=isNewRuleset();
 
   // Section A
-  const ageP=(AGE[age]||[0,0])[idx];
-  const eduP=(EDU[edu]||[0,0])[idx];
-  const ls=parseInt(gv('lsp')),ll=parseInt(gv('ll')),lr=parseInt(gv('lr')),lw=parseInt(gv('lw'));
+  const ageP=(AGE[age]||[0,0])[idx]??0;
+  const eduP=(EDU[edu]||[0,0])[idx]??0;
+  const ls=parseInt(gv('lsp')||'4'),ll=parseInt(gv('ll')||'4'),lr=parseInt(gv('lr')||'4'),lw=parseInt(gv('lw')||'4');
   const langP=(L1[ls]||0)+(L1[ll]||0)+(L1[lr]||0)+(L1[lw]||0);
   const firstLangMin=Math.min(ls,ll,lr,lw);
   // second language
   let l2P=0;
   if(gv('l2test')!=='none'){
-    const a=[parseInt(gv('l2sp')),parseInt(gv('l2ll')),parseInt(gv('l2lr')),parseInt(gv('l2lw'))];
+    const a=[parseInt(gv('l2sp')||'4'),parseInt(gv('l2ll')||'4'),parseInt(gv('l2lr')||'4'),parseInt(gv('l2lw')||'4')];
     l2P=Math.min(a.reduce((s,v)=>s+(L2[v]||0),0),24);
   }
+  // Canadian work experience length points.
+  // Before 3 Nov 2026 they count in Section A; from 3 Nov 2026 they move to
+  // Labour Market Integration, so Section A excludes them.
   const cweP=hasSpouse?CWE_M[canExp]||0:CWE_S[canExp]||0;
-  const secA=ageP+eduP+langP+l2P+cweP;
+  const cweInA=isNew?0:cweP;
+  const secA=ageP+eduP+langP+l2P+cweInA;
 
   // Section B — Spouse
   let spEduP=0,spLangP=0,spCweP=0;
   if(hasSpouse){
-    spEduP=SP_EDU[parseInt(gv('spEdu'))]||0;
+    spEduP=SP_EDU[parseInt(gv('spEdu')||'0')]||0;
     if(gv('spLangTest')!=='none'){
-      const a=[parseInt(gv('spLsp')),parseInt(gv('spLll')),parseInt(gv('spLlr')),parseInt(gv('spLlw'))];
+      const a=[parseInt(gv('spLsp')||'4'),parseInt(gv('spLll')||'4'),parseInt(gv('spLlr')||'4'),parseInt(gv('spLlw')||'4')];
       spLangP=Math.min(a.reduce((s,v)=>s+(SP_L[v]||0),0),20);
     }
-    spCweP=SP_CWE[parseInt(gv('spCanExp'))]||0;
+    spCweP=SP_CWE[parseInt(gv('spCanExp')||'0')]||0;
   }
   const secB=spEduP+spLangP+spCweP;
 
@@ -86,28 +112,49 @@ function doCalc(e){
   if(tradesCert==='1'&&firstLangMin>=5) secC+=25;
   secC=Math.min(secC,100);
 
-  // Section D — Additional
+  // Section D — Additional (no job-offer points: IRCC removed them in March 2025)
   const pnp=parseInt(getR('pnp'));
-  const jo=Math.max(parseInt(getR('jo1')),parseInt(getR('jo2')));
   const sib=parseInt(getR('sib'));
   const fr=Math.max(parseInt(getR('fr1')),parseInt(getR('fr2')));
   const cedu=Math.max(parseInt(getR('cedu1')),parseInt(getR('cedu2')));
-  const secD=Math.min(pnp+jo+sib+fr+cedu,600);
+  const secD=Math.min(pnp+sib+fr+cedu,600);
 
-  const total=Math.min(secA+secB+secC+secD,1200);
+  // Labour Market Integration (from 3 Nov 2026) — the higher of Canadian work
+  // experience in a high-wage occupation or a high-wage job offer, never both.
+  let lmi=0,lmiWork=0,lmiOffer=0;
+  if(isNew){
+    const hwTier=gv('hwTier')||'none';
+    const hwPoints=gv('hwMonths')==='12plus'?(HW_WORK[hwTier]||0):0;
+    const factorMax=hasSpouse?140:150; // 70+70 with spouse, 80+70 without
+    lmiWork=Math.min(cweP+hwPoints,factorMax);
+    lmiOffer=getR('jobOffer')==='yes'?(HW_OFFER[gv('offerTier')||'none']||0):0;
+    lmi=Math.max(lmiWork,lmiOffer);
+  }
 
-  showResults(total,{
+  const total=Math.min(secA+secB+secC+secD+lmi,1200);
+
+  const bk={
     'Section A — Core Human Capital':secA,
     '  Age':ageP,'  Education':eduP,'  First Language':langP,
-    '  Second Language':l2P,'  Canadian Work Experience':cweP,
-    'Section B — Spouse/Partner':secB,
-    'Section C — Skill Transferability':secC,
-    'Section D — Additional Points':secD,
-    'TOTAL CRS SCORE':total
-  });
+    '  Second Language':l2P
+  };
+  if(!isNew) bk['  Canadian Work Experience']=cweInA;
+  if(isNew){
+    bk['Labour Market Integration (from 3 Nov 2026)']=lmi;
+    if(lmi>0){
+      bk['  Work experience (length + high-wage, capped)']=lmiWork;
+      bk['  Job offer (only the higher one counts)']=lmiOffer;
+    }
+  }
+  bk['Section B — Spouse/Partner']=secB;
+  bk['Section C — Skill Transferability']=secC;
+  bk['Section D — Additional Points']=secD;
+  bk['TOTAL CRS SCORE']=total;
+
+  showResults(total,bk,isNew);
 }
 
-function showResults(score,bk){
+function showResults(score,bk,isNew){
   const el=document.getElementById('results');
   el.style.display='block';
   document.getElementById('scoreNum').textContent=score;
@@ -118,6 +165,7 @@ function showResults(score,bk){
   else if(score<=470){nc='c-yellow';bc='b-yellow';vc='v-yellow';vt=`📈 Score of ${score} is close to recent all-program cutoffs (470–525). Small improvements in language or work experience could push you over.`}
   else if(score<=500){nc='c-good';bc='b-good';vc='v-good';vt=`✅ Score of ${score} is competitive for Express Entry all-program draws. Keep your profile active and monitor draw cutoffs.`}
   else{nc='c-great';bc='b-great';vc='v-great';vt=`🎉 Excellent! Score of ${score} is well above typical cutoffs. Strong chances of receiving an ITA in the next draw.`}
+  if(isNew) vt+=' Calculated with the IRCC rules effective 3 November 2026.';
 
   document.getElementById('scoreNum').className=`score-num ${nc}`;
   const bar=document.getElementById('scoreBar');
@@ -155,6 +203,31 @@ function toggleL2(sel){
 function toggleSpLang(sel){
   document.getElementById('spouseLangFields').style.display=sel.value!=='none'?'grid':'none';
 }
+// Labour Market Integration section only applies from 3 Nov 2026.
+function toggleRuleset(){
+  document.getElementById('lmiSection').style.display=isNewRuleset()?'block':'none';
+}
+function toggleHwTier(sel){
+  const g=document.getElementById('hwTierGroup');
+  if(g) g.style.display=sel.value==='12plus'?'block':'none';
+}
+function toggleOfferTier(){
+  const yes=document.querySelector('input[name="jobOffer"]:checked')?.value==='yes';
+  document.getElementById('offerTierGroup').style.display=yes?'block':'none';
+}
+
+// ===== INIT =====
+(function initCrs(){
+  // Pick the ruleset that applies today (America/Toronto).
+  const defEl=document.querySelector(`input[name="ruleset"][value="${defaultRuleset()}"]`);
+  if(defEl) defEl.checked=true;
+  toggleRuleset();
+  toggleHwTier({value:gv('hwMonths')});
+  toggleOfferTier();
+  // IRCC recalculation notice, shown until 20 Nov 2026.
+  const banner=document.getElementById('rulesBanner');
+  if(banner&&torontoToday()<BANNER_SHOW_UNTIL) banner.style.display='block';
+})();
 
 // ===== FAQ =====
 function toggleFAQ(btn){
@@ -170,10 +243,10 @@ function toggleFAQ(btn){
 // ===== SHARE =====
 function copyScore(){
   const s=document.getElementById('scoreNum').textContent;
-  if(navigator.clipboard){navigator.clipboard.writeText(`My CRS Score: ${s} — /`);alert('Copied!');}
+  if(navigator.clipboard){navigator.clipboard.writeText(`My CRS Score: ${s} — https://crscalculator.site/`);alert('Copied!');}
 }
 function shareWA(){
   const s=document.getElementById('scoreNum').textContent;
-  const msg=encodeURIComponent(`My Canada Express Entry CRS Score is ${s}! Calculate yours free: /`);
+  const msg=encodeURIComponent(`My Canada Express Entry CRS Score is ${s}! Calculate yours free: https://crscalculator.site/`);
   window.open(`https://wa.me/?text=${msg}`,'_blank');
 }

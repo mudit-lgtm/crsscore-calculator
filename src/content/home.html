@@ -237,6 +237,18 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
           </h2>
           <p style="font-size:.84rem;color:var(--muted);margin-bottom:18px;">Enter your details below to <strong>calculate your CRS score</strong> instantly. Based on the official <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system.html" target="_blank" rel="noopener noreferrer">IRCC Comprehensive Ranking System grid</a>.</p>
 
+          <div id="rulesBanner" style="display:none;background:#fff8e1;border:1px solid #f0d47a;border-left:4px solid var(--primary);border-radius:8px;padding:12px 14px;font-size:.85rem;margin-bottom:16px;line-height:1.55;">
+            <strong>IRCC rules change — 3 November 2026:</strong> arranged-employment (job offer) points are gone and a new <strong>Labour Market Integration</strong> factor replaces the Canadian work experience points. This calculator uses the rules that apply to your profile date — profiles submitted before 3 November 2026 keep the pre-change rules. Use the toggle below to compare both scores.
+          </div>
+
+          <div class="form-g" style="margin-bottom:16px;">
+            <label>Scoring rules</label>
+            <div class="radios">
+              <label><input type="radio" name="ruleset" value="pre_2026_11_03" checked onchange="toggleRuleset()"> Current — before 3 Nov 2026</label>
+              <label><input type="radio" name="ruleset" value="from_2026_11_03" onchange="toggleRuleset()"> From 3 Nov 2026</label>
+            </div>
+          </div>
+
           <form id="crsForm" onsubmit="doCalc(event)" novalidate>
 
             <div class="sec-hdr">Section A — Core Human Capital Factors</div>
@@ -299,6 +311,7 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
                 <option value="3">3 years</option><option value="4">4 years</option>
                 <option value="5">5 or more years</option>
               </select>
+              <div class="hint">Before 3 Nov 2026 these points count in Section A. From 3 Nov 2026 they move to the Labour Market Integration section below.</div>
             </div>
 
             <div class="sec-hdr">Section B — First Official Language</div>
@@ -395,14 +408,6 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
             <div class="form-g">
               <label>Provincial Nomination (PNP)?</label>
               <div class="radios"><label><input type="radio" name="pnp" value="0" checked> No</label><label><input type="radio" name="pnp" value="600"> Yes (+600 pts)</label></div>
-            </div>
-            <div class="form-g">
-              <label>Valid job offer — NOC TEER 0 Major Group 00?</label>
-              <div class="radios"><label><input type="radio" name="jo1" value="0" checked> No</label><label><input type="radio" name="jo1" value="200"> Yes (+200 pts)</label></div>
-            </div>
-            <div class="form-g">
-              <label>Valid job offer — NOC TEER 0, 1, 2 or 3 (other)?</label>
-              <div class="radios"><label><input type="radio" name="jo2" value="0" checked> No</label><label><input type="radio" name="jo2" value="50"> Yes (+50 pts)</label></div>
             </div>
             <div class="form-g">
               <label>Sibling in Canada (citizen or PR)?</label>
