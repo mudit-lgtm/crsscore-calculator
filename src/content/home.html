@@ -237,7 +237,7 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
           </h2>
           <p style="font-size:.84rem;color:var(--muted);margin-bottom:18px;">Enter your details below to <strong>calculate your CRS score</strong> instantly. Based on the official <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system.html" target="_blank" rel="noopener noreferrer">IRCC Comprehensive Ranking System grid</a>.</p>
 
-          <div id="rulesBanner" style="display:none;background:#fff8e1;border:1px solid #f0d47a;border-left:4px solid var(--primary);border-radius:8px;padding:12px 14px;font-size:.85rem;margin-bottom:16px;line-height:1.55;">
+          <div id="rulesBanner" style="display:none;background:#fff8e1;border:1px solid #f0d47a;border-left:4px solid var(--red);border-radius:8px;padding:12px 14px;font-size:.85rem;margin-bottom:16px;line-height:1.55;">
             <strong>IRCC rules change — 3 November 2026:</strong> arranged-employment (job offer) points are gone and a new <strong>Labour Market Integration</strong> factor replaces the Canadian work experience points. This calculator uses the rules that apply to your profile date — profiles submitted before 3 November 2026 keep the pre-change rules. Use the toggle below to compare both scores.
           </div>
 
@@ -430,6 +430,44 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
               <div class="radios"><label><input type="radio" name="cedu2" value="0" checked> No</label><label><input type="radio" name="cedu2" value="30"> Yes (+30 pts)</label></div>
             </div>
 
+            <!-- LABOUR MARKET INTEGRATION (rules from 3 Nov 2026) -->
+            <div id="lmiSection" style="display:none;">
+              <div class="sec-hdr">Labour Market Integration — from 3 Nov 2026</div>
+              <div class="form-g">
+                <label for="hwMonths">Canadian work experience in a high-wage occupation</label>
+                <select id="hwMonths" class="ctrl" onchange="toggleHwTier(this)">
+                  <option value="none">Not applicable</option>
+                  <option value="lt12">Less than 12 months</option>
+                  <option value="12plus">12 months or more</option>
+                </select>
+                <div class="hint">From 3 Nov 2026, Canadian work experience points (up to 80) come from this section instead of Section A. Only 12+ months in a high-wage occupation earns the high-wage points.</div>
+              </div>
+              <div class="form-g" id="hwTierGroup" style="display:none;">
+                <label for="hwTier">Occupation wage level (vs. the median annual wage)</label>
+                <select id="hwTier" class="ctrl">
+                  <option value="none">— Select wage level —</option>
+                  <option value="2x">2× median wage or higher</option>
+                  <option value="1.5to2x">1.5× to 2× median wage</option>
+                  <option value="1.3to1.5x">1.3× to 1.5× median wage</option>
+                </select>
+                <div class="hint">High-wage work points: 2× = 70, 1.5–2× = 40, 1.3–1.5× = 20, added to your work-experience length points and capped per the IRCC factor maximum.</div>
+              </div>
+              <div class="form-g">
+                <label>Valid high-wage job offer?</label>
+                <div class="radios"><label><input type="radio" name="jobOffer" value="no" checked onchange="toggleOfferTier()"> No</label><label><input type="radio" name="jobOffer" value="yes" onchange="toggleOfferTier()"> Yes</label></div>
+              </div>
+              <div class="form-g" id="offerTierGroup" style="display:none;">
+                <label for="offerTier">Job offer wage level (vs. the median annual wage)</label>
+                <select id="offerTier" class="ctrl">
+                  <option value="none">— Select wage level —</option>
+                  <option value="2x">2× median wage or higher</option>
+                  <option value="1.5to2x">1.5× to 2× median wage</option>
+                  <option value="1.3to1.5x">1.3× to 1.5× median wage</option>
+                </select>
+                <div class="hint">Job-offer points: 2× = 100, 1.5–2× = 70, 1.3–1.5× = 50. IRCC counts only the higher of work experience or job offer — never both.</div>
+              </div>
+            </div>
+
             <button type="submit" class="btn-calc">🧮 Calculate My CRS Score →</button>
           </form>
         </section>
@@ -528,9 +566,7 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
 
           <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)" aria-expanded="false">Can I calculate my CRS score without an IRCC account?<svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Yes — this <strong>free CRS calculator</strong> requires no IRCC login, government account, or personal information. Enter your details and get an instant score. Your data is never stored. You can also verify results using the <a href="https://ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer">official IRCC CRS tool</a>.</div></div>
 
-          <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)" aria-expanded="false">Is this CRS calculator accurate?<svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Yes — this calculator uses the official IRCC CRS grid updated for 2026. Results are estimates based on information you enter. Always verify using the <a href="https://ircc.canada.ca/english/immigrate/skilled/crs-tool.asp" target="_blank" rel="noopener noreferrer">official IRCC CRS tool</a> before submitting your Express Entry profile.</div></div>
-
-          <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)" aria-expanded="false">How can I improve my CRS score?<svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Top strategies: (1) Improve IELTS/CELPIP scores — each CLB band adds 10–32 pts; (2) Get a Provincial Nomination (+600 pts); (3) Get a Canadian job offer (+50–200 pts); (4) Gain Canadian work experience; (5) Improve French language skills for a 25–50 pt bonus. See the full <a href="/how-to-improve-crs-score">CRS score improvement guide</a>.</div></div>
+          <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)" aria-expanded="false">How can I improve my CRS score?<svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a">Top strategies: (1) Improve IELTS/CELPIP scores — each CLB band adds 10–32 pts; (2) Get a Provincial Nomination (+600 pts); (3) Gain Canadian work experience in a high-wage occupation — from 3 Nov 2026 this is the Labour Market Integration factor; (4) Improve French language skills for a 25–50 pt bonus; (5) Add Canadian post-secondary education. Note: IRCC removed job-offer points in March 2025. See the full <a href="/how-to-improve-crs-score">CRS score improvement guide</a>.</div></div>
         </section>
 
         <!-- DRAWS -->
