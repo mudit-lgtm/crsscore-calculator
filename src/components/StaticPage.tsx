@@ -1,4 +1,14 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { applyTokens } from "@/lib/draws";
+import { LAST_UPDATED_LONG, LAST_UPDATED_ISO } from "@/config/lastUpdated";
+
+function prepare(raw: string) {
+  let h = applyTokens(raw);
+  if (!/Last updated/i.test(h)) {
+    h = h.replace(/<\/h1>/i, `</h1><p class="last-updated" style="font-size:.8rem;opacity:.8;margin:6px 0 0">Last updated: <time datetime="${LAST_UPDATED_ISO}">${LAST_UPDATED_LONG}</time></p>`);
+  }
+  return h;
+}
 
 type StaticPageProps = {
   html: string;
@@ -12,7 +22,8 @@ const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : us
  * Renders a verbatim copy of an original static HTML page and runs its
  * original inline scripts, so inline onclick/onchange handlers keep working.
  */
-export default function StaticPage({ html, js, externalScripts = [] }: StaticPageProps) {
+export default function StaticPage({ html: rawHtml, js, externalScripts = [] }: StaticPageProps) {
+  const html = prepare(rawHtml);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Wrap every wide table in a mobile-safe horizontal scroll container.
