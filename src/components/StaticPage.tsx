@@ -4,7 +4,7 @@ import { LAST_UPDATED_LONG, LAST_UPDATED_ISO } from "@/config/lastUpdated";
 
 function prepare(raw: string) {
   let h = applyTokens(raw);
-  if (!/Last updated/i.test(h)) {
+  if (!h.includes("class=\"last-updated\"")) {
     h = h.replace(/<\/h1>/i, `</h1><p class="last-updated" style="font-size:.8rem;opacity:.8;margin:6px 0 0">Last updated: <time datetime="${LAST_UPDATED_ISO}">${LAST_UPDATED_LONG}</time></p>`);
   }
   return h;
