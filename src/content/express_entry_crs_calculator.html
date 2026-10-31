@@ -456,12 +456,8 @@
                 </select>
               </div>
               <div class="field">
-                <label for="jobOffer">Valid Job Offer (LMIA-approved)</label>
-                <select id="jobOffer">
-                  <option value="0">No</option>
-                  <option value="200">Yes – NOC TEER 0 Senior Mgmt (+200)</option>
-                  <option value="50">Yes – Other NOC TEER 0/1/2/3 (+50)</option>
-                </select>
+                <label for="jobOffer">Job offer (no CRS points)</label>
+                <select id="jobOffer" disabled aria-describedby="jo-note"><option value="0">No CRS points (removed by IRCC, March 2025)</option></select><div class="hint" id="jo-note" style="font-size:.75rem;color:#666;margin-top:4px">Arranged-employment points were removed in March 2025. From 3 Nov 2026 only high-wage job offers earn points (up to 100) — see the <a href="/">main CRS calculator</a>.</div>
               </div>
               <div class="field">
                 <label for="canadaEdu">Canadian Education</label>
@@ -691,8 +687,6 @@
               <thead><tr><th>Factor</th><th>Points</th></tr></thead>
               <tbody>
                 <tr><td>Provincial Nomination (PNP)</td><td>600</td></tr>
-                <tr><td>Job Offer – Senior Mgmt (NOC 00)</td><td>200</td></tr>
-                <tr><td>Job Offer – Other NOC TEER 0/1</td><td>50</td></tr>
                 <tr><td>Canadian education (3+ yr)</td><td>30</td></tr>
                 <tr><td>French bonus (NCLC 7+)</td><td>25–50</td></tr>
                 <tr><td>Sibling in Canada</td><td>15</td></tr>
@@ -711,7 +705,7 @@
           <li><strong>Spouse fields:</strong> If applying with a spouse or common-law partner, toggle the switch and add their education and Canadian work experience.</li>
           <li><strong>Section B – Language:</strong> Choose your test type — <a href="https://www.ielts.org/" target="_blank" rel="noopener noreferrer">IELTS</a>, <a href="https://www.celpip.ca/" target="_blank" rel="noopener noreferrer">CELPIP-G</a>, TEF Canada, or TCF Canada — and enter scores for all four skills.</li>
           <li><strong>Section C – Foreign Work Experience:</strong> Select years of foreign skilled work experience and your NOC TEER category.</li>
-          <li><strong>Section D – Additional Points:</strong> Indicate any PNP nomination, LMIA job offer, Canadian education, sibling in Canada, or French bonus.</li>
+          <li><strong>Section D – Additional Points:</strong> Indicate any PNP nomination, high-wage job offer (from 3 Nov 2026), Canadian education, sibling in Canada, or French bonus.</li>
           <li><strong>Calculate:</strong> Click "Calculate My CRS Score" to instantly see your total score and full section-by-section breakdown.</li>
         </ol>
         <p>Your data is never stored or transmitted. All calculations happen locally in your browser. For your official score, always use the <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/come-canada-tool-immigration-express-entry.html" target="_blank" rel="noopener noreferrer">IRCC Come to Canada tool</a>.</p>
@@ -802,7 +796,7 @@
             How can I improve my CRS score quickly?
             <span class="faq-icon" aria-hidden="true">+</span>
           </button>
-          <div class="faq-a">The top strategies to boost your CRS score: (1) Improve IELTS/CELPIP to CLB 9–10; (2) Get a provincial nomination (PNP) for +600 pts; (3) Gain Canadian work experience; (4) Add a French language test (NCLC 7+ = +25–50 pts); (5) Secure a valid LMIA job offer (+50 to +200); (6) Complete a Canadian education credential. See our full <a href="/how-to-improve-crs-score">CRS score improvement guide</a>.</div>
+          <div class="faq-a">From 3 Nov 2026, 12 months of Canadian work in a high-wage occupation or a valid high-wage job offer can add up to 100 CRS points (you get the higher of the two; no LMIA needed). See our full <a href="/how-to-improve-crs-score">CRS score improvement guide</a>.</div>
         </div>
 
       </section>

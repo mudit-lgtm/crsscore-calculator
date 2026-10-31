@@ -186,7 +186,7 @@
                         (parseFloat(document.getElementById('ss').value)||0)) / 4;
       if (ieltsAvg < 7.0) tips.push('Improve IELTS/CELPIP to CLB 9+ (≈ IELTS 7.0) — language is the highest single factor in CRS.');
       if (parseInt(document.getElementById('pnp').value) === 0) tips.push('Apply for a <a href="/pnp-crs-calculator">Provincial Nomination (PNP)</a> — it adds 600 instant points and virtually guarantees an ITA.');
-      if (parseInt(document.getElementById('jobOffer').value) === 0) tips.push('A valid LMIA job offer can add 50–200 CRS points.');
+      if (parseInt(document.getElementById('jobOffer').value) === 0) tips.push('From 3 Nov 2026, 12 months of Canadian work in a high-wage occupation or a high-wage job offer can add up to 100 CRS points (the higher of the two).');
       if (parseInt(document.getElementById('frenchBonus').value) === 0) tips.push('Learning French (NCLC 7+) adds 25–50 CRS bonus points and opens French-language draws with lower cutoffs.');
       if (parseInt(document.getElementById('canadaExp').value) === 0) tips.push('Any Canadian work experience adds CRS points and may open the CEC stream.');
 

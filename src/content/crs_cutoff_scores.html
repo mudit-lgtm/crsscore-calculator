@@ -278,7 +278,7 @@
 <section class="hero" aria-label="CRS Cutoff Scores Hero">
   <div class="container">
     <h1>CRS Cutoff Scores History 2026<br>Express Entry Draw Results & Trends</h1>
-    <p class="hero-sub">Every Express Entry draw result since 2015. Filter by draw type, track CRS score trends, and see how your score compares to recent cutoffs.</p>
+    <p class="hero-sub">Recent Express Entry draw results from {{DRAWS_FIRST_YEAR}} onward, sourced from IRCC. Filter by draw type, track CRS score trends, and see how your score compares to recent cutoffs.</p>
     <div class="hero-meta">
       <span>📅 Updated April 18, 2026</span>
       <span>✅ All Draw Types</span>
@@ -300,22 +300,22 @@
   <div class="container">
     <div class="ldb-inner">
       <div class="ldb-stat">
-        <span class="ldb-val">Draw #411 <span class="ldb-new">LATEST</span></span>
-        <span class="ldb-label">April 15, 2026</span>
+        <span class="ldb-val">Draw #{{LATEST_NUM}} <span class="ldb-new">LATEST</span></span>
+        <span class="ldb-label">{{LATEST_DATE}}</span>
       </div>
       <div class="ldb-divider" aria-hidden="true"></div>
       <div class="ldb-stat">
-        <span class="ldb-val">419</span>
+        <span class="ldb-val">{{LATEST_CRS}}</span>
         <span class="ldb-label">Min CRS Score</span>
       </div>
       <div class="ldb-divider" aria-hidden="true"></div>
       <div class="ldb-stat">
-        <span class="ldb-val">4,000</span>
+        <span class="ldb-val">{{LATEST_ITAS}}</span>
         <span class="ldb-label">ITAs Issued</span>
       </div>
       <div class="ldb-divider" aria-hidden="true"></div>
       <div class="ldb-stat">
-        <span class="ldb-val">French</span>
+        <span class="ldb-val">{{LATEST_CAT}}</span>
         <span class="ldb-label">Draw Type</span>
       </div>
     </div>
@@ -338,24 +338,24 @@
         <!-- STATS ROW -->
         <div class="stats-row" role="region" aria-label="CRS Score Statistics">
           <div class="stat-card">
-            <div class="stat-val">419</div>
-            <div class="stat-label">Latest Draw Cutoff (Apr 2026)</div>
+            <div class="stat-val">{{LATEST_CRS}}</div>
+            <div class="stat-label">Latest Draw Cutoff ({{LATEST_DATE}})</div>
           </div>
           <div class="stat-card">
             <div class="stat-val">489</div>
             <div class="stat-label">Last All-Program Cutoff</div>
           </div>
           <div class="stat-card">
-            <div class="stat-val">515</div>
-            <div class="stat-label">Last CEC Cutoff (Dec 2025)</div>
+            <div class="stat-val">{{RANGE_CEC}}</div>
+            <div class="stat-label">Recent CEC Cutoffs</div>
           </div>
           <div class="stat-card">
             <div class="stat-val">399</div>
             <div class="stat-label">Lowest French Cutoff 2025</div>
           </div>
           <div class="stat-card">
-            <div class="stat-val">411</div>
-            <div class="stat-label">Total Draws (All-Time)</div>
+            <div class="stat-val">{{LATEST_NUM}}</div>
+            <div class="stat-label">Draws Held So Far</div>
           </div>
           <div class="stat-card">
             <div class="stat-val">75</div>
@@ -404,58 +404,12 @@
                   <th>ITAs Issued</th>
                 </tr>
               </thead>
-              <tbody id="drawTableBody">
-                <!-- 2026 -->
-                <tr data-type="french"><td class="draw-num">#411</td><td>Apr 15, 2026</td><td><span class="type-badge type-french">French</span></td><td class="crs-val" style="color:var(--c-french)">419</td><td class="ita-val">4,000</td></tr>
-                <!-- 2025 draws -->
-                <tr data-type="allprog"><td class="draw-num">#389</td><td>Jan 5, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">711</td><td class="ita-val">574</td></tr>
-                <tr data-type="french"><td class="draw-num">#388</td><td>Dec 17, 2025</td><td><span class="type-badge type-french">French</span></td><td class="crs-val" style="color:var(--c-french)">399</td><td class="ita-val">6,000</td></tr>
-                <tr data-type="cec"><td class="draw-num">#387</td><td>Dec 16, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">515</td><td class="ita-val">5,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#386</td><td>Dec 15, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">731</td><td class="ita-val">399</td></tr>
-                <tr data-type="health"><td class="draw-num">#385</td><td>Dec 11, 2025</td><td><span class="type-badge type-health">Healthcare</span></td><td class="crs-val" style="color:var(--c-health)">476</td><td class="ita-val">1,000</td></tr>
-                <tr data-type="cec"><td class="draw-num">#384</td><td>Dec 10, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">520</td><td class="ita-val">6,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#383</td><td>Dec 8, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">729</td><td class="ita-val">1,123</td></tr>
-                <tr data-type="french"><td class="draw-num">#382</td><td>Nov 28, 2025</td><td><span class="type-badge type-french">French</span></td><td class="crs-val" style="color:var(--c-french)">408</td><td class="ita-val">6,000</td></tr>
-                <tr data-type="cec"><td class="draw-num">#381</td><td>Nov 26, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">531</td><td class="ita-val">1,000</td></tr>
-                <tr data-type="french"><td class="draw-num">#376</td><td>Oct 29, 2025</td><td><span class="type-badge type-french">French</span></td><td class="crs-val" style="color:var(--c-french)">416</td><td class="ita-val">6,000</td></tr>
-                <tr data-type="cec"><td class="draw-num">#375</td><td>Oct 28, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">533</td><td class="ita-val">1,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#374</td><td>Oct 27, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">761</td><td class="ita-val">302</td></tr>
-                <tr data-type="health"><td class="draw-num">#373</td><td>Oct 15, 2025</td><td><span class="type-badge type-health">Healthcare</span></td><td class="crs-val" style="color:var(--c-health)">472</td><td class="ita-val">2,500</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#372</td><td>Oct 14, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">778</td><td class="ita-val">345</td></tr>
-                <tr data-type="cec"><td class="draw-num">#355</td><td>Jul 8, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">518</td><td class="ita-val">3,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#354</td><td>Jul 7, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">750</td><td class="ita-val">356</td></tr>
-                <tr data-type="cec"><td class="draw-num">#353</td><td>Jun 26, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">521</td><td class="ita-val">3,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#352</td><td>Jun 23, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">742</td><td class="ita-val">503</td></tr>
-                <tr data-type="cec"><td class="draw-num">#335</td><td>Feb 5, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">521</td><td class="ita-val">4,000</td></tr>
-                <tr data-type="pnp"><td class="draw-num">#334</td><td>Feb 4, 2025</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">802</td><td class="ita-val">455</td></tr>
-                <tr data-type="cec"><td class="draw-num">#333</td><td>Jan 23, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">527</td><td class="ita-val">4,000</td></tr>
-                <tr data-type="cec"><td class="draw-num">#332</td><td>Jan 8, 2025</td><td><span class="type-badge type-cec">CEC</span></td><td class="crs-val" style="color:var(--c-cec)">542</td><td class="ita-val">1,350</td></tr>
-                <!-- 2024 draws (hidden initially) -->
-                <tr data-type="allprog" class="hidden-row year-2024"><td class="draw-num">#320</td><td>Mar 26, 2024</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">489</td><td class="ita-val">4,500</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2024"><td class="draw-num">#319</td><td>Mar 12, 2024</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">487</td><td class="ita-val">4,500</td></tr>
-                <tr data-type="pnp" class="hidden-row year-2024"><td class="draw-num">#318</td><td>Feb 26, 2024</td><td><span class="type-badge type-pnp">PNP</span></td><td class="crs-val" style="color:var(--c-pnp)">714</td><td class="ita-val">1,353</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2024"><td class="draw-num">#317</td><td>Feb 12, 2024</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">491</td><td class="ita-val">4,000</td></tr>
-                <tr data-type="french" class="hidden-row year-2024"><td class="draw-num">#316</td><td>Jan 22, 2024</td><td><span class="type-badge type-french">French</span></td><td class="crs-val" style="color:var(--c-french)">371</td><td class="ita-val">800</td></tr>
-                <!-- 2023 draws (hidden initially) -->
-                <tr data-type="allprog" class="hidden-row year-2023"><td class="draw-num">#238</td><td>Jan 18, 2023</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">490</td><td class="ita-val">5,500</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2023"><td class="draw-num">#237</td><td>Jan 11, 2023</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">507</td><td class="ita-val">5,500</td></tr>
-                <!-- 2022 draws (hidden initially) -->
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#236</td><td>Nov 23, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">491</td><td class="ita-val">4,750</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#235</td><td>Nov 9, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">494</td><td class="ita-val">4,750</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#234</td><td>Oct 26, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">496</td><td class="ita-val">4,750</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#233</td><td>Oct 12, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">500</td><td class="ita-val">4,250</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#232</td><td>Sep 28, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">504</td><td class="ita-val">3,750</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#231</td><td>Sep 14, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">510</td><td class="ita-val">3,250</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#230</td><td>Aug 31, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">516</td><td class="ita-val">2,750</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#229</td><td>Aug 17, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">525</td><td class="ita-val">2,250</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#228</td><td>Aug 3, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">533</td><td class="ita-val">2,000</td></tr>
-                <tr data-type="allprog" class="hidden-row year-2022"><td class="draw-num">#227</td><td>Jul 20, 2022</td><td><span class="type-badge type-allprog">All-Program</span></td><td class="crs-val" style="color:var(--c-allprog)">542</td><td class="ita-val">1,750</td></tr>
-              </tbody>
+              <tbody id="drawTableBody">{{DRAWS_FULL_ROWS}}</tbody>
             </table>
           </div>
 
           <button class="show-more-btn" id="showMoreBtn" onclick="toggleOlderDraws()">
-            ▼ Show 2024 & Older Draw Results
+            ▼ Show Older Draw Results
           </button>
 
           <p style="font-size:.75rem;color:var(--text-muted);margin-top:12px;">
@@ -526,8 +480,8 @@
           <h3>3. French Draws Remain Most Accessible</h3>
           <p>French-language draws consistently had the lowest cutoffs in 2025 (399–416). If you have CLB 7+ in French, this is the most accessible route to an ITA regardless of your overall CRS score.</p>
 
-          <h3>4. Job Offer Points Removed (March 2025)</h3>
-          <p>In March 2025, IRCC removed CRS points for arranged employment (job offers). This reduced scores by 50 or 200 points for candidates with a job offer. CEC draw cutoffs subsequently dropped slightly in response.</p>
+          <h3>4. Job Offer Points Removed (March 2025) — High-Wage Points From 3 Nov 2026</h3>
+          <p>In March 2025, IRCC removed CRS points for arranged employment (job offers). From 3 Nov 2026, 12 months of Canadian work in a high-wage occupation or a valid high-wage job offer can add up to 100 CRS points (you get the higher of the two; no LMIA needed). CEC draw cutoffs subsequently dropped slightly in response.</p>
 
           <h3>5. December 2025 — Bulk Draws to Meet Targets</h3>
           <p>IRCC issued very large draws in December 2025 (5,000–6,000 ITAs per draw) to meet its 2026 admissions targets. This drove CEC cutoffs to the year's lowest (515) and French cutoffs below 400.</p>
@@ -582,7 +536,7 @@
               What is the latest Express Entry CRS cutoff in 2026?
               <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
-            <div class="faq-answer">The latest Express Entry draw (#411) was held on April 15, 2026. It was a French-Language proficiency draw with a CRS cutoff of <strong>419</strong> and 4,000 ITAs issued. The most recent all-program draw cutoffs ranged from 487–491. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html" target="_blank" rel="noopener noreferrer">Verify on the official IRCC page →</a></div>
+            <div class="faq-answer">The latest Express Entry draw (#{{LATEST_NUM}}) was held on {{LATEST_DATE}}. It was a {{LATEST_CAT}} draw with a CRS cutoff of <strong>{{LATEST_CRS}}</strong> and {{LATEST_ITAS}} ITAs issued. Recent CEC draws needed {{RANGE_CEC}}. <a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html" target="_blank" rel="noopener noreferrer">Verify on the official IRCC page →</a></div>
           </div>
 
           <div class="faq-item">
@@ -649,10 +603,10 @@
         <div class="sidebar-widget">
           <h3>Latest Draw</h3>
           <div style="background:linear-gradient(135deg,#d32f2f,#b71c1c);color:#fff;border-radius:var(--radius-lg);padding:14px;text-align:center;">
-            <div style="font-size:.72rem;opacity:.85;text-transform:uppercase;letter-spacing:.04em;">Draw #411 · Apr 15, 2026</div>
-            <div style="font-family:var(--font-head);font-size:2.4rem;font-weight:700;line-height:1.1;margin-top:4px;">419</div>
-            <div style="font-size:.78rem;opacity:.85;margin-top:2px;">Min CRS · French Draw</div>
-            <div style="font-size:.78rem;opacity:.85;margin-top:6px;">4,000 ITAs issued</div>
+            <div style="font-size:.72rem;opacity:.85;text-transform:uppercase;letter-spacing:.04em;">Draw #{{LATEST_NUM}} · {{LATEST_DATE}}</div>
+            <div style="font-family:var(--font-head);font-size:2.4rem;font-weight:700;line-height:1.1;margin-top:4px;">{{LATEST_CRS}}</div>
+            <div style="font-size:.78rem;opacity:.85;margin-top:2px;">Min CRS · {{LATEST_CAT}} Draw</div>
+            <div style="font-size:.78rem;opacity:.85;margin-top:6px;">{{LATEST_ITAS}} ITAs issued</div>
           </div>
           <p style="font-size:.75rem;color:var(--text-muted);margin-top:10px;text-align:center;"><a href="https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html" target="_blank" rel="noopener noreferrer">Verify on IRCC ↗</a></p>
         </div>

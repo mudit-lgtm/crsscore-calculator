@@ -42,7 +42,7 @@
       btn.dataset.open = '1';
     } else {
       oldRows.forEach(r => { r.style.display = 'none'; });
-      btn.textContent = '▼ Show 2024 & Older Draw Results';
+      btn.textContent = '▼ Show Older Draw Results';
       btn.dataset.open = '0';
     }
   }
