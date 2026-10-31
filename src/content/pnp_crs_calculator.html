@@ -605,12 +605,8 @@
                       </select>
                     </div>
                     <div class="form-group">
-                      <label for="job-offer">Valid Job Offer?</label>
-                      <select id="job-offer" name="job-offer">
-                        <option value="0">No job offer</option>
-                        <option value="50">NOC TEER 1 (50 pts)</option>
-                        <option value="200">NOC TEER 0 Senior (200 pts)</option>
-                      </select>
+                      <label for="job-offer">Job offer (no CRS points)</label>
+                      <select id="job-offer" name="job-offer" disabled aria-describedby="jo-note"><option value="0">No CRS points (removed by IRCC, March 2025)</option></select><div class="hint" id="jo-note" style="font-size:.75rem;color:#666;margin-top:4px">Arranged-employment points were removed in March 2025. From 3 Nov 2026 only high-wage job offers earn points (up to 100) — see the <a href="/">main CRS calculator</a>.</div>
                     </div>
                     <div class="form-group">
                       <label for="canadian-edu">Canadian Education</label>

@@ -32,7 +32,7 @@ function calcBoost() {
   if (gain === 0) {
     v = '☑️ Select strategies above to see your projected score improvement.';
   } else if (projected >= 600) {
-    v = '✅ Outstanding! With a PNP nomination or senior job offer, your ITA is virtually guaranteed.';
+    v = '✅ Outstanding! With a PNP nomination, your ITA is virtually guaranteed.';
   } else if (projected >= 525) {
     v = '✅ Excellent! This projected score is highly competitive for all-program Express Entry draws.';
   } else if (projected >= 490) {
