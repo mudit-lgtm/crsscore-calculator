@@ -18,7 +18,7 @@ const CAT = data.categories as Record<string, string>;
 export const DRAWS: Draw[] = [...(data.draws as Draw[])].sort((a, b) =>
   a.date === b.date ? b.draw - a.draw : b.date.localeCompare(a.date),
 );
-export const LATEST = DRAWS[0];
+export const LATEST = DRAWS[0]!;
 export const CURRENT_YEAR = LAST_UPDATED_ISO.slice(0, 4);
 
 const fmt = (iso: string) =>
@@ -37,7 +37,7 @@ export function cutoffRange(category: string, count = 6) {
   const xs = DRAWS.filter((d) => d.category === category && !d.unverified).slice(0, count);
   if (!xs.length) return null;
   const v = xs.map((d) => d.crs);
-  return { min: Math.min(...v), max: Math.max(...v), from: xs[xs.length - 1].date, to: xs[0].date };
+  return { min: Math.min(...v), max: Math.max(...v), from: xs[xs.length - 1]!.date, to: xs[0]!.date };
 }
 
 const unv = (d: Draw) => (d.unverified ? ' <small title="Could not be verified against IRCC">(unverified)</small>' : "");
@@ -67,7 +67,7 @@ function rangeText(cat: string) {
 
 /** Replace site tokens in legacy page HTML with values from the shared data files. */
 export function applyTokens(html: string): string {
-  const first = DRAWS[DRAWS.length - 1];
+  const first = DRAWS[DRAWS.length - 1]!;
   const map: Record<string, string> = {
     LAST_UPDATED: LAST_UPDATED_LONG,
     YEAR: CURRENT_YEAR,
