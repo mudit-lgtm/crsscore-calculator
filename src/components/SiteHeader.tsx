@@ -25,6 +25,7 @@ const MOBILE_NAV: [string, string][] = [
   ["/crs-cutoff-scores", "Cutoff Scores"],
   ["/express-entry-draw-results", "Express Entry Draws"],
   ["/blog", "Blog"],
+  ["/express-entry-reforms-2026", "Nov 2026 Changes"],
   ["/blog/improve-crs-score-tips", "Improve CRS Score"],
 ];
 

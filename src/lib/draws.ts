@@ -60,6 +60,11 @@ function fullRows() {
   }).join("");
 }
 
+function latestOf(cat: string) {
+  const d = DRAWS.find((x) => x.category === cat && !x.unverified);
+  return d ? String(d.crs) : "n/a";
+}
+
 function rangeText(cat: string) {
   const r = cutoffRange(cat);
   return r ? `${r.min}–${r.max}` : "n/a";
@@ -85,6 +90,9 @@ export function applyTokens(html: string): string {
     RANGE_FRENCH: rangeText("french"),
     RANGE_PNP: rangeText("pnp"),
     SOURCE_URL: DRAWS_SOURCE_URL,
+    LATEST_ALLPROG: latestOf("all-program"),
+    LATEST_CEC: latestOf("cec"),
+    LATEST_FRENCH: latestOf("french"),
   };
   return html.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => map[k] ?? m);
 }
