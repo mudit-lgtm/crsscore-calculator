@@ -195,7 +195,7 @@
         tipsBox.innerHTML = `<h3>💡 Ways to Improve Your Score</h3><ul>${tips.map(t=>`<li>${t}</li>`).join('')}</ul>`;
         tipsBox.style.display = 'block';
       } else {
-        tipsBox.innerHTML = `<h3>🎉 Great Score!</h3><p>Your score of ${total} is competitive. Monitor <a href="/express-entry-draw-history">draw cutoffs</a> and submit your profile when ready.</p>`;
+        tipsBox.innerHTML = `<h3>🎉 Great Score!</h3><p>Your score of ${total} is competitive. Monitor <a href="/blog/express-entry-cutoff-history">draw cutoffs</a> and submit your profile when ready.</p>`;
         tipsBox.style.display = 'block';
       }
 

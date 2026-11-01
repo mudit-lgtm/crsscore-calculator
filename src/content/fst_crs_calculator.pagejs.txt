@@ -90,11 +90,11 @@ document.getElementById('calcBtn').addEventListener('click', function () {
   let eligHTML = '';
 
   if (!tradeOcc) {
-    eligHTML = '<div class="fst-tag tag-red">❌ Occupation not in eligible NOC TEER 2–3 trade groups. Consider <a href="/fsw-calculator" style="color:var(--red)">FSW Calculator</a> for TEER 0/1 professions.</div>';
+    eligHTML = '<div class="fst-tag tag-red">❌ Occupation not in eligible NOC TEER 2–3 trade groups. Consider <a href="/fsw-crs-calculator" style="color:var(--red)">FSW Calculator</a> for TEER 0/1 professions.</div>';
   } else if (!tradeExp) {
     eligHTML = '<div class="fst-tag tag-amber">⚡ Need 2 years of full-time trade experience to qualify for FST program.</div>';
   } else if (!langOK) {
-    eligHTML = '<div class="fst-tag tag-amber">⚡ Language below FST minimum. Need CLB 5 Speaking/Listening and CLB 4 Reading/Writing. Use <a href="/clb-scores">CLB Converter</a> to check.</div>';
+    eligHTML = '<div class="fst-tag tag-amber">⚡ Language below FST minimum. Need CLB 5 Speaking/Listening and CLB 4 Reading/Writing. Use <a href="/ielts-crs-calculator">CLB Converter</a> to check.</div>';
   } else if (!certOrOffer) {
     eligHTML = '<div class="fst-tag tag-amber">⚡ Need either a certificate of qualification OR a Canadian job offer to qualify for FST program.</div>';
   } else {
@@ -113,9 +113,9 @@ document.getElementById('calcBtn').addEventListener('click', function () {
   if (total >= cutoff + 10) {
     drawHTML = `<div class="fst-tag tag-green" style="margin-top:6px;">🎯 CRS ${total} is competitive for ${drawNames[drawType]} draws. You likely qualify in the next round!</div>`;
   } else if (total >= cutoff - 20) {
-    drawHTML = `<div class="fst-tag tag-amber" style="margin-top:6px;">⚡ CRS ${total} is close to the ${drawNames[drawType]} cutoff. See <a href="/improve-score">Improve Score tips</a> to push over.</div>`;
+    drawHTML = `<div class="fst-tag tag-amber" style="margin-top:6px;">⚡ CRS ${total} is close to the ${drawNames[drawType]} cutoff. See <a href="/how-to-improve-crs-score">Improve Score tips</a> to push over.</div>`;
   } else {
-    drawHTML = `<div class="fst-tag tag-red" style="margin-top:6px;">❌ CRS ${total} is below ${drawNames[drawType]} cutoff. Use our <a href="/improve-score" style="color:var(--red)">Improve CRS Score guide</a> to boost points.</div>`;
+    drawHTML = `<div class="fst-tag tag-red" style="margin-top:6px;">❌ CRS ${total} is below ${drawNames[drawType]} cutoff. Use our <a href="/how-to-improve-crs-score" style="color:var(--red)">Improve CRS Score guide</a> to boost points.</div>`;
   }
   drawEl.innerHTML = drawHTML;
 

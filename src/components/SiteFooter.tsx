@@ -32,6 +32,7 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
       ["/blog/minimum-crs-score", "Minimum CRS Score"],
       ["/express-entry-draw-results", "Draw Results"],
       ["/crs-cutoff-scores", "Cutoff Scores"],
+      ["/express-entry-reforms-2026", "Express Entry Changes 2026"],
     ],
   },
   {

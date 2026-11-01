@@ -100,13 +100,13 @@
 
     let drawHTML = '';
     if (!clbOk && drawTarget !== 'french') {
-      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚠️ Language below CLB 7. Ensure you meet minimum language requirements for your chosen stream. Use our <a href="/clb-scores">CLB converter</a>.</div>';
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚠️ Language below CLB 7. Ensure you meet minimum language requirements for your chosen stream. Use our <a href="/ielts-crs-calculator">CLB converter</a>.</div>';
     } else if (total >= cutoff + 15) {
       drawHTML = '<div class="status-tag tag-green" style="margin-top:8px;">🎯 CRS ' + total + ' is competitive for ' + names[drawTarget] + '. You likely qualify in the next draw round!</div>';
     } else if (total >= cutoff - 20) {
-      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + names[drawTarget] + ' cutoff. See <a href="/improve-score">Improve Score tips</a> to push over the threshold.</div>';
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + names[drawTarget] + ' cutoff. See <a href="/how-to-improve-crs-score">Improve Score tips</a> to push over the threshold.</div>';
     } else {
-      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + names[drawTarget] + ' cutoff. Visit our <a href="/improve-score" style="color:var(--red)">Improve CRS Score guide</a> for actionable steps.</div>';
+      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + names[drawTarget] + ' cutoff. Visit our <a href="/how-to-improve-crs-score" style="color:var(--red)">Improve CRS Score guide</a> for actionable steps.</div>';
     }
     drawEl.innerHTML = drawHTML;
 
