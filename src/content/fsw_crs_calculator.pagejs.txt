@@ -122,13 +122,13 @@
     const clbMinOk = Math.min(ls, ll, lr, lw) >= 15; // CLB 7 = value 15
     let eligHTML = '';
     if (!clbMinOk) {
-      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ Language below FSW minimum (CLB 7 required in all 4 skills). Use <a href="/clb-scores" style="color:var(--red)">CLB Converter</a> to check.</div>';
+      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ Language below FSW minimum (CLB 7 required in all 4 skills). Use <a href="/ielts-crs-calculator" style="color:var(--red)">CLB Converter</a> to check.</div>';
     } else if (fsw.gridEdu === 0 || fsw.gridExp === 0 || fsw.gridAge === '') {
       eligHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ Complete all FSW grid sections to check eligibility.</div>';
     } else if (fsw.total67 >= 67) {
       eligHTML = '<div class="status-tag tag-green" style="margin-top:8px;">✅ Meets FSW 67-point grid requirement (' + fsw.total67 + '/100). You are eligible to enter Express Entry.</div>';
     } else {
-      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ FSW grid score is ' + fsw.total67 + '/100. You need 67+ to qualify. See <a href="/improve-score" style="color:var(--red)">improve score tips</a>.</div>';
+      eligHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ FSW grid score is ' + fsw.total67 + '/100. You need 67+ to qualify. See <a href="/how-to-improve-crs-score" style="color:var(--red)">improve score tips</a>.</div>';
     }
     eligEl.innerHTML = eligHTML;
 
@@ -149,9 +149,9 @@
     if (total >= cutoff + 15) {
       drawHTML = '<div class="status-tag tag-green" style="margin-top:8px;">🎯 CRS ' + total + ' is competitive for ' + drawNames[drawType] + ' draws. You likely qualify in the next round!</div>';
     } else if (total >= cutoff - 25) {
-      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + drawNames[drawType] + ' cutoff. See <a href="/improve-score">Improve Score tips</a> to push over the line.</div>';
+      drawHTML = '<div class="status-tag tag-amber" style="margin-top:8px;">⚡ CRS ' + total + ' is close to the ' + drawNames[drawType] + ' cutoff. See <a href="/how-to-improve-crs-score">Improve Score tips</a> to push over the line.</div>';
     } else {
-      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + drawNames[drawType] + ' cutoff. Use our <a href="/improve-score" style="color:var(--red)">Improve CRS Score guide</a> to boost your points.</div>';
+      drawHTML = '<div class="status-tag tag-red" style="margin-top:8px;">❌ CRS ' + total + ' is below the ' + drawNames[drawType] + ' cutoff. Use our <a href="/how-to-improve-crs-score" style="color:var(--red)">Improve CRS Score guide</a> to boost your points.</div>';
     }
     drawEl.innerHTML = drawHTML;
 

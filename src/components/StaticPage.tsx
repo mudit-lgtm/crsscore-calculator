@@ -10,6 +10,22 @@ function prepare(raw: string) {
   return h;
 }
 
+/**
+ * Wrap a legacy page script in a function scope so re-running it (after
+ * client navigation back to the page) cannot clash on top-level const/let/class.
+ * Top-level function declarations and const/let bindings are exported to window
+ * so inline onclick/onchange handlers keep working.
+ */
+function scopeScript(code: string) {
+  const names = new Set<string>();
+  // top-level only: lines starting at column 0
+  const re = /^(?:async\s+)?function\s*\*?\s*([A-Za-z_$][\w$]*)|^(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=/gm;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(code))) names.add((m[1] || m[2])!);
+  const exports = [...names].map((n) => `try{window[${JSON.stringify(n)}]=${n};}catch(e){}`).join("");
+  return `(function(){\n${code}\n;${exports}\n})();`;
+}
+
 type StaticPageProps = {
   html: string;
   js?: string;
@@ -65,7 +81,7 @@ export default function StaticPage({ html: rawHtml, js, externalScripts = [] }: 
 
     if (js && js.trim()) {
       const el = document.createElement("script");
-      el.textContent = js;
+      el.textContent = scopeScript(applyTokens(js));
       document.body.appendChild(el);
       added.push(el);
     }

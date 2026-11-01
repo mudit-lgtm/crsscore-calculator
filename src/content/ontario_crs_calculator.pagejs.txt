@@ -84,11 +84,11 @@ document.getElementById('calcBtn').addEventListener('click', function () {
   } else if (total >= 400 && !meetsLang) {
     tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS ≥ 400 but improve language to CLB 7+ in ALL skills for OINP HCP stream eligibility.</div>';
   } else if (total >= 400 && !meetsEdu) {
-    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS ≥ 400 but OINP HCP requires a Bachelor\'s degree or higher. Check <a href="/fsw-calculator">FSW Calculator</a>.</div>';
+    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS ≥ 400 but OINP HCP requires a Bachelor\'s degree or higher. Check <a href="/fsw-crs-calculator">FSW Calculator</a>.</div>';
   } else if (total >= 300) {
-    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS below 400 minimum for OINP HCP. Use our <a href="/improve-score">Improve Score guide</a> to boost your points.</div>';
+    tagHTML = '<div class="ontario-tag tag-amber">⚡ CRS below 400 minimum for OINP HCP. Use our <a href="/how-to-improve-crs-score">Improve Score guide</a> to boost your points.</div>';
   } else {
-    tagHTML = '<div class="ontario-tag tag-red">❌ CRS below 300. Significant improvements needed. See <a href="/improve-score" style="color:var(--red)">Improve CRS Score</a> strategies.</div>';
+    tagHTML = '<div class="ontario-tag tag-red">❌ CRS below 300. Significant improvements needed. See <a href="/how-to-improve-crs-score" style="color:var(--red)">Improve CRS Score</a> strategies.</div>';
   }
 
   if (ontOcc && total >= 300) {

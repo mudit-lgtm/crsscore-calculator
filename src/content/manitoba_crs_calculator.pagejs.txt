@@ -18,13 +18,12 @@
     var study    = val('canadaStudy');
     var sibling  = val('sibling');
     var nomBonus = val('nomineeBonus');
-    var jobOffer = val('pnpJobOffer');
     var french   = val('frenchLevel');
     var francoComm = val('frenchCommunity');
 
     var spouse   = spEdu + spLang + spExp;
     var work     = canExp + forExp;
-    var total    = age + edu + lang + spouse + work + study + sibling + nomBonus + jobOffer + french + francoComm;
+    var total    = age + edu + lang + spouse + work + study + sibling + nomBonus + french + francoComm;
 
     // Update summary mini cards
     g('totalScore').textContent = total;
@@ -42,7 +41,7 @@
     g('tFrench').textContent = french;
     g('tStudy').textContent  = study;
     g('tSibling').textContent= sibling;
-    g('tBonus').textContent  = nomBonus + jobOffer;
+    g('tBonus').textContent  = nomBonus;
     g('tTotal').innerHTML    = '<strong>' + total + '</strong>';
 
     // Sidebar score

@@ -16,6 +16,8 @@ const LABELS: Record<string, string> = {
   "/blog/minimum-crs-score": "Minimum CRS Score for Canada PR",
   "/blog/crs-score-by-age": "CRS Points by Age",
   "/blog/express-entry-cutoff-history": "Express Entry Cutoff History",
+  "/express-entry-reforms-2026": "Express Entry Changes November 2026",
+  "/how-to-improve-crs-score": "How to Improve Your CRS Score (guide)",
 };
 
 /** Bidirectional related-page pairs. Each pair is wired both ways at build time. */
@@ -51,6 +53,10 @@ const PAIRS: [string, string][] = [
   ["/blog/express-entry-cutoff-history", "/crs-cutoff-scores"],
   ["/blog/express-entry-cutoff-history", "/pnp-crs-calculator"],
   ["/blog/crs-score-education", "/"],
+  ["/express-entry-reforms-2026", "/"],
+  ["/express-entry-reforms-2026", "/how-crs-is-calculated"],
+  ["/express-entry-reforms-2026", "/crs-cutoff-scores"],
+  ["/express-entry-reforms-2026", "/how-to-improve-crs-score"],
 ];
 
 

@@ -155,8 +155,6 @@ function crsToggleMenu(){
 
     let extra = 0;
     extra += parseInt(getR('pnp')) || 0;
-    extra += parseInt(getR('jobOffer')) || 0;
-    extra += parseInt(getR('jobOffer2')) || 0;
     extra += parseInt(getR('canEdu')) || 0;
     extra += parseInt(getR('canEdu2')) || 0;
     extra += parseInt(getR('sibling')) || 0;
