@@ -21,6 +21,7 @@ import { Route as CrsCutoffScoresRouteImport } from './routes/crs-cutoff-scores'
 import { Route as CrsScoreForCanadaPrRouteImport } from './routes/crs-score-for-canada-pr'
 import { Route as ExpressEntryCrsCalculatorRouteImport } from './routes/express-entry-crs-calculator'
 import { Route as ExpressEntryDrawResultsRouteImport } from './routes/express-entry-draw-results'
+import { Route as ExpressEntryReforms2026RouteImport } from './routes/express-entry-reforms-2026'
 import { Route as FstCrsCalculatorRouteImport } from './routes/fst-crs-calculator'
 import { Route as FswCrsCalculatorRouteImport } from './routes/fsw-crs-calculator'
 import { Route as HealthcareCrsCalculatorRouteImport } from './routes/healthcare-crs-calculator'
@@ -106,6 +107,11 @@ const ExpressEntryCrsCalculatorRoute =
 const ExpressEntryDrawResultsRoute = ExpressEntryDrawResultsRouteImport.update({
   id: '/express-entry-draw-results',
   path: '/express-entry-draw-results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpressEntryReforms2026Route = ExpressEntryReforms2026RouteImport.update({
+  id: '/express-entry-reforms-2026',
+  path: '/express-entry-reforms-2026',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FstCrsCalculatorRoute = FstCrsCalculatorRouteImport.update({
@@ -245,6 +251,7 @@ export interface FileRoutesByFullPath {
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
   '/fst-crs-calculator': typeof FstCrsCalculatorRoute
   '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
   '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
@@ -283,6 +290,7 @@ export interface FileRoutesByTo {
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
   '/fst-crs-calculator': typeof FstCrsCalculatorRoute
   '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
   '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
@@ -322,6 +330,7 @@ export interface FileRoutesById {
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
+  '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
   '/fst-crs-calculator': typeof FstCrsCalculatorRoute
   '/fsw-crs-calculator': typeof FswCrsCalculatorRoute
   '/healthcare-crs-calculator': typeof HealthcareCrsCalculatorRoute
@@ -362,6 +371,7 @@ export interface FileRouteTypes {
     | '/crs-score-for-canada-pr'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
+    | '/express-entry-reforms-2026'
     | '/fst-crs-calculator'
     | '/fsw-crs-calculator'
     | '/healthcare-crs-calculator'
@@ -400,6 +410,7 @@ export interface FileRouteTypes {
     | '/crs-score-for-canada-pr'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
+    | '/express-entry-reforms-2026'
     | '/fst-crs-calculator'
     | '/fsw-crs-calculator'
     | '/healthcare-crs-calculator'
@@ -438,6 +449,7 @@ export interface FileRouteTypes {
     | '/crs-score-for-canada-pr'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
+    | '/express-entry-reforms-2026'
     | '/fst-crs-calculator'
     | '/fsw-crs-calculator'
     | '/healthcare-crs-calculator'
@@ -477,6 +489,7 @@ export interface RootRouteChildren {
   CrsScoreForCanadaPrRoute: typeof CrsScoreForCanadaPrRoute
   ExpressEntryCrsCalculatorRoute: typeof ExpressEntryCrsCalculatorRoute
   ExpressEntryDrawResultsRoute: typeof ExpressEntryDrawResultsRoute
+  ExpressEntryReforms2026Route: typeof ExpressEntryReforms2026Route
   FstCrsCalculatorRoute: typeof FstCrsCalculatorRoute
   FswCrsCalculatorRoute: typeof FswCrsCalculatorRoute
   HealthcareCrsCalculatorRoute: typeof HealthcareCrsCalculatorRoute
@@ -587,6 +600,13 @@ declare module '@tanstack/react-router' {
       path: '/express-entry-draw-results'
       fullPath: '/express-entry-draw-results'
       preLoaderRoute: typeof ExpressEntryDrawResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/express-entry-reforms-2026': {
+      id: '/express-entry-reforms-2026'
+      path: '/express-entry-reforms-2026'
+      fullPath: '/express-entry-reforms-2026'
+      preLoaderRoute: typeof ExpressEntryReforms2026RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fst-crs-calculator': {
@@ -773,6 +793,7 @@ const rootRouteChildren: RootRouteChildren = {
   CrsScoreForCanadaPrRoute: CrsScoreForCanadaPrRoute,
   ExpressEntryCrsCalculatorRoute: ExpressEntryCrsCalculatorRoute,
   ExpressEntryDrawResultsRoute: ExpressEntryDrawResultsRoute,
+  ExpressEntryReforms2026Route: ExpressEntryReforms2026Route,
   FstCrsCalculatorRoute: FstCrsCalculatorRoute,
   FswCrsCalculatorRoute: FswCrsCalculatorRoute,
   HealthcareCrsCalculatorRoute: HealthcareCrsCalculatorRoute,
