@@ -1,1 +1,3189 @@
-{"source": "IRCC Express Entry rounds. Verify at IRCC.", "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html", "updated": "2026-10-26", "categories": {"all-program": "All-Program", "cec": "CEC", "pnp": "PNP", "french": "French", "healthcare": "Healthcare", "stem": "STEM"}, "draws": [{"draw": 450, "date": "2026-10-16", "category": "french", "itas": 5000, "crs": 435}, {"draw": 449, "date": "2026-10-15", "category": "cec", "itas": 2500, "crs": 519}, {"draw": 448, "date": "2026-10-13", "category": "pnp", "itas": 752, "crs": 772}, {"draw": 411, "date": "2026-04-15", "category": "french", "itas": 4000, "crs": 419}, {"draw": 388, "date": "2025-12-17", "category": "french", "itas": 6000, "crs": 399}, {"draw": 387, "date": "2025-12-16", "category": "cec", "itas": 5000, "crs": 515}, {"draw": 386, "date": "2025-12-15", "category": "pnp", "itas": 399, "crs": 731}, {"draw": 385, "date": "2025-12-11", "category": "healthcare", "itas": 1000, "crs": 476}, {"draw": 384, "date": "2025-12-10", "category": "cec", "itas": 6000, "crs": 520}, {"draw": 383, "date": "2025-12-08", "category": "pnp", "itas": 1123, "crs": 729}, {"draw": 382, "date": "2025-11-28", "category": "french", "itas": 6000, "crs": 408}, {"draw": 381, "date": "2025-11-26", "category": "cec", "itas": 1000, "crs": 531}, {"draw": 376, "date": "2025-10-29", "category": "french", "itas": 6000, "crs": 416}, {"draw": 375, "date": "2025-10-28", "category": "cec", "itas": 1000, "crs": 533}, {"draw": 374, "date": "2025-10-27", "category": "pnp", "itas": 302, "crs": 761}, {"draw": 373, "date": "2025-10-15", "category": "healthcare", "itas": 2500, "crs": 472}, {"draw": 372, "date": "2025-10-14", "category": "pnp", "itas": 345, "crs": 778}, {"draw": 355, "date": "2025-07-08", "category": "cec", "itas": 3000, "crs": 518}, {"draw": 354, "date": "2025-07-07", "category": "pnp", "itas": 356, "crs": 750}, {"draw": 353, "date": "2025-06-26", "category": "cec", "itas": 3000, "crs": 521}, {"draw": 352, "date": "2025-06-23", "category": "pnp", "itas": 503, "crs": 742}, {"draw": 335, "date": "2025-02-05", "category": "cec", "itas": 4000, "crs": 521}, {"draw": 334, "date": "2025-02-04", "category": "pnp", "itas": 455, "crs": 802}, {"draw": 333, "date": "2025-01-23", "category": "cec", "itas": 4000, "crs": 527}, {"draw": 332, "date": "2025-01-08", "category": "cec", "itas": 1350, "crs": 542}, {"draw": 389, "date": "2025-01-05", "category": "pnp", "itas": 574, "crs": 711, "unverified": true}, {"draw": 320, "date": "2024-03-26", "category": "all-program", "itas": 4500, "crs": 489}, {"draw": 319, "date": "2024-03-12", "category": "all-program", "itas": 4500, "crs": 487}, {"draw": 318, "date": "2024-02-26", "category": "pnp", "itas": 1353, "crs": 714}, {"draw": 317, "date": "2024-02-12", "category": "all-program", "itas": 4000, "crs": 491}, {"draw": 316, "date": "2024-01-22", "category": "french", "itas": 800, "crs": 371}, {"draw": 238, "date": "2023-01-18", "category": "all-program", "itas": 5500, "crs": 490}, {"draw": 237, "date": "2023-01-11", "category": "all-program", "itas": 5500, "crs": 507}, {"draw": 236, "date": "2022-11-23", "category": "all-program", "itas": 4750, "crs": 491}, {"draw": 235, "date": "2022-11-09", "category": "all-program", "itas": 4750, "crs": 494}, {"draw": 234, "date": "2022-10-26", "category": "all-program", "itas": 4750, "crs": 496}, {"draw": 233, "date": "2022-10-12", "category": "all-program", "itas": 4250, "crs": 500}, {"draw": 232, "date": "2022-09-28", "category": "all-program", "itas": 3750, "crs": 504}, {"draw": 231, "date": "2022-09-14", "category": "all-program", "itas": 3250, "crs": 510}, {"draw": 230, "date": "2022-08-31", "category": "all-program", "itas": 2750, "crs": 516}, {"draw": 229, "date": "2022-08-17", "category": "all-program", "itas": 2250, "crs": 525}, {"draw": 228, "date": "2022-08-03", "category": "all-program", "itas": 2000, "crs": 533}, {"draw": 227, "date": "2022-07-20", "category": "all-program", "itas": 1750, "crs": 542}]}
+{
+ "source": "IRCC Express Entry rounds (fetched automatically by scripts/update-draws.ts). Verify at IRCC.",
+ "sourceUrl": "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/policies-operational-instructions-agreements/ministerial-instructions/express-entry-rounds.html",
+ "updated": "2026-11-02",
+ "categories": {
+  "all-program": "All-Program",
+  "cec": "CEC",
+  "pnp": "PNP",
+  "french": "French",
+  "healthcare": "Healthcare",
+  "stem": "STEM",
+  "fst": "Federal Skilled Trades",
+  "fsw": "Federal Skilled Worker",
+  "transport": "Transport",
+  "agriculture": "Agriculture & Agri-Food",
+  "education": "Education",
+  "senior-managers": "Senior Managers (CWE)",
+  "physicians": "Physicians (CWE)",
+  "military": "Skilled Military Recruits",
+  "other": "Other"
+ },
+ "draws": [
+  {
+   "draw": 453,
+   "date": "2026-10-28",
+   "category": "transport",
+   "itas": 150,
+   "crs": 477
+  },
+  {
+   "draw": 452,
+   "date": "2026-10-27",
+   "category": "french",
+   "itas": 5000,
+   "crs": 407
+  },
+  {
+   "draw": 451,
+   "date": "2026-10-26",
+   "category": "pnp",
+   "itas": 792,
+   "crs": 761
+  },
+  {
+   "draw": 450,
+   "date": "2026-10-16",
+   "category": "french",
+   "itas": 5000,
+   "crs": 435
+  },
+  {
+   "draw": 449,
+   "date": "2026-10-15",
+   "category": "cec",
+   "itas": 2500,
+   "crs": 519
+  },
+  {
+   "draw": 448,
+   "date": "2026-10-13",
+   "category": "pnp",
+   "itas": 752,
+   "crs": 772
+  },
+  {
+   "draw": 447,
+   "date": "2026-10-01",
+   "category": "other",
+   "itas": 3500,
+   "crs": 476
+  },
+  {
+   "draw": 446,
+   "date": "2026-09-29",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 518
+  },
+  {
+   "draw": 445,
+   "date": "2026-09-28",
+   "category": "pnp",
+   "itas": 733,
+   "crs": 725
+  },
+  {
+   "draw": 444,
+   "date": "2026-09-16",
+   "category": "senior-managers",
+   "itas": 250,
+   "crs": 389
+  },
+  {
+   "draw": 443,
+   "date": "2026-09-15",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 519
+  },
+  {
+   "draw": 442,
+   "date": "2026-09-14",
+   "category": "pnp",
+   "itas": 576,
+   "crs": 734
+  },
+  {
+   "draw": 441,
+   "date": "2026-09-04",
+   "category": "healthcare",
+   "itas": 3500,
+   "crs": 475
+  },
+  {
+   "draw": 440,
+   "date": "2026-09-03",
+   "category": "physicians",
+   "itas": 229,
+   "crs": 198
+  },
+  {
+   "draw": 439,
+   "date": "2026-09-01",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 521
+  },
+  {
+   "draw": 438,
+   "date": "2026-08-31",
+   "category": "pnp",
+   "itas": 562,
+   "crs": 697
+  },
+  {
+   "draw": 437,
+   "date": "2026-08-19",
+   "category": "french",
+   "itas": 5000,
+   "crs": 382
+  },
+  {
+   "draw": 436,
+   "date": "2026-08-18",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 523
+  },
+  {
+   "draw": 435,
+   "date": "2026-08-17",
+   "category": "pnp",
+   "itas": 442,
+   "crs": 760
+  },
+  {
+   "draw": 434,
+   "date": "2026-08-07",
+   "category": "transport",
+   "itas": 300,
+   "crs": 470
+  },
+  {
+   "draw": 433,
+   "date": "2026-08-06",
+   "category": "french",
+   "itas": 5000,
+   "crs": 391
+  },
+  {
+   "draw": 432,
+   "date": "2026-08-05",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 516
+  },
+  {
+   "draw": 431,
+   "date": "2026-08-04",
+   "category": "pnp",
+   "itas": 507,
+   "crs": 768
+  },
+  {
+   "draw": 430,
+   "date": "2026-07-23",
+   "category": "military",
+   "itas": 4,
+   "crs": 368
+  },
+  {
+   "draw": 429,
+   "date": "2026-07-22",
+   "category": "french",
+   "itas": 5000,
+   "crs": 399
+  },
+  {
+   "draw": 428,
+   "date": "2026-07-21",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 516
+  },
+  {
+   "draw": 427,
+   "date": "2026-07-20",
+   "category": "pnp",
+   "itas": 511,
+   "crs": 744
+  },
+  {
+   "draw": 426,
+   "date": "2026-07-10",
+   "category": "senior-managers",
+   "itas": 500,
+   "crs": 392
+  },
+  {
+   "draw": 425,
+   "date": "2026-07-09",
+   "category": "french",
+   "itas": 5000,
+   "crs": 420
+  },
+  {
+   "draw": 424,
+   "date": "2026-07-07",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 517
+  },
+  {
+   "draw": 423,
+   "date": "2026-07-06",
+   "category": "pnp",
+   "itas": 534,
+   "crs": 708
+  },
+  {
+   "draw": 422,
+   "date": "2026-06-25",
+   "category": "healthcare",
+   "itas": 4000,
+   "crs": 475
+  },
+  {
+   "draw": 421,
+   "date": "2026-06-24",
+   "category": "physicians",
+   "itas": 271,
+   "crs": 223
+  },
+  {
+   "draw": 420,
+   "date": "2026-06-23",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 516
+  },
+  {
+   "draw": 419,
+   "date": "2026-06-22",
+   "category": "pnp",
+   "itas": 955,
+   "crs": 730
+  },
+  {
+   "draw": 418,
+   "date": "2026-05-28",
+   "category": "french",
+   "itas": 4500,
+   "crs": 409
+  },
+  {
+   "draw": 417,
+   "date": "2026-05-27",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 518
+  },
+  {
+   "draw": 416,
+   "date": "2026-05-25",
+   "category": "pnp",
+   "itas": 334,
+   "crs": 805
+  },
+  {
+   "draw": 415,
+   "date": "2026-05-11",
+   "category": "pnp",
+   "itas": 380,
+   "crs": 798
+  },
+  {
+   "draw": 414,
+   "date": "2026-04-29",
+   "category": "french",
+   "itas": 4000,
+   "crs": 400
+  },
+  {
+   "draw": 413,
+   "date": "2026-04-28",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 514
+  },
+  {
+   "draw": 412,
+   "date": "2026-04-27",
+   "category": "pnp",
+   "itas": 473,
+   "crs": 795
+  },
+  {
+   "draw": 411,
+   "date": "2026-04-15",
+   "category": "french",
+   "itas": 4000,
+   "crs": 419
+  },
+  {
+   "draw": 410,
+   "date": "2026-04-14",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 515
+  },
+  {
+   "draw": 409,
+   "date": "2026-04-13",
+   "category": "pnp",
+   "itas": 324,
+   "crs": 786
+  },
+  {
+   "draw": 408,
+   "date": "2026-04-02",
+   "category": "other",
+   "itas": 3000,
+   "crs": 477
+  },
+  {
+   "draw": 407,
+   "date": "2026-03-31",
+   "category": "cec",
+   "itas": 2250,
+   "crs": 509
+  },
+  {
+   "draw": 406,
+   "date": "2026-03-30",
+   "category": "pnp",
+   "itas": 356,
+   "crs": 802
+  },
+  {
+   "draw": 405,
+   "date": "2026-03-18",
+   "category": "french",
+   "itas": 4000,
+   "crs": 393
+  },
+  {
+   "draw": 404,
+   "date": "2026-03-17",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 507
+  },
+  {
+   "draw": 403,
+   "date": "2026-03-16",
+   "category": "pnp",
+   "itas": 362,
+   "crs": 742
+  },
+  {
+   "draw": 402,
+   "date": "2026-03-05",
+   "category": "senior-managers",
+   "itas": 250,
+   "crs": 429
+  },
+  {
+   "draw": 401,
+   "date": "2026-03-04",
+   "category": "french",
+   "itas": 5500,
+   "crs": 397
+  },
+  {
+   "draw": 400,
+   "date": "2026-03-03",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 508
+  },
+  {
+   "draw": 399,
+   "date": "2026-03-02",
+   "category": "pnp",
+   "itas": 264,
+   "crs": 710
+  },
+  {
+   "draw": 398,
+   "date": "2026-02-20",
+   "category": "healthcare",
+   "itas": 4000,
+   "crs": 467
+  },
+  {
+   "draw": 397,
+   "date": "2026-02-19",
+   "category": "physicians",
+   "itas": 391,
+   "crs": 169
+  },
+  {
+   "draw": 396,
+   "date": "2026-02-17",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 508
+  },
+  {
+   "draw": 395,
+   "date": "2026-02-16",
+   "category": "pnp",
+   "itas": 279,
+   "crs": 789
+  },
+  {
+   "draw": 394,
+   "date": "2026-02-06",
+   "category": "french",
+   "itas": 8500,
+   "crs": 400
+  },
+  {
+   "draw": 393,
+   "date": "2026-02-03",
+   "category": "pnp",
+   "itas": 423,
+   "crs": 749
+  },
+  {
+   "draw": 392,
+   "date": "2026-01-21",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 509
+  },
+  {
+   "draw": 391,
+   "date": "2026-01-20",
+   "category": "pnp",
+   "itas": 681,
+   "crs": 746
+  },
+  {
+   "draw": 390,
+   "date": "2026-01-07",
+   "category": "cec",
+   "itas": 8000,
+   "crs": 511
+  },
+  {
+   "draw": 389,
+   "date": "2026-01-05",
+   "category": "pnp",
+   "itas": 574,
+   "crs": 711
+  },
+  {
+   "draw": 388,
+   "date": "2025-12-17",
+   "category": "french",
+   "itas": 6000,
+   "crs": 399
+  },
+  {
+   "draw": 387,
+   "date": "2025-12-16",
+   "category": "cec",
+   "itas": 5000,
+   "crs": 515
+  },
+  {
+   "draw": 386,
+   "date": "2025-12-15",
+   "category": "pnp",
+   "itas": 399,
+   "crs": 731
+  },
+  {
+   "draw": 385,
+   "date": "2025-12-11",
+   "category": "healthcare",
+   "itas": 1000,
+   "crs": 476
+  },
+  {
+   "draw": 384,
+   "date": "2025-12-10",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 520
+  },
+  {
+   "draw": 383,
+   "date": "2025-12-08",
+   "category": "pnp",
+   "itas": 1123,
+   "crs": 729
+  },
+  {
+   "draw": 382,
+   "date": "2025-11-28",
+   "category": "french",
+   "itas": 6000,
+   "crs": 408
+  },
+  {
+   "draw": 381,
+   "date": "2025-11-26",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 531
+  },
+  {
+   "draw": 380,
+   "date": "2025-11-25",
+   "category": "pnp",
+   "itas": 777,
+   "crs": 699
+  },
+  {
+   "draw": 379,
+   "date": "2025-11-14",
+   "category": "healthcare",
+   "itas": 3500,
+   "crs": 462
+  },
+  {
+   "draw": 378,
+   "date": "2025-11-12",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 533
+  },
+  {
+   "draw": 377,
+   "date": "2025-11-10",
+   "category": "pnp",
+   "itas": 714,
+   "crs": 738
+  },
+  {
+   "draw": 376,
+   "date": "2025-10-29",
+   "category": "french",
+   "itas": 6000,
+   "crs": 416
+  },
+  {
+   "draw": 375,
+   "date": "2025-10-28",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 533
+  },
+  {
+   "draw": 374,
+   "date": "2025-10-27",
+   "category": "pnp",
+   "itas": 302,
+   "crs": 761
+  },
+  {
+   "draw": 373,
+   "date": "2025-10-15",
+   "category": "healthcare",
+   "itas": 2500,
+   "crs": 472
+  },
+  {
+   "draw": 372,
+   "date": "2025-10-14",
+   "category": "pnp",
+   "itas": 345,
+   "crs": 778
+  },
+  {
+   "draw": 371,
+   "date": "2025-10-06",
+   "category": "french",
+   "itas": 4500,
+   "crs": 432
+  },
+  {
+   "draw": 370,
+   "date": "2025-10-01",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 534
+  },
+  {
+   "draw": 369,
+   "date": "2025-09-29",
+   "category": "pnp",
+   "itas": 291,
+   "crs": 855
+  },
+  {
+   "draw": 368,
+   "date": "2025-09-18",
+   "category": "fst",
+   "itas": 1250,
+   "crs": 505
+  },
+  {
+   "draw": 367,
+   "date": "2025-09-17",
+   "category": "education",
+   "itas": 2500,
+   "crs": 462
+  },
+  {
+   "draw": 366,
+   "date": "2025-09-15",
+   "category": "pnp",
+   "itas": 228,
+   "crs": 746
+  },
+  {
+   "draw": 365,
+   "date": "2025-09-04",
+   "category": "french",
+   "itas": 4500,
+   "crs": 446
+  },
+  {
+   "draw": 364,
+   "date": "2025-09-03",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 534
+  },
+  {
+   "draw": 363,
+   "date": "2025-09-02",
+   "category": "pnp",
+   "itas": 249,
+   "crs": 772
+  },
+  {
+   "draw": 362,
+   "date": "2025-08-19",
+   "category": "healthcare",
+   "itas": 2500,
+   "crs": 470
+  },
+  {
+   "draw": 361,
+   "date": "2025-08-18",
+   "category": "pnp",
+   "itas": 192,
+   "crs": 800
+  },
+  {
+   "draw": 360,
+   "date": "2025-08-08",
+   "category": "french",
+   "itas": 2500,
+   "crs": 481
+  },
+  {
+   "draw": 359,
+   "date": "2025-08-07",
+   "category": "cec",
+   "itas": 1000,
+   "crs": 534
+  },
+  {
+   "draw": 358,
+   "date": "2025-08-06",
+   "category": "pnp",
+   "itas": 225,
+   "crs": 739
+  },
+  {
+   "draw": 357,
+   "date": "2025-07-22",
+   "category": "healthcare",
+   "itas": 4000,
+   "crs": 475
+  },
+  {
+   "draw": 356,
+   "date": "2025-07-21",
+   "category": "pnp",
+   "itas": 202,
+   "crs": 788
+  },
+  {
+   "draw": 355,
+   "date": "2025-07-08",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 518
+  },
+  {
+   "draw": 354,
+   "date": "2025-07-07",
+   "category": "pnp",
+   "itas": 356,
+   "crs": 750
+  },
+  {
+   "draw": 353,
+   "date": "2025-06-26",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 521
+  },
+  {
+   "draw": 352,
+   "date": "2025-06-23",
+   "category": "pnp",
+   "itas": 503,
+   "crs": 742
+  },
+  {
+   "draw": 351,
+   "date": "2025-06-12",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 529
+  },
+  {
+   "draw": 350,
+   "date": "2025-06-10",
+   "category": "pnp",
+   "itas": 125,
+   "crs": 784
+  },
+  {
+   "draw": 349,
+   "date": "2025-06-04",
+   "category": "healthcare",
+   "itas": 500,
+   "crs": 504
+  },
+  {
+   "draw": 348,
+   "date": "2025-06-02",
+   "category": "pnp",
+   "itas": 277,
+   "crs": 726
+  },
+  {
+   "draw": 347,
+   "date": "2025-05-13",
+   "category": "cec",
+   "itas": 500,
+   "crs": 547
+  },
+  {
+   "draw": 346,
+   "date": "2025-05-12",
+   "category": "pnp",
+   "itas": 511,
+   "crs": 706
+  },
+  {
+   "draw": 345,
+   "date": "2025-05-02",
+   "category": "healthcare",
+   "itas": 500,
+   "crs": 510
+  },
+  {
+   "draw": 344,
+   "date": "2025-05-01",
+   "category": "education",
+   "itas": 1000,
+   "crs": 479
+  },
+  {
+   "draw": 343,
+   "date": "2025-04-28",
+   "category": "pnp",
+   "itas": 421,
+   "crs": 727
+  },
+  {
+   "draw": 342,
+   "date": "2025-04-14",
+   "category": "pnp",
+   "itas": 825,
+   "crs": 764
+  },
+  {
+   "draw": 341,
+   "date": "2025-03-21",
+   "category": "french",
+   "itas": 7500,
+   "crs": 379
+  },
+  {
+   "draw": 340,
+   "date": "2025-03-17",
+   "category": "pnp",
+   "itas": 536,
+   "crs": 736
+  },
+  {
+   "draw": 339,
+   "date": "2025-03-06",
+   "category": "french",
+   "itas": 4500,
+   "crs": 410
+  },
+  {
+   "draw": 338,
+   "date": "2025-03-03",
+   "category": "pnp",
+   "itas": 725,
+   "crs": 667
+  },
+  {
+   "draw": 337,
+   "date": "2025-02-19",
+   "category": "french",
+   "itas": 6500,
+   "crs": 428
+  },
+  {
+   "draw": 336,
+   "date": "2025-02-17",
+   "category": "pnp",
+   "itas": 646,
+   "crs": 750
+  },
+  {
+   "draw": 335,
+   "date": "2025-02-05",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 521
+  },
+  {
+   "draw": 334,
+   "date": "2025-02-04",
+   "category": "pnp",
+   "itas": 455,
+   "crs": 802
+  },
+  {
+   "draw": 333,
+   "date": "2025-01-23",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 527
+  },
+  {
+   "draw": 332,
+   "date": "2025-01-08",
+   "category": "cec",
+   "itas": 1350,
+   "crs": 542
+  },
+  {
+   "draw": 331,
+   "date": "2025-01-07",
+   "category": "pnp",
+   "itas": 471,
+   "crs": 793
+  },
+  {
+   "draw": 330,
+   "date": "2024-12-16",
+   "category": "pnp",
+   "itas": 1085,
+   "crs": 727
+  },
+  {
+   "draw": 329,
+   "date": "2024-12-03",
+   "category": "french",
+   "itas": 800,
+   "crs": 466
+  },
+  {
+   "draw": 328,
+   "date": "2024-12-02",
+   "category": "pnp",
+   "itas": 676,
+   "crs": 705
+  },
+  {
+   "draw": 327,
+   "date": "2024-11-20",
+   "category": "healthcare",
+   "itas": 3000,
+   "crs": 463
+  },
+  {
+   "draw": 326,
+   "date": "2024-11-19",
+   "category": "cec",
+   "itas": 400,
+   "crs": 539
+  },
+  {
+   "draw": 325,
+   "date": "2024-11-18",
+   "category": "pnp",
+   "itas": 174,
+   "crs": 816
+  },
+  {
+   "draw": 324,
+   "date": "2024-11-15",
+   "category": "french",
+   "itas": 800,
+   "crs": 478
+  },
+  {
+   "draw": 323,
+   "date": "2024-11-13",
+   "category": "cec",
+   "itas": 400,
+   "crs": 547
+  },
+  {
+   "draw": 322,
+   "date": "2024-11-12",
+   "category": "pnp",
+   "itas": 733,
+   "crs": 812
+  },
+  {
+   "draw": 321,
+   "date": "2024-10-23",
+   "category": "fst",
+   "itas": 1800,
+   "crs": 433
+  },
+  {
+   "draw": 320,
+   "date": "2024-10-22",
+   "category": "cec",
+   "itas": 400,
+   "crs": 539
+  },
+  {
+   "draw": 319,
+   "date": "2024-10-21",
+   "category": "pnp",
+   "itas": 648,
+   "crs": 791
+  },
+  {
+   "draw": 318,
+   "date": "2024-10-10",
+   "category": "french",
+   "itas": 1000,
+   "crs": 444
+  },
+  {
+   "draw": 317,
+   "date": "2024-10-09",
+   "category": "cec",
+   "itas": 500,
+   "crs": 539
+  },
+  {
+   "draw": 316,
+   "date": "2024-10-07",
+   "category": "pnp",
+   "itas": 1613,
+   "crs": 743
+  },
+  {
+   "draw": 315,
+   "date": "2024-09-19",
+   "category": "cec",
+   "itas": 4000,
+   "crs": 509
+  },
+  {
+   "draw": 314,
+   "date": "2024-09-13",
+   "category": "french",
+   "itas": 1000,
+   "crs": 446
+  },
+  {
+   "draw": 313,
+   "date": "2024-09-09",
+   "category": "pnp",
+   "itas": 911,
+   "crs": 732
+  },
+  {
+   "draw": 312,
+   "date": "2024-08-27",
+   "category": "cec",
+   "itas": 3300,
+   "crs": 507
+  },
+  {
+   "draw": 311,
+   "date": "2024-08-26",
+   "category": "pnp",
+   "itas": 1121,
+   "crs": 694
+  },
+  {
+   "draw": 310,
+   "date": "2024-08-15",
+   "category": "french",
+   "itas": 2000,
+   "crs": 394
+  },
+  {
+   "draw": 309,
+   "date": "2024-08-14",
+   "category": "cec",
+   "itas": 3200,
+   "crs": 509
+  },
+  {
+   "draw": 308,
+   "date": "2024-08-13",
+   "category": "pnp",
+   "itas": 763,
+   "crs": 690
+  },
+  {
+   "draw": 307,
+   "date": "2024-07-31",
+   "category": "cec",
+   "itas": 5000,
+   "crs": 510
+  },
+  {
+   "draw": 306,
+   "date": "2024-07-30",
+   "category": "pnp",
+   "itas": 964,
+   "crs": 686
+  },
+  {
+   "draw": 305,
+   "date": "2024-07-18",
+   "category": "french",
+   "itas": 1800,
+   "crs": 400
+  },
+  {
+   "draw": 304,
+   "date": "2024-07-17",
+   "category": "cec",
+   "itas": 6300,
+   "crs": 515
+  },
+  {
+   "draw": 303,
+   "date": "2024-07-16",
+   "category": "pnp",
+   "itas": 1391,
+   "crs": 670
+  },
+  {
+   "draw": 302,
+   "date": "2024-07-08",
+   "category": "french",
+   "itas": 3200,
+   "crs": 420
+  },
+  {
+   "draw": 301,
+   "date": "2024-07-05",
+   "category": "healthcare",
+   "itas": 3750,
+   "crs": 445
+  },
+  {
+   "draw": 300,
+   "date": "2024-07-04",
+   "category": "fst",
+   "itas": 1800,
+   "crs": 436
+  },
+  {
+   "draw": 299,
+   "date": "2024-07-02",
+   "category": "pnp",
+   "itas": 920,
+   "crs": 739
+  },
+  {
+   "draw": 298,
+   "date": "2024-06-19",
+   "category": "pnp",
+   "itas": 1499,
+   "crs": 663
+  },
+  {
+   "draw": 297,
+   "date": "2024-05-31",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 522
+  },
+  {
+   "draw": 296,
+   "date": "2024-05-30",
+   "category": "pnp",
+   "itas": 2985,
+   "crs": 676
+  },
+  {
+   "draw": 295,
+   "date": "2024-04-24",
+   "category": "french",
+   "itas": 1400,
+   "crs": 410
+  },
+  {
+   "draw": 294,
+   "date": "2024-04-23",
+   "category": "all-program",
+   "itas": 2095,
+   "crs": 529
+  },
+  {
+   "draw": 293,
+   "date": "2024-04-11",
+   "category": "stem",
+   "itas": 4500,
+   "crs": 491
+  },
+  {
+   "draw": 292,
+   "date": "2024-04-10",
+   "category": "all-program",
+   "itas": 1280,
+   "crs": 549
+  },
+  {
+   "draw": 291,
+   "date": "2024-03-26",
+   "category": "french",
+   "itas": 1500,
+   "crs": 388
+  },
+  {
+   "draw": 290,
+   "date": "2024-03-25",
+   "category": "all-program",
+   "itas": 1980,
+   "crs": 524
+  },
+  {
+   "draw": 289,
+   "date": "2024-03-13",
+   "category": "transport",
+   "itas": 975,
+   "crs": 430
+  },
+  {
+   "draw": 288,
+   "date": "2024-03-12",
+   "category": "all-program",
+   "itas": 2850,
+   "crs": 525
+  },
+  {
+   "draw": 287,
+   "date": "2024-02-29",
+   "category": "french",
+   "itas": 2500,
+   "crs": 336
+  },
+  {
+   "draw": 286,
+   "date": "2024-02-28",
+   "category": "all-program",
+   "itas": 1470,
+   "crs": 534
+  },
+  {
+   "draw": 285,
+   "date": "2024-02-16",
+   "category": "agriculture",
+   "itas": 150,
+   "crs": 437
+  },
+  {
+   "draw": 284,
+   "date": "2024-02-14",
+   "category": "healthcare",
+   "itas": 3500,
+   "crs": 422
+  },
+  {
+   "draw": 283,
+   "date": "2024-02-13",
+   "category": "all-program",
+   "itas": 1490,
+   "crs": 535
+  },
+  {
+   "draw": 282,
+   "date": "2024-02-01",
+   "category": "french",
+   "itas": 7000,
+   "crs": 365
+  },
+  {
+   "draw": 281,
+   "date": "2024-01-31",
+   "category": "all-program",
+   "itas": 730,
+   "crs": 541
+  },
+  {
+   "draw": 280,
+   "date": "2024-01-23",
+   "category": "all-program",
+   "itas": 1040,
+   "crs": 543
+  },
+  {
+   "draw": 279,
+   "date": "2024-01-10",
+   "category": "all-program",
+   "itas": 1510,
+   "crs": 546
+  },
+  {
+   "draw": 278,
+   "date": "2023-12-21",
+   "category": "agriculture",
+   "itas": 400,
+   "crs": 386
+  },
+  {
+   "draw": 277,
+   "date": "2023-12-20",
+   "category": "transport",
+   "itas": 670,
+   "crs": 435
+  },
+  {
+   "draw": 276,
+   "date": "2023-12-19",
+   "category": "fst",
+   "itas": 1000,
+   "crs": 425
+  },
+  {
+   "draw": 275,
+   "date": "2023-12-18",
+   "category": "all-program",
+   "itas": 1325,
+   "crs": 542
+  },
+  {
+   "draw": 274,
+   "date": "2023-12-08",
+   "category": "stem",
+   "itas": 5900,
+   "crs": 481
+  },
+  {
+   "draw": 273,
+   "date": "2023-12-07",
+   "category": "french",
+   "itas": 1000,
+   "crs": 470
+  },
+  {
+   "draw": 272,
+   "date": "2023-12-06",
+   "category": "all-program",
+   "itas": 4750,
+   "crs": 561
+  },
+  {
+   "draw": 271,
+   "date": "2023-10-26",
+   "category": "healthcare",
+   "itas": 3600,
+   "crs": 431
+  },
+  {
+   "draw": 270,
+   "date": "2023-10-25",
+   "category": "french",
+   "itas": 300,
+   "crs": 486
+  },
+  {
+   "draw": 269,
+   "date": "2023-10-24",
+   "category": "pnp",
+   "itas": 1548,
+   "crs": 776
+  },
+  {
+   "draw": 268,
+   "date": "2023-10-10",
+   "category": "all-program",
+   "itas": 3725,
+   "crs": 500
+  },
+  {
+   "draw": 267,
+   "date": "2023-09-28",
+   "category": "agriculture",
+   "itas": 600,
+   "crs": 354
+  },
+  {
+   "draw": 266,
+   "date": "2023-09-27",
+   "category": "french",
+   "itas": 500,
+   "crs": 472
+  },
+  {
+   "draw": 265,
+   "date": "2023-09-26",
+   "category": "all-program",
+   "itas": 3000,
+   "crs": 504
+  },
+  {
+   "draw": 264,
+   "date": "2023-09-20",
+   "category": "transport",
+   "itas": 1000,
+   "crs": 435
+  },
+  {
+   "draw": 263,
+   "date": "2023-09-19",
+   "category": "all-program",
+   "itas": 3200,
+   "crs": 531
+  },
+  {
+   "draw": 262,
+   "date": "2023-08-15",
+   "category": "all-program",
+   "itas": 4300,
+   "crs": 496
+  },
+  {
+   "draw": 261,
+   "date": "2023-08-03",
+   "category": "fst",
+   "itas": 1500,
+   "crs": 388
+  },
+  {
+   "draw": 260,
+   "date": "2023-08-02",
+   "category": "french",
+   "itas": 800,
+   "crs": 435
+  },
+  {
+   "draw": 259,
+   "date": "2023-08-01",
+   "category": "all-program",
+   "itas": 2000,
+   "crs": 517
+  },
+  {
+   "draw": 258,
+   "date": "2023-07-12",
+   "category": "french",
+   "itas": 3800,
+   "crs": 375
+  },
+  {
+   "draw": 257,
+   "date": "2023-07-11",
+   "category": "all-program",
+   "itas": 800,
+   "crs": 505
+  },
+  {
+   "draw": 256,
+   "date": "2023-07-07",
+   "category": "french",
+   "itas": 2300,
+   "crs": 439
+  },
+  {
+   "draw": 255,
+   "date": "2023-07-06",
+   "category": "healthcare",
+   "itas": 1500,
+   "crs": 463
+  },
+  {
+   "draw": 254,
+   "date": "2023-07-05",
+   "category": "stem",
+   "itas": 500,
+   "crs": 486
+  },
+  {
+   "draw": 253,
+   "date": "2023-07-04",
+   "category": "all-program",
+   "itas": 700,
+   "crs": 511
+  },
+  {
+   "draw": 252,
+   "date": "2023-06-28",
+   "category": "healthcare",
+   "itas": 500,
+   "crs": 476
+  },
+  {
+   "draw": 251,
+   "date": "2023-06-27",
+   "category": "all-program",
+   "itas": 4300,
+   "crs": 486
+  },
+  {
+   "draw": 250,
+   "date": "2023-06-08",
+   "category": "all-program",
+   "itas": 4800,
+   "crs": 486
+  },
+  {
+   "draw": 249,
+   "date": "2023-05-24",
+   "category": "all-program",
+   "itas": 4800,
+   "crs": 488
+  },
+  {
+   "draw": 248,
+   "date": "2023-05-10",
+   "category": "pnp",
+   "itas": 589,
+   "crs": 691
+  },
+  {
+   "draw": 247,
+   "date": "2023-04-26",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 483
+  },
+  {
+   "draw": 246,
+   "date": "2023-04-12",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 486
+  },
+  {
+   "draw": 245,
+   "date": "2023-03-29",
+   "category": "all-program",
+   "itas": 7000,
+   "crs": 481
+  },
+  {
+   "draw": 244,
+   "date": "2023-03-23",
+   "category": "all-program",
+   "itas": 7000,
+   "crs": 484
+  },
+  {
+   "draw": 243,
+   "date": "2023-03-15",
+   "category": "all-program",
+   "itas": 7000,
+   "crs": 490
+  },
+  {
+   "draw": 242,
+   "date": "2023-03-01",
+   "category": "pnp",
+   "itas": 667,
+   "crs": 748
+  },
+  {
+   "draw": 241,
+   "date": "2023-02-15",
+   "category": "pnp",
+   "itas": 699,
+   "crs": 791
+  },
+  {
+   "draw": 240,
+   "date": "2023-02-02",
+   "category": "fsw",
+   "itas": 3300,
+   "crs": 489
+  },
+  {
+   "draw": 239,
+   "date": "2023-02-01",
+   "category": "pnp",
+   "itas": 893,
+   "crs": 733
+  },
+  {
+   "draw": 238,
+   "date": "2023-01-18",
+   "category": "all-program",
+   "itas": 5500,
+   "crs": 490
+  },
+  {
+   "draw": 237,
+   "date": "2023-01-11",
+   "category": "all-program",
+   "itas": 5500,
+   "crs": 507
+  },
+  {
+   "draw": 236,
+   "date": "2022-11-23",
+   "category": "all-program",
+   "itas": 4750,
+   "crs": 491
+  },
+  {
+   "draw": 235,
+   "date": "2022-11-09",
+   "category": "all-program",
+   "itas": 4750,
+   "crs": 494
+  },
+  {
+   "draw": 234,
+   "date": "2022-10-26",
+   "category": "all-program",
+   "itas": 4750,
+   "crs": 496
+  },
+  {
+   "draw": 233,
+   "date": "2022-10-12",
+   "category": "all-program",
+   "itas": 4250,
+   "crs": 500
+  },
+  {
+   "draw": 232,
+   "date": "2022-09-28",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 504
+  },
+  {
+   "draw": 231,
+   "date": "2022-09-14",
+   "category": "all-program",
+   "itas": 3250,
+   "crs": 510
+  },
+  {
+   "draw": 230,
+   "date": "2022-08-31",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 516
+  },
+  {
+   "draw": 229,
+   "date": "2022-08-17",
+   "category": "all-program",
+   "itas": 2250,
+   "crs": 525
+  },
+  {
+   "draw": 228,
+   "date": "2022-08-03",
+   "category": "all-program",
+   "itas": 2000,
+   "crs": 533
+  },
+  {
+   "draw": 227,
+   "date": "2022-07-20",
+   "category": "all-program",
+   "itas": 1750,
+   "crs": 542
+  },
+  {
+   "draw": 226,
+   "date": "2022-07-06",
+   "category": "all-program",
+   "itas": 1500,
+   "crs": 557
+  },
+  {
+   "draw": 225,
+   "date": "2022-06-22",
+   "category": "pnp",
+   "itas": 636,
+   "crs": 752
+  },
+  {
+   "draw": 224,
+   "date": "2022-06-08",
+   "category": "pnp",
+   "itas": 932,
+   "crs": 796
+  },
+  {
+   "draw": 223,
+   "date": "2022-05-25",
+   "category": "pnp",
+   "itas": 590,
+   "crs": 741
+  },
+  {
+   "draw": 222,
+   "date": "2022-05-11",
+   "category": "pnp",
+   "itas": 545,
+   "crs": 753
+  },
+  {
+   "draw": 221,
+   "date": "2022-04-27",
+   "category": "pnp",
+   "itas": 829,
+   "crs": 772
+  },
+  {
+   "draw": 220,
+   "date": "2022-04-13",
+   "category": "pnp",
+   "itas": 787,
+   "crs": 782
+  },
+  {
+   "draw": 219,
+   "date": "2022-03-30",
+   "category": "pnp",
+   "itas": 919,
+   "crs": 785
+  },
+  {
+   "draw": 218,
+   "date": "2022-03-16",
+   "category": "pnp",
+   "itas": 924,
+   "crs": 754
+  },
+  {
+   "draw": 217,
+   "date": "2022-03-02",
+   "category": "pnp",
+   "itas": 1047,
+   "crs": 761
+  },
+  {
+   "draw": 216,
+   "date": "2022-02-16",
+   "category": "pnp",
+   "itas": 1082,
+   "crs": 710
+  },
+  {
+   "draw": 215,
+   "date": "2022-02-02",
+   "category": "pnp",
+   "itas": 1070,
+   "crs": 674
+  },
+  {
+   "draw": 214,
+   "date": "2022-01-19",
+   "category": "pnp",
+   "itas": 1036,
+   "crs": 745
+  },
+  {
+   "draw": 213,
+   "date": "2022-01-05",
+   "category": "pnp",
+   "itas": 392,
+   "crs": 808
+  },
+  {
+   "draw": 212,
+   "date": "2021-12-22",
+   "category": "pnp",
+   "itas": 746,
+   "crs": 720
+  },
+  {
+   "draw": 211,
+   "date": "2021-12-10",
+   "category": "pnp",
+   "itas": 1032,
+   "crs": 698
+  },
+  {
+   "draw": 210,
+   "date": "2021-11-24",
+   "category": "pnp",
+   "itas": 613,
+   "crs": 737
+  },
+  {
+   "draw": 209,
+   "date": "2021-11-10",
+   "category": "pnp",
+   "itas": 775,
+   "crs": 685
+  },
+  {
+   "draw": 208,
+   "date": "2021-10-27",
+   "category": "pnp",
+   "itas": 681,
+   "crs": 744
+  },
+  {
+   "draw": 207,
+   "date": "2021-10-13",
+   "category": "pnp",
+   "itas": 681,
+   "crs": 720
+  },
+  {
+   "draw": 206,
+   "date": "2021-09-29",
+   "category": "pnp",
+   "itas": 761,
+   "crs": 742
+  },
+  {
+   "draw": 205,
+   "date": "2021-09-15",
+   "category": "pnp",
+   "itas": 521,
+   "crs": 732
+  },
+  {
+   "draw": 204,
+   "date": "2021-09-14",
+   "category": "cec",
+   "itas": 2000,
+   "crs": 462
+  },
+  {
+   "draw": 203,
+   "date": "2021-09-01",
+   "category": "pnp",
+   "itas": 635,
+   "crs": 764
+  },
+  {
+   "draw": 202,
+   "date": "2021-08-19",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 403
+  },
+  {
+   "draw": 201,
+   "date": "2021-08-18",
+   "category": "pnp",
+   "itas": 463,
+   "crs": 751
+  },
+  {
+   "draw": 200,
+   "date": "2021-08-05",
+   "category": "cec",
+   "itas": 3000,
+   "crs": 404
+  },
+  {
+   "draw": 199,
+   "date": "2021-08-04",
+   "category": "pnp",
+   "itas": 512,
+   "crs": 760
+  },
+  {
+   "draw": 198,
+   "date": "2021-07-22",
+   "category": "cec",
+   "itas": 4500,
+   "crs": 357
+  },
+  {
+   "draw": 197,
+   "date": "2021-07-21",
+   "category": "pnp",
+   "itas": 462,
+   "crs": 734
+  },
+  {
+   "draw": 196,
+   "date": "2021-07-08",
+   "category": "cec",
+   "itas": 4500,
+   "crs": 369
+  },
+  {
+   "draw": 195,
+   "date": "2021-07-07",
+   "category": "pnp",
+   "itas": 627,
+   "crs": 760
+  },
+  {
+   "draw": 194,
+   "date": "2021-06-24",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 357
+  },
+  {
+   "draw": 193,
+   "date": "2021-06-23",
+   "category": "pnp",
+   "itas": 1002,
+   "crs": 742
+  },
+  {
+   "draw": 192,
+   "date": "2021-06-10",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 368
+  },
+  {
+   "draw": 191,
+   "date": "2021-06-09",
+   "category": "pnp",
+   "itas": 940,
+   "crs": 711
+  },
+  {
+   "draw": 190,
+   "date": "2021-05-31",
+   "category": "cec",
+   "itas": 5956,
+   "crs": 380
+  },
+  {
+   "draw": 189,
+   "date": "2021-05-26",
+   "category": "pnp",
+   "itas": 500,
+   "crs": 713
+  },
+  {
+   "draw": 188,
+   "date": "2021-05-20",
+   "category": "cec",
+   "itas": 1842,
+   "crs": 397
+  },
+  {
+   "draw": 187,
+   "date": "2021-05-13",
+   "category": "cec",
+   "itas": 4147,
+   "crs": 401
+  },
+  {
+   "draw": 186,
+   "date": "2021-05-12",
+   "category": "pnp",
+   "itas": 557,
+   "crs": 752
+  },
+  {
+   "draw": 185,
+   "date": "2021-04-29",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 400
+  },
+  {
+   "draw": 184,
+   "date": "2021-04-28",
+   "category": "pnp",
+   "itas": 381,
+   "crs": 717
+  },
+  {
+   "draw": 183,
+   "date": "2021-04-16",
+   "category": "cec",
+   "itas": 6000,
+   "crs": 417
+  },
+  {
+   "draw": 182,
+   "date": "2021-04-14",
+   "category": "pnp",
+   "itas": 266,
+   "crs": 753
+  },
+  {
+   "draw": 181,
+   "date": "2021-04-01",
+   "category": "cec",
+   "itas": 5000,
+   "crs": 432
+  },
+  {
+   "draw": 180,
+   "date": "2021-03-31",
+   "category": "pnp",
+   "itas": 284,
+   "crs": 778
+  },
+  {
+   "draw": 179,
+   "date": "2021-03-18",
+   "category": "cec",
+   "itas": 5000,
+   "crs": 449
+  },
+  {
+   "draw": 178,
+   "date": "2021-03-17",
+   "category": "pnp",
+   "itas": 183,
+   "crs": 682
+  },
+  {
+   "draw": 177,
+   "date": "2021-03-08",
+   "category": "pnp",
+   "itas": 671,
+   "crs": 739
+  },
+  {
+   "draw": 176,
+   "date": "2021-02-13",
+   "category": "cec",
+   "itas": 27332,
+   "crs": 75
+  },
+  {
+   "draw": 175,
+   "date": "2021-02-10",
+   "category": "pnp",
+   "itas": 654,
+   "crs": 720
+  },
+  {
+   "draw": 174,
+   "date": "2021-01-21",
+   "category": "cec",
+   "itas": 4626,
+   "crs": 454
+  },
+  {
+   "draw": 173,
+   "date": "2021-01-20",
+   "category": "pnp",
+   "itas": 374,
+   "crs": 741
+  },
+  {
+   "draw": 172,
+   "date": "2021-01-07",
+   "category": "cec",
+   "itas": 4750,
+   "crs": 461
+  },
+  {
+   "draw": 171,
+   "date": "2021-01-06",
+   "category": "pnp",
+   "itas": 250,
+   "crs": 813
+  },
+  {
+   "draw": 170,
+   "date": "2020-12-23",
+   "category": "all-program",
+   "itas": 5000,
+   "crs": 468
+  },
+  {
+   "draw": 169,
+   "date": "2020-12-09",
+   "category": "all-program",
+   "itas": 5000,
+   "crs": 469
+  },
+  {
+   "draw": 168,
+   "date": "2020-11-25",
+   "category": "all-program",
+   "itas": 5000,
+   "crs": 469
+  },
+  {
+   "draw": 167,
+   "date": "2020-11-18",
+   "category": "all-program",
+   "itas": 5000,
+   "crs": 472
+  },
+  {
+   "draw": 166,
+   "date": "2020-11-05",
+   "category": "all-program",
+   "itas": 4500,
+   "crs": 478
+  },
+  {
+   "draw": 165,
+   "date": "2020-10-14",
+   "category": "all-program",
+   "itas": 4500,
+   "crs": 471
+  },
+  {
+   "draw": 164,
+   "date": "2020-09-30",
+   "category": "all-program",
+   "itas": 4200,
+   "crs": 471
+  },
+  {
+   "draw": 163,
+   "date": "2020-09-16",
+   "category": "all-program",
+   "itas": 4200,
+   "crs": 472
+  },
+  {
+   "draw": 162,
+   "date": "2020-09-02",
+   "category": "all-program",
+   "itas": 4200,
+   "crs": 475
+  },
+  {
+   "draw": 161,
+   "date": "2020-08-20",
+   "category": "cec",
+   "itas": 3300,
+   "crs": 454
+  },
+  {
+   "draw": 160,
+   "date": "2020-08-19",
+   "category": "pnp",
+   "itas": 600,
+   "crs": 771
+  },
+  {
+   "draw": 159,
+   "date": "2020-08-06",
+   "category": "fst",
+   "itas": 250,
+   "crs": 415
+  },
+  {
+   "draw": 158,
+   "date": "2020-08-05",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 476
+  },
+  {
+   "draw": 157,
+   "date": "2020-07-23",
+   "category": "cec",
+   "itas": 3343,
+   "crs": 445
+  },
+  {
+   "draw": 156,
+   "date": "2020-07-22",
+   "category": "pnp",
+   "itas": 557,
+   "crs": 687
+  },
+  {
+   "draw": 155,
+   "date": "2020-07-08",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 478
+  },
+  {
+   "draw": 154,
+   "date": "2020-06-25",
+   "category": "cec",
+   "itas": 3508,
+   "crs": 431
+  },
+  {
+   "draw": 153,
+   "date": "2020-06-24",
+   "category": "pnp",
+   "itas": 392,
+   "crs": 696
+  },
+  {
+   "draw": 152,
+   "date": "2020-06-11",
+   "category": "cec",
+   "itas": 3559,
+   "crs": 437
+  },
+  {
+   "draw": 151,
+   "date": "2020-06-10",
+   "category": "pnp",
+   "itas": 341,
+   "crs": 743
+  },
+  {
+   "draw": 150,
+   "date": "2020-05-28",
+   "category": "cec",
+   "itas": 3515,
+   "crs": 440
+  },
+  {
+   "draw": 149,
+   "date": "2020-05-27",
+   "category": "pnp",
+   "itas": 385,
+   "crs": 757
+  },
+  {
+   "draw": 148,
+   "date": "2020-05-14",
+   "category": "cec",
+   "itas": 3371,
+   "crs": 447
+  },
+  {
+   "draw": 147,
+   "date": "2020-05-13",
+   "category": "pnp",
+   "itas": 529,
+   "crs": 718
+  },
+  {
+   "draw": 146,
+   "date": "2020-04-30",
+   "category": "cec",
+   "itas": 3311,
+   "crs": 452
+  },
+  {
+   "draw": 145,
+   "date": "2020-04-29",
+   "category": "pnp",
+   "itas": 589,
+   "crs": 692
+  },
+  {
+   "draw": 144,
+   "date": "2020-04-16",
+   "category": "cec",
+   "itas": 3782,
+   "crs": 455
+  },
+  {
+   "draw": 143,
+   "date": "2020-04-15",
+   "category": "pnp",
+   "itas": 118,
+   "crs": 808
+  },
+  {
+   "draw": 142,
+   "date": "2020-04-09",
+   "category": "cec",
+   "itas": 3294,
+   "crs": 464
+  },
+  {
+   "draw": 141,
+   "date": "2020-04-09",
+   "category": "pnp",
+   "itas": 606,
+   "crs": 698
+  },
+  {
+   "draw": 140,
+   "date": "2020-03-23",
+   "category": "cec",
+   "itas": 3232,
+   "crs": 467
+  },
+  {
+   "draw": 139,
+   "date": "2020-03-18",
+   "category": "pnp",
+   "itas": 668,
+   "crs": 720
+  },
+  {
+   "draw": 138,
+   "date": "2020-03-04",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 471
+  },
+  {
+   "draw": 137,
+   "date": "2020-02-19",
+   "category": "all-program",
+   "itas": 4500,
+   "crs": 470
+  },
+  {
+   "draw": 136,
+   "date": "2020-02-05",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 472
+  },
+  {
+   "draw": 135,
+   "date": "2020-01-22",
+   "category": "all-program",
+   "itas": 3400,
+   "crs": 471
+  },
+  {
+   "draw": 134,
+   "date": "2020-01-08",
+   "category": "all-program",
+   "itas": 3400,
+   "crs": 473
+  },
+  {
+   "draw": 133,
+   "date": "2019-12-19",
+   "category": "all-program",
+   "itas": 3200,
+   "crs": 469
+  },
+  {
+   "draw": 132,
+   "date": "2019-12-11",
+   "category": "all-program",
+   "itas": 3200,
+   "crs": 472
+  },
+  {
+   "draw": 131,
+   "date": "2019-11-27",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 471
+  },
+  {
+   "draw": 130,
+   "date": "2019-11-13",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 472
+  },
+  {
+   "draw": 129,
+   "date": "2019-10-30",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 475
+  },
+  {
+   "draw": 128,
+   "date": "2019-10-16",
+   "category": "fst",
+   "itas": 500,
+   "crs": 357
+  },
+  {
+   "draw": 127,
+   "date": "2019-10-02",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 464
+  },
+  {
+   "draw": 126,
+   "date": "2019-09-18",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 462
+  },
+  {
+   "draw": 125,
+   "date": "2019-09-04",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 463
+  },
+  {
+   "draw": 124,
+   "date": "2019-08-20",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 457
+  },
+  {
+   "draw": 123,
+   "date": "2019-08-12",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 466
+  },
+  {
+   "draw": 122,
+   "date": "2019-07-24",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 459
+  },
+  {
+   "draw": 121,
+   "date": "2019-07-10",
+   "category": "all-program",
+   "itas": 3600,
+   "crs": 460
+  },
+  {
+   "draw": 120,
+   "date": "2019-06-26",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 462
+  },
+  {
+   "draw": 119,
+   "date": "2019-06-12",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 465
+  },
+  {
+   "draw": 118,
+   "date": "2019-05-29",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 470
+  },
+  {
+   "draw": 117,
+   "date": "2019-05-15",
+   "category": "fst",
+   "itas": 500,
+   "crs": 332
+  },
+  {
+   "draw": 116,
+   "date": "2019-05-01",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 450
+  },
+  {
+   "draw": 115,
+   "date": "2019-04-17",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 451
+  },
+  {
+   "draw": 114,
+   "date": "2019-04-03",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 451
+  },
+  {
+   "draw": 113,
+   "date": "2019-03-20",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 452
+  },
+  {
+   "draw": 112,
+   "date": "2019-03-06",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 454
+  },
+  {
+   "draw": 111,
+   "date": "2019-02-20",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 457
+  },
+  {
+   "draw": 110,
+   "date": "2019-01-30",
+   "category": "all-program",
+   "itas": 3350,
+   "crs": 438
+  },
+  {
+   "draw": 109,
+   "date": "2019-01-23",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 443
+  },
+  {
+   "draw": 108,
+   "date": "2019-01-09",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 449
+  },
+  {
+   "draw": 107,
+   "date": "2018-12-19",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 439
+  },
+  {
+   "draw": 106,
+   "date": "2018-12-12",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 445
+  },
+  {
+   "draw": 105,
+   "date": "2018-11-28",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 445
+  },
+  {
+   "draw": 104,
+   "date": "2018-11-14",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 449
+  },
+  {
+   "draw": 103,
+   "date": "2018-10-29",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 442
+  },
+  {
+   "draw": 102,
+   "date": "2018-10-15",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 440
+  },
+  {
+   "draw": 101,
+   "date": "2018-10-03",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 445
+  },
+  {
+   "draw": 100,
+   "date": "2018-09-24",
+   "category": "fst",
+   "itas": 400,
+   "crs": 284
+  },
+  {
+   "draw": 99,
+   "date": "2018-09-19",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 441
+  },
+  {
+   "draw": 98,
+   "date": "2018-09-05",
+   "category": "all-program",
+   "itas": 3900,
+   "crs": 440
+  },
+  {
+   "draw": 97,
+   "date": "2018-08-22",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 440
+  },
+  {
+   "draw": 96,
+   "date": "2018-08-08",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 440
+  },
+  {
+   "draw": 95,
+   "date": "2018-07-25",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 441
+  },
+  {
+   "draw": 94,
+   "date": "2018-07-11",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 442
+  },
+  {
+   "draw": 93,
+   "date": "2018-06-25",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 442
+  },
+  {
+   "draw": 92,
+   "date": "2018-06-13",
+   "category": "all-program",
+   "itas": 3750,
+   "crs": 451
+  },
+  {
+   "draw": 90,
+   "date": "2018-05-23",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 440
+  },
+  {
+   "draw": 89,
+   "date": "2018-05-09",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 441
+  },
+  {
+   "draw": 88,
+   "date": "2018-04-25",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 441
+  },
+  {
+   "draw": 87,
+   "date": "2018-04-11",
+   "category": "all-program",
+   "itas": 3500,
+   "crs": 444
+  },
+  {
+   "draw": 86,
+   "date": "2018-03-26",
+   "category": "all-program",
+   "itas": 3000,
+   "crs": 446
+  },
+  {
+   "draw": 85,
+   "date": "2018-03-14",
+   "category": "all-program",
+   "itas": 3000,
+   "crs": 456
+  },
+  {
+   "draw": 84,
+   "date": "2018-02-21",
+   "category": "all-program",
+   "itas": 3000,
+   "crs": 442
+  },
+  {
+   "draw": 83,
+   "date": "2018-02-07",
+   "category": "all-program",
+   "itas": 3000,
+   "crs": 442
+  },
+  {
+   "draw": 82,
+   "date": "2018-01-24",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 444
+  },
+  {
+   "draw": 81,
+   "date": "2018-01-10",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 446
+  },
+  {
+   "draw": 80,
+   "date": "2017-12-20",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 446
+  },
+  {
+   "draw": 79,
+   "date": "2017-12-06",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 452
+  },
+  {
+   "draw": 78,
+   "date": "2017-11-15",
+   "category": "all-program",
+   "itas": 2750,
+   "crs": 439
+  },
+  {
+   "draw": 77,
+   "date": "2017-11-08",
+   "category": "all-program",
+   "itas": 2000,
+   "crs": 458
+  },
+  {
+   "draw": 76,
+   "date": "2017-11-01",
+   "category": "fst",
+   "itas": 505,
+   "crs": 241
+  },
+  {
+   "draw": 75,
+   "date": "2017-11-01",
+   "category": "pnp",
+   "itas": 290,
+   "crs": 673
+  },
+  {
+   "draw": 74,
+   "date": "2017-10-18",
+   "category": "all-program",
+   "itas": 2757,
+   "crs": 436
+  },
+  {
+   "draw": 73,
+   "date": "2017-10-04",
+   "category": "all-program",
+   "itas": 2801,
+   "crs": 438
+  },
+  {
+   "draw": 72,
+   "date": "2017-09-20",
+   "category": "all-program",
+   "itas": 2871,
+   "crs": 433
+  },
+  {
+   "draw": 71,
+   "date": "2017-09-06",
+   "category": "all-program",
+   "itas": 2772,
+   "crs": 435
+  },
+  {
+   "draw": 70,
+   "date": "2017-08-23",
+   "category": "all-program",
+   "itas": 3035,
+   "crs": 434
+  },
+  {
+   "draw": 69,
+   "date": "2017-08-09",
+   "category": "all-program",
+   "itas": 2991,
+   "crs": 433
+  },
+  {
+   "draw": 68,
+   "date": "2017-08-02",
+   "category": "all-program",
+   "itas": 3264,
+   "crs": 441
+  },
+  {
+   "draw": 67,
+   "date": "2017-07-12",
+   "category": "all-program",
+   "itas": 3202,
+   "crs": 440
+  },
+  {
+   "draw": 66,
+   "date": "2017-06-28",
+   "category": "all-program",
+   "itas": 3409,
+   "crs": 449
+  },
+  {
+   "draw": 65,
+   "date": "2017-05-31",
+   "category": "all-program",
+   "itas": 3877,
+   "crs": 413
+  },
+  {
+   "draw": 64,
+   "date": "2017-05-26",
+   "category": "fst",
+   "itas": 400,
+   "crs": 199
+  },
+  {
+   "draw": 63,
+   "date": "2017-05-26",
+   "category": "pnp",
+   "itas": 143,
+   "crs": 775
+  },
+  {
+   "draw": 62,
+   "date": "2017-05-17",
+   "category": "all-program",
+   "itas": 3687,
+   "crs": 415
+  },
+  {
+   "draw": 61,
+   "date": "2017-05-04",
+   "category": "all-program",
+   "itas": 3796,
+   "crs": 423
+  },
+  {
+   "draw": 60,
+   "date": "2017-04-19",
+   "category": "all-program",
+   "itas": 3665,
+   "crs": 415
+  },
+  {
+   "draw": 59,
+   "date": "2017-04-12",
+   "category": "all-program",
+   "itas": 3923,
+   "crs": 423
+  },
+  {
+   "draw": 58,
+   "date": "2017-04-05",
+   "category": "all-program",
+   "itas": 3753,
+   "crs": 431
+  },
+  {
+   "draw": 57,
+   "date": "2017-03-24",
+   "category": "all-program",
+   "itas": 3749,
+   "crs": 441
+  },
+  {
+   "draw": 56,
+   "date": "2017-03-01",
+   "category": "all-program",
+   "itas": 3884,
+   "crs": 434
+  },
+  {
+   "draw": 55,
+   "date": "2017-02-22",
+   "category": "all-program",
+   "itas": 3611,
+   "crs": 441
+  },
+  {
+   "draw": 54,
+   "date": "2017-02-08",
+   "category": "all-program",
+   "itas": 3644,
+   "crs": 447
+  },
+  {
+   "draw": 53,
+   "date": "2017-01-25",
+   "category": "all-program",
+   "itas": 3508,
+   "crs": 453
+  },
+  {
+   "draw": 52,
+   "date": "2017-01-11",
+   "category": "all-program",
+   "itas": 3334,
+   "crs": 459
+  },
+  {
+   "draw": 51,
+   "date": "2017-01-04",
+   "category": "all-program",
+   "itas": 2902,
+   "crs": 468
+  },
+  {
+   "draw": 50,
+   "date": "2016-12-22",
+   "category": "all-program",
+   "itas": 2878,
+   "crs": 475
+  },
+  {
+   "draw": 49,
+   "date": "2016-12-16",
+   "category": "all-program",
+   "itas": 1936,
+   "crs": 497
+  },
+  {
+   "draw": 48,
+   "date": "2016-11-30",
+   "category": "pnp",
+   "itas": 559,
+   "crs": 786
+  },
+  {
+   "draw": 47,
+   "date": "2016-11-16",
+   "category": "all-program",
+   "itas": 2427,
+   "crs": 470
+  },
+  {
+   "draw": 46,
+   "date": "2016-11-02",
+   "category": "all-program",
+   "itas": 2080,
+   "crs": 472
+  },
+  {
+   "draw": 45,
+   "date": "2016-10-19",
+   "category": "all-program",
+   "itas": 1804,
+   "crs": 475
+  },
+  {
+   "draw": 44,
+   "date": "2016-10-12",
+   "category": "all-program",
+   "itas": 1518,
+   "crs": 484
+  },
+  {
+   "draw": 43,
+   "date": "2016-09-21",
+   "category": "all-program",
+   "itas": 1288,
+   "crs": 483
+  },
+  {
+   "draw": 42,
+   "date": "2016-09-07",
+   "category": "all-program",
+   "itas": 1000,
+   "crs": 491
+  },
+  {
+   "draw": 41,
+   "date": "2016-08-24",
+   "category": "all-program",
+   "itas": 750,
+   "crs": 538
+  },
+  {
+   "draw": 40,
+   "date": "2016-08-10",
+   "category": "all-program",
+   "itas": 754,
+   "crs": 490
+  },
+  {
+   "draw": 39,
+   "date": "2016-07-27",
+   "category": "all-program",
+   "itas": 755,
+   "crs": 488
+  },
+  {
+   "draw": 38,
+   "date": "2016-07-13",
+   "category": "all-program",
+   "itas": 747,
+   "crs": 482
+  },
+  {
+   "draw": 37,
+   "date": "2016-06-29",
+   "category": "all-program",
+   "itas": 773,
+   "crs": 482
+  },
+  {
+   "draw": 36,
+   "date": "2016-06-15",
+   "category": "all-program",
+   "itas": 752,
+   "crs": 488
+  },
+  {
+   "draw": 35,
+   "date": "2016-06-01",
+   "category": "all-program",
+   "itas": 762,
+   "crs": 483
+  },
+  {
+   "draw": 34,
+   "date": "2016-05-18",
+   "category": "all-program",
+   "itas": 763,
+   "crs": 484
+  },
+  {
+   "draw": 33,
+   "date": "2016-05-06",
+   "category": "all-program",
+   "itas": 799,
+   "crs": 534
+  },
+  {
+   "draw": 32,
+   "date": "2016-04-20",
+   "category": "all-program",
+   "itas": 1018,
+   "crs": 468
+  },
+  {
+   "draw": 31,
+   "date": "2016-04-06",
+   "category": "all-program",
+   "itas": 954,
+   "crs": 470
+  },
+  {
+   "draw": 30,
+   "date": "2016-03-23",
+   "category": "all-program",
+   "itas": 1014,
+   "crs": 470
+  },
+  {
+   "draw": 29,
+   "date": "2016-03-09",
+   "category": "all-program",
+   "itas": 1013,
+   "crs": 473
+  },
+  {
+   "draw": 28,
+   "date": "2016-02-24",
+   "category": "all-program",
+   "itas": 1484,
+   "crs": 453
+  },
+  {
+   "draw": 27,
+   "date": "2016-02-10",
+   "category": "all-program",
+   "itas": 1505,
+   "crs": 459
+  },
+  {
+   "draw": 26,
+   "date": "2016-01-27",
+   "category": "all-program",
+   "itas": 1468,
+   "crs": 457
+  },
+  {
+   "draw": 25,
+   "date": "2016-01-13",
+   "category": "all-program",
+   "itas": 1518,
+   "crs": 453
+  },
+  {
+   "draw": 24,
+   "date": "2016-01-06",
+   "category": "all-program",
+   "itas": 1463,
+   "crs": 461
+  },
+  {
+   "draw": 23,
+   "date": "2015-12-18",
+   "category": "all-program",
+   "itas": 1503,
+   "crs": 460
+  },
+  {
+   "draw": 22,
+   "date": "2015-12-04",
+   "category": "all-program",
+   "itas": 1451,
+   "crs": 461
+  },
+  {
+   "draw": 21,
+   "date": "2015-11-27",
+   "category": "all-program",
+   "itas": 1559,
+   "crs": 472
+  },
+  {
+   "draw": 20,
+   "date": "2015-11-13",
+   "category": "all-program",
+   "itas": 1506,
+   "crs": 484
+  },
+  {
+   "draw": 19,
+   "date": "2015-10-23",
+   "category": "all-program",
+   "itas": 1502,
+   "crs": 489
+  },
+  {
+   "draw": 18,
+   "date": "2015-10-02",
+   "category": "all-program",
+   "itas": 1530,
+   "crs": 450
+  },
+  {
+   "draw": 17,
+   "date": "2015-09-18",
+   "category": "all-program",
+   "itas": 1545,
+   "crs": 450
+  },
+  {
+   "draw": 16,
+   "date": "2015-09-08",
+   "category": "all-program",
+   "itas": 1517,
+   "crs": 459
+  },
+  {
+   "draw": 15,
+   "date": "2015-08-21",
+   "category": "all-program",
+   "itas": 1523,
+   "crs": 456
+  },
+  {
+   "draw": 14,
+   "date": "2015-08-07",
+   "category": "all-program",
+   "itas": 1402,
+   "crs": 471
+  },
+  {
+   "draw": 13,
+   "date": "2015-07-17",
+   "category": "all-program",
+   "itas": 1581,
+   "crs": 451
+  },
+  {
+   "draw": 12,
+   "date": "2015-07-10",
+   "category": "all-program",
+   "itas": 1516,
+   "crs": 463
+  },
+  {
+   "draw": 11,
+   "date": "2015-06-26",
+   "category": "all-program",
+   "itas": 1575,
+   "crs": 469
+  },
+  {
+   "draw": 10,
+   "date": "2015-06-12",
+   "category": "all-program",
+   "itas": 1501,
+   "crs": 482
+  },
+  {
+   "draw": 9,
+   "date": "2015-05-22",
+   "category": "all-program",
+   "itas": 1361,
+   "crs": 755
+  },
+  {
+   "draw": 8,
+   "date": "2015-04-17",
+   "category": "all-program",
+   "itas": 715,
+   "crs": 453
+  },
+  {
+   "draw": 7,
+   "date": "2015-04-10",
+   "category": "all-program",
+   "itas": 925,
+   "crs": 469
+  },
+  {
+   "draw": 6,
+   "date": "2015-03-27",
+   "category": "all-program",
+   "itas": 1637,
+   "crs": 453
+  },
+  {
+   "draw": 5,
+   "date": "2015-03-20",
+   "category": "all-program",
+   "itas": 1620,
+   "crs": 481
+  },
+  {
+   "draw": 4,
+   "date": "2015-02-27",
+   "category": "all-program",
+   "itas": 1187,
+   "crs": 735
+  },
+  {
+   "draw": 3,
+   "date": "2015-02-20",
+   "category": "cec",
+   "itas": 849,
+   "crs": 808
+  },
+  {
+   "draw": 2,
+   "date": "2015-02-07",
+   "category": "all-program",
+   "itas": 779,
+   "crs": 818
+  },
+  {
+   "draw": 1,
+   "date": "2015-01-31",
+   "category": "all-program",
+   "itas": 779,
+   "crs": 886
+  }
+ ],
+ "fetchedFrom": "https://www.canada.ca/content/dam/ircc/documents/json/ee_rounds_123_en.json"
+}
