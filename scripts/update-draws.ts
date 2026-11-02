@@ -73,7 +73,11 @@ if (!Array.isArray(rounds) || rounds.length === 0) {
   throw new Error("Unexpected IRCC payload shape: no rounds array");
 }
 
-const rows: Row[] = rounds
+const digitRows = rounds.filter((r) => /^\d+$/.test(String(r.drawNumber ?? "")));
+const skipped = rounds.length - digitRows.length;
+if (skipped > 0) console.log(`Skipped ${skipped} rows with letter-suffixed draw numbers (e.g. 91a/91b)`);
+
+const rows: Row[] = digitRows
   .map((r) => ({
     draw: parseInt(r.drawNumber!, 10),
     date: r.drawDate!,
