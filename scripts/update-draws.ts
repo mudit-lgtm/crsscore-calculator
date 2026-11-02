@@ -43,12 +43,32 @@ function categoryOf(drawName: string): string {
   return "other";
 }
 
-const res = await fetch(SOURCE_JSON, {
-  headers: { "User-Agent": "crscalculator.site draws updater (contact: site owner)" },
-});
-if (!res.ok) throw new Error(`IRCC fetch failed: ${res.status} ${res.statusText}`);
-const raw = (await res.json()) as { rounds?: Record<string, string>[] };
-const rounds = raw.rounds;
+// A local copy can be passed with `--from <file>` (or env IRCC_JSON) when
+// canada.ca drops the connection — the parser only needs the same payload.
+const cacheArg = process.argv[process.argv.indexOf("--from") + 1] || process.env.IRCC_JSON;
+
+async function loadRounds(): Promise<Record<string, string>[]> {
+  if (cacheArg) {
+    console.log(`Using local copy: ${cacheArg}`);
+    return JSON.parse(readFileSync(cacheArg, "utf8")).rounds;
+  }
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    try {
+      const res = await fetch(SOURCE_JSON, {
+        headers: { "User-Agent": "crscalculator.site draws updater (contact: site owner)" },
+      });
+      if (!res.ok) throw new Error(`IRCC fetch failed: ${res.status} ${res.statusText}`);
+      return ((await res.json()) as { rounds?: Record<string, string>[] }).rounds ?? [];
+    } catch (e) {
+      console.warn(`Attempt ${attempt} failed: ${(e as Error).message}`);
+      if (attempt === 5) throw e;
+      await new Promise((r) => setTimeout(r, attempt * 3000));
+    }
+  }
+  throw new Error("unreachable");
+}
+
+const rounds = loadRounds();
 if (!Array.isArray(rounds) || rounds.length === 0) {
   throw new Error("Unexpected IRCC payload shape: no rounds array");
 }
