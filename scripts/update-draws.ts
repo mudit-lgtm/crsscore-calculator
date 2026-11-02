@@ -68,7 +68,7 @@ async function loadRounds(): Promise<Record<string, string>[]> {
   throw new Error("unreachable");
 }
 
-const rounds = loadRounds();
+const rounds = await loadRounds();
 if (!Array.isArray(rounds) || rounds.length === 0) {
   throw new Error("Unexpected IRCC payload shape: no rounds array");
 }
