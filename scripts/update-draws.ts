@@ -37,7 +37,7 @@ function categoryOf(drawName: string): string {
   if (n.includes("transport")) return "transport";
   if (n.includes("agriculture")) return "agriculture";
   if (n.includes("education")) return "education";
-  if (n.includes("skilled trades") || n.includes("trade occupation")) return "fst";
+  if (n.includes("skilled trades") || n.includes("trade occupation") || n.includes("trades occupation")) return "fst";
   if (n.includes("federal skilled worker")) return "fsw";
   if (n.includes("no program specified") || n.includes("general")) return "all-program";
   return "other";

@@ -162,9 +162,9 @@ function showResults(score,bk,isNew){
   let nc,bc,vc,vt;
   if(score<400){nc='c-danger';bc='b-danger';vc='v-danger';vt=`⚠️ Score of ${score} is below competitive thresholds. Improving language scores, Canadian work experience, or getting a PNP can significantly boost your points.`}
   else if(score<=450){nc='c-warn';bc='b-warn';vc='v-warn';vt=`📊 Score of ${score} may qualify for PNP-specific draws. Explore provincial nomination options to boost your profile.`}
-  else if(score<=470){nc='c-yellow';bc='b-yellow';vc='v-yellow';vt=`📈 Score of ${score} is close to recent cutoffs (latest all-program {{LATEST_ALLPROG}}, CEC {{LATEST_CEC}}, French {{LATEST_FRENCH}}). Small improvements in language or work experience could push you over.`}
+  else if(score<=470){nc='c-yellow';bc='b-yellow';vc='v-yellow';vt=`📈 Score of ${score} is close to recent cutoffs ({{LATEST_CUTOFFS}}). Small improvements in language or work experience could push you over.`}
   else if(score<=500){nc='c-good';bc='b-good';vc='v-good';vt=`✅ Score of ${score} is competitive for Express Entry all-program draws. Keep your profile active and monitor draw cutoffs.`}
-  else{nc='c-great';bc='b-great';vc='v-great';vt=`🎉 Excellent! Score of ${score} is above the latest cutoffs (all-program {{LATEST_ALLPROG}}, CEC {{LATEST_CEC}}, French {{LATEST_FRENCH}}). Strong chances of receiving an ITA in the next draw.`}
+  else{nc='c-great';bc='b-great';vc='v-great';vt=`🎉 Excellent! Score of ${score} is above the latest cutoffs ({{LATEST_CUTOFFS}}). Strong chances of receiving an ITA in the next draw.`}
   if(isNew) vt+=' Calculated with the IRCC rules effective 3 November 2026.';
 
   document.getElementById('scoreNum').className=`score-num ${nc}`;

@@ -12,7 +12,7 @@ const FAQ: [string, string][] = [
   ["Do job offers give CRS points again?", "Yes, from 3 November 2026, but only qualifying job offers in high-wage occupations: 100, 70 or 50 points depending on the occupation's wage level."],
   ["Do I need an LMIA?", "No. The new high-wage points do not require an LMIA."],
   ["Can I get points for both work experience and a job offer?", "No. You get the higher of the two, capped at 150 without a spouse or 140 with a spouse."],
-  ["Will the cutoff change?", "Probably. More candidates will gain points, so cutoffs may rise, but IRCC sets each round separately and no change is guaranteed."],
+  ["Will the cutoff change?", "It may. IRCC has not said how the new points will affect cutoffs. Scores of everyone in the pool are recalculated, and each round's cutoff depends on its category and the number of candidates it invites. Check the latest draws on our cutoff scores page."],
 ];
 
 export const Route = createFileRoute("/express-entry-reforms-2026")({
