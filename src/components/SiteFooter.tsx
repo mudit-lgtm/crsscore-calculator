@@ -42,6 +42,8 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
       ["/contact", "Contact Us"],
       ["/privacy-policy", "Privacy Policy"],
       ["/terms-and-conditions", "Terms & Conditions"],
+      ["/editorial-policy", "Editorial Policy"],
+      ["/disclaimer", "Disclaimer"],
     ],
   },
 ];
@@ -60,7 +62,7 @@ export default function SiteFooter() {
               </span>
             </div>
             <p className="site-footer__blurb">
-              Free Canada Express Entry CRS score calculator. Trusted by thousands of applicants.
+              Free Canada Express Entry CRS score calculator. Not affiliated with IRCC.
             </p>
           </div>
 
