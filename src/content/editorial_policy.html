@@ -1,0 +1,104 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#f9fafb;color:#1f2937;line-height:1.6}
+.page-hero{background:#d32f2f;color:#fff;padding:48px 16px 40px;text-align:center}
+.page-hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:10px}
+.page-hero p{font-size:15px;opacity:.88;max-width:560px;margin:0 auto}
+.breadcrumb{background:#fff;border-bottom:1px solid #e5e7eb;padding:10px 16px;font-size:13px;color:#6b7280}
+.breadcrumb a{color:#d32f2f;text-decoration:none}
+.breadcrumb span{margin:0 6px}
+.container{max-width:900px;margin:0 auto;padding:40px 16px 60px}
+.card{background:#fff;border-radius:10px;border:1px solid #e5e7eb;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
+.section-title{font-size:1.1rem;font-weight:700;color:#d32f2f;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #fecaca}
+p{margin-bottom:12px;font-size:15px;color:#374151;line-height:1.75}
+ul,ol{padding-left:20px;margin-bottom:12px}
+li{font-size:15px;color:#374151;line-height:1.8;margin-bottom:4px}
+h3{font-size:1rem;font-weight:700;color:#111;margin:20px 0 8px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:24px 0}
+.stat-box{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:20px;text-align:center}
+.stat-box .num{font-size:2rem;font-weight:800;color:#d32f2f;display:block}
+.stat-box .lbl{font-size:12px;color:#6b7280;margin-top:4px}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:24px 0}
+.contact-card{background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:24px;text-align:center}
+.contact-card .icon{font-size:28px;margin-bottom:12px}
+.contact-card h4{font-size:14px;font-weight:700;color:#111;margin-bottom:6px}
+.contact-card p{font-size:13px;color:#6b7280;margin:0}
+.contact-card a{color:#d32f2f;text-decoration:none;font-weight:600}
+.form-group{margin-bottom:18px}
+label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px}
+input,select,textarea{width:100%;border:1px solid #d1d5db;border-radius:7px;padding:10px 14px;font-size:14px;color:#1f2937;background:#fff;outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:#d32f2f;box-shadow:0 0 0 3px rgba(211,47,47,0.1)}
+textarea{resize:vertical;min-height:130px}
+.btn-red{background:#d32f2f;color:#fff;font-size:14px;font-weight:700;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;width:100%}
+.btn-red:hover{background:#b71c1c}
+.toc{background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:20px 24px;margin-bottom:28px}
+.toc h4{font-size:14px;font-weight:700;color:#d32f2f;margin-bottom:10px}
+.toc ol{padding-left:18px}
+.toc li{font-size:13px;color:#374151;line-height:1.9}
+.toc a{color:#d32f2f;text-decoration:none}
+.last-updated{background:#f3f4f6;border-radius:6px;padding:8px 14px;font-size:12px;color:#6b7280;display:inline-block;margin-bottom:24px}
+@media(max-width:600px){.card{padding:20px}.stat-grid{grid-template-columns:1fr 1fr}}
+</style>
+
+
+
+<style>
+@media(max-width:900px){#crsDesktopNav{display:none !important}#crsHamburger{display:block !important}}
+</style>
+
+
+<!-- Hero -->
+<div class="page-hero">
+  <h1>Editorial Policy</h1>
+  <p>How we write and update this site</p>
+</div>
+
+<div class="breadcrumb" style="max-width:900px;margin:0 auto;padding:10px 16px">
+  <a href="/">Home</a><span>›</span> Editorial Policy
+</div>
+
+<div class="container">
+  <div class="last-updated">Last updated: {{LAST_UPDATED}}</div>
+
+  <div class="card">
+    <div class="section-title">Our sources</div>
+    <p>Everything on this site is written from <strong>official IRCC pages and official Government of Canada notices</strong>: the Comprehensive Ranking System grid on canada.ca, IRCC ministerial instructions and news releases, IRCC's published Express Entry rounds data, and provincial government pages such as ontario.ca and alberta.ca where a program's rules are described. We do not present forum posts, blogs or third-party summaries as sources for scoring rules.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">How and when we check for rule changes</div>
+    <p>We review the site whenever IRCC announces a change to the Express Entry system, and we re-check the calculators against the published CRS grid after each announced change takes effect. Each page carries a "Last updated" date showing when its content was last reviewed.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">How draw data is fetched</div>
+    <p>Draw and cutoff figures on this site are downloaded from <strong>IRCC's published Express Entry rounds feed</strong> (the official data behind the rounds page on canada.ca). A script rewrites our draw dataset from that feed, and any row we could not confirm against it is marked "unverified" on the page. We do not invent or estimate draw numbers.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Independence</div>
+    <p><strong>We do not accept payment to change calculator results</strong>, to alter a score, or to feature any consultant, school or employer. No paid placement affects what the calculators compute. If that ever changes, this page will say so.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">The calculators are estimates</div>
+    <p>Our calculators reproduce the published IRCC scoring rules as faithfully as we can, but they run in your browser and cannot see your full profile. Results are estimates only — your official CRS score is calculated by IRCC when you submit an Express Entry profile. See our <a href="/disclaimer" style="color:#d32f2f">Disclaimer</a>.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Report an error</div>
+    <p>Found something wrong — a wrong point value, an outdated cutoff, a broken link? Email <a href="mailto:contact@crscalculator.site" style="color:#d32f2f">contact@crscalculator.site</a> with the page, the text and (for calculator errors) your inputs. We correct confirmed errors promptly and update the "Last updated" date on the page.</p>
+  </div>
+</div>
+
+<!-- UNIVERSAL FOOTER -->
+<!-- ============================================================
+  UNIVERSAL FOOTER — crscalculator.site
+  MARKER: UNIVERSAL FOOTER (do not remove this line)
+  ============================================================ -->
+
+<section class="content-section" aria-labelledby="seo-crosslinks" style="max-width:1100px;margin:0 auto 40px;padding:0 16px"><h2 id="seo-crosslinks">Popular CRS calculators and guides</h2><ul style="line-height:2;padding-left:20px"><li><a href="/">Free CRS calculator (all programs)</a></li><li><a href="/express-entry-crs-calculator">Express Entry CRS calculator</a></li><li><a href="/cec-crs-calculator">CEC calculator (Canadian Experience Class)</a></li><li><a href="/crs-cutoff-scores">Latest CRS cutoff scores</a></li><li><a href="/blog/improve-crs-score-tips">How to improve your CRS score: 10 point boosts</a></li><li><a href="/express-entry-reforms-2026">Express Entry changes November 2026</a></li></ul></section>
+
+<!-- ============================================================
+  END UNIVERSAL FOOTER
+  ============================================================ -->
