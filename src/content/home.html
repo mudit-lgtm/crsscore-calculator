@@ -238,14 +238,14 @@ select.ctrl{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3
           <p style="font-size:.84rem;color:var(--muted);margin-bottom:18px;">Enter your details below to <strong>calculate your CRS score</strong> instantly. Based on the official <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/express-entry/eligibility/criteria-comprehensive-ranking-system.html" target="_blank" rel="noopener noreferrer">IRCC Comprehensive Ranking System grid</a>.</p>
 
           <div id="rulesBanner" style="display:none;background:#fff8e1;border:1px solid #f0d47a;border-left:4px solid var(--red);border-radius:8px;padding:12px 14px;font-size:.85rem;margin-bottom:16px;line-height:1.55;">
-            <strong>IRCC rules change — 3 November 2026:</strong> arranged-employment (job offer) points are gone and a new <strong>Labour Market Integration</strong> factor replaces the Canadian work experience points. This calculator uses the rules that apply to your profile date — profiles submitted before 3 November 2026 keep the pre-change rules. Use the toggle below to compare both scores.
+            <strong>New IRCC rules are in effect since 3 November 2026:</strong> qualifying high-wage job offers and high-wage Canadian work experience now earn CRS points under the new Labour Market Integration rules. IRCC is recalculating existing profiles, which can take up to two weeks, and invitation rounds pause during that time. This calculator uses the rules that apply to your profile date — use the toggle below to compare both scores.
           </div>
 
           <div class="form-g" style="margin-bottom:16px;">
             <label>Scoring rules</label>
             <div class="radios">
-              <label><input type="radio" name="ruleset" value="pre_2026_11_03" checked onchange="toggleRuleset()"> Current — before 3 Nov 2026</label>
-              <label><input type="radio" name="ruleset" value="from_2026_11_03" onchange="toggleRuleset()"> From 3 Nov 2026</label>
+              <label><input type="radio" name="ruleset" value="pre_2026_11_03" onchange="toggleRuleset()"> Before 3 Nov 2026</label>
+              <label><input type="radio" name="ruleset" value="from_2026_11_03" checked onchange="toggleRuleset()"> From 3 Nov 2026 (current)</label>
             </div>
           </div>
 
