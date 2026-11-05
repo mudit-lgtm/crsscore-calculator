@@ -1,6 +1,18 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { applyTokens } from "@/lib/draws";
 import { LAST_UPDATED_LONG, LAST_UPDATED_ISO } from "@/config/lastUpdated";
+import { mountAd } from "@/components/AdSlot";
+
+const NOTE = `<aside class="crs-note">Estimate only. Not legal or immigration advice. Not affiliated with IRCC or the Government of Canada. Check <a href="https://www.canada.ca/en/immigration-refugees-citizenship.html" target="_blank" rel="noopener noreferrer">canada.ca</a> for official rules. <a href="/disclaimer">Read the disclaimer</a>.</aside>`;
+const AD = `<div class="crs-ad-anchor" aria-hidden="true"></div>`;
+
+/** Insert the two allowed ad anchors: after the intro paragraph and before the FAQ. */
+function addAdAnchors(h: string) {
+  h = h.replace(/(<\/h1>[\s\S]*?<\/p>)/i, `$1${AD}`);
+  const faq = h.search(/<(h2|h3|div)[^>]*>(?:(?!<\/\1>)[\s\S]){0,200}?(Frequently Asked|FAQ)/i);
+  if (faq > 0) h = h.slice(0, faq) + AD + h.slice(faq);
+  return h;
+}
 
 function prepare(raw: string) {
   let h = applyTokens(raw);
@@ -28,6 +40,8 @@ function scopeScript(code: string) {
 
 type StaticPageProps = {
   html: string;
+  /** "tool" = calculator/guide/blog (gets disclaimer note + ad anchors); "trust" = legal pages. */
+  kind?: "tool" | "trust";
   js?: string;
   externalScripts?: string[];
 };
@@ -38,8 +52,8 @@ const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : us
  * Renders a verbatim copy of an original static HTML page and runs its
  * original inline scripts, so inline onclick/onchange handlers keep working.
  */
-export default function StaticPage({ html: rawHtml, js, externalScripts = [] }: StaticPageProps) {
-  const html = prepare(rawHtml);
+export default function StaticPage({ html: rawHtml, js, externalScripts = [], kind = "tool" }: StaticPageProps) {
+  const html = kind === "tool" ? addAdAnchors(prepare(rawHtml)) + NOTE : prepare(rawHtml);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Wrap every wide table in a mobile-safe horizontal scroll container.
@@ -61,6 +75,18 @@ export default function StaticPage({ html: rawHtml, js, externalScripts = [] }: 
       });
     };
     wrapTables();
+    if (kind === "tool") {
+      // Disclaimer note right under the first calculator result box.
+      const res = Array.from(root.querySelectorAll<HTMLElement>("[id]")).find(
+        (el) => /result/i.test(el.id) && !el.parentElement?.closest("[id*='esult']") && !el.closest("script"),
+      );
+      if (res && !res.nextElementSibling?.classList.contains("crs-note")) {
+        res.insertAdjacentHTML("afterend", NOTE);
+      }
+      const fill = () => root.querySelectorAll<HTMLElement>(".crs-ad-anchor").forEach((a) => mountAd(a));
+      fill();
+      window.addEventListener("crs-consent-change", fill);
+    }
     if (typeof MutationObserver === "undefined") return;
     const obs = new MutationObserver(() => wrapTables());
     obs.observe(root, { childList: true, subtree: true });

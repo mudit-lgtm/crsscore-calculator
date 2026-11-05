@@ -3,11 +3,12 @@ function crsToggleMenu(){
   var mi=document.getElementById('crsMenuIcon');
   var ci=document.getElementById('crsCloseIcon');
   var btn=document.getElementById('crsHamburger');
-  var open=m?.style.display==='block';
-  m?.style.display=open?'none':'block';
-  mi?.style.display=open?'block':'none';
-  ci.style.display=open?'none':'block';
-  btn?.setAttribute('aria-expanded',String(!open));
+  if(!m) return;
+  var open=m.style.display==='block';
+  m.style.display=open?'none':'block';
+  if(mi) mi.style.display=open?'block':'none';
+  if(ci) ci.style.display=open?'none':'block';
+  btn&&btn.setAttribute('aria-expanded',String(!open));
 }
 // STEM NOC data
   const STEM_NOCS = {
@@ -190,8 +191,8 @@ function crsToggleMenu(){
     const sv = document.getElementById('stemVerdictText');
     if (sv) {
       sv.textContent = total >= 470
-        ? 'Your score is in range for recent STEM category-based draws (typically CRS 470–500).'
-        : 'STEM draws have recently cut off near CRS 470–500. Boost language or gain Canadian experience.';
+        ? 'Your score is in range for recent STEM category-based draws (typically CRS {{RANGE_STEM}}).'
+        : 'STEM draws have recently cut off near CRS {{RANGE_STEM}}. Boost language or gain Canadian experience.';
     }
 
     const results = document.getElementById('results');

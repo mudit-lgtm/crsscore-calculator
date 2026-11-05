@@ -48,7 +48,7 @@
     } else if (total >= 525) {
       v = '✅ Excellent! This score is highly competitive for all-program Express Entry draws.';
     } else if (total >= 490) {
-      v = '✅ Competitive. Within range of recent all-program draw cutoffs (~470–525).';
+      v = '✅ Competitive. Within range of recent all-program draw cutoffs ({{CUTOFF_SHORT}}).';
     } else if (total >= 450) {
       v = '⚠️ Close. Consider improving IELTS to CLB 9+ or targeting a category-based or PNP draw.';
     } else if (total >= 400) {

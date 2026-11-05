@@ -84,6 +84,19 @@ export function latestCutoffsPhrase() {
   return parts.length ? parts.join(", ") : `latest draw: ${LATEST.crs}`;
 }
 
+function latestDated(cat: string, label: string) {
+  const d = DRAWS.find((x) => x.category === cat && !x.unverified);
+  return d ? `${label} ${d.crs} (${fmt(d.date)})` : null;
+}
+/** Latest CEC, French-language and PNP cutoffs with dates, plus the all-program note. */
+export function cutoffShort() {
+  const parts = [latestDated("cec", "CEC"), latestDated("french", "French-language"), latestDated("pnp", "PNP")].filter(Boolean);
+  return `latest cutoffs: ${parts.join(", ")}; IRCC has not held an all-program draw since April 2024`;
+}
+export function cutoffTiny() {
+  return [latestDated("cec", "CEC"), latestDated("french", "French")].filter(Boolean).join(" / ");
+}
+
 function latestBlock() {
   const rows = DRAWS.slice(0, 5)
     .map((d) => `<tr><td>${catLabel(d.category)}${unv(d)}</td><td>${fmt(d.date)}</td><td>${n(d.itas)}</td><td><strong>${d.crs}</strong></td></tr>`)
@@ -116,6 +129,9 @@ export function applyTokens(html: string): string {
     LATEST_FRENCH: latestOf("french"),
     LATEST_CUTOFFS: latestCutoffsPhrase(),
     LATEST_DRAWS_BLOCK: latestBlock(),
+    CUTOFF_SHORT: cutoffShort(),
+    CUTOFF_TINY: cutoffTiny(),
+    RANGE_STEM: rangeText("stem"),
   };
   return html.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => map[k] ?? m);
 }

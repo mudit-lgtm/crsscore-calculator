@@ -36,7 +36,7 @@ function calcBoost() {
   } else if (projected >= 525) {
     v = '✅ Excellent! This projected score is highly competitive for all-program Express Entry draws.';
   } else if (projected >= 490) {
-    v = '✅ Competitive! Within the typical all-program draw range (~470–525).';
+    v = '✅ Competitive! Within the typical all-program draw range ({{CUTOFF_SHORT}}).';
   } else if (projected >= 450) {
     v = '⚠️ Getting closer. Try adding IELTS improvement or a PNP strategy to reach 490+.';
   } else if (projected >= 400) {

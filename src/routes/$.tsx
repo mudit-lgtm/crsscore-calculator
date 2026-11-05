@@ -10,6 +10,9 @@ const SITE = "https://crscalculator.site";
 const LEGACY_MAP: Record<string, string> = {
   "/index": "/",
   "/home": "/",
+  "/alberta-calculator": "/alberta-crs-calculator",
+  "/manitoba-calculator": "/manitoba-crs-calculator",
+  "/saskatchewan-calculator": "/saskatchewan-crs-calculator",
   "/express-entry-draws": "/express-entry-draw-results",
   "/express-entry-draw-history": "/blog/express-entry-cutoff-history",
   "/express-entry-draw-results-history": "/express-entry-draw-results",

@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { ADS_ENABLED, ADSENSE_PUBLISHER_ID } from "@/config/ads";
+import { hasAdConsent } from "@/lib/consent";
 
 let scriptRequested = false;
 
@@ -19,6 +21,7 @@ function loadAdSenseOnce() {
  * Shared by the standalone <AdSlot /> component and the StaticPage slots.
  */
 export function mountAd(container: HTMLElement) {
+  if (!ADS_ENABLED || !hasAdConsent()) return;
   if (container.querySelector("ins.adsbygoogle")) return;
   loadAdSenseOnce();
   const ins = document.createElement("ins");
@@ -45,12 +48,19 @@ export function mountAd(container: HTMLElement) {
  */
 export default function AdSlot() {
   const ref = useRef<HTMLDivElement>(null);
+  const [ok, setOk] = useState(false);
 
   useEffect(() => {
-    if (ADS_ENABLED && ref.current) mountAd(ref.current);
+    const check = () => setOk(ADS_ENABLED && hasAdConsent());
+    check();
+    window.addEventListener("crs-consent-change", check);
+    return () => window.removeEventListener("crs-consent-change", check);
   }, []);
+  useEffect(() => {
+    if (ok && ref.current) mountAd(ref.current);
+  }, [ok]);
 
-  if (!ADS_ENABLED) return null;
+  if (!ok) return null;
   return (
     <div className="crs-ad" ref={ref} aria-label="Advertisement">
       <span className="crs-ad__label">Advertisement</span>

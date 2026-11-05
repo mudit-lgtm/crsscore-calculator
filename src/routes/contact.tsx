@@ -43,5 +43,5 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Page() {
-  return <StaticPage html={pageHtml} js={pageJs} externalScripts={[]} />;
+  return <StaticPage kind="trust" html={pageHtml} js={pageJs} externalScripts={[]} />;
 }

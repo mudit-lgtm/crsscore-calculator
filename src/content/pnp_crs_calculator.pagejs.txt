@@ -146,7 +146,7 @@
       } else if (total >= 470) {
         label = '🔵 Competitive';
         chanceClass = 'chance-good';
-        chanceText = `✅ Competitive score. ${total} points is at or above current all-program draw cutoffs (~470–525). Consider improving your base before entering the pool.`;
+        chanceText = `✅ Competitive score. ${total} points is at or above current all-program draw cutoffs ({{CUTOFF_SHORT}}). Consider improving your base before entering the pool.`;
       } else if (total >= 400) {
         label = '🟡 Moderate';
         chanceClass = 'chance-moderate';

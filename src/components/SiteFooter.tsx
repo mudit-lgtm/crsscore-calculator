@@ -1,4 +1,5 @@
 import { LogoMark } from "./Logo";
+import { openConsentSettings } from "@/lib/consent";
 
 const COLUMNS: { title: string; links: [string, string][] }[] = [
   {
@@ -44,6 +45,7 @@ const COLUMNS: { title: string; links: [string, string][] }[] = [
       ["/terms-and-conditions", "Terms & Conditions"],
       ["/editorial-policy", "Editorial Policy"],
       ["/disclaimer", "Disclaimer"],
+      ["/cookie-policy", "Cookie Policy"],
     ],
   },
 ];
@@ -84,8 +86,12 @@ export default function SiteFooter() {
             <a href="/privacy-policy">Privacy</a>
             <a href="/terms-and-conditions">Terms</a>
             <a href="/contact">Contact</a>
+            <button type="button" className="site-footer__cookie" onClick={openConsentSettings}>Cookie settings</button>
           </div>
         </div>
+        <p className="crs-disclaimer-line">
+          Estimate only. Not legal or immigration advice. Not affiliated with IRCC or the Government of Canada. Check canada.ca for official rules. <a href="/disclaimer">Disclaimer</a>
+        </p>
       </div>
     </footer>
   );

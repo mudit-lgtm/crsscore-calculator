@@ -17,8 +17,11 @@ import { Route as BcCrsCalculatorRouteImport } from './routes/bc-crs-calculator'
 import { Route as CanadaExpressEntryEligibilityRouteImport } from './routes/canada-express-entry-eligibility'
 import { Route as CecCrsCalculatorRouteImport } from './routes/cec-crs-calculator'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as CrsCutoffScoresRouteImport } from './routes/crs-cutoff-scores'
 import { Route as CrsScoreForCanadaPrRouteImport } from './routes/crs-score-for-canada-pr'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as EditorialPolicyRouteImport } from './routes/editorial-policy'
 import { Route as ExpressEntryCrsCalculatorRouteImport } from './routes/express-entry-crs-calculator'
 import { Route as ExpressEntryDrawResultsRouteImport } from './routes/express-entry-draw-results'
 import { Route as ExpressEntryReforms2026RouteImport } from './routes/express-entry-reforms-2026'
@@ -88,6 +91,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CookiePolicyRoute = CookiePolicyRouteImport.update({
+  id: '/cookie-policy',
+  path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CrsCutoffScoresRoute = CrsCutoffScoresRouteImport.update({
   id: '/crs-cutoff-scores',
   path: '/crs-cutoff-scores',
@@ -96,6 +104,16 @@ const CrsCutoffScoresRoute = CrsCutoffScoresRouteImport.update({
 const CrsScoreForCanadaPrRoute = CrsScoreForCanadaPrRouteImport.update({
   id: '/crs-score-for-canada-pr',
   path: '/crs-score-for-canada-pr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EditorialPolicyRoute = EditorialPolicyRouteImport.update({
+  id: '/editorial-policy',
+  path: '/editorial-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExpressEntryCrsCalculatorRoute =
@@ -247,8 +265,11 @@ export interface FileRoutesByFullPath {
   '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
   '/cec-crs-calculator': typeof CecCrsCalculatorRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
   '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
@@ -286,8 +307,11 @@ export interface FileRoutesByTo {
   '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
   '/cec-crs-calculator': typeof CecCrsCalculatorRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
   '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
@@ -326,8 +350,11 @@ export interface FileRoutesById {
   '/canada-express-entry-eligibility': typeof CanadaExpressEntryEligibilityRoute
   '/cec-crs-calculator': typeof CecCrsCalculatorRoute
   '/contact': typeof ContactRoute
+  '/cookie-policy': typeof CookiePolicyRoute
   '/crs-cutoff-scores': typeof CrsCutoffScoresRoute
   '/crs-score-for-canada-pr': typeof CrsScoreForCanadaPrRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/editorial-policy': typeof EditorialPolicyRoute
   '/express-entry-crs-calculator': typeof ExpressEntryCrsCalculatorRoute
   '/express-entry-draw-results': typeof ExpressEntryDrawResultsRoute
   '/express-entry-reforms-2026': typeof ExpressEntryReforms2026Route
@@ -367,8 +394,11 @@ export interface FileRouteTypes {
     | '/canada-express-entry-eligibility'
     | '/cec-crs-calculator'
     | '/contact'
+    | '/cookie-policy'
     | '/crs-cutoff-scores'
     | '/crs-score-for-canada-pr'
+    | '/disclaimer'
+    | '/editorial-policy'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
     | '/express-entry-reforms-2026'
@@ -406,8 +436,11 @@ export interface FileRouteTypes {
     | '/canada-express-entry-eligibility'
     | '/cec-crs-calculator'
     | '/contact'
+    | '/cookie-policy'
     | '/crs-cutoff-scores'
     | '/crs-score-for-canada-pr'
+    | '/disclaimer'
+    | '/editorial-policy'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
     | '/express-entry-reforms-2026'
@@ -445,8 +478,11 @@ export interface FileRouteTypes {
     | '/canada-express-entry-eligibility'
     | '/cec-crs-calculator'
     | '/contact'
+    | '/cookie-policy'
     | '/crs-cutoff-scores'
     | '/crs-score-for-canada-pr'
+    | '/disclaimer'
+    | '/editorial-policy'
     | '/express-entry-crs-calculator'
     | '/express-entry-draw-results'
     | '/express-entry-reforms-2026'
@@ -485,8 +521,11 @@ export interface RootRouteChildren {
   CanadaExpressEntryEligibilityRoute: typeof CanadaExpressEntryEligibilityRoute
   CecCrsCalculatorRoute: typeof CecCrsCalculatorRoute
   ContactRoute: typeof ContactRoute
+  CookiePolicyRoute: typeof CookiePolicyRoute
   CrsCutoffScoresRoute: typeof CrsCutoffScoresRoute
   CrsScoreForCanadaPrRoute: typeof CrsScoreForCanadaPrRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  EditorialPolicyRoute: typeof EditorialPolicyRoute
   ExpressEntryCrsCalculatorRoute: typeof ExpressEntryCrsCalculatorRoute
   ExpressEntryDrawResultsRoute: typeof ExpressEntryDrawResultsRoute
   ExpressEntryReforms2026Route: typeof ExpressEntryReforms2026Route
@@ -574,6 +613,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cookie-policy': {
+      id: '/cookie-policy'
+      path: '/cookie-policy'
+      fullPath: '/cookie-policy'
+      preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/crs-cutoff-scores': {
       id: '/crs-cutoff-scores'
       path: '/crs-cutoff-scores'
@@ -586,6 +632,20 @@ declare module '@tanstack/react-router' {
       path: '/crs-score-for-canada-pr'
       fullPath: '/crs-score-for-canada-pr'
       preLoaderRoute: typeof CrsScoreForCanadaPrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/editorial-policy': {
+      id: '/editorial-policy'
+      path: '/editorial-policy'
+      fullPath: '/editorial-policy'
+      preLoaderRoute: typeof EditorialPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/express-entry-crs-calculator': {
@@ -789,8 +849,11 @@ const rootRouteChildren: RootRouteChildren = {
   CanadaExpressEntryEligibilityRoute: CanadaExpressEntryEligibilityRoute,
   CecCrsCalculatorRoute: CecCrsCalculatorRoute,
   ContactRoute: ContactRoute,
+  CookiePolicyRoute: CookiePolicyRoute,
   CrsCutoffScoresRoute: CrsCutoffScoresRoute,
   CrsScoreForCanadaPrRoute: CrsScoreForCanadaPrRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  EditorialPolicyRoute: EditorialPolicyRoute,
   ExpressEntryCrsCalculatorRoute: ExpressEntryCrsCalculatorRoute,
   ExpressEntryDrawResultsRoute: ExpressEntryDrawResultsRoute,
   ExpressEntryReforms2026Route: ExpressEntryReforms2026Route,
